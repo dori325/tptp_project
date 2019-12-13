@@ -1,0 +1,135 @@
+@charset "UTF-8";
+/* id 참고
+listboard - list를 보여주는 화면 ex) 질문게시판, 통합게시판, 브랜드게시판
+writelink - board에서 글쓰기 <a>링크
+pensort - board 내에서 분류 선택
+ */
+#listboard {
+	margin: 0px auto;
+	padding: 0px;
+	width: 850px;
+	height: auto;
+	text-align: center;
+}
+
+#listTop {
+	float: left;
+	width: 850px;
+	margin-bottom: 5px;
+}
+
+#listboard table {
+	width: 850px;
+	height: auto;
+	border-left: none;
+	border-right: none;
+	border-bottom: rgb(169, 169, 169) 1px solid;
+	border-collapse: collapse;
+	margin-bottom: 5px;
+}
+
+#listTop button {
+	border-radius: 5px;
+	padding: 2px;
+	margin: 0px;
+	float: left;
+	width: 55px;
+	height: auto;
+/* 	background-color: rgba(169, 169, 169, 0.05); */
+	background-color: white;
+	border: 2px rgba(169, 169, 169, 0.4) solid;
+	margin-right: 7px;
+}
+
+#listboard #pensort:hover {
+/* 	background-color: rgba(94, 204, 152, 0.2); */
+	background-color: white;
+	border: 2px rgba(94, 204, 152, 0.4) solid;
+}
+
+#listboard #pensort:visited {
+	background-color: #C8FFFF;
+}
+
+#writelink {
+	float: right;
+}
+
+#writelink:hover {
+	background-color: rgba(94, 204, 152, 0.3); /*색상 변경*/
+	text-decoration: none;
+}
+
+#writelink:link {
+	color: black;
+	text-decoration: none;
+}
+
+#writelink:visited {
+	color: black;
+	text-decoration: none;
+}
+
+#listboard table tr {
+	border-bottom: 1px #f5f5f5 solid;
+}
+
+#listboard table th {
+	height: 30px;
+	background-color: rgba(0, 191, 255, 0.5);
+}
+
+#listboard table td {
+	height: 25px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+tr:nth-child(odd) {
+	background-color: rgba(0, 191, 255, 0.05);
+}
+
+tr:hover {
+	background-color: rgba(169, 169, 169, 0.05);
+}
+
+#listboard #titleAl {
+	text-decoration: none;
+	text-align: left;
+	padding-left: 5px;
+	color: black;
+}
+
+#listboard #title:link {
+	text-decoration: none;
+	color: black;
+}
+
+#listboard #title:visited {
+	text-decoration: none;
+	color: black;
+}
+
+#listBottom {
+	margin: 0px auto;
+	width: 850px;
+}
+#listBottom input{
+	outline: none;
+}
+
+#Rside {
+	width: 100px;
+	border: 1px rgb(245, 245, 245) solid;
+	padding: 0px;
+}
+
+#Rside li {
+	padding: 0px;
+	padding-bottom: 5px;
+	display: inline-block;
+}
+
+#Rside li:hover {
+	
+}
