@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>디테일</title>
-<link rel="stylesheet" href="./css/main.css">
 <c:import url="topmenu.jsp"/>
 </head>
 <link href="./css/detail.css" rel="stylesheet" />
@@ -19,10 +18,10 @@
 					<table>
 						<tr>
 							<td>
-								<div id="like-wrap">
-									<div id="like-img"><img alt="" src=""></div>
-									<div id="like-text">
-										<p>추천</p>
+								<div id="cate-wrap">
+									<div id="cate-img"><img alt="" src="./img/category.png"></div>
+									<div id="cate-text">
+										샤프
 									</div>
 								</div>
 							</td>
@@ -55,7 +54,7 @@
 							<div id="like-wrap">
 								<div id="like-img"><img alt="" src=""></div>
 								<div id="like-text">
-									<p>추천</p>
+									<p>3</p>
 								</div>
 							</div>
 						</td>
