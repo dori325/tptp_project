@@ -36,7 +36,7 @@
 							<td id="id">작성자</td>
 							<td id="ip">192.168.0.1</td>
 							<td id="date">2019.12.16</td>
-							<td id="count"><img alt="" src="">321</td>
+							<td id="count"><img alt="" src="./img/eye.png">321</td>
 					</table>
 				</div>
 			</div>

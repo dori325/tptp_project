@@ -61,6 +61,11 @@ detailBot - 목록, 이전/다음, 추천등
 	font-size: small;
 	text-align: right;
 }
+#count img{
+	vertical-align: middle;
+	height: 14px;
+	padding-right: 5px;
+}
 #detailMid{
 	margin: 0 auto;
 	padding: 10px;
