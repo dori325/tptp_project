@@ -18,7 +18,14 @@
 				<div id="detailTitle">
 					<table>
 						<tr>
-							<td>카테고리</td>
+							<td>
+								<div id="like-wrap">
+									<div id="like-img"><img alt="" src=""></div>
+									<div id="like-text">
+										<p>추천</p>
+									</div>
+								</div>
+							</td>
 							<td id="title">제목</td>
 							<td><a>수정</a> / <a>삭제</a></td>
 						</tr>
