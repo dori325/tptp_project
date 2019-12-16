@@ -1,8 +1,6 @@
 package first.tptpoh.controller;
 
-import java.awt.image.SampleModel;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +24,7 @@ public class TptpController {
 	@RequestMapping (value = "index.do")
 	public ModelAndView index(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		
 		
 		return mv;
 	}
