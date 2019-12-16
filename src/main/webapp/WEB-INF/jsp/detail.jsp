@@ -21,7 +21,7 @@
 								<div id="cate-wrap">
 									<div id="cate-img"><img alt="" src="./img/category.png"></div>
 									<div id="cate-text">
-										샤프
+										<p>샤프</p>
 									</div>
 								</div>
 							</td>
@@ -52,7 +52,7 @@
 						<td><a>목록으로</a></td>
 						<td>
 							<div id="like-wrap">
-								<div id="like-img"><img alt="" src=""></div>
+								<div id="like-img"><img alt="" src="./img/heart.png"></div>
 								<div id="like-text">
 									<p>3</p>
 								</div>
