@@ -52,7 +52,7 @@
 						<td><a>목록으로</a></td>
 						<td>
 							<div id="like-wrap">
-								<div id="like-img"><img alt="" src="./img/heart.png"></div>
+								<div id="like-img"><img alt="" src="./img/heart2.png"></div>
 								<div id="like-text">
 									<p>3</p>
 								</div>
