@@ -1,0 +1,14 @@
+package com.tptp.service;
+
+import java.util.List;
+import java.util.Map;
+
+import com.tptp.dto.BoardDTO;
+
+public interface TptpService {
+
+	List<BoardDTO> list() throws Exception;
+
+	List<BoardDTO> notice() throws Exception;
+
+}
