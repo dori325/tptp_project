@@ -18,13 +18,13 @@ import com.tptp.service.OService;
 public class OController {
 	Logger log = Logger.getLogger(this.getClass());
 	
-	@Resource(name = "tptpService")
-	private OService tptpService;
+	@Resource(name = "oService")
+	private OService oService;
 	
 	@RequestMapping (value = "notice.do")
 	public ModelAndView notice(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		List<BoardDTO> notice = tptpService.notice();
+		List<BoardDTO> notice = oService.notice();
 		mv.addObject("notice",notice);
 		
 		return mv;
@@ -33,7 +33,7 @@ public class OController {
 	@RequestMapping (value = "board.do")
 	public ModelAndView board(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		List<BoardDTO> list = tptpService.list();
+		List<BoardDTO> list = oService.list();
 		mv.addObject("list", list);
 		
 		return mv;

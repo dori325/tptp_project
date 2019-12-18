@@ -1,7 +1,5 @@
-package com.team.controller;
+package com.tptp.controller;
 
-import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -12,21 +10,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.servlet.ModelAndView;
 
-import com.team.service.K_Service;
+import com.tptp.service.K_Service;
 
 @Controller
 public class K_Controller {
 	Logger log = Logger.getLogger(this.getClass());
 
-	@Resource(name = "tptpService")
-	private K_Service tptpService;
+	@Resource(name = "k_Service")
+	private K_Service k_Service;
 	
 	@RequestMapping(value = "QnAlist.do")
 	public ModelAndView QnA(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		List<Map<String, Object>> list = tptpService.admOper();
-		mv.addObject("list", list);
+//		List<Map<String, Object>> list = k_Service.admOper();
+//		mv.addObject("list", list);
 		return mv;
 	}
 	
