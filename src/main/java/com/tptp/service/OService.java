@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.tptp.dto.BoardDTO;
 
-public interface TptpService {
+public interface OService {
 
 	List<BoardDTO> list() throws Exception;
 

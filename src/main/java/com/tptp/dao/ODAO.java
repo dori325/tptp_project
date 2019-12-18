@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.common.dao.AbstractDAO;
 import com.tptp.dto.BoardDTO;
 @Repository("tptpDAO")
-public class TptpDAO extends AbstractDAO {
+public class ODAO extends AbstractDAO {
 
 	@SuppressWarnings("unchecked")
 	public List<BoardDTO> list() {

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tptp.dto.BoardDTO;
-import com.tptp.service.TptpService;
+import com.tptp.service.OService;
 
 
 @Controller
@@ -19,7 +19,7 @@ public class OController {
 	Logger log = Logger.getLogger(this.getClass());
 	
 	@Resource(name = "tptpService")
-	private TptpService tptpService;
+	private OService tptpService;
 	
 	@RequestMapping (value = "notice.do")
 	public ModelAndView notice(HttpServletRequest request) throws Exception {
