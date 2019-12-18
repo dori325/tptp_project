@@ -26,21 +26,18 @@
 			<input type="text" name="title" placeholder="제목을 입력하세요"><br>
 			<textarea id="summernote" name="content"></textarea>
 			<script>
-				$(document).ready(function() {
-				$('#summernote').summernote({
-					lang: 'ko-KR',
-					width: 850,
-					height: 600,
-					minHeight: null,
-					maxHeight: null,
-					if ($('#summernote').summernote('isEmpty')) {
-						  alert('editor content is empty');
-					}
-				});
-				$('.dropdown-toggle').dropdown()
+			$(document).ready(function() {
+				  $('#summernote').summernote({
+						lang : 'ko-KR',
+						width : 850,
+						height : 600,
+						minHeight : null,
+						maxHeight : null,
+					});
+				  $('.dropdown-toggle').dropdown()
 				});
 			</script>
-			<button type="submit">글쓰기</button>
+			<button id="writebutton" type="submit">글쓰기</button>
 		</div>
 	</form>
 	<c:import url="bottonmenu.jsp" />

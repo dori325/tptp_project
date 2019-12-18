@@ -3,14 +3,16 @@
 #writetitle{
 	margin: 0 auto;
 	width: 850px;
-	height: 40px;
 }
 #writetitle input{
+	margin-top: 10px;
+	margin-bottom: 10px;
 	width: 850px;
-	margin: 5px;
+	font-size: 12pt;
 }
 #writebutton{
-	margin: 0 auto;
 	width: 850px;
+	height: 30px;
 }
+
 
