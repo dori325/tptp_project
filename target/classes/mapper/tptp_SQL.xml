@@ -9,10 +9,10 @@
 			WHERE b_cate1 = 'notice'
 	</select>
 	
-	<select id="notice" parameterType="hashmap" resultType="hashmap">
+	<select id="notice" resultType="hashmap">
 			SELECT b_title, b_date, b_count, l_nick, c_count,
 			(SELECT COUNT(*) FROM boardview) AS count
 			FROM boardview
-			WHERE b_cate1 = #{cate1 }
+			WHERE b_cate1 = 'notice'
 	</select>
 </mapper>
