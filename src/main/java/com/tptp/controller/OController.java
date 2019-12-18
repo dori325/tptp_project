@@ -30,7 +30,7 @@ public class OController {
 		return mv;
 	}
 	
-	@RequestMapping (value = "board.do")
+	@RequestMapping (value = "brand1.do")
 	public ModelAndView board(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<BoardDTO> list = oService.list();

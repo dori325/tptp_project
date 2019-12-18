@@ -14,9 +14,9 @@
 	<form action="notice.do">
 		<div id="listboard">
 			<div id="listboard">
-			<h2>공지사항</h2>
 
 			<div id="listTop">
+				<h2>공지사항</h2>
 				<a id="writelink" href="">글쓰기</a>
 			</div>
 			<table>
@@ -27,17 +27,17 @@
 					<th>조회수</th>
 				</tr>
 
-				<c:forEach items="${list }" var="l">
+				<c:forEach items="${notice }" var="n">
 					<tr id="boardTr">
 						<td id="titleAl">
-							${l.b_title }
-							<c:if test="${l.c_count > 0}">
-								<small>${l.c_count }</small>
+							${n.b_title }
+							<c:if test="${n.c_count > 0}">
+								<small>${n.c_count }</small>
 							</c:if>
 						</td>
-						<td>${l.l_nick }</td>
-						<td>${l.b_date }</td>
-						<td>${l.b_count }</td>
+						<td>${n.l_nick }</td>
+						<td>${n.b_date }</td>
+						<td>${n.b_count }</td>
 					</tr>
 				</c:forEach>
 			</table>
