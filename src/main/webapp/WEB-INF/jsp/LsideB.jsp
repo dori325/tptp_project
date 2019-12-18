@@ -14,7 +14,7 @@
 			<input type="text" id="ID" placeholder=" 아이디">
 			<input type="password" id="PW" placeholder=" 비밀번호">
 			<button onclick="location.href=''">로그인</button><br>
-			<a href="welcome.do">회원가입 </a>
+			<a href="join.do">회원가입 </a>
 			<a href="lostLogin.do">아이디/비밀번호 찾기</a>
 		</div>
 	</div>

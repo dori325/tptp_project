@@ -19,13 +19,13 @@ $(function(){
 <body>
 <div id="Rside">
 	<ul id="all">
-		<li id="categoryTop"><a href="#">이 공지<img id="index"  alt="이 공지" src="./img/색1.png"/></a></li>
-		<li id="categoryTop"><a href="#">펜 새소식<img id="index"  alt="이 공지" src="./img/색2.png"/></a></li>
+		<li id="categoryTop"><a href="notice.do">이 공지<img id="index"  alt="이 공지" src="./img/색1.png"/></a></li>
+		<li id="categoryTop"><a href="news.do">펜 새소식<img id="index"  alt="이 공지" src="./img/색2.png"/></a></li>
 		<li id="categoryTop"><a>저 브랜드<img id="open" alt="open" src="./img/openmenu.png"/><img id="index" alt="이 공지" src="./img/색3.png"/></a>
 			<ul id="detail">
-				<li id="categoryBottom"><a href="#">모나미</a></li>
-				<li id="categoryBottom"><a href="#">동아</a></li>
-				<li id="categoryBottom"><a href="#">모닝글로리</a></li>
+				<li id="categoryBottom"><a href="brand.do">모나미</a></li>
+				<li id="categoryBottom"><a href="brand.do">동아</a></li>
+				<li id="categoryBottom"><a href="brand.do">모닝글로리</a></li>
 			</ul>
 		</li>
 		<li id="categoryTop"><a href="QnAlist.do">펜 질문<img id="index"  alt="이 공지" src="./img/색4.png"/></a></li>
