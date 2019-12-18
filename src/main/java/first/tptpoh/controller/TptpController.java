@@ -21,10 +21,11 @@ public class TptpController {
 	@Resource(name = "tptpService")
 	private TptpService tptpService;
 	
-	@RequestMapping (value = "index.do")
-	public ModelAndView index(HttpServletRequest request) throws Exception {
+	@RequestMapping (value = "notice.do")
+	public ModelAndView notice(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		
+		List<BoardDTO> notice = tptpService.notice();
+		mv.addObject("notice",notice);
 		
 		return mv;
 	}
@@ -34,6 +35,7 @@ public class TptpController {
 		ModelAndView mv = new ModelAndView();
 		List<BoardDTO> list = tptpService.list();
 		mv.addObject("list", list);
+		
 		return mv;
 	}
 	@RequestMapping (value = "detail.do")

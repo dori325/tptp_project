@@ -4,10 +4,17 @@
 	margin: 0 auto;
 	width: 850px;
 }
+#writetitle select{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 100px;
+	height: 28px;
+	vertical-align: bottom;
+}
 #writetitle input{
 	margin-top: 10px;
 	margin-bottom: 10px;
-	width: 850px;
+	width: 745px;
 	font-size: 12pt;
 }
 #writebutton{

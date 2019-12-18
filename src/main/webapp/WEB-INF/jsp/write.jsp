@@ -23,6 +23,12 @@
 	<c:import url="topmenu.jsp" />
 	<form action="write.do">
 		<div id="writetitle">
+			<select>
+					<option>샤프</option>
+					<option>볼펜</option>
+					<option>만년필</option>
+					<option>등등</option>
+				</select>
 			<input type="text" name="title" placeholder="제목을 입력하세요"><br>
 			<textarea id="summernote" name="content"></textarea>
 			<script>

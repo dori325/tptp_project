@@ -9,4 +9,6 @@ public interface TptpService {
 
 	List<BoardDTO> list() throws Exception;
 
+	List<BoardDTO> notice() throws Exception;
+
 }

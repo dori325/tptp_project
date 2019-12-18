@@ -19,4 +19,10 @@ public class TptpServiceImpl implements TptpService  {
 	public List<BoardDTO> list() throws Exception {
 		return tptpDAO.list();
 	}
+	
+	@Override
+	public List<BoardDTO> notice() throws Exception {
+		// TODO Auto-generated method stub
+		return tptpDAO.notice();
+	}
 }

@@ -11,22 +11,16 @@
 <link href="./css/board.css" rel="stylesheet" />
 <body>
 	<c:import url="topmenu.jsp" />
-	<form action="board.do">
+	<form action="notice.do">
 		<div id="listboard">
-			<h2>브랜드게시판</h2>
+			<div id="listboard">
+			<h2>공지사항</h2>
 
 			<div id="listTop">
-				<button id="pensort" onclick="location.href='QnAlist.do?page=${pencil}'">연필</button>
-				<button id="pensort" onclick="location.href='QnAlist.do?page=${mechanical}'">샤프</button>
-				<button id="pensort" onclick="location.href='QnAlist.do?page=${ballpen}'">볼펜</button>
-				<button id="pensort" onclick="location.href='QnAlist.do?page=${Fountain}'">만년필</button>
-				<button id="pensort" onclick="location.href='QnAlist.do?page=${etc}'">기타</button>
 				<a id="writelink" href="">글쓰기</a>
 			</div>
 			<table>
 				<tr>
-					<th>추천</th>
-					<th>분류</th>
 					<th>제목</th>
 					<th>닉네임</th>
 					<th>날짜</th>
@@ -35,8 +29,6 @@
 
 				<c:forEach items="${list }" var="l">
 					<tr id="boardTr">
-						<td>${l.b_like }</td>
-						<td>${l.b_cate2 }</td>
 						<td id="titleAl">
 							${l.b_title }
 							<c:if test="${l.c_count > 0}">
@@ -60,10 +52,9 @@
 				<button>검색</button>
 				<a id="writelink" href="">글쓰기</a>
 			</div>
+			</div>
 		</div>
 		<c:import url="bottonmenu.jsp" />
-
-
 	</form>
 </body>
 </html>

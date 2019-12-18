@@ -15,4 +15,9 @@ public class TptpDAO extends AbstractDAO {
 		return selectList("tptp.list");
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<BoardDTO> notice() {
+		return selectList("tptp.notice");
+	}
+
 }
