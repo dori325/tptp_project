@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="tptp">
+<mapper namespace="o">
 	
 	<select id="list" resultType="hashmap">
 			SELECT b_like, b_cate2, b_title, b_date, b_count, l_nick, c_count,

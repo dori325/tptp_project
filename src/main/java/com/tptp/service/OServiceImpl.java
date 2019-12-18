@@ -10,19 +10,19 @@ import org.springframework.stereotype.Service;
 import com.tptp.dao.ODAO;
 import com.tptp.dto.BoardDTO;
 
-@Service("tptpService")
+@Service("oService")
 public class OServiceImpl implements OService  {
-	@Resource(name = "tptpDAO")
-	private ODAO tptpDAO;
+	@Resource(name = "oDAO")
+	private ODAO oDAO;
 	
 	@Override
 	public List<BoardDTO> list() throws Exception {
-		return tptpDAO.list();
+		return oDAO.list();
 	}
 	
 	@Override
 	public List<BoardDTO> notice() throws Exception {
 		// TODO Auto-generated method stub
-		return tptpDAO.notice();
+		return oDAO.notice();
 	}
 }
