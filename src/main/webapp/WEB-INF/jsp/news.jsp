@@ -23,7 +23,6 @@ small {
 </style>
 <link href="./css/board.css" rel="stylesheet" />
 </head>
-<%@include file="./header.jsp"%>
 
 <body>
 	<%@ include file="./Login.jsp"%>

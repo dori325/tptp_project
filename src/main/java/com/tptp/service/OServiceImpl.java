@@ -7,13 +7,13 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.tptp.dao.TptpDAO;
+import com.tptp.dao.ODAO;
 import com.tptp.dto.BoardDTO;
 
 @Service("tptpService")
-public class TptpServiceImpl implements TptpService  {
+public class OServiceImpl implements OService  {
 	@Resource(name = "tptpDAO")
-	private TptpDAO tptpDAO;
+	private ODAO tptpDAO;
 	
 	@Override
 	public List<BoardDTO> list() throws Exception {
