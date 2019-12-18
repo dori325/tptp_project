@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.tptp.dao.K_DAO;
 
 @Service("k_Service")
-public class K_ServiceImp implements K_Service{
+public class K_ServiceImp implements K_Service {
 
 	@Resource(name = "k_DAO")
 	private K_DAO k_DAO;

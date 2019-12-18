@@ -1,7 +1,5 @@
 package com.tptp.controller;
 
-import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -25,8 +23,8 @@ public class K_Controller {
 	public ModelAndView QnA(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		List<Map<String, Object>> list = k_Service.admOper();
-		mv.addObject("list", list);
+//		List<Map<String, Object>> list = k_Service.admOper();
+//		mv.addObject("list", list);
 		return mv;
 	}
 	
