@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+.menu_list {	
+	width: 250px;
+}
+.menu_head {
+	padding: 5px 10px;
+	cursor: pointer;
+	position: relative;
+	margin:1px;
+	display: block;
+}
+.menu_body {
+	display:none;
+
+}
+.menu_body a{
+  background-color:gray;
+  padding-left:10px;
+  text-decoration:none;
+  color: black;
+}
+.menu_body a:visited{
+  text-decoration: none;
+  color: black;
+  }

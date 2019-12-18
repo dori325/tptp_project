@@ -1,0 +1,97 @@
+@charset "UTF-8";
+
+#insert table {
+	margin: 0px auto;
+	padding: 0px;
+	width: 850px;
+}
+
+#commP {
+	width: 848px;
+	height: 54px;
+	padding: 1px;
+	border: 1px rgba(0, 0, 0, 0.3) solid;
+	margin-bottom: 10px;
+}
+
+#commP input {
+	width: 745px;
+	height: 50px;
+	padding-left: 5px;
+}
+
+#commP button {
+	width: 95px;
+	height: 56px;
+}
+
+#insert hr {
+	width: 850px;
+	color: rgba(0, 0, 0, 0.1);
+}
+
+#commL th {
+	padding-top: 5px;
+	height: 30px;
+	background-color: rgba(0, 0, 0, 0.12);
+}
+
+#commL #nick {
+	width: 120px;
+	float: left;
+}
+
+#commL #ip {
+	padding-top: 8px;
+	height: 27px;
+	width: 120px;
+	float: left;
+	text-align: left;
+	color: rgba(0, 0, 0, 0.5);
+	font-size: 14px;
+}
+
+#commL #date {
+	padding-top: 8px;
+	height: 27px;
+	width: 470px;
+	float: left;
+	text-align: right;
+	color: rgba(0, 0, 0, 0.5);
+	font-size: 14px;
+}
+
+#commL #commLike {
+	width: 70px;
+	float: left;
+}
+
+#commL #comm {
+	padding-top: 8px;
+	height: 27px;
+	width: 60px;
+	float: left;
+	font-size: 13px;
+}
+
+#commL #commLike button {
+	margin: 0px auto;
+	padding: 0px;
+	width: 30px;
+	height: 30px;
+	float: right;
+	background-color: rgba(255, 255, 255, 0);
+	background-image: url("../images/comm_heart.png");
+	background-repeat: no-repeat;
+	background-position: center 0px 0px;
+	background-size: 28px;
+	border: none;
+}
+
+#commL #commContent {
+	width: 850px;
+	height: auto;
+	float: left;
+	font-size: 15px;
+	border-bottom: 1px rgba(0, 0, 0, 0.12) solid;
+}
