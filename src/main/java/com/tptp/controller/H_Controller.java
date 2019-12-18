@@ -24,6 +24,7 @@ public class  H_Controller {
 	@Resource(name = "tptpService")
 	private H_Service tptpService;
 
+	//1.메인
 	@RequestMapping (value = "main.do")
 	public ModelAndView main(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -33,77 +34,38 @@ public class  H_Controller {
 		return mv;
 	}
 	
-	
+	//2.새소식
 	@RequestMapping (value = "news.do")
 	public ModelAndView news(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		log.debug("news=인터셉터 테스트=start");
 		//List<BoardDTO> list = tptpService.list();
 		List<Map<String, Object>> list = tptpService.list(commandMap.getMap());	
-		
-		System.out.println( list.size());
 		System.out.println( list.toString());
 		mv.addObject("list", list);
 		
 		return mv;
-	}	
-	
-	
-	@RequestMapping (value = "search.do")
-	public ModelAndView search(HttpServletRequest request, CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		
-		List<Map<String, Object>> list = tptpService.list(commandMap.getMap());
-		mv.addObject("list", list);
-		
-		return mv;
 	}
 	
-	
-	@RequestMapping (value = "join.do")
-	public ModelAndView join(HttpServletRequest request) throws Exception {
+	//3.전체검색
+	@RequestMapping (value = "totalSearch.do")
+	public ModelAndView totalSearch(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		return mv;
 	}
 	
-	@RequestMapping (value = "admin.do")
-	public ModelAndView admin(HttpServletRequest request) throws Exception {
+	//4.사용자리스트
+	@RequestMapping (value = "userList.do")
+	public ModelAndView userList(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		return mv;
 	}
 	
-	@RequestMapping (value = "totalSeach.do")
-	public ModelAndView totalSeach(HttpServletRequest request) throws Exception {
+	//5.log기록
+	@RequestMapping (value = "log.do")
+	public ModelAndView log(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		return mv;
 	}
 	
-	
-	@RequestMapping (value = "index.do")
-	public ModelAndView index(HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		return mv;
-	}
-	
-	@RequestMapping (value = "board.do")
-	public ModelAndView board(HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		
-		
-		return mv;
-	}
-	@RequestMapping (value = "detail.do")
-	public ModelAndView detail(HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView();		
-		
-		return mv;
-	}
-	@RequestMapping (value = "write.do")
-	public ModelAndView write(HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		
-		
-		return mv;
-	}
 }
