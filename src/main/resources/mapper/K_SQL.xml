@@ -3,7 +3,7 @@
 <mapper namespace="k">
 
 	<select id="list" resultType="hashmap">
-		SELECT * FROM board5view 
+		SELECT * FROM boardview 
 	</select>
 	
 </mapper>
