@@ -12,18 +12,29 @@ body{
     bottom:0;
     width:850px;
     height:50px;   
-    background:#ccc;
+    background: rgba(0,0,0,0.7);
     margin: 0 auto;
 }
 #bottonmenu ul,  li {
 	margin: 0px;
 	padding: 0px;
+	text-align: center;
 }
 
 #bottonmenu li {
 	display: inline-block;
 	padding: 0px 10px;
+	color: white;
 }
+#bottonmenu a:link {
+	text-decoration: none;
+	color: white;	
+}
+#bottonmenu a:visited {
+	text-decoration: none;
+	color: white;	
+}
+
 #space{
 	padding-top: 30px;
 	display: inline-block;

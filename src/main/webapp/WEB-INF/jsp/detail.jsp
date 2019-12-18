@@ -21,7 +21,7 @@
 								<div id="cate-wrap">
 									<div id="cate-img"><img alt="" src="./img/category.png"></div>
 									<div id="cate-text">
-										<p>샤프</p>
+										<p>만년필</p>
 									</div>
 								</div>
 							</td>
@@ -33,10 +33,11 @@
 				<div id="detailStatus">
 					<table>
 						<tr>
-							<td id="id">작성자</td>
+							<td id="id" colspan="1"> 작성자</td>
 							<td id="ip">192.168.0.1</td>
-							<td id="date">2019.12.16</td>
-							<td id="count"><img alt="" src="./img/eye.png">321</td>
+							<td id="date">2019.12.16 17:11:23</td>
+							<td id="count"><img alt="" src="./img/eye2.png">321234</td>
+						</tr>
 					</table>
 				</div>
 			</div>
@@ -49,16 +50,16 @@
 			<div id="detailBot">
 				<table>
 					<tr>
-						<td><a>목록으로</a></td>
+						<td id="list"><a>목록으로</a></td>
 						<td>
 							<div id="like-wrap">
 								<div id="like-img"><img alt="" src="./img/heart2.png"></div>
 								<div id="like-text">
-									<p>3</p>
+									<p>324</p>
 								</div>
 							</div>
 						</td>
-						<td><a>이전글</a> / <a>다음글</a></td>
+						<td id="next"><a>이전글</a> / <a>다음글</a></td>
 					</tr>
 				</table>
 			</div>

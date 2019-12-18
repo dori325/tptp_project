@@ -6,43 +6,39 @@
 <head>
 <meta charset="UTF-8">
 <title>글쓰기</title>
-<link rel="stylesheet" href="./css/main.css">
+<!-- include libraries(jQuery, bootstrap) -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
 
-<style type="text/css">
-#writebox{
-	margin: 0 auto;
-	width: 850px;
-	height: auto;
-}
-#writebox input, #writebox textarea, #writebox button{
-	width: 850px;
-	height: 25px;
-	margin: 5px;
-	
-}
-#writebox textarea{
-	height: 600px;
-}
+<!-- include summernote css/js -->
+<link href="./dist/summernote.css" rel="stylesheet" />
+<script src="./dist/summernote.js"></script>
 
-</style>
+<link href="./css/write.css" rel="stylesheet" />
 </head>
 <body>
 <c:import url="topmenu.jsp"/>
-<h1>디테일</h1>
-<h2><a href="./index.do">공지사항</a> | <a href="./board.do">브랜드</a> | <a href="./detail.do">디테일</a></h2>
-	<form action="detail.do">
-		<div id="writebox">
-
+	<form action="write.do">
+		<div id="writetitle">
 			<input type="text" name="title" placeholder="제목을 입력하세요"><br>
-			<input type="file" name="file" accept="image/*"><br>
-			<textarea></textarea><br>
-			<button type="submit">글쓰기</button>
+		</div>
+		<div id="summernote">
 			<script>
-				CKEDITOR.replace('editor');
+				$(document).ready(function() {
+				$('#summernote').summernote({
+					width: 850,
+					height: 600,
+					minHeight: null,
+					maxHeight: null
+				});
+				});
 			</script>
-
 		</div>
 	</form>
+		<div id="writebutton">
+			<button type="submit">글쓰기</button>
+		</div>
 	<c:import url="bottonmenu.jsp"/>
 </body>
 </html>

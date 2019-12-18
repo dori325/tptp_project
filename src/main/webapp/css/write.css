@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+#writetitle{
+	margin: 0 auto;
+	width: 850px;
+	height: 40px;
+	border: 1px solid;
+}
+#writetitle input{
+	width: 850px;
+	margin: 5px;
+}
+#writebutton{
+	margin: 0 auto;
+	width: 850px;
+	border: solid;
+}
+

@@ -15,12 +15,13 @@ detailBot - 목록, 이전/다음, 추천등
 #detailTop{
 	margin: 0 auto;
 	height: auto;
-	border-bottom: 0.5pt dashed;
+	border-bottom: 0.5pt gray dashed;
+	background-color: rgba(45, 158, 206, 0.5);
 }
 #detailTitle {
 	height: auto;
 	width: 100%;
-	border-bottom: 0.5pt dashed;
+	border-bottom: 0.5pt gray dashed;
 }
 #detailTitle table{
 	margin-top: auto;
@@ -30,6 +31,7 @@ detailBot - 목록, 이전/다음, 추천등
 	text-align: left;
 	width: 655px;
 	font-size: 14pt;
+	font-weight: bold;
 }
 #detailTitle td{
 	padding-left: 5px;
@@ -38,27 +40,30 @@ detailBot - 목록, 이전/다음, 추천등
 
 
 #detailStatus{
-	
+	padding-bottom: 5px;
 	width: 845px;
 }
 #detailStatus td{
 	padding-left: 15px;
 	padding-right: 15px;
-	width: 212px;
 }
 #id{
 	font-weight: bold;
+	width: 100px;
 }
 #ip{
 	font-size: small;
 	text-align: left;
+	width: 300px;
 }
 #date{
 	font-size: small;
 	text-align: right;
+	width: 280px;
 }
 #count{
 	font-size: small;
+	width: 70px;
 	text-align: right;
 }
 #count img{
@@ -71,15 +76,25 @@ detailBot - 목록, 이전/다음, 추천등
 	padding: 10px;
 	text-align : left;
 	height: auto;
-	border-bottom: 0.5pt dashed;
+	border-bottom: 0.5pt gray dashed;
 }
 #detailBot{
 	
 }
 #detailBot td{
 	width: 275px;
-	border: 1px solid;
 }
+#list{
+	padding: 5px;
+	text-align: left;
+	vertical-align: top;
+}
+#next{
+	padding: 5px;
+	text-align: right;
+	vertical-align: top;
+}
+
 #cate-wrap {
 	width: 100%;
 	margin: 10px auto;
@@ -104,6 +119,7 @@ detailBot - 목록, 이전/다음, 추천등
 	width: 100%;
 	margin: 10px auto;
 	position: relative;
+
 }
 
 #like-img {
@@ -120,6 +136,7 @@ detailBot - 목록, 이전/다음, 추천등
 	font-size: small;
 	text-align: center;
 	position: absolute;
-	top: 25%;
-	left: 49%;
+	top: 55%;
+	left: 54%;
+	transform: translate( -50%, -50% );
 }
