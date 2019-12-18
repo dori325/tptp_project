@@ -15,7 +15,7 @@ import com.tptp.service.TptpService;
 
 
 @Controller
-public class TptpController {
+public class OController {
 	Logger log = Logger.getLogger(this.getClass());
 	
 	@Resource(name = "tptpService")
