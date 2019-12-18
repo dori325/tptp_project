@@ -40,7 +40,7 @@
 	</select>
 	<div id="search">
 	<input placeholder="검색어 입력">
-	<button><img alt="검색" src="./images/search.png"></button>
+	<button><img alt="검색" src="./img/search.png"></button>
 	</div>
 		<a id="writelink" href="">글쓰기</a>
 	</div>
