@@ -15,6 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.tptp.service.K_Service;
 
+import com.common.common.CommandMap;
+
 @Controller
 public class K_Controller {
 	Logger log = Logger.getLogger(this.getClass());
@@ -38,6 +40,28 @@ public class K_Controller {
 		return mv;
 	}
 
+	@RequestMapping(value = "admCommSearch.do")
+	public ModelAndView admCommSearch(HttpServletRequest request, CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView();
+
+		if (!request.getParameter("searchCont").equals("")) {
+			List<Map<String, Object>> list = k_Service.adSearch(commandMap.getMap());			
+			mv.addObject("result", list);
+		}
+		mv.setViewName("redirect:admCommList.do?search=" + request.getParameter("searchCont"));
+
+		return mv;
+	}
+		@RequestMapping(value = "admCommList.do")
+	public ModelAndView admCommList(HttpServletRequest request, CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("admCommList");
+
+		List<Map<String, Object>> list = k_Service.admOper();			
+		mv.addObject("list", list);
+
+		return mv;
+	}
+		
 	@RequestMapping(value = "LsideB.do")
 	public ModelAndView Lside(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -84,16 +108,6 @@ public class K_Controller {
 	public ModelAndView lostLogin(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
 
-		return mv;
-	}
-
-	@RequestMapping(value = "admCommList.do")
-	public ModelAndView admCommList(HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		
-		List<Map<String, Object>> list = k_Service.admOper();
-		mv.addObject("list", list);
-		
 		return mv;
 	}
 

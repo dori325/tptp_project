@@ -25,4 +25,9 @@ public class K_ServiceImp implements K_Service {
 		return k_DAO.QnAlist();
 	}
 
+	@Override
+	public List<Map<String, Object>> adSearch(Map<String, Object> map) throws Exception {
+		return k_DAO.adSearch(map);
+	}
+	
 }

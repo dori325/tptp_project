@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>질문게시판</title>
-</head>
 <link href="./css/board.css" rel="stylesheet" />
+</head>
 <body>
 <div id="listboard">
 <%@ include file="topmenu.jsp" %>
@@ -23,7 +23,7 @@
 		</div>
 		<table id="QnAlist">
 			<tr id="boardTr">
-				<th id="comment">댓글 수</th>
+				<th id="comment">댓글수</th>
 				<th>분류</th>
 				<th>제목</th>
 				<th id="name">작성자</th>
@@ -33,7 +33,7 @@
 			<c:forEach items="${list }" var="i">
 			<tr id="boardTr">
 				<td id="comment">${i.c_count }</td>
-				<td id="sort">${i.b_sort }분류</td>
+				<td id="sort">${i.b_cate2 }</td>
 				<td id="titleAl"><a href="detail.do?b_no=${i.b_no }"
 					id="title">${i.b_title }</a></td>
 				<td id="name">${i.l_nick }</td>
