@@ -4,13 +4,13 @@
 
 <style type="text/css">
 body{
-	margin: 0;
-	padding: 0;
+	margin: 0px;
+	padding: 0px;
 }
 #bottonmenu{
 	position: static;
     bottom:0;
-    width:850px;
+    width:1300px;
     height:50px;   
     background: rgba(0,0,0,0.7);
     margin: 0 auto;

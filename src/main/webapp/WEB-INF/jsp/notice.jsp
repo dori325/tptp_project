@@ -11,9 +11,10 @@
 <link href="./css/board.css" rel="stylesheet" />
 <body>
 	<c:import url="topmenu.jsp" />
-	<c:import url="RsideB.jsp" />
 	<form action="notice.do">
 		<div id="listboard">
+	<c:import url="RsideB.jsp" />
+	<c:import url="LsideB.jsp" />
 			<div id="listboard">
 			<h2>공지사항</h2>
 

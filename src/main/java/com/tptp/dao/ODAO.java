@@ -19,5 +19,25 @@ public class ODAO extends AbstractDAO {
 	public List<Map<String, Object>> brand1(Map<String, Object> map) {
 		return selectList("o.brand1");
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> brand2(Map<String, Object> map) {
+		return selectList("o.brand2");
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> brand3(Map<String, Object> map) {
+		return selectList("o.brand3");
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> brand4(Map<String, Object> map) {
+		return selectList("o.brand4");
+	}
+
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> detail(Map<String, Object> map) {
+		return (Map<String, Object>) selectOne("o.detail", map);
+	}
 
 }
