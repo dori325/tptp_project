@@ -20,4 +20,9 @@ public class K_DAO extends AbstractDAO{
 		return selectList("k.Qlist");
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> adSearch(Map<String, Object> map) {
+		return selectList("k.adSearch", map);
+	}
+
 }

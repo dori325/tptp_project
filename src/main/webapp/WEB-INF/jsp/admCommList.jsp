@@ -9,7 +9,6 @@
 </head>
 <link href="./css/board.css" rel="stylesheet"/>
 <body>
-<form action="admCommList.do">
 <div id="listboard">
 <%@ include file="topmenu.jsp" %>
 <%@ include file="AllBar.jsp" %>
@@ -27,27 +26,35 @@
 			<c:forEach items="${list }" var="i">
 			<tr>
 				<td id="comment">${i.c_count }</td>
-				<td id="titleAl"><a href="" id="title">${i.b_title }</a></td>	
+				<td id="titleAl"><a href="detail.do?b_no=${i.b_no }" id="title">${i.b_title }</a></td>	
 				<td id="name">${i.l_nick }</td>
 				<td id="date">${i.b_date }</td>
 			</tr>
 			</c:forEach>
+			<c:forEach items="${result }" var="r">
+			<tr>
+				<td id="comment">${r.c_count }</td>
+				<td id="titleAl"><a href="detail.do?b_no=${r.b_no }" id="title">${r.b_title }</a></td>	
+				<td id="name">${r.l_nick }</td>
+				<td id="date">${r.b_date }</td>
+			</tr>
+			</c:forEach>
 		</table>
 <div id="listBottom" >
+	<form action="admCommSearch.do" method="GET">
 	<select>
 		<option>선택</option>
-		<option>전체</option>
-		<option>제목</option>
-		<option>작성자</option>
+		<option id="all">제목 + 내용</option>
+		<option id="title">제목</option>
+		<option id="nick">내용</option>
 	</select>
 	<div id="search">
-	<input placeholder="검색어 입력">
-	<button><img alt="검색" src="./img/search.png"></button>
-	</div>
-		<a id="writelink" href="">글쓰기</a>
+	<input name="searchCont" placeholder="검색어 입력">
+	<button type="submit"><img alt="검색" src="./img/search.png" ></button>
+	</div></form>
+		<a id="writelink" href="write.do">글쓰기</a>
 	</div>
 <%@ include file="bottonmenu.jsp" %>
 </div>
-</form>
 </body>
 </html>
