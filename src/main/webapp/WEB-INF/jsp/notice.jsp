@@ -11,6 +11,7 @@
 <link href="./css/board.css" rel="stylesheet" />
 <body>
 	<c:import url="topmenu.jsp" />
+	<c:import url="RsideB.jsp" />
 	<form action="notice.do">
 		<div id="listboard">
 			<div id="listboard">
