@@ -11,9 +11,9 @@
 <link href="./css/board.css" rel="stylesheet" />
 <body>
 	<c:import url="topmenu.jsp" />
-	<form action="brand1.do">
+	<form action="brand2.do">
 		<div id="listboard">
-			<h2>브랜드1 게시판</h2>
+			<h2>브랜드2 게시판</h2>
 
 			<div id="listTop">
 				<button id="pensort" onclick="location.href='QnAlist.do?page=${pencil}'">연필</button>
@@ -33,7 +33,7 @@
 					<th>조회수</th>
 				</tr>
 
-				<c:forEach items="${brand1 }" var="l">
+				<c:forEach items="${list }" var="l">
 					<tr id="boardTr">
 						<td>${l.b_like }</td>
 						<td>${l.b_cate2 }</td>
