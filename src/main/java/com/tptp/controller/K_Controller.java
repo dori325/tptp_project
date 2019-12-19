@@ -43,7 +43,7 @@ public class K_Controller {
 	@RequestMapping(value = "admCommSearch.do")
 	public ModelAndView admCommSearch(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
-
+		
 		if (!request.getParameter("searchCont").equals("")) {
 			List<Map<String, Object>> list = k_Service.adSearch(commandMap.getMap());			
 			mv.addObject("result", list);

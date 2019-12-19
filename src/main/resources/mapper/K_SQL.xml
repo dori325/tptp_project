@@ -5,14 +5,13 @@
 	<select id="adlist" resultType="hashmap">
 		SELECT * FROM boardview WHERE b_cate1 = 'ad'
 	</select>
-
+	
 	<select id="Qlist" resultType="hashmap">
 		SELECT * FROM boardview WHERE b_cate1 = 'q'
 	</select>
 
 	<select id="adSearch" parameterType="hashmap" resultType="hashmap">
-		SELECT * FROM boardview WHERE b_cate1 = 'ad' and b_title = %#{searchCont}%
+		SELECT * FROM boardview WHERE b_cate1 = 'ad' and b_title LIKE '#{searchCont}'
 	</select>
-	
-	
+
 </mapper>
