@@ -48,9 +48,9 @@
 	</table>
 	<button id="resultButt">임시 비밀번호 발송</button>
 	<div id="afterId">
-			<p>***님의 아이디는 '***fjfi' 입니다.</p>
+			<p id="p">***님의 아이디는 '***fjfi' 입니다.</p>
 	</div>
-	</div>
+</div>
 </div>
 </form>
 </body>

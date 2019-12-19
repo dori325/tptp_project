@@ -24,9 +24,8 @@ body::-webkit-scrollbar {
 	margin: 0px auto;
 	padding: 0px;
 	width: 850px;
-	height: auto;
 	border-left: none;
-	border-bottom: rgb(169, 169, 169) 1px solid;
+	border-bottom: rgba(169, 169, 169, 0.7) 0.7px solid;
 	border-collapse: collapse;
 	margin-bottom: 5px;
 }

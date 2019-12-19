@@ -9,36 +9,28 @@
 </head>
 <link href="./css/board.css" rel="stylesheet" />
 <body>
-	<div id="listboard">
+<div id="listboard">
 <%@ include file="RsideB.jsp" %>
 <%@ include file="LsideB.jsp" %>
 		<div id="listTop">
 		<h2>질문게시판</h2>
 			<button onclick="location.href='QnAlist.do?page=${pencil}'">연필</button>
-			<button onclick="location.href='QnAlist.do?page=${mechanical}'">샤프</button>
+			<button onclick="location.href='QnAlist.do?page=${sharp}'">샤프</button>
 			<button onclick="location.href='QnAlist.do?page=${ballpen}'">볼펜</button>
-			<button onclick="location.href='QnAlist.do?page=${Fountain}'">만년필</button>
+			<button onclick="location.href='QnAlist.do?page=${fountain}'">만년필</button>
 			<button onclick="location.href='QnAlist.do?page=${etc}'">기타</button>
-			<a id="writelink" href="">글쓰기</a>
+			<a id="writelink" href="write.do?b_cate1=${b_cate1 }">글쓰기</a>
 		</div>
 		<table id="QnAlist">
-			<tr>
-				<th id="comment">답변수</th>
-				<th id="sort">분류</th>
-				<th>제목</th>
-				<th id="name">작성자</th>
-				<th id="date">날짜</th>
-				<th id="count">조회수</th>
-			</tr>
 			<c:forEach items="${list }" var="i">
 			<tr id="boardTr">
-				<td id="comment">${i.comment_count }</td>
-				<td id="sort">${i.board_sort }분류</td>
-				<td id="titleAl"><a href="detail.do?b_no=${i.login_name }"
-					id="title">${i.board_title }</a></td>
-				<td id="name">${i.login_name }</td>
-				<td id="date">${i.board_date }</td>
-				<td id="count">${i.board_count }</td>
+				<td id="comment">${i.c_count }</td>
+				<td id="sort">${i.b_sort }분류</td>
+				<td id="titleAl"><a href="detail.do?b_no=${i.b_no }"
+					id="title">${i.b_title }</a></td>
+				<td id="name">${i.l_nick }</td>
+				<td id="date">${i.b_date }</td>
+				<td id="count">${i.b_count }</td>
 			</tr>
 			</c:forEach>
 		</table>
@@ -51,11 +43,11 @@
 			</select>
 			<div id="search">
 				<input placeholder="검색어 입력">
-				<button>
+				<button onclick="location.href='QnAlist.do?b_content=${단어/}'">
 					<img alt="검색" src="./img/search.png">
 				</button>
 			</div>
-			<a id="writelink" href="">글쓰기</a>
+			<a id="writelink" href="write.do?b_cate1=${b_cate1 }">글쓰기</a>
 		</div>
 	</div>
 </body>
