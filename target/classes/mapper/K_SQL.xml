@@ -2,8 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="k">
 
-	<select id="list" resultType="hashmap">
-		SELECT * FROM boardview 
+	<select id="adlist" resultType="hashmap">
+		SELECT * FROM boardview WHERE b_cate1 = 'ad'
+	</select>
+
+	<select id="Qlist" resultType="hashmap">
+		SELECT * FROM boardview WHERE b_cate1 = 'q'
+	</select>
+
+	<select id="adSearch" parameterType="hashmap" resultType="hashmap">
+		SELECT * FROM boardview WHERE b_cate1 = 'ad' and b_title = %#{searchCont}%
 	</select>
 	
 </mapper>

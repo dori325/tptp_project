@@ -11,7 +11,7 @@
 <link href="./css/board.css" rel="stylesheet" />
 <body>
 	<c:import url="topmenu.jsp" />
-	<form action="board.do">
+	<form action="brand1.do">
 		<div id="listboard">
 			<h2>브랜드게시판</h2>
 
