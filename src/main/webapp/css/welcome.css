@@ -10,27 +10,27 @@ body::-webkit-scrollbar {
 	margin-top: 100px;
 	width: 1250px;
 	height: auto;
-	font-size: 14px;
 }
 
 #list {
 	margin: 0px auto;
 	padding: 0px;
-	width: 900px;
+	width: 850px;
 	text-align: center;
 }
 
-#welcomeList table {
+#list table {
+	font-size: 14px;
 	text-align: center;
 	margin: 0px auto;
 	padding: 0px;
-	margin-bottom: 6px;
 	width: 850px;
+	margin-bottom: 5px;
 	border-collapse: collapse;
 	border: 0.7px rgba(169, 169, 169, 0.7) solid;
 }
 
-#welcomeList table th {
+#list table th {
 	margin: 0px auto;
 	padding: 0px;
 	padding-top: 5px;
@@ -41,7 +41,7 @@ body::-webkit-scrollbar {
 	border: 0.7px rgba(169, 169, 169, 0.7) solid;
 }
 
-#welcomeList table td {
+#list table td {
 	margin: 0px auto;
 	padding: 0px;
 	padding-left: 5px;
@@ -52,7 +52,7 @@ body::-webkit-scrollbar {
 	border: 0.7px rgba(169, 169, 169, 0.7) solid;
 }
 
-#welcomeList input {
+#list input {
 	width: 190px;
 	height: 25px;
 	padding-left: 3px;
@@ -61,12 +61,12 @@ body::-webkit-scrollbar {
 	border-radius: 3px;
 }
 
-#welcomeList #e-ad {
+#list #e-ad {
 	margin-left: 5px;
 	margin-right: 0px;
 }
 
-#welcomeList select {
+#list select {
 	margin-left: 3px;
 	width: 120px;
 	height: 29px;
@@ -74,14 +74,14 @@ body::-webkit-scrollbar {
 	border-radius: 2px;
 }
 
-#welcomeList button {
+#list button {
 	width: 70px;
 	height: 26px;
 	border: 0.7px rgba(169, 169, 169, 0.7) solid;
 	border-radius: 2px;
 }
 
-#welcomeList #resultButt {
+#list #resultButt {
 	margin-top: 5px;
 	margin-bottom: 10px;
 	background-color: white;
@@ -90,7 +90,7 @@ body::-webkit-scrollbar {
 	background-color: white;
 }
 
-#welcomeList small:hover {
+#list small:hover {
 	color: red;
 }
 #afterId {
@@ -102,12 +102,12 @@ body::-webkit-scrollbar {
 	text-align: left;
 }
 
-#afterId hr, p {
+#afterId #p {
 	margin: 0 auto;
 	width: 850px;
 }
 
-#welcomeList #re {
+#list #re {
 	background-color: white;
 	width: 140px;
 	height: 30px;

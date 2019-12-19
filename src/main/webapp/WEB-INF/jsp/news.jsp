@@ -7,26 +7,14 @@
 <head>
 <meta charset="UTF-8">
 <title>새소식게시판</title>
-<style type="text/css">
-small {
-	background-color: green;
-	font-weight: bold;
-	color: white;
-}
 
-#page {
-	width: 100%;
-	padding-top: 5px;
-	height: 28px;
-	text-align: center;
-}
-</style>
 <link href="./css/board.css" rel="stylesheet" />
 </head>
 
 <body>
-	<%@ include file="./Login.jsp"%>
-	<div id="listboard">
+<div id="listboard">
+<%@ include file="LsideB.jsp" %>
+<%@ include file="RsideB.jsp" %>
 		<h2>새소식게시판</h2>
 		
 		<table id="newsboard">

@@ -4,12 +4,10 @@
 	margin: 0px auto;
 	margin-top: 40px;
 	padding: 0px;
-	width: 180px;
+	width: 170px;
 	height: auto;
-	font-size: 20px;
+	font-size: 18px;
 	float: right;
-	border: gray 2px solid;
-	border-radius: 3px;
 }
 
 #Rside ul {
@@ -34,25 +32,28 @@
 #Rside #categoryTop {
 	width: 200px;
 	padding: 0px;
-	margin: 0px;
 	float: left;
+	margin: 0px;
+	margin-bottom: 3px;
+	padding-left: 3px;
 	padding-top: 5px;
 	padding-bottom: 5px;
-/* 	border-bottom: gray 0.8px solid; */
 	display: block;
 	position: relative;
+	border: gray 1px solid;
+	border-radius: 3px;
 }
 
 #Rside #categoryBottom {
-	width: 120px;
+	width: 140px;
 	height: 26px;
 	float: left;
 	padding: 0px;
 	padding-bottom: 5px;
 	margin: 0px;
 	margin-left: 30px;
-	font-size: 18px;
-	border-bottom: gray 0.5px solid;
+	font-size: 16px;
+	border-bottom: rgba(169,169,169, 0.5) 0.5px solid;
 }
 #detail {
 	display: none;

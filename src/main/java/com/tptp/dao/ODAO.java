@@ -11,13 +11,13 @@ import com.tptp.dto.BoardDTO;
 public class ODAO extends AbstractDAO {
 
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> brand1(Map<String, Object> map) {
-		return selectList("o.brand1", map);
+	public List<Map<String, Object>> notice(Map<String, Object> map) {
+		return selectList("o.notice");
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> notice(Map<String, Object> map) {
-		return selectList("o.notice", map);
+	public List<Map<String, Object>> brand1(Map<String, Object> map) {
+		return selectList("o.brand1");
 	}
 
 }
