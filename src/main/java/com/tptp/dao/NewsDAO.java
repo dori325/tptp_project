@@ -24,6 +24,16 @@ public class NewsDAO  extends AbstractDAO{
 	public List<Map<String, Object>> n_list(Map<String, Object> map) {
 		return selectList("news.n_list", map);
 	}
+
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> s_list(Map<String, Object> map) {
+		return selectList("news.s_list", map);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> u_list(Map<String, Object> map) {
+		return selectList("news.u_list", map);
+	}
 	
 	
 

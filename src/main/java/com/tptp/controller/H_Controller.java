@@ -59,16 +59,18 @@ public class  H_Controller {
 	@RequestMapping (value = "totalSearch.do")
 	public ModelAndView totalSearch(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		List<Map<String, Object>> n_list = h_Service.n_list(commandMap.getMap());
-		mv.addObject("n_list", n_list);
+		List<Map<String, Object>> s_list = h_Service.s_list(commandMap.getMap());
+		mv.addObject("s_list", s_list);
 		return mv;
 	}	
 	
 	
 	//4.사용자리스트
 	@RequestMapping (value = "userList.do")
-	public ModelAndView userList(HttpServletRequest request) throws Exception {
+	public ModelAndView userList(HttpServletRequest request, CommandMap commandMap ) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		List<Map<String, Object>> u_list = h_Service.u_list(commandMap.getMap());
+		mv.addObject("u_list", u_list);
 		return mv;
 	}
 	

@@ -12,7 +12,6 @@
 <form action="admCommList.do">
 <div id="listboard">
 <%@ include file="topmenu.jsp" %>
-<%@ include file="AllBar.jsp" %>
 	<div id="listTop">
 	<h2>운영게시판</h2>
 		<a id="writelink">글쓰기</a>

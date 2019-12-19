@@ -22,14 +22,28 @@ public class H_ServiceImpl implements H_Service {
 		return newsDAO.list(map);
 	}
 
+	//추천리스트
 	@Override
 	public List<Map<String, Object>> k_list(Map<String, Object> map) throws Exception {
 		return newsDAO.k_list(map);
 	}
 
+	//새소식
 	@Override
 	public List<Map<String, Object>> n_list(Map<String, Object> map) throws Exception {
 		return newsDAO.n_list(map);
+	}
+
+	//통합검색
+	@Override
+	public List<Map<String, Object>> s_list(Map<String, Object> map) throws Exception {
+		return newsDAO.s_list(map);
+	}
+
+	//사용자리스트
+	@Override
+	public List<Map<String, Object>> u_list(Map<String, Object> map) throws Exception {
+		return newsDAO.u_list(map);		
 	}	
 	
 	

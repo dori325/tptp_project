@@ -26,17 +26,16 @@
 				<th>내용</th>
 				<th id="date">날짜</th>
 			</tr>
-			<c:forEach items="${list }" var="n">
+			<c:forEach items="${s_list }" var="s">
 				<tr id="boardTr">
-					<td id="comment">${n.b_like }</td>
+					<td id="comment">${s.b_like }</td>
 					<td id="title" style="width: 200px; text-align: left;"><a
-						href="detail.do?b_no=${i.login_name }" id="title">${n.b_title }</a></td>
-					<td id="name">${n.l_nick }</td>
-					<td id="sort">${n.b_cate1 }</td>
-					<td id="sort">${n.b_cate2 }</td>
-					<td id="sort">${n.b_content }</td>
-					
-					<td id="date">${n.b_date }</td>
+						href="detail.do?b_no=${s.login_name }" id="title">${s.b_title }</a></td>
+					<td id="name">${s.l_nick }</td>
+					<td id="sort">${s.b_cate1 }</td>
+					<td id="sort">${s.b_cate2 }</td>
+					<td id="sort">${s.b_content }</td>
+					<td id="date">${s.b_date }</td>
 				</tr>
 			</c:forEach>
 		</table>

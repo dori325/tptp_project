@@ -27,6 +27,21 @@
 		]]>
 	</select>
 	
+	<!-- 통합검색 -->
+	<select id="s_list" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[		
+			SELECT * FROM board 
+			where b_title LIKE '%어%' or b_content LIKE '%ㄴㅇ%'
+			order by b_no desc;
+		]]>
+	</select>
+	
+	<!-- 사용자리스트 -->
+	<select id="u_list" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[		
+			SELECT * FROM login;
+		]]>
+	</select>
 
 
 </mapper>
