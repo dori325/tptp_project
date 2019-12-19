@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.common.common.CommandMap;
-import com.tptp.dto.BoardDTO;
 import com.tptp.service.OService;
 
 
@@ -32,7 +31,7 @@ public class OController {
 		return mv;
 	}
 	
-	@RequestMapping (value = "board.do")
+	@RequestMapping (value = "brand1.do")
 	public ModelAndView brand1(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<Map<String, Object>> brand1 = oService.brand1(commandMap.getMap());
