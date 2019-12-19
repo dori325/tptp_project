@@ -13,9 +13,13 @@
 	<c:import url="topmenu.jsp" />
 	<form action="brand1.do">
 		<div id="listboard">
-			<h2>브랜드게시판</h2>
+		<c:import url="RsideB.jsp" />
+		<c:import url="LsideB.jsp" />
 
 			<div id="listTop">
+			<h2>
+					브랜드1 게시판
+			</h2>
 				<button id="pensort" onclick="location.href='QnAlist.do?page=${pencil}'">연필</button>
 				<button id="pensort" onclick="location.href='QnAlist.do?page=${mechanical}'">샤프</button>
 				<button id="pensort" onclick="location.href='QnAlist.do?page=${ballpen}'">볼펜</button>
@@ -38,7 +42,7 @@
 						<td>${l.b_like }</td>
 						<td>${l.b_cate2 }</td>
 						<td id="titleAl">
-							${l.b_title }
+						<a href="./detail.do?b_no=${l.b_no }">${l.b_title }</a>
 							<c:if test="${l.c_count > 0}">
 								<small>${l.c_count }</small>
 							</c:if>
