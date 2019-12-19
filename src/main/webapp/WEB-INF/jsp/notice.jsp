@@ -11,6 +11,7 @@
 <link href="./css/board.css" rel="stylesheet" />
 <body>
 	<c:import url="topmenu.jsp" />
+	<c:import url="RsideB.jsp" />
 	<form action="notice.do">
 		<div id="listboard">
 			<div id="listboard">
@@ -27,7 +28,7 @@
 					<th>조회수</th>
 				</tr>
 
-				<c:forEach items="${list }" var="l">
+				<c:forEach items="${notice }" var="l">
 					<tr id="boardTr">
 						<td id="titleAl">
 							${l.b_title }
