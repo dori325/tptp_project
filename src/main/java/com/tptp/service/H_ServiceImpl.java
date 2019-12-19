@@ -19,9 +19,20 @@ public class H_ServiceImpl implements H_Service {
 
 	@Override
 	public List<Map<String, Object>> list(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
 		return newsDAO.list(map);
+	}
+
+	@Override
+	public List<Map<String, Object>> k_list(Map<String, Object> map) throws Exception {
+		return newsDAO.k_list(map);
+	}
+
+	@Override
+	public List<Map<String, Object>> n_list(Map<String, Object> map) throws Exception {
+		return newsDAO.n_list(map);
 	}	
+	
+	
 	
 }
 //컨트롤러 - 서비스 - 서비스impl - dao ->sql.xml

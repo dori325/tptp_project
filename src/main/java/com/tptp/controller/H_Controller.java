@@ -23,10 +23,6 @@ public class  H_Controller {
 	//@Resource(name="") -> name찾기
 	@Resource(name = "h_Service")
 	private H_Service h_Service;
-	
-	//@Resource(name = "k_Service")
-	//private K_Service k_Service;
-
 
 	//1.메인
 	@RequestMapping (value = "main.do")
@@ -34,9 +30,17 @@ public class  H_Controller {
 		ModelAndView mv = new ModelAndView();
 		
 		List<Map<String, Object>> list = h_Service.list(commandMap.getMap());
-		mv.addObject("list", list);		
+		mv.addObject("list", list);
+		
+		List<Map<String, Object>> k_list = h_Service.k_list(commandMap.getMap());
+		mv.addObject("k_list", k_list);
+		
+		List<Map<String, Object>> n_list = h_Service.n_list(commandMap.getMap());
+		mv.addObject("n_list", n_list);
+		
 		return mv;
 	}
+	
 	
 	//2.새소식
 	@RequestMapping (value = "news.do")
@@ -53,10 +57,13 @@ public class  H_Controller {
 	
 	//3.전체검색
 	@RequestMapping (value = "totalSearch.do")
-	public ModelAndView totalSearch(HttpServletRequest request) throws Exception {
+	public ModelAndView totalSearch(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		List<Map<String, Object>> n_list = h_Service.n_list(commandMap.getMap());
+		mv.addObject("n_list", n_list);
 		return mv;
-	}
+	}	
+	
 	
 	//4.사용자리스트
 	@RequestMapping (value = "userList.do")

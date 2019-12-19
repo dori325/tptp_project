@@ -37,29 +37,31 @@
 					style="text-decoration: none;">[이달의새소식]</a></th>
 			</tr>
 			<tr id="boardTr">
+			    <!-- 공지 -->
 				<td>
-				<c:forEach items="${list }" var="k">
+				<c:forEach items="${list }" var="l">
 					<table id="main" style="width: 275px;">
 						<tr>
-							<td align="left" style="font-size: 15px;">${k.b_title }</td>
+							<td align="left" style="font-size: 15px;"><a href="detail.do">${l.b_title }</a></td>
 						</tr>
 					</table>
 				</c:forEach>
 				</td>
+				<!-- 추천리스트 -->
 				<td>
-				<c:forEach items="${list }" var="h">
+				<c:forEach items="${k_list }" var="k">
 					<table id="main" style="width: 275px;">
 						<tr>
-							<td align="left" style="font-size: 15px;">${h.b_title }</td>
+							<td align="left" style="font-size: 15px;"><a href="detail.do">${k.b_title }</a></td>
 						</tr>
 					</table>
 				</c:forEach></td>
+				<!-- 새소식 -->
 				<td>
-				<c:forEach items="${list }" var="m">
+				<c:forEach items="${n_list }" var="n">
 					<table id="main" style="width: 275px;">
 						<tr id="boardTr">
-							<td align="left" style="font-size: 15px;"><img
-								src="./img/pop_icon2.jpg">${m.b_title }</td>
+							<td align="left" style="font-size: 15px;"><a href="detail.do">${n.b_title }</a></td>
 						</tr>
 					</table>
 				</c:forEach></td>
