@@ -12,7 +12,12 @@ public class K_DAO extends AbstractDAO{
 
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> admOper() throws Exception {
-		 return selectList("k.list");
+		 return selectList("k.adlist");
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> QnAlist() {
+		return selectList("k.Qlist");
 	}
 
 }

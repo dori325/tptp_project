@@ -2,12 +2,13 @@
 
 #Rside {
 	margin: 0px auto;
-	margin-top: 40px;
+	margin-top: 50px;
 	padding: 0px;
 	width: 170px;
 	height: auto;
 	font-size: 18px;
 	float: right;
+	text-align: left;
 }
 
 #Rside ul {

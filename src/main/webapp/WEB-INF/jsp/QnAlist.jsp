@@ -10,8 +10,8 @@
 <link href="./css/board.css" rel="stylesheet" />
 <body>
 <div id="listboard">
-<%@ include file="RsideB.jsp" %>
-<%@ include file="LsideB.jsp" %>
+<%@ include file="topmenu.jsp" %>
+<%@ include file="AllBar.jsp" %>
 		<div id="listTop">
 		<h2>질문게시판</h2>
 			<button onclick="location.href='QnAlist.do?page=${sh}'">샤프</button>
@@ -22,6 +22,14 @@
 			<a id="writelink" href="write.do?b_cate1=${b_cate1 }">글쓰기</a>
 		</div>
 		<table id="QnAlist">
+			<tr id="boardTr">
+				<th id="comment">댓글 수</th>
+				<th>분류</th>
+				<th>제목</th>
+				<th id="name">작성자</th>
+				<th id="date">작성일</th>
+				<th id="count">조회수</th>
+			</tr>
 			<c:forEach items="${list }" var="i">
 			<tr id="boardTr">
 				<td id="comment">${i.c_count }</td>
@@ -49,6 +57,7 @@
 			</div>
 			<a id="writelink" href="write.do?b_cate1=${b_cate1 }">글쓰기</a>
 		</div>
+<%@ include file="bottonmenu.jsp" %>
 	</div>
 </body>
 </html>

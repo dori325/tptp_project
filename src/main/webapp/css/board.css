@@ -7,7 +7,6 @@ body::-webkit-scrollbar {
 #listboard {
 	margin: 0px auto;
 	padding: 0px;
-	margin-top: 100px;
 	width: 1250px;
 	height: auto;
 }
@@ -16,6 +15,7 @@ body::-webkit-scrollbar {
 	text-align: center;
 	margin: 0px auto;
 	padding: 0px;
+	padding-top: 10px;
 	width: 850px;
 }
 
