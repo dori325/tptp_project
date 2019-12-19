@@ -43,7 +43,7 @@
 			</select>
 			<div id="search">
 				<input placeholder="검색어 입력">
-				<button onclick="location.href='QnAlist.do?b_content=${단어/}'">
+				<button onclick="location.href='QnAlist.do?b_content='">
 					<img alt="검색" src="./img/search.png">
 				</button>
 			</div>
