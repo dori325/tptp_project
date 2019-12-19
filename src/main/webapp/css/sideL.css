@@ -2,7 +2,7 @@
 
 #loginBar {
 	margin: 0px auto;
-	margin-top: 40px;
+	margin-top: 50px;
 	padding: 0px;
 	padding-top: 5px;
 	width: 170px;
@@ -54,7 +54,7 @@
 	margin: 0px auto;
 	padding: 10px;
 	width: 100px;
-	font-size: x-small;
+	font-size: small;
 }
 
 #login a {

@@ -20,4 +20,9 @@ public class K_ServiceImp implements K_Service {
 		return k_DAO.admOper();
 	}
 
+	@Override
+	public List<Map<String, Object>> QnAlist() throws Exception {
+		return k_DAO.QnAlist();
+	}
+
 }

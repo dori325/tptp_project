@@ -11,11 +11,13 @@
 <link href="./css/board.css" rel="stylesheet" />
 <body>
 	<c:import url="topmenu.jsp" />
-	<form action="board.do">
+	<form action="brand2.do">
 		<div id="listboard">
-			<h2>브랜드게시판</h2>
+		<c:import url="RsideB.jsp" />
+		<c:import url="LsideB.jsp" />
 
 			<div id="listTop">
+			<h2>브랜드2게시판</h2>
 				<button id="pensort" onclick="location.href='QnAlist.do?page=${pencil}'">연필</button>
 				<button id="pensort" onclick="location.href='QnAlist.do?page=${mechanical}'">샤프</button>
 				<button id="pensort" onclick="location.href='QnAlist.do?page=${ballpen}'">볼펜</button>
@@ -33,7 +35,7 @@
 					<th>조회수</th>
 				</tr>
 
-				<c:forEach items="${list }" var="l">
+				<c:forEach items="${brand2 }" var="l">
 					<tr id="boardTr">
 						<td>${l.b_like }</td>
 						<td>${l.b_cate2 }</td>

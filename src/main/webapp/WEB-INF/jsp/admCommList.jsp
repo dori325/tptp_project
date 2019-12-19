@@ -5,32 +5,48 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>관리자 운영 게시판</title>
 </head>
-<link href="./css/commInsert.css" rel="stylesheet"/>
+<link href="./css/board.css" rel="stylesheet"/>
 <body>
-<form action="commInsert.do">
-<div id="insert">
-	<table id="commP">
-		<tr>
-			<td><input type="text" placeholder="댓글 입력"/></td>
-			<td><button>댓글 쓰기</button></td>
-		</tr>
-	</table>
-	<hr>
-	<table id="commL">
-		<tr>
-			<th id="nick">이름</th>
-			<th id="ip">IP</th>
-			<th id="date">날짜</th>
-			<th id="commLike"><button onclick="location.href='#'"></button></th>
-			<th id="comm">333</th>
-		</tr>
-		<tr>
-			<td id="commContent">
-			<pre>내용이 이렇게 많을 경우에도 생각을 해봐야겠지요?여기서 수정하는 것도 생각을 해야합니다.
-추천을 누른 경우에는 현재 하트 색상으로 변하게 합니다. 그거는 더 생각을..</pre></td>
-		</tr>
-	</table>
+<form action="admCommList.do">
+<div id="listboard">
+<%@ include file="topmenu.jsp" %>
+<%@ include file="AllBar.jsp" %>
+	<div id="listTop">
+	<h2>운영게시판</h2>
+		<a id="writelink">글쓰기</a>
+	</div>
+		<table id="admCommList">
+			<tr>
+				<th id="comment">댓글수</th>
+				<th>제목</th>
+				<th id="name">작성자</th>
+				<th id="date">날짜</th>
+			</tr>
+			<c:forEach items="${list }" var="i">
+			<tr>
+				<td id="comment">${i.c_count }</td>
+				<td id="titleAl"><a href="" id="title">${i.b_title }</a></td>	
+				<td id="name">${i.l_nick }</td>
+				<td id="date">${i.b_date }</td>
+			</tr>
+			</c:forEach>
+		</table>
+<div id="listBottom" >
+	<select>
+		<option>선택</option>
+		<option>전체</option>
+		<option>제목</option>
+		<option>작성자</option>
+	</select>
+	<div id="search">
+	<input placeholder="검색어 입력">
+	<button><img alt="검색" src="./img/search.png"></button>
+	</div>
+		<a id="writelink" href="">글쓰기</a>
+	</div>
+<%@ include file="bottonmenu.jsp" %>
 </div>
 </form>
 </body>

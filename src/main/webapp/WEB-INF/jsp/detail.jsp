@@ -21,11 +21,11 @@
 								<div id="cate-wrap">
 									<div id="cate-img"><img alt="" src="./img/category.png"></div>
 									<div id="cate-text">
-										<p>만년필</p>
+										<p>${detail.b_cate2 }</p>
 									</div>
 								</div>
 							</td>
-							<td id="title">제목</td>
+							<td id="title">${detail.b_title }</td>
 							<td><a>수정</a> / <a>삭제</a></td>
 						</tr>
 					</table>
@@ -33,19 +33,16 @@
 				<div id="detailStatus">
 					<table>
 						<tr>
-							<td id="id" colspan="1"> 작성자</td>
+							<td id="id" colspan="1"> ${detail.l_nick }</td>
 							<td id="ip">192.168.0.1</td>
-							<td id="date">2019.12.16 17:11:23</td>
-							<td id="count"><img alt="" src="./img/eye2.png">321234</td>
+							<td id="date">${detail.b_date }</td>
+							<td id="count"><img alt="" src="./img/eye2.png">${detail.b_count }</td>
 						</tr>
 					</table>
 				</div>
 			</div>
 			<div id="detailMid">
-				내용내용
-				<p>ddd</p>
-				<p>ddd</p>
-				<p>ddd</p>
+				${detail.b_content }
 			</div>
 			<div id="detailBot">
 				<table>
@@ -55,7 +52,7 @@
 							<div id="like-wrap">
 								<div id="like-img"><img alt="" src="./img/heart2.png"></div>
 								<div id="like-text">
-									<p>324</p>
+									<p>${detail.b_like }</p>
 								</div>
 							</div>
 						</td>
