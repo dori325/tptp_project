@@ -27,7 +27,8 @@
 					<option>샤프</option>
 					<option>볼펜</option>
 					<option>만년필</option>
-					<option>등등</option>
+					<option>형광펜</option>
+					<option>기타</option>
 				</select>
 			<input type="text" name="title" placeholder="제목을 입력하세요"><br>
 			<textarea id="summernote" name="content"></textarea>

@@ -11,12 +11,13 @@
 <link href="./css/board.css" rel="stylesheet" />
 <body>
 	<c:import url="topmenu.jsp" />
+	<c:import url="RsideB.jsp" />
 	<form action="notice.do">
 		<div id="listboard">
 			<div id="listboard">
+			<h2>공지사항</h2>
 
 			<div id="listTop">
-				<h2>공지사항</h2>
 				<a id="writelink" href="">글쓰기</a>
 			</div>
 			<table>
@@ -27,17 +28,17 @@
 					<th>조회수</th>
 				</tr>
 
-				<c:forEach items="${notice }" var="n">
+				<c:forEach items="${notice }" var="l">
 					<tr id="boardTr">
 						<td id="titleAl">
-							${n.b_title }
-							<c:if test="${n.c_count > 0}">
-								<small>${n.c_count }</small>
+							${l.b_title }
+							<c:if test="${l.c_count > 0}">
+								<small>${l.c_count }</small>
 							</c:if>
 						</td>
-						<td>${n.l_nick }</td>
-						<td>${n.b_date }</td>
-						<td>${n.b_count }</td>
+						<td>${l.l_nick }</td>
+						<td>${l.b_date }</td>
+						<td>${l.b_count }</td>
 					</tr>
 				</c:forEach>
 			</table>

@@ -16,13 +16,12 @@ public class OServiceImpl implements OService  {
 	private ODAO oDAO;
 	
 	@Override
-	public List<BoardDTO> list() throws Exception {
-		return oDAO.list();
+	public List<Map<String, Object>> notice(Map<String, Object> map) throws Exception {
+		return oDAO.notice(map);
+	}
+	@Override
+	public List<Map<String, Object>> brand1(Map<String, Object> map) throws Exception {
+		return oDAO.brand1(map);
 	}
 	
-	@Override
-	public List<BoardDTO> notice() throws Exception {
-		// TODO Auto-generated method stub
-		return oDAO.notice();
-	}
 }

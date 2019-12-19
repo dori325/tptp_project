@@ -23,7 +23,7 @@
 				<th id="name">작성자</th>
 				<th id="sort">카테1</th>
 				<th id="sort">카테2</th>
-				<th>내용(일부만)</th>
+				<th>내용</th>
 				<th id="date">날짜</th>
 			</tr>
 			<c:forEach items="${list }" var="n">
@@ -56,12 +56,7 @@
 				</table>
 			</div>
 		</form>
-		<div id="listTop" class="">
-			<a href="javascript:;" class="button_myArticle active"
-				onclick="app.searchDetails('recency')">최신순</a> <a
-				href="javascript:;" class="button_myArticle"
-				onclick="app.searchDetails('accuracy')">정확도순</a>
-		</div>
+
 
 	</div>
 	<br>

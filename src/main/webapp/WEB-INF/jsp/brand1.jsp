@@ -33,7 +33,7 @@
 					<th>조회수</th>
 				</tr>
 
-				<c:forEach items="${list }" var="l">
+				<c:forEach items="${brand1 }" var="l">
 					<tr id="boardTr">
 						<td>${l.b_like }</td>
 						<td>${l.b_cate2 }</td>
