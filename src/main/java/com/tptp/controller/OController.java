@@ -40,15 +40,50 @@ public class OController {
 		
 		return mv;
 	}
+	
+	@RequestMapping (value = "brand2.do")
+	public ModelAndView brand2(HttpServletRequest request, CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		List<Map<String, Object>> brand2 = oService.brand2(commandMap.getMap());
+
+		mv.addObject("brand2", brand2);
+		
+		return mv;
+	}
+	
+	@RequestMapping (value = "brand3.do")
+	public ModelAndView brand3(HttpServletRequest request, CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		List<Map<String, Object>> brand3 = oService.brand3(commandMap.getMap());
+		
+		mv.addObject("brand3", brand3);
+		
+		return mv;
+	}
+	
+	@RequestMapping (value = "brand4.do")
+	public ModelAndView brand4(HttpServletRequest request, CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		List<Map<String, Object>> brand4 = oService.brand4(commandMap.getMap());
+		
+		mv.addObject("brand4", brand4);
+		
+		return mv;
+	}
+	
 	@RequestMapping (value = "detail.do")
-	public ModelAndView detail(HttpServletRequest request) throws Exception {
+	public ModelAndView detail(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
+		Map<String, Object> detail = oService.detail(commandMap.getMap());
+		
+		
+		mv.addObject("detail", detail);
 		
 		return mv;
 	}
 	@RequestMapping (value = "write.do")
-	public ModelAndView write(HttpServletRequest request) throws Exception {
+	public ModelAndView write(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
 		
