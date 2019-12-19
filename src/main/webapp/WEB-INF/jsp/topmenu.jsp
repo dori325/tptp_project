@@ -3,13 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style type="text/css">
 body{
-	margin: 0;
-	padding: 0;
 }
 #topmenu{
-	margin: 0 auto;
+	margin: 0px auto;
+/* 	position: static; */
 	height: 70px;
-	width: 100%;
+    width: 1300px;
 	padding-top: 5px;
 	background-color: #c0c0c0;
 }

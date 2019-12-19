@@ -7,5 +7,7 @@ public interface K_Service {
 
 	List<Map<String, Object>> admOper() throws Exception;
 
+	List<Map<String, Object>> QnAlist() throws Exception;
+
 
 }

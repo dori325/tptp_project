@@ -19,16 +19,14 @@
 	<hr>
 	<table id="commL">
 		<tr>
-			<th id="nick">이름</th>
-			<th id="ip">IP</th>
-			<th id="date">날짜</th>
+			<th id="nick">${l_nick }</th>
+			<th id="ip">${l_ip }</th>
+			<th id="date">${c_date }</th>
 			<th id="commLike"><button onclick="location.href='#'"></button></th>
-			<th id="comm">333</th>
+			<th id="comm">${c_like }</th>
 		</tr>
 		<tr>
-			<td id="commContent">
-			<pre>내용이 이렇게 많을 경우에도 생각을 해봐야겠지요?여기서 수정하는 것도 생각을 해야합니다.
-추천을 누른 경우에는 현재 하트 색상으로 변하게 합니다. 그거는 더 생각을..</pre></td>
+			<td id="commContent">${c_content }</td>
 		</tr>
 	</table>
 </div>
