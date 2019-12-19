@@ -27,7 +27,7 @@
 					<th>조회수</th>
 				</tr>
 
-				<c:forEach items="${list }" var="l">
+				<c:forEach items="${notice }" var="l">
 					<tr id="boardTr">
 						<td id="titleAl">
 							${l.b_title }

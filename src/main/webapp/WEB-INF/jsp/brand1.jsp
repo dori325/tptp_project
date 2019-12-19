@@ -11,7 +11,7 @@
 <link href="./css/board.css" rel="stylesheet" />
 <body>
 	<c:import url="topmenu.jsp" />
-	<form action="board.do">
+	<form action="brand1.do">
 		<div id="listboard">
 			<h2>브랜드게시판</h2>
 
@@ -33,7 +33,7 @@
 					<th>조회수</th>
 				</tr>
 
-				<c:forEach items="${list }" var="l">
+				<c:forEach items="${brand1 }" var="l">
 					<tr id="boardTr">
 						<td>${l.b_like }</td>
 						<td>${l.b_cate2 }</td>
