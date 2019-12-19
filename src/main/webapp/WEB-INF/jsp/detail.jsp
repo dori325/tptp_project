@@ -10,9 +10,9 @@
 </head>
 <link href="./css/detail.css" rel="stylesheet" />
 <body>
-<h1>디테일</h1>
 	<form action="detail.do">
 		<div id="detail">
+<h1>디테일</h1>
 			<div id="detailTop">
 				<div id="detailTitle">
 					<table>
@@ -47,7 +47,7 @@
 			<div id="detailBot">
 				<table>
 					<tr>
-						<td id="list"><a>목록으로</a></td>
+						<td id="list"><a href="brand1.do">목록으로</a></td>
 						<td>
 							<div id="like-wrap">
 								<div id="like-img"><img alt="" src="./img/heart2.png"></div>
@@ -56,7 +56,7 @@
 								</div>
 							</div>
 						</td>
-						<td id="next"><a>이전글</a> / <a>다음글</a></td>
+						<td id="next"><a href="./detail.do?b_no=${detail.b_no - 1}">이전글</a> / <a href="./detail.do?b_no=${detail.b_no + 1}">다음글</a></td>
 					</tr>
 				</table>
 			</div>

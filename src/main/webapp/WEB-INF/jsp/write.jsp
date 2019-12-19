@@ -24,12 +24,21 @@
 	<form action="write.do">
 		<div id="writetitle">
 			<select>
-					<option>샤프</option>
-					<option>볼펜</option>
-					<option>만년필</option>
-					<option>형광펜</option>
-					<option>기타</option>
-				</select>
+				<option>공지사항</option>
+				<option>새소식</option>
+				<option>브랜드1</option>
+				<option>브랜드2</option>
+				<option>브랜드3</option>
+				<option>질문게시판</option>
+				<option>운영자게시판</option>
+			</select>
+			<select>
+				<option>샤프</option>
+				<option>볼펜</option>
+				<option>만년필</option>
+				<option>형광펜</option>
+				<option>기타</option>
+			</select>
 			<input type="text" name="title" placeholder="제목을 입력하세요"><br>
 			<textarea id="summernote" name="content"></textarea>
 			<script>
