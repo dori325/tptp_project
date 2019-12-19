@@ -14,10 +14,10 @@
 <%@ include file="LsideB.jsp" %>
 		<div id="listTop">
 		<h2>질문게시판</h2>
-			<button onclick="location.href='QnAlist.do?page=${pencil}'">연필</button>
-			<button onclick="location.href='QnAlist.do?page=${sharp}'">샤프</button>
-			<button onclick="location.href='QnAlist.do?page=${ballpen}'">볼펜</button>
-			<button onclick="location.href='QnAlist.do?page=${fountain}'">만년필</button>
+			<button onclick="location.href='QnAlist.do?page=${sh}'">샤프</button>
+			<button onclick="location.href='QnAlist.do?page=${ba}'">볼펜</button>
+			<button onclick="location.href='QnAlist.do?page=${fo}'">만년필</button>
+			<button onclick="location.href='QnAlist.do?page=${hi}'">형광펜</button>
 			<button onclick="location.href='QnAlist.do?page=${etc}'">기타</button>
 			<a id="writelink" href="write.do?b_cate1=${b_cate1 }">글쓰기</a>
 		</div>

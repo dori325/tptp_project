@@ -36,7 +36,7 @@ body::-webkit-scrollbar {
 
 #boardTr #sort {
 	width: 60px;
-	background-image: url("../images/sort.png");
+	background-image: url("../img/sort.png");
 	background-size: 40px 23px;
 	background-repeat: no-repeat;
 	background-position: center;
