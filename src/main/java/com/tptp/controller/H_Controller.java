@@ -62,8 +62,7 @@ public class  H_Controller {
 		List<Map<String, Object>> s_list = h_Service.s_list(commandMap.getMap());
 		mv.addObject("s_list", s_list);
 		return mv;
-	}	
-	
+	}		
 	
 	//4.사용자리스트
 	@RequestMapping (value = "userList.do")
