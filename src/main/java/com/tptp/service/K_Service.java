@@ -11,5 +11,8 @@ public interface K_Service {
 
 	List<Map<String, Object>> adSearch(Map<String, Object> map) throws Exception;
 
+	int joinReg(Map<String, Object> map) throws Exception;
+
+	int checkId(Map<String, Object> map) throws Exception;
 	
 }

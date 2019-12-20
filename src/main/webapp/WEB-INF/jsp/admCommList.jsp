@@ -42,12 +42,6 @@
 		</table>
 <div id="listBottom" >
 	<form action="admCommSearch.do" method="GET">
-	<select>
-		<option>선택</option>
-		<option id="all">제목 + 내용</option>
-		<option id="title">제목</option>
-		<option id="nick">내용</option>
-	</select>
 	<div id="search">
 	<input name="searchCont" placeholder="검색어 입력">
 	<button type="submit"><img alt="검색" src="./img/search.png" ></button>

@@ -11,7 +11,15 @@
 	</select>
 
 	<select id="adSearch" parameterType="hashmap" resultType="hashmap">
-		SELECT * FROM boardview WHERE b_cate1 = 'ad' and b_title LIKE '#{searchCont}'
+		SELECT * FROM boardview WHERE b_cate1 = 'ad' and b_title LIKE CONCAT('%',#{searchCont},'%') OR b_content LIKE CONCAT('%',#{searchCont},'%') 
 	</select>
 
+	<insert id="joinReg" parameterType="hashmap">
+		INSERT INTO login (l_id, l_nick, l_pw, l_email) VALUES (#{id}, #{nick}, #{pw1}, #{email})
+	</insert>
+	
+	<select id="checkId" parameterType="hashmap" resultType="Integer">
+		SELECT COUNT(*) FROM login WHERE l_id=#{id}
+	</select>
+	
 </mapper>
