@@ -29,14 +29,30 @@ public class  H_Controller {
 	public ModelAndView main(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
+		//공지사항
 		List<Map<String, Object>> list = h_Service.list(commandMap.getMap());
 		mv.addObject("list", list);
 		
+		//추천리스트
 		List<Map<String, Object>> k_list = h_Service.k_list(commandMap.getMap());
 		mv.addObject("k_list", k_list);
 		
+		//새소식
 		List<Map<String, Object>> n_list = h_Service.n_list(commandMap.getMap());
 		mv.addObject("n_list", n_list);
+		
+		//브랜드1
+		List<Map<String, Object>> b1_list = h_Service.b1_list(commandMap.getMap());
+		mv.addObject("b1_list", b1_list);
+		
+		//브랜드2
+		List<Map<String, Object>> b2_list = h_Service.b2_list(commandMap.getMap());
+		mv.addObject("b2_list", b2_list);
+		
+		//브랜드3
+		List<Map<String, Object>> b3_list = h_Service.b3_list(commandMap.getMap());
+		mv.addObject("b3_list", b3_list);
+		
 		
 		return mv;
 	}
@@ -59,14 +75,15 @@ public class  H_Controller {
 	@RequestMapping (value = "totalSearch.do")
 	public ModelAndView totalSearch(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		List<Map<String, Object>> s_list = h_Service.s_list(commandMap.getMap());
-		mv.addObject("s_list", s_list);
+		List<Map<String, Object>> ts_list = h_Service.ts_list(commandMap.getMap());	
+		mv.addObject("ts_list", ts_list);
 		return mv;
-	}		
+	}	
+	
 	
 	//4.사용자리스트
 	@RequestMapping (value = "userList.do")
-	public ModelAndView userList(HttpServletRequest request, CommandMap commandMap ) throws Exception {
+	public ModelAndView userList(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<Map<String, Object>> u_list = h_Service.u_list(commandMap.getMap());
 		mv.addObject("u_list", u_list);
@@ -75,8 +92,10 @@ public class  H_Controller {
 	
 	//5.log기록
 	@RequestMapping (value = "log.do")
-	public ModelAndView log(HttpServletRequest request) throws Exception {
+	public ModelAndView log(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		List<Map<String, Object>> log = h_Service.log(commandMap.getMap());
+		mv.addObject("log", log);
 		return mv;
 	}
 	

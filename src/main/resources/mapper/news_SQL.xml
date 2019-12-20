@@ -5,7 +5,8 @@
 	<select id="list" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[		
 			SELECT *
-			FROM board	
+			FROM board
+			LIMIT 7;	
 		]]>
 	</select>
 
@@ -14,7 +15,7 @@
 		<![CDATA[		
 			SELECT * FROM board 
 			where b_like > 10
-			LIMIT 10;	
+			LIMIT 7;	
 		]]>
 	</select>
 
@@ -23,24 +24,78 @@
 		<![CDATA[		
 			SELECT * FROM board
 			ORDER BY b_modidate DESC
-			limit 10;	
+			limit 7;	
 		]]>
 	</select>
 	
+	<!-- 브랜드1 -->
+	<select id="b1_list" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[		
+			SELECT *
+			FROM board
+			WHERE b_cate1='b1'
+			LIMIT 7;	
+		]]>
+	</select>
+	
+	<!-- 브랜드2-->
+	<select id="b2_list" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[		
+			SELECT *
+			FROM board
+			WHERE b_cate1='b2'
+			LIMIT 7;	
+		]]>
+	</select>
+	
+	<!-- 브랜드1 -->
+	<select id="b3_list" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[		
+			SELECT *
+			FROM board
+			WHERE b_cate1='b3'
+			LIMIT 7;	
+		]]>
+	</select>
+	
+	
+	
+	
 	<!-- 통합검색 -->
-	<select id="s_list" parameterType="hashmap" resultType="hashmap">
+	<select id="ts_list" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[		
 			SELECT * FROM board 
-			where b_title LIKE '%어%' or b_content LIKE '%ㄴㅇ%'
+			where (b_title LIKE CONCAT('%', #{b_content}, '%') )
+			or (b_content LIKE CONCAT('%', #{b_content}, '%') )
 			order by b_no desc;
 		]]>
 	</select>
 	
-	<!-- 사용자리스트 -->
+	
+	<!-- 회원관리 -->
 	<select id="u_list" parameterType="hashmap" resultType="hashmap">
-		<![CDATA[		
+	<![CDATA[
 			SELECT * FROM login;
-		]]>
+	]]>
+	</select>
+	
+	<!-- 로그관리 -->
+	<select id="log" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT *, 
+		(SELECT COUNT(*) FROM log WHERE log_no > 0 
+		<if test="log_do != null">AND log_do = #{log_do }</if> 
+		<if test="name != null">AND login_id = #{name }</if>
+		<if test="ip != null">AND log_ip = #{ip }</if>
+		) as count 
+		FROM log
+		WHERE log_no > 0 
+		<if test="log_do != null">AND log_do = #{log_do }</if> 
+		<if test="name != null">AND login_id = #{name }</if>
+		<if test="ip != null">AND log_ip = #{ip }</if>
+		ORDER BY log_date DESC
+		LIMIT #{page }, 10; 
+	]]>
 	</select>
 
 

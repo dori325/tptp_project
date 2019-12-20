@@ -22,29 +22,53 @@ public class H_ServiceImpl implements H_Service {
 		return newsDAO.list(map);
 	}
 
-	//추천리스트
 	@Override
 	public List<Map<String, Object>> k_list(Map<String, Object> map) throws Exception {
 		return newsDAO.k_list(map);
 	}
 
-	//새소식
 	@Override
 	public List<Map<String, Object>> n_list(Map<String, Object> map) throws Exception {
 		return newsDAO.n_list(map);
 	}
 
+	//브랜드1
+	@Override
+	public List<Map<String, Object>> b1_list(Map<String, Object> map) throws Exception {
+		return newsDAO.b1_list(map);
+	}
+	
+	//브랜드2
+	@Override
+	public List<Map<String, Object>> b2_list(Map<String, Object> map) throws Exception {
+		return newsDAO.b2_list(map);
+	}
+	
+	//브랜드3
+	@Override
+	public List<Map<String, Object>> b3_list(Map<String, Object> map) throws Exception {
+		return newsDAO.b3_list(map);
+	}	
+	
 	//통합검색
 	@Override
-	public List<Map<String, Object>> s_list(Map<String, Object> map) throws Exception {
-		return newsDAO.s_list(map);
+	public List<Map<String, Object>> ts_list(Map<String, Object> map) throws Exception {
+		return newsDAO.ts_list(map);
 	}
 
-	//사용자리스트
+	//회원관리
 	@Override
 	public List<Map<String, Object>> u_list(Map<String, Object> map) throws Exception {
-		return newsDAO.u_list(map);		
-	}	
+		return newsDAO.u_list(map);
+	}
+
+	//로그관리
+	@Override
+	public List<Map<String, Object>> log(Map<String, Object> map) throws Exception {
+		return newsDAO.log(map);
+	}
+
+	
 	
 	
 	

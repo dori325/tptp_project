@@ -20,12 +20,11 @@ function select(){
 <link href="./css/board.css" rel="stylesheet"/>
 <body>
 <div id="listboard">
-<%@ include file="LsideB.jsp" %>
-<%@ include file="RsideB.jsp" %>
+<%@ include file="topmenu.jsp"%>
+<%@ include file="AllBar.jsp"%>
 <div id="listTop">
-	<div id="listTop">
 	<h2>어드민 로그</h2>
-	</div>
+	<div id="logbox">
 		<!-- //1성공 2실패 3로그아웃 4글쓰기 5글수정 6글삭제 7댓글 8댓글수정 9댓글삭제 -->
 		
 		<button onclick="location.href='log.do'">초기화</button>
@@ -114,6 +113,7 @@ function select(){
 		</div>
 		
 	</div>
+</div>
 		
 </body>
 
