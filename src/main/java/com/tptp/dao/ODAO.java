@@ -17,7 +17,7 @@ public class ODAO extends AbstractDAO {
 
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> brand1(Map<String, Object> map) {
-		return selectList("o.brand1");
+		return selectList("o.brand1", map);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -38,6 +38,10 @@ public class ODAO extends AbstractDAO {
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> detail(Map<String, Object> map) {
 		return (Map<String, Object>) selectOne("o.detail", map);
+	}
+
+	public int writeInsert(Map<String, Object> map) {
+		return (int) insert("o.writeInsert", map);
 	}
 
 }

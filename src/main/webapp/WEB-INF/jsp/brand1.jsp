@@ -11,7 +11,6 @@
 <link href="./css/board.css" rel="stylesheet" />
 <body>
 	<c:import url="topmenu.jsp" />
-	<form action="brand1.do">
 		<div id="listboard">
 		<c:import url="RsideB.jsp" />
 		<c:import url="LsideB.jsp" />
@@ -20,13 +19,16 @@
 			<h2>
 					브랜드1 게시판
 			</h2>
-				<button id="pensort" onclick="location.href='brand1.do?page=${pencil}'">연필</button>
-				<button id="pensort" onclick="location.href='brand1.do?page=${mechanical}'">샤프</button>
-				<button id="pensort" onclick="location.href='brand1.do?page=${ballpen}'">볼펜</button>
-				<button id="pensort" onclick="location.href='brand1.do?page=${Fountain}'">만년필</button>
-				<button id="pensort" onclick="location.href='brand1.do?page=${etc}'">기타</button>
-				<a id="writelink" href="write.do">글쓰기</a>
+				<button id="pensort" onclick="location.href='brand1.do'">전체</button>
+				<button id="pensort" onclick="location.href='brand1.do?b_cate2=연필'">연필</button>
+				<button id="pensort" onclick="location.href='brand1.do?b_cate2=샤프'">샤프</button>
+				<button id="pensort" onclick="location.href='brand1.do?b_cate2=볼펜'">볼펜</button>
+				<button id="pensort" onclick="location.href='brand1.do?b_cate2=만년필'">만년필</button>
+				<button id="pensort" onclick="location.href='brand1.do?b_cate2=형광펜'">형광펜</button>
+				<button id="pensort" onclick="location.href='brand1.do?b_cate2=기타'">기타</button>
+				<a id="writelink" href="write.do?b_cate1=${b_cate1 }">글쓰기</a>
 			</div>
+	<form action="brand1.do">
 			<table>
 				<tr>
 					<th>추천</th>
@@ -53,6 +55,7 @@
 					</tr>
 				</c:forEach>
 			</table>
+	</form>
 			<div id="listBottom">
 				<select>
 					<option>선택</option>
@@ -62,12 +65,13 @@
 				</select>
 				<input placeholder="검색하세요">
 				<button>검색</button>
-				<a id="writelink" href="write.do">글쓰기</a>
+				
+					<a id="writelink" href="write.do?b_cate1=${b_cate1 }" >글쓰기</a>
+					
 			</div>
 		</div>
 		<c:import url="bottonmenu.jsp" />
 
 
-	</form>
 </body>
 </html>

@@ -5,9 +5,11 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -28,15 +30,22 @@ public class OController {
 		List<Map<String, Object>> notice = oService.notice(commandMap.getMap());
 		mv.addObject("notice",notice);
 		
+		mv.addObject("b_cate1", notice.get(0).get("b_cate1"));
+		
 		return mv;
 	}
 	
 	@RequestMapping (value = "brand1.do")
 	public ModelAndView brand1(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		List<Map<String, Object>> brand1 = oService.brand1(commandMap.getMap());
+		List<Map<String, Object>> brand1 = oService.brand1(commandMap.getMap()); 
 		
 		mv.addObject("brand1", brand1);
+		
+		mv.addObject("b_cate1", brand1.get(0).get("b_cate1"));
+		System.out.println(brand1.get(0));
+		System.out.println(brand1.get(0).get("b_cate1"));
+		
 		
 		return mv;
 	}
@@ -61,16 +70,6 @@ public class OController {
 		return mv;
 	}
 	
-	@RequestMapping (value = "brand4.do")
-	public ModelAndView brand4(HttpServletRequest request, CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		List<Map<String, Object>> brand4 = oService.brand4(commandMap.getMap());
-		
-		mv.addObject("brand4", brand4);
-		
-		return mv;
-	}
-	
 	@RequestMapping (value = "detail.do")
 	public ModelAndView detail(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -85,7 +84,30 @@ public class OController {
 	@RequestMapping (value = "write.do")
 	public ModelAndView write(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		System.out.println("cate1 :" + commandMap.get("b_cate1"));
+		mv.addObject("cate1", commandMap.get("b_cate1"));
 		
+		
+		return mv;
+	}
+	
+//	@RequestMapping (value = "writeInsert.do")
+	@PostMapping (value = "writeInsert.do")
+	public ModelAndView writeInsert(HttpServletRequest request, CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView();
+
+		
+		if (request.getParameter("b_title") != null && request.getParameter("b_content") != null) {
+			
+			commandMap.put("l_nick", "bill");
+			int result = oService.writeInsert(commandMap.getMap());
+			
+//			String old_url = request.getHeader("Referer");
+//			System.out.println(old_url);
+			mv.setViewName("redirect:brand1.do");
+		}else{
+			mv.setViewName("redirect:write.do");
+		}
 		
 		return mv;
 	}

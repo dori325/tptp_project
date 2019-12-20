@@ -19,5 +19,7 @@ public interface OService {
 
 	Map<String, Object> detail(Map<String, Object> map) throws Exception;
 
+	int writeInsert(Map<String, Object> map) throws Exception;
+
 
 }

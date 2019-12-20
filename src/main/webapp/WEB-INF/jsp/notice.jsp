@@ -19,7 +19,7 @@
 			<h2>공지사항</h2>
 
 			<div id="listTop">
-				<a id="writelink" href="">글쓰기</a>
+				<a id="writelink" href="write.do?b_cate1=${b_cate1 }">글쓰기</a>
 			</div>
 			<table>
 				<tr>
@@ -52,7 +52,7 @@
 				</select>
 				<input placeholder="검색하세요">
 				<button>검색</button>
-				<a id="writelink" href="">글쓰기</a>
+				<a id="writelink" href="write.do?b_cate1=${b_cate1 }" >글쓰기</a>
 			</div>
 			</div>
 		</div>

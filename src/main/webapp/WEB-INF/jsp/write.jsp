@@ -21,26 +21,29 @@
 </head>
 <body>
 	<c:import url="topmenu.jsp" />
-	<form action="write.do">
+	<form action="writeInsert.do" enctype="multipart/form-data" method="post">
 		<div id="writetitle">
-			<select>
-				<option>공지사항</option>
-				<option>새소식</option>
-				<option>브랜드1</option>
-				<option>브랜드2</option>
-				<option>브랜드3</option>
-				<option>질문게시판</option>
-				<option>운영자게시판</option>
+			<select name="b_cate1">
+				<c:if test="${cate1 eq 'b1' }"><option value="b1">브랜드1</option></c:if>
+				<c:if test="${cate1 eq 'b2' }"><option value="b2">브랜드2</option></c:if>
+				<c:if test="${cate1 eq 'b3' }"><option value="b3">브랜드3</option></c:if>
+				<c:if test="${cate1 eq 'no' }"><option value="no">공지사항</option></c:if>
+				<c:if test="${cate1 eq 'nw' }"><option value="nw">새소식</option></c:if>
+				<c:if test="${cate1 eq 'ad' }"><option value="ad">운영자</option></c:if>
+				<c:if test="${cate1 eq 'q' }"><option value="q">질문게시판</option></c:if>
 			</select>
-			<select>
-				<option>샤프</option>
-				<option>볼펜</option>
-				<option>만년필</option>
-				<option>형광펜</option>
-				<option>기타</option>
+			<c:if test="${cate1 ne 'no' }">
+			<select name="b_cate2">
+				<option value="연필">연필</option>
+				<option value="샤프">샤프</option>
+				<option value="볼펜">볼펜</option>
+				<option value="만년필">만년필</option>
+				<option value="형광펜">형광펜</option>
+				<option value="기타">기타</option>
 			</select>
-			<input type="text" name="title" placeholder="제목을 입력하세요"><br>
-			<textarea id="summernote" name="content"></textarea>
+			</c:if>
+			<input type="text" name="b_title" placeholder="제목을 입력하세요"><br>
+			<textarea id="summernote" name="b_content"></textarea>
 			<script>
 			$(document).ready(function() {
 				  $('#summernote').summernote({
@@ -48,7 +51,7 @@
 						width : 850,
 						height : 600,
 						minHeight : null,
-						maxHeight : null,
+						maxHeight : null
 					});
 				  $('.dropdown-toggle').dropdown()
 				});

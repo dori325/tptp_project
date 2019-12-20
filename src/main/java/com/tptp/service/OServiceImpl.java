@@ -39,5 +39,9 @@ public class OServiceImpl implements OService  {
 	public Map<String, Object> detail(Map<String, Object> map) throws Exception {
 		return oDAO.detail(map);
 	}
+	@Override
+	public int writeInsert(Map<String, Object> map) throws Exception {
+		return oDAO.writeInsert(map);
+	}
 	
 }
