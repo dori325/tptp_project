@@ -11,6 +11,7 @@
 <body>
 <div id="listboard">
 <%@ include file="topmenu.jsp" %>
+<%@ include file="AllBar.jsp" %>
 		<div id="listTop">
 		<h2>질문게시판</h2>
 			<button onclick="location.href='QnAlist.do?page=${sh}'">샤프</button>
