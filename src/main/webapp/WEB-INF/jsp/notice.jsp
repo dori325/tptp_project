@@ -55,32 +55,32 @@
 		startPage : ${startPage } / endPage : ${endPage } --%>
 					<!-- 페이지 찍기 -->
 					<c:if test="${page gt 10 }">
-						<button onclick="location.href='notice.do?page=${page - 10 }&b_cate1=${b_cate1 }'">이전</button>
+						<button onclick="location.href='notice.do?page=${page - 10 }'">이전</button>
 					</c:if>
 					<c:if test="${page gt 1 }">
-						<button onclick="location.href='notice.do?page=${page - 1 }&b_cate1=${b_cate1 }'">
+						<button onclick="location.href='notice.do?page=${page - 1 }'">
 							◀</button>
 					</c:if>
 					<c:forEach begin="${startPage }" end="${endPage }" var="i">
 
 
 						<c:if test="${i eq page }">
-							<button onclick="location.href='notice.do?page=${i }&b_cate1=${b_cate1 }'">
+							<button onclick="location.href='notice.do?page=${i }'">
 								<b style="color: blue;">${i }</b>
 							</button>
 						</c:if>
 						<c:if test="${i ne page }">
-							<button onclick="location.href='notice.do?page=${i }&b_cate1=${b_cate1 }'">
+							<button onclick="location.href='notice.do?page=${i }'">
 								${i }</button>
 						</c:if>
 
 					</c:forEach>
 					<c:if test="${page lt totalPage }">
-						<button onclick="location.href='notice.do?page=${page + 1 }&b_cate1=${b_cate1 }'">
+						<button onclick="location.href='notice.do?page=${page + 1 }'">
 							▶</button>
 					</c:if>
 					<c:if test="${page lt totalPage - 9 }">
-						<button onclick="location.href='notice.do?page=${page + 10 }&b_cate1=${b_cate1 }'">다음</button>
+						<button onclick="location.href='notice.do?page=${page + 10 }'">다음</button>
 					</c:if>
 				</div>
 				<div id="listBottom">

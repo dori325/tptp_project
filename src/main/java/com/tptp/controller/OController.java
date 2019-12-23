@@ -5,7 +5,6 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -26,25 +25,21 @@ public class OController {
 	@RequestMapping(value = "notice.do")
 	public ModelAndView notice(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		
-		String old_url = request.getHeader("Referer");
-		System.out.println("공지주소 : " + old_url);
-		
+
 		// 임시로 page 만들어주기
 		int page = 1;
 		if (commandMap.containsKey("page") && Integer.parseInt((String) commandMap.get("page")) > 0) {
 			page = Integer.parseInt((String) commandMap.get("page"));
 		}
-		
 		commandMap.put("page", (page - 1) * 10);// '0'
+
 		List<Map<String, Object>> notice = oService.notice(commandMap.getMap());
-		
+
 		mv.addObject("notice", notice);
-		mv.addObject("page", page);
 
 		mv.addObject("b_cate1", notice.get(0).get("b_cate1"));
-		System.out.println(commandMap.getMap());
 
+		mv.addObject("page", page);
 
 		if (notice.size() > 0) {
 			// 총페이지는?
@@ -57,7 +52,7 @@ public class OController {
 	@RequestMapping(value = "brand1.do")
 	public ModelAndView brand1(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		
+
 		// 임시로 page 만들어주기
 		int page = 1;
 		if (commandMap.containsKey("page") && Integer.parseInt((String) commandMap.get("page")) > 0) {
@@ -141,7 +136,7 @@ public class OController {
 	@RequestMapping(value = "detail.do")
 	public ModelAndView detail(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		System.out.println("여기는 디테일"+request.getParameter("url"));
+
 		Map<String, Object> detail = oService.detail(commandMap.getMap());
 
 		// 조회수 + 1
@@ -156,8 +151,8 @@ public class OController {
 	@RequestMapping(value = "write.do")
 	public ModelAndView write(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		System.out.println("b_cate1 :" + commandMap.get("b_cate1"));
-		mv.addObject("b_cate1", commandMap.get("b_cate1"));
+		System.out.println("cate1 :" + commandMap.get("b_cate1"));
+		mv.addObject("cate1", commandMap.get("b_cate1"));
 
 		return mv;
 	}
@@ -179,29 +174,6 @@ public class OController {
 			mv.setViewName("redirect:write.do");
 		}
 
-		return mv;
-	}
-	
-	@RequestMapping(value = "delete.do")
-	public ModelAndView delete(HttpServletRequest request, CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		
-		HttpSession session = request.getSession();
-		
-//		System.out.println(request.getParameter("url"));
-//		String url = request.getParameter("url").substring(17);
-//		String url2 = url.replace(".jsp", ".do");
-//		String old_url = request.getHeader("Referer");
-//		String old_url2 = old_url.substring(26);
-//		System.out.println(url2);
-		int delete = oService.delete(commandMap.getMap());
-		
-		if (delete == 1) {
-//			mv.setViewName("redirect:" + url2);
-			mv.setViewName("redirect:brand1.do");
-		}
-		mv.addObject("delete", delete);
-	
 		return mv;
 	}
 }
