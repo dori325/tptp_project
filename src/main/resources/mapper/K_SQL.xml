@@ -21,11 +21,22 @@
 	</insert>
 
 	<select id="checkID" parameterType="String" resultType="Integer">
-		SELECT COUNT(*) FROM login WHERE l_id=#{input} OR l_nick=#{input}
+		SELECT COUNT(*) FROM login WHERE l_id=#{id}
+	</select>
+
+	<select id="checkNick" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) FROM login WHERE l_nick=#{nick}
+	</select>
+
+	<select id="checkPW" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) FROM login WHERE l_pw=#{pw} AND l_id=#{id}
 	</select>
 
 	<select id="login" parameterType="hashmap" resultType="hashmap">
-		SELECT l_id, l_pw, l_nick, l_auth FROM login WHERE l_id=#{ID} AND l_pw=#{PW}
+		SELECT l_id, l_pw, l_nick, l_auth,
+		(SELECT COUNT(*) FROM boardview WHERE l_id=#{ID}) AS countB,
+		(SELECT COUNT(*) FROM comment WHERE l_id=#{ID}) AS countC
+		FROM login WHERE l_id=#{ID} AND l_pw=#{PW}
 	</select>
 
 	<select id="commShow" parameterType="Integer" resultType="hashmap">
@@ -37,9 +48,18 @@
 	</insert>
 
 	<select id="mylist" parameterType="String" resultType="hashmap">
-		SELECT COUNT(*) AS countB FROM boardview WHERE l_nick=#{nick};
-		SELECT COUNT(*) AS countC FROM comment WHERE l_nick=#{nick};
-		SELECT * FROM login WHERE l_nick=#{nick};
+		SELECT l_id, l_pw, l_nick,
+		(SELECT COUNT(*) FROM boardview WHERE l_id=#{id}) AS countB,
+		(SELECT COUNT(*) FROM comment WHERE l_id=#{id}) AS countC
+		FROM login WHERE l_id=#{id};
 	</select>
+ 
+	<update id="nickUpdate" parameterType="hashmap">
+		UPDATE login SET l_nick=#{renick} WHERE l_id=#{id}
+	</update>
+
+	<update id="pwModi" parameterType="hashmap">
+		UPDATE login SET l_pw=#{pw2} WHERE l_id=#{id}
+	</update>
 
 </mapper>

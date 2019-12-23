@@ -36,8 +36,18 @@ public class K_ServiceImp implements K_Service {
 	}
 
 	@Override
-	public int checkID(String input) throws Exception {
-		return k_DAO.checkID(input);
+	public int checkID(String id) throws Exception {
+		return k_DAO.checkID(id);
+	}
+	
+	@Override
+	public int checkNick(String nick) throws Exception {
+		return k_DAO.checkNick(nick);
+	}
+	
+	@Override
+	public int checkPW(Map<String, Object> map) throws Exception {
+		return k_DAO.checkPW(map);
 	}
 
 	@Override
@@ -56,8 +66,18 @@ public class K_ServiceImp implements K_Service {
 	}
 
 	@Override
-	public List<Map<String, Object>> mylist(String nick) throws Exception {
-		return k_DAO.mylist(nick);
+	public Map<String, Object> mylist(String id) throws Exception {
+		return k_DAO.mylist(id);
+	}
+
+	@Override
+	public int nickUpdate(Map<String, Object> map) throws Exception {
+		return k_DAO.nickUpdate(map);
+	}
+
+	@Override
+	public int pwModi(String pw2) throws Exception {
+		return (int) k_DAO.pwModi(pw2);
 	}
 	
 

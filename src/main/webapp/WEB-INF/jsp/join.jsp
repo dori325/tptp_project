@@ -47,7 +47,7 @@ function checkNick() {
 		type : 'POST',
 		data : "nick="+nick,
 		dataType : 'text',
-		url : 'checkID.do',
+		url : 'checkNick.do',
 		success : function(rData,textStatus, xhr){
 			var check = rData;
 			if(check == 0){
@@ -109,10 +109,10 @@ function check(){
 <link href="./css/welcome.css" rel="stylesheet"/>
 <body>
 <div id="welcomeList">
-<form action="joinReg.do" method="POST" name="form">
 <%@ include file="AllBar.jsp" %>
 <div id="list">
 	<h2>회원 가입</h2>
+<form action="joinReg.do" method="POST" name="form">
 		<table>
 			<tr>
 				<th>*아이디</th>
@@ -140,7 +140,7 @@ function check(){
 				<th>*비밀번호 확인</th>
 				<td>
 					<input type="password" name="pw2" id="insertPW2" placeholder="동일한 비밀번호를 입력하세요">
-					<a id="notCorr">비밀번호가 일치하지 않습니다.</a>
+					<a id="notCorr" style="color: gray;">비밀번호가 일치하지 않습니다.</a>
 				</td>
 			</tr>
 			<tr>
@@ -153,13 +153,13 @@ function check(){
 						<option>daum.net</option>
 						<option>gmail.com</option>
 					</select><br>
-					<small>아이디와 비밀번호 찾기 시 필요합니다.</small>
+					<small style="color: gray;">아이디와 비밀번호 찾기 시 필요합니다.</small>
 				</td>
 			</tr>
 		</table>
 	<button type="submit" disabled="disabled" id="checkIt" onclick="return check();">가입하기</button>
-	</div>	
 </form>
+	</div>	
 </div>
 </body>
 </html>
