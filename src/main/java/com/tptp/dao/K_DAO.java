@@ -11,7 +11,7 @@ import com.common.dao.AbstractDAO;
 public class K_DAO extends AbstractDAO{
 
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> admOper() throws Exception {
+	public List<Map<String, Object>> admOper() {
 		 return selectList("k.adlist");
 	}
 
@@ -24,5 +24,34 @@ public class K_DAO extends AbstractDAO{
 	public List<Map<String, Object>> adSearch(Map<String, Object> map) {
 		return selectList("k.adSearch", map);
 	}
+
+	public int joinReg(Map<String, Object> map) {
+		return (int) insert("k.joinReg", map);
+	}
+
+	public int checkID(String input) {
+		return (int) selectOne("k.checkID", input);
+	}
+
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> login(Map<String, Object> map) {
+		return (Map<String, Object>) selectOne("k.login", map);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> commShow(int b_no) {
+		return selectList("k.commShow", b_no);
+	}
+
+	public int commInsert(Map<String, Object> map) {
+		return (int) insert("k.commInsert", map);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> mylist(String nick) {
+		return (List<Map<String, Object>>) selectOne("k.mylist", nick);
+	}
+
+
 
 }

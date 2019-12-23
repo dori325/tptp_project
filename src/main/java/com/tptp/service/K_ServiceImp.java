@@ -29,5 +29,38 @@ public class K_ServiceImp implements K_Service {
 	public List<Map<String, Object>> adSearch(Map<String, Object> map) throws Exception {
 		return k_DAO.adSearch(map);
 	}
+
+	@Override
+	public int joinReg(Map<String, Object> map) throws Exception {
+		return k_DAO.joinReg(map);
+	}
+
+	@Override
+	public int checkID(String input) throws Exception {
+		return k_DAO.checkID(input);
+	}
+
+	@Override
+	public Map<String, Object> login(Map<String, Object> map) throws Exception {
+		return (Map<String, Object>) k_DAO.login(map);
+	}
+
+	@Override
+	public List<Map<String, Object>> commShow(int b_no) throws Exception {
+		return k_DAO.commShow(b_no);
+	}
+
+	@Override
+	public int commInsert(Map<String, Object> map) throws Exception {
+		return k_DAO.commInsert(map);
+	}
+
+	@Override
+	public List<Map<String, Object>> mylist(String nick) throws Exception {
+		return k_DAO.mylist(nick);
+	}
+	
+
+
 	
 }
