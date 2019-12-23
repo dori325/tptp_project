@@ -125,7 +125,7 @@ public class H_Controller {
 				mv.addObject("l_auth", commandMap.get("l_auth"));
 			}
 		}
-		//mv.setViewName("redirect:userListSearch.do?search=" + request.getParameter("searchCont"));
+		//mv.setViewName("redirect:userListSearch.do?searchCont=" + request.getParameter("searchCont"));
 		
 		return mv;
 	}

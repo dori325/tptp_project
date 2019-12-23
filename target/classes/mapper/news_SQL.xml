@@ -14,7 +14,8 @@
 	<select id="k_list" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[		
 			SELECT * FROM board 
-			where b_like > 10
+			where b_like > 10 
+			ORDER BY b_date DESC 
 			LIMIT 7;	
 		]]>
 	</select>
@@ -106,7 +107,6 @@
 		<if test='searchID == "l_auth"'>where l_auth LIKE CONCAT('%', #{searchCont}, '%')</if>
 	</select>
 
-
     <!-- 로그관리 -->
 	<select id="log" parameterType="hashmap" resultType="hashmap">
 		SELECT *,
@@ -142,7 +142,5 @@
 		<if test="ip != null">AND log_ip = #{ip }</if>
 		GROUP BY log_ip
 	</select>
-
-
 
 </mapper>

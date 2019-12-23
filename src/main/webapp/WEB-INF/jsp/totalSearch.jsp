@@ -17,8 +17,7 @@
 			<h2>통합검색결과..</h2>
 		</div>
 		
-		<div>
-		
+		<div>		
 		<table id="TS_Board">
 			<tr id="boardTr">
 				<th id="count">추천수</th>

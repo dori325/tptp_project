@@ -46,28 +46,21 @@
 					<td id="name">${u.l_nick }</td>
 					<td id="comment"><a href="" id="title">${u.l_email }</a></td>
 					<td id="no">${u.l_date}</td>
-					<td id="no"><select name="l_auth" id="log_do"
-						onchange="select()">
-							<c:if test="${u.l_auth eq 1}">
-								<option value="1">탈퇴</option>
-							</c:if>
-							<c:if test="${u.l_auth eq 3}">
-								<option value="3">일반</option>
-							</c:if>
-							<c:if test="${u.l_auth eq 5}">
-								<option value="5">관리자</option>
-							</c:if>
+					<td id="no">
+					<select name="l_auth" id="log_do" onchange="select()">
+						<c:if test="${u.l_auth eq 1}"><option value="1">탈퇴</option></c:if>
+						<c:if test="${u.l_auth eq 3}"><option value="3">일반</option></c:if>
+						<c:if test="${u.l_auth eq 5}"><option value="5">관리자</option></c:if>
 					</select></td>
-					<td id="no">수정</td>
+					<td id="no"><button disabled="disabled">수정</button></td>
 				</tr>
 			</c:forEach>
 		</table>
 
 		<!-- 페이징 -->
-		<form action="userList.do" method="get">
+		<form action="userList.do" method="post">
 			<div id="listBottom">
 				<select name="searchID" id="id" onchange="select()">
-					<option>선택하세요</option>
 					<option value="l_id">아이디</option>
 					<option value="l_nick">닉네임</option>
 					<option value="l_auth">권한</option>

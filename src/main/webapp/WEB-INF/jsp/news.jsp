@@ -15,6 +15,14 @@
 		location.href = "userList.do?b_title=" + b_title + "&page=" + page
 				+ "&b_content=" + b_content;
 	}
+	
+	function check(){
+		if(document.frm.searchCont.value==""){
+			alert("검색어를 넣어주세요.");
+			document.frm.name.focus();
+			return false;
+		}
+	}
 </script>
 </head>
 <link href="./css/board.css" rel="stylesheet" />
@@ -50,21 +58,21 @@
 		</table>
 
 		<!-- 페이징 -->
-		<form action="news.do" method="get">
+		<form action="news.do" method="post">
 			<div id="listBottom">
-				<select name="searchID" id="id" onchange="select()">
-					<option>선택하세요</option>
+				<select name="searchID" id="id" onchange="select()" >
 					<option value="b_title">제목</option>
 					<option value="b_content">내용</option>
 				</select>
 				<div id="search">
-					<input name="searchCont" placeholder="검색어 입력">
+					<input name="searchCont" placeholder="검색어 입력" onchange="return check();">
 					<button onchange="select()">
 						<!--<button onclick="location.href='news.do?searchCont=' ">-->
 						<!-- <button onclick='"location.href="+news.do?b_title="+searchCont+"&b_content="+searchCont; "'>-->
 						<img alt="검색" src="./img/search.png">
 					</button>
 				</div>
+				<a id="writelink" href="write.do">글쓰기</a>
 			</div>
 		</form>
 
