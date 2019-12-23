@@ -105,15 +105,9 @@
 				</select>
 				<input placeholder="검색하세요">
 				<button>검색</button>
-				
 					<a id="writelink" href="write.do?b_cate1=${b_cate1 }" >글쓰기</a>
-					
 			</div>
 		</div>
-
-		
-		
-
 		<c:import url="bottonmenu.jsp" />
 </body>
 </html>
