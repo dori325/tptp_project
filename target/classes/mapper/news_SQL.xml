@@ -5,7 +5,7 @@
 	<select id="list" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[		
 			SELECT *
-			FROM board
+			FROM boardview
 			LIMIT 7;	
 		]]>
 	</select>
@@ -13,7 +13,7 @@
 	<!-- 추천리스트 -->
 	<select id="k_list" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[		
-			SELECT * FROM board 
+			SELECT * FROM boardview 
 			where b_like > 10 
 			ORDER BY b_date DESC 
 			LIMIT 7;	
@@ -22,7 +22,7 @@
 
 	<!-- 새소식 -->
 	<select id="n_list" parameterType="hashmap" resultType="hashmap">
-			SELECT * FROM board 
+			SELECT * FROM boardview 
 			where b_cate1='new' 
 			ORDER BY b_modidate DESC
 			limit 7;	
@@ -30,7 +30,7 @@
 	<!-- 새소식,검색 -->
 	<select id="n_search" parameterType="hashmap"
 		resultType="hashmap">
-		SELECT * FROM board  
+		SELECT * FROM boardview 
 		where b_cate1='new' 
 		<if test='searchID == "b_title"'>and b_title LIKE CONCAT('%', #{searchCont}, '%')</if>
 		<if test='searchID == "b_content"'>and b_content LIKE CONCAT('%', #{searchCont}, '%')</if>

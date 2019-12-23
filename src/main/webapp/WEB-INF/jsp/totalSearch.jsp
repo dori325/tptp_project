@@ -8,7 +8,6 @@
 <title>통합검색</title>
 <link href="./css/board.css" rel="stylesheet" />
 </head>
-
 <body>
 	<div id="listboard">
 		<%@ include file="topmenu.jsp"%>

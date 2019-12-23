@@ -25,4 +25,20 @@ public class K_ServiceImp implements K_Service {
 		return k_DAO.QnAlist();
 	}
 
+	@Override
+	public List<Map<String, Object>> adSearch(Map<String, Object> map) throws Exception {
+		return k_DAO.adSearch(map);
+	}
+
+	@Override
+	public int joinReg(Map<String, Object> map) throws Exception {
+		return k_DAO.joinReg(map);
+	}
+
+	@Override
+	public int checkId(Map<String, Object> map) throws Exception {
+		return k_DAO.checkId(map);
+	}
+
+	
 }
