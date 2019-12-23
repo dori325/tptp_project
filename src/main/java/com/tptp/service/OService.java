@@ -21,4 +21,6 @@ public interface OService {
 
 	int delete(Map<String, Object> map) throws Exception;
 
+	int updateInsert(Map<String, Object> map) throws Exception;
+
 }

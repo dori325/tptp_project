@@ -49,4 +49,8 @@ public class OServiceImpl implements OService  {
 	public int delete(Map<String, Object> map) throws Exception {
 		return oDAO.delete(map);
 	}
+	@Override
+	public int updateInsert(Map<String, Object> map) throws Exception {
+		return oDAO.updateInsert(map);
+	}
 }
