@@ -46,7 +46,6 @@ public class OController {
 			// System.out.println("총 글의 수 : " + list.get(0).get("COUNT"));
 			mv.addObject("count", notice.get(0).get("count"));
 		}
-
 		return mv;
 	}
 
