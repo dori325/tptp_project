@@ -204,10 +204,15 @@ public class OController {
 	@RequestMapping(value = "update.do")
 	public ModelAndView update(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("b_cate1", commandMap.get("b_cate1"));
-		mv.addObject("b_no", commandMap.get("b_no"));
-		System.out.println("b_cate1 :" + commandMap.get("b_cate1"));
-		System.out.println("b_no :" + commandMap.get("b_no"));
+		
+		Map<String, Object> update = oService.update(commandMap.getMap());
+		mv.addObject("update", update);
+		System.out.println(commandMap.getMap());
+		
+//		mv.addObject("b_cate1", commandMap.get("b_cate1"));
+//		
+//		mv.addObject("b_no", commandMap.get("b_no"));
+		
 		
 		return mv;
 	}
@@ -217,11 +222,6 @@ public class OController {
 		ModelAndView mv = new ModelAndView();
 		
 		int result = oService.updateInsert(commandMap.getMap());
-		System.out.println("b_no : " + commandMap.get("b_no"));
-		System.out.println("b_cate1 : " + commandMap.get("b_cate1"));
-		System.out.println("b_cate2 : " + commandMap.get("b_cate2"));
-		System.out.println("b_title : " + commandMap.get("b_title"));
-		System.out.println("b_content : " + commandMap.get("b_content"));
 		
 		mv.setViewName("redirect:brand1.do");
 		
