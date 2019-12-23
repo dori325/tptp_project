@@ -12,6 +12,7 @@ public class ODAO extends AbstractDAO {
 
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> notice(Map<String, Object> map) {
+		System.out.println(map.get("notice"));
 		return selectList("o.notice", map);
 	}
 
@@ -41,6 +42,10 @@ public class ODAO extends AbstractDAO {
 
 	public void countUp(int num) {
 		update("o.countUp", num);
+	}
+
+	public int delete(Map<String, Object> map) {
+		return (int) delete("o.delete", map);
 	}
 
 }
