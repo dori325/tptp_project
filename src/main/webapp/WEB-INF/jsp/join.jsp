@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -8,10 +7,10 @@
 <title>회원가입</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
-function checkID(){
+function checkID() {
 	var id = $('#insertID').val();
-	if($('#insertID').val() == ''){
-		alert("아이디를 입력하세요.");
+	if ($('#insertID').val() =='') {
+		alert("아이디를 입력해주세요");
 		$('#insertID').focus();
 		return false;
 	}
@@ -24,13 +23,41 @@ function checkID(){
 			var check = rData;
 			if(check == 0){
 				alert("사용가능한 아이디입니다. 진행하시겠습니까?");
-				$('#checkit').prop('disabled', false);
-				$('#resulttext').css('color','blue');
-				$('#resulttext').text('가입할 수 있는 ID입니다.');
+				$('#checkID').prop('disabled', true);
+				$('#insertNick').focus();
 			} else {
-				alert("이미 등록된 ID입니다.\n다른 ID를 입력하세요.");
-				$('#resulttext').css('color','red');
-				$('#resulttext').text('이미 등록된 ID입니다.');
+				alert("이미 등록된 아이디입니다.\n다른 ID를 입력하세요.");
+				$('#insertID').focus();
+			}
+		},
+		error : function(xhr,status,e){
+			alert("에러가 발생했습니다.");
+		}
+	});
+	return false;
+}
+function checkNick() {
+	var nick = $('#insertNick').val();	
+	if ($('#insertNick').val() == '') {
+		alert("닉네임를 입력해주세요");
+		$('#insertNick').focus();
+		return false;
+	}
+	$.ajax({
+		type : 'POST',
+		data : "nick="+nick,
+		dataType : 'text',
+		url : 'checkID.do',
+		success : function(rData,textStatus, xhr){
+			var check = rData;
+			if(check == 0){
+				alert("사용가능한 닉네임입니다. 진행하시겠습니까?");
+				$('#checkNick').prop('disabled', true);
+				$('#checkIt').prop('disabled', false);
+				$('#insertPW1').focus();
+			} else {
+				alert("이미 등록된 닉네임입니다.\n다른 닉네임을 입력하세요.");
+				$('#insertNick').focus();
 			}
 		},
 		error : function(xhr,status,e){
@@ -40,64 +67,99 @@ function checkID(){
 	return false;
 }
 function check(){
-	if (document.frm.id.value == "") {
+	if (document.form.id.value == "") {
 		alert("아이디를 입력해주세요");
-		document.frm.nick.focus();
+		document.form.id.focus();
 		return false;
 	}
-	if (document.frm.nick.value == "") {
+	if (document.form.nick.value == "") {
 		alert("닉네임을 입력해주세요");
-		document.frm.nick.focus();
+		document.form.nick.focus();
 		return false;
 	}
-	if (document.frm.pw1.value == "") {
+	if (document.form.pw1.value == "") {
 		alert("비밀번호를 입력해주세요");
-		document.frm.pw1.focus();
+		document.form.pw1.focus();
 		return false;
 	}
-	if (document.frm.pw2.value == "") {
+	if (document.form.pw2.value == "") {
 		alert("비밀번호 확인을 입력해주세요");
-		document.frm.pw2.focus();
+		document.form.pw2.focus();
 		return false;
 	}
-	if (document.frm.pw1.value != document.frm.pw2.value) {
+	if (document.form.pw1.value != document.form.pw2.value) {
 		alert("비밀번호가 일치하지 않습니다.");
+		$('#notCorr').css('color','red');
+		document.form.pw2.focus();
+		return false;
+	}
+	if (document.form.eFront.value == "") {
+		alert("이메일을 입력해주세요")
+		document.form.eFront.focus();
+		return false;
+	}
+	if (document.form.eBack.valus == "") {
+		alert("이메일을 입력해주세요")
+		document.form.eBack.focus();
 		return false;
 	}
 }
 </script>
 </head>
+<link href="./css/welcome.css" rel="stylesheet"/>
 <body>
-	<div>
-		<h1>회원가입</h1>
-		<form action="joinReg.do" method="post" name="frm">
-<!-- 		post = db에 저장하기 -->
-			<table border="1" style="border-collapse: collapse; width: 500px;">
-				<tr>
-					<th>ID</th>
-					<td>
-						<input type="text" name="id" id="insertID" placeholder="아이디를 입력하세요" onchange="return checkID();">
-						<button onclick="return checkID()">ID확인</button><br>
-						<p id="resulttext">ID확인을 눌러주세요.</p>
-					</td>
-				</tr>
-				<tr>
-					<th>비밀번호</th>
-					<td>
-						<input type="password" name="pw1" placeholder="비밀번호를 입력하세요"><br>
-						<input type="password" name="pw2" placeholder="비밀번호를 입력하세요">
-					</td>				
-				</tr>
-				<tr>
-					<th>이름</th>
-					<td>
-						<input type="text" name="nick" placeholder="이름을 입력하세요">
-					</td>
-				</tr>
-			</table>
-			Id검사를 눌러야 가입하기가 활성화 됩니다.
-			<button disabled="disabled" type="submit" id="checkit" onclick="return check();">가입하기</button>
-		</form>
-	</div>
+<div id="welcomeList">
+<form action="joinReg.do" method="POST" name="form">
+<%@ include file="AllBar.jsp" %>
+<div id="list">
+	<h2>회원 가입</h2>
+		<table>
+			<tr>
+				<th>*아이디</th>
+				<td>
+					<input type="text" name="id" id="insertID" placeholder="아이디을 입력하세요" onchange="return checkID();">
+					<button onclick="return checkID()">중복확인</button>
+					<small>변경 불가</small>
+				</td>
+			</tr>
+			<tr>
+				<th>*닉네임</th>
+				<td>
+					<input type="text" name="nick" id="insertNick" placeholder="닉네임을 입력하세요" onchange="return checkNick();">
+					<button onclick="return checkNick()">중복확인</button>
+					<small>변경 가능</small>
+				</td>
+			</tr>
+			<tr>
+				<th>*비밀번호 입력</th>
+				<td>
+					<input type="password" name="pw1" id="insertPW1" placeholder="비밀번호를 입력하세요">
+				</td>
+			</tr>
+			<tr>
+				<th>*비밀번호 확인</th>
+				<td>
+					<input type="password" name="pw2" id="insertPW2" placeholder="동일한 비밀번호를 입력하세요">
+					<a id="notCorr">비밀번호가 일치하지 않습니다.</a>
+				</td>
+			</tr>
+			<tr>
+				<th>*e-mail</th>
+				<td>
+					<input type="text" name="eFront" id="e-fr">@<input type="text" name="eBack" id="e-ad">
+					<select>
+						<option>선택하세요</option>
+						<option>naver.com</option>
+						<option>daum.net</option>
+						<option>gmail.com</option>
+					</select><br>
+					<small>아이디와 비밀번호 찾기 시 필요합니다.</small>
+				</td>
+			</tr>
+		</table>
+	<button type="submit" disabled="disabled" id="checkIt" onclick="return check();">가입하기</button>
+	</div>	
+</form>
+</div>
 </body>
 </html>

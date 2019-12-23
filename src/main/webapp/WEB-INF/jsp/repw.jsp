@@ -14,12 +14,12 @@ function reqw() {
 </script>
 </head>
 <body>
+<%@ include file="topmenu.jsp" %>
 <div id="welcomeList">
-<%@ include file="RsideB.jsp" %>
-<%@ include file="LsideB.jsp" %>
-<form action="repw.do"></form>
+<%@ include file="AllBar.jsp" %>
 	<div id="list">
 	<h2>비밀번호 변경</h2>
+<form action="pwModi.do">
 		<table>
 			<tr>
 				<th>기존 비밀번호</th>
@@ -39,6 +39,7 @@ function reqw() {
 			</tr>
 		</table>
 		<button id="resultButt" onclick="reqw()">변경하기</button>
+</form>
 	</div>
 </div>
 </body>
