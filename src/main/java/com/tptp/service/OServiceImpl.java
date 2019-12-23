@@ -45,5 +45,8 @@ public class OServiceImpl implements OService  {
 	public void countUp(int num) throws Exception {
 		oDAO.countUp(num);
 	}
-	
+	@Override
+	public int delete(Map<String, Object> map) throws Exception {
+		return oDAO.delete(map);
+	}
 }

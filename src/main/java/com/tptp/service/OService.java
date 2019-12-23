@@ -19,5 +19,6 @@ public interface OService {
 
 	void countUp(int num) throws Exception;
 
+	int delete(Map<String, Object> map) throws Exception;
 
 }
