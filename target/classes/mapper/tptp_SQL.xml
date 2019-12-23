@@ -5,34 +5,40 @@
 	
 	<select id="notice" parameterType="hashmap" resultType="hashmap">
 			SELECT b_no, b_title, b_cate1, b_date, b_count, l_nick, c_count,
-			(SELECT COUNT(*) FROM boardview) AS count
+				(SELECT COUNT(*) FROM boardview WHERE b_cate1 = 'no') AS count
 			FROM boardview
 			WHERE b_cate1 = 'no'
+			LIMIT #{page }, 10
 	</select>
 	
 	<select id="brand1" parameterType="hashmap" resultType="hashmap">
 			SELECT b_no, b_like, b_cate1, b_cate2, b_title, b_date, b_count, l_nick, c_count,
-			(SELECT COUNT(*) FROM boardview) AS count
+			(SELECT COUNT(*) FROM boardview WHERE b_cate1 = 'b1') AS count
 			FROM boardview
 			WHERE b_no > 0
 			AND b_cate1 = 'b1'
-			<if test="cate2 != null">AND b_cate2 = #{cate2 }</if>
+			<if test="b_cate2 != null">AND b_cate2 = #{b_cate2 }</if>
+			LIMIT #{page }, 10
 	</select>
-	<select id="brand2" resultType="hashmap">
+	<select id="brand2" parameterType="hashmap" resultType="hashmap">
 			SELECT b_no, b_like, b_cate2, b_title, b_date, b_count, l_nick, c_count,
-			(SELECT COUNT(*) FROM boardview) AS count
+			(SELECT COUNT(*) FROM boardview WHERE b_cate1 = 'b2') AS count
 			FROM boardview
 			WHERE b_cate1 = 'b2'
+			<if test="b_cate2 != null">AND b_cate2 = #{b_cate2 }</if>
+			LIMIT #{page }, 10
 	</select>
-	<select id="brand3" resultType="hashmap">
+	<select id="brand3" parameterType="hashmap" resultType="hashmap">
 			SELECT b_no, b_like, b_cate2, b_title, b_date, b_count, l_nick, c_count,
-			(SELECT COUNT(*) FROM boardview) AS count
+			(SELECT COUNT(*) FROM boardview WHERE b_cate1 = 'b3') AS count
 			FROM boardview
 			WHERE b_cate1 = 'b3'
+			<if test="b_cate2 != null">AND b_cate2 = #{b_cate2 }</if>
+			LIMIT #{page }, 10
 	</select>
 	
 	<select id="detail" resultType="hashmap" parameterType="hashmap">
-			SELECT b_no, b_content, b_like, b_cate2, b_title, b_date, b_count, l_nick, b_modidate
+			SELECT b_no, b_content, b_like,b_cate1, b_cate2, b_title, b_date, b_count, l_nick, b_modidate
 			FROM boardview
 			WHERE b_no = #{b_no }
 	</select>
@@ -41,6 +47,10 @@
 			INSERT INTO board (b_cate1, b_cate2, b_title, b_content, l_nick, b_file)
 			VALUES(#{b_cate1 }, #{b_cate2 }, #{b_title }, #{b_content }, #{b_nick }, #{b_file })
 	</insert>
+	
+	<update id="countUp" parameterType="Integer">
+		UPDATE board SET b_count = b_count + 1 WHERE b_no = #{num } 
+	</update>
 	
 	
 </mapper>

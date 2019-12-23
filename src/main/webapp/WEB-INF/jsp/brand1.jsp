@@ -1,12 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="./css/main.css">
+<style type="text/css">
+#page {
+	width: 100%;
+	padding-top: 5px;
+	height: 28px;
+	text-align: center;
+}
+</style>
 </head>
 <link href="./css/board.css" rel="stylesheet" />
 <body>
@@ -56,6 +65,37 @@
 				</c:forEach>
 			</table>
 	</form>
+	<div id="page">
+	<%@include file="page.jsp" %>
+		<!-- 페이지 찍기 -->
+		<c:if test="${page gt 10 }">
+			<button onclick="location.href='brand1.do?page=${page - 10 }'">이전</button>
+		</c:if>
+		<c:if test="${page gt 1 }">
+			<button onclick="location.href='brand1.do?page=${page - 1 }'"> ◀ </button>
+		</c:if>
+		<c:forEach begin="${startPage }" end="${endPage }" var="i">
+
+
+			<c:if test="${i eq page }">
+				<button onclick="location.href='brand1.do?page=${i }'">
+					<b style="color: blue;">${i }</b>
+				</button>
+			</c:if>
+			<c:if test="${i ne page }">
+				<button onclick="location.href='brand1.do?page=${i }'">
+					${i }
+				</button>
+			</c:if>
+			
+		</c:forEach>
+		<c:if test="${page lt totalPage }">
+			<button onclick="location.href='brand1.do?page=${page + 1 }'"> ▶ </button>
+		</c:if>
+		<c:if test="${page lt totalPage - 9 }">
+			<button onclick="location.href='brand1.do?page=${page + 10 }'">다음</button>
+		</c:if>
+	</div>
 			<div id="listBottom">
 				<select>
 					<option>선택</option>
@@ -70,8 +110,10 @@
 					
 			</div>
 		</div>
+
+		
+		
+
 		<c:import url="bottonmenu.jsp" />
-
-
 </body>
 </html>

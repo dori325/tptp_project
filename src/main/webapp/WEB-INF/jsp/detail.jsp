@@ -47,7 +47,9 @@
 			<div id="detailBot">
 				<table>
 					<tr>
-						<td id="list"><a href="brand1.do">목록으로</a></td>
+						<td id="list">
+							<a href="brand1.do">목록으로</a>
+						</td>
 						<td>
 							<div id="like-wrap">
 								<div id="like-img"><img alt="" src="./img/heart2.png"></div>
