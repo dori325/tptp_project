@@ -48,4 +48,8 @@ public class ODAO extends AbstractDAO {
 		return (int) delete("o.delete", map);
 	}
 
+	public int updateInsert(Map<String, Object> map) {
+		return (int) update("o.updateInsert", map);
+	}
+
 }

@@ -26,7 +26,8 @@
 								</div>
 							</td>
 							<td id="title">${detail.b_title }</td>
-							<td><a>수정</a> / <a href="delete.do?b_no=${detail.b_no }">삭제</a></td>
+							<td><a href="update.do?b_no=${detail.b_no }&b_cate1=${detail.b_cate1 }">수정</a>
+							 / <a href="delete.do?b_no=${detail.b_no }">삭제</a></td>
 						</tr>
 					</table>
 				</div>

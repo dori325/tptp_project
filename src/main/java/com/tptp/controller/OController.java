@@ -27,9 +27,6 @@ public class OController {
 	public ModelAndView notice(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		String old_url = request.getHeader("Referer");
-		System.out.println("공지주소 : " + old_url);
-		
 		// 임시로 page 만들어주기
 		int page = 1;
 		if (commandMap.containsKey("page") && Integer.parseInt((String) commandMap.get("page")) > 0) {
@@ -141,7 +138,6 @@ public class OController {
 	@RequestMapping(value = "detail.do")
 	public ModelAndView detail(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		System.out.println("여기는 디테일"+request.getParameter("url"));
 		Map<String, Object> detail = oService.detail(commandMap.getMap());
 
 		// 조회수 + 1
@@ -202,6 +198,33 @@ public class OController {
 		}
 		mv.addObject("delete", delete);
 	
+		return mv;
+	}
+	
+	@RequestMapping(value = "update.do")
+	public ModelAndView update(HttpServletRequest request, CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("b_cate1", commandMap.get("b_cate1"));
+		mv.addObject("b_no", commandMap.get("b_no"));
+		System.out.println("b_cate1 :" + commandMap.get("b_cate1"));
+		System.out.println("b_no :" + commandMap.get("b_no"));
+		
+		return mv;
+	}
+	
+	@RequestMapping(value = "updateInsert.do")
+	public ModelAndView updateInsert(HttpServletRequest request, CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		int result = oService.updateInsert(commandMap.getMap());
+		System.out.println("b_no : " + commandMap.get("b_no"));
+		System.out.println("b_cate1 : " + commandMap.get("b_cate1"));
+		System.out.println("b_cate2 : " + commandMap.get("b_cate2"));
+		System.out.println("b_title : " + commandMap.get("b_title"));
+		System.out.println("b_content : " + commandMap.get("b_content"));
+		
+		mv.setViewName("redirect:brand1.do");
+		
 		return mv;
 	}
 }
