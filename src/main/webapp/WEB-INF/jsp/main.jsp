@@ -19,7 +19,7 @@
 			<table>
 				<tr>
 					<td>
-						<form action="totalSearch.do" method="post">
+						<form action="totalSearch.do" method="get">
 							<input name="b_content" placeholder="검색하세요">
 							<button
 								onclick='"location.href="+totalSearch.do?b_title="+b_content+"&b_content="+b_content; "'>
@@ -47,7 +47,7 @@
 				</table>
 			</div>
 
-			<div id="totalboard">
+			<div id="totalboard2">
 				<table>
 					<tr>
 						<th><a href="#" style="text-decoration: none;">[이달의추천]</a></th>
@@ -61,7 +61,7 @@
 				</table>
 			</div>
 
-			<div id="totalboard">
+			<div id="totalboard3">
 				<table>
 					<tr>
 						<th><a href="./news.do" style="text-decoration: none;">[이달의새소식]</a></th>
@@ -76,7 +76,7 @@
 			</div>
 			
 			<!-- 하단 -->
-		    <div id="totalboard">
+		    <div id="totalboard4">
 				<table>
 					<tr>
 						<th><a href="brand1.do?b_cate1=b1" style="text-decoration: none;">[브랜드1]</a></th>
@@ -90,7 +90,7 @@
 				</table>
 			</div>
 
-			<div id="totalboard">
+			<div id="totalboard5">
 				<table>
 					<tr>
 						<th><a href="brand2.do?b_cate1=b2" style="text-decoration: none;">[브랜드2]</a></th>
@@ -104,7 +104,7 @@
 				</table>
 			</div>
 
-			<div id="totalboard">
+			<div id="totalboard6">
 				<table>
 					<tr>
 						<th><a href="brand3.do?b_cate1=b3" style="text-decoration: none;">[브랜드3]</a></th>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="news">
-    <!-- 공지 -->
+	<!-- 공지 -->
 	<select id="list" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[		
 			SELECT *
@@ -10,7 +10,7 @@
 		]]>
 	</select>
 
-    <!-- 추천리스트 -->
+	<!-- 추천리스트 -->
 	<select id="k_list" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[		
 			SELECT * FROM board 
@@ -19,17 +19,26 @@
 		]]>
 	</select>
 
-    <!-- 새소식 -->
+	<!-- 새소식 -->
 	<select id="n_list" parameterType="hashmap" resultType="hashmap">
-		<![CDATA[		
-			SELECT * FROM board
+			SELECT * FROM board 
+			where b_cate1='new' 
 			ORDER BY b_modidate DESC
 			limit 7;	
-		]]>
+	</select>
+	<!-- 새소식,검색 -->
+	<select id="n_search" parameterType="hashmap"
+		resultType="hashmap">
+		SELECT * FROM board  
+		where b_cate1='new' 
+		<if test='searchID == "b_title"'>and b_title LIKE CONCAT('%', #{searchCont}, '%')</if>
+		<if test='searchID == "b_content"'>and b_content LIKE CONCAT('%', #{searchCont}, '%')</if>
 	</select>
 	
+
 	<!-- 브랜드1 -->
-	<select id="b1_list" parameterType="hashmap" resultType="hashmap">
+	<select id="b1_list" parameterType="hashmap"
+		resultType="hashmap">
 		<![CDATA[		
 			SELECT *
 			FROM board
@@ -37,9 +46,10 @@
 			LIMIT 7;	
 		]]>
 	</select>
-	
-	<!-- 브랜드2-->
-	<select id="b2_list" parameterType="hashmap" resultType="hashmap">
+
+	<!-- 브랜드2 -->
+	<select id="b2_list" parameterType="hashmap"
+		resultType="hashmap">
 		<![CDATA[		
 			SELECT *
 			FROM board
@@ -47,9 +57,10 @@
 			LIMIT 7;	
 		]]>
 	</select>
-	
+
 	<!-- 브랜드1 -->
-	<select id="b3_list" parameterType="hashmap" resultType="hashmap">
+	<select id="b3_list" parameterType="hashmap"
+		resultType="hashmap">
 		<![CDATA[		
 			SELECT *
 			FROM board
@@ -57,12 +68,11 @@
 			LIMIT 7;	
 		]]>
 	</select>
-	
-	
-	
-	
+
+
 	<!-- 통합검색 -->
-	<select id="ts_list" parameterType="hashmap" resultType="hashmap">
+	<select id="ts_list" parameterType="hashmap"
+		resultType="hashmap">
 		<![CDATA[		
 			SELECT * FROM board 
 			where (b_title LIKE CONCAT('%', #{b_content}, '%') )
@@ -70,33 +80,69 @@
 			order by b_no desc;
 		]]>
 	</select>
-	
-	
-	<!-- 회원관리 -->
-	<select id="u_list" parameterType="hashmap" resultType="hashmap">
-	<![CDATA[
-			SELECT * FROM login;
-	]]>
+	<!-- 통합검색,sum -->
+	<select id="ts_list_count" parameterType="hashmap"
+		resultType="hashmap">
+		<![CDATA[		
+			SELECT count(*) FROM board 
+			where (b_title LIKE CONCAT('%', #{b_content}, '%') )
+			or (b_content LIKE CONCAT('%', #{b_content}, '%') )			
+		]]>
 	</select>
 	
-	<!-- 로그관리 -->
+
+	<!-- 회원관리,리스트 -->
+	<select id="u_list" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[		
+			SELECT * FROM login;		    
+		]]>
+	</select>
+	<!-- 회원관리,검색 -->
+	<select id="ul_search" parameterType="hashmap" resultType="hashmap">
+		SELECT * FROM
+		login
+		<if test='searchID == "l_id"'>where l_id LIKE CONCAT('%', #{searchCont}, '%')</if>
+		<if test='searchID == "l_nick"'>where l_nick LIKE CONCAT('%', #{searchCont}, '%')</if>
+		<if test='searchID == "l_auth"'>where l_auth LIKE CONCAT('%', #{searchCont}, '%')</if>
+	</select>
+
+
+    <!-- 로그관리 -->
 	<select id="log" parameterType="hashmap" resultType="hashmap">
-	<![CDATA[
-		SELECT *, 
-		(SELECT COUNT(*) FROM log WHERE log_no > 0 
-		<if test="log_do != null">AND log_do = #{log_do }</if> 
-		<if test="name != null">AND login_id = #{name }</if>
-		<if test="ip != null">AND log_ip = #{ip }</if>
-		) as count 
+		SELECT *,
+		(SELECT COUNT(*) FROM log WHERE log_no > 0
+		) as count
 		FROM log
-		WHERE log_no > 0 
-		<if test="log_do != null">AND log_do = #{log_do }</if> 
-		<if test="name != null">AND login_id = #{name }</if>
+		WHERE log_no > 0
+		<if test="log_do != null">AND log_do = #{log_do }</if>
+		<if test="name != null">AND l_id = #{name }</if>
 		<if test="ip != null">AND log_ip = #{ip }</if>
 		ORDER BY log_date DESC
-		LIMIT #{page }, 10; 
-	]]>
+		LIMIT 1, 10;
 	</select>
+	<select id="logID" resultType="hashmap">
+		SELECT l_id, COUNT(*) AS count, (SELECT COUNT(*) FROM log WHERE log_no
+		> 0
+		<if test="log_do != null">AND log_do = #{log_do }</if>
+		<if test="name != null">AND l_id = #{name }</if>
+		<if test="ip != null">AND log_ip = #{ip }</if>
+		) AS totalcount
+		FROM log
+		WHERE log_no > 0
+		GROUP BY l_id
+	</select>
+	<select id="logIP" resultType="hashmap">
+		SELECT log_ip, COUNT(*) AS count, (SELECT COUNT(*) FROM log WHERE
+		log_no > 0
+		) AS totalcount
+		FROM log
+		WHERE log_no > 0
+		<if test="log_do != null">AND log_do = #{log_do }</if>
+		<if test="name != null">AND l_id = #{name }</if>
+		<if test="ip != null">AND log_ip = #{ip }</if>
+		GROUP BY log_ip
+	</select>
+
 
 
 </mapper>

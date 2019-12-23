@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>통합검색</title>
 <link href="./css/board.css" rel="stylesheet" />
 </head>
 
@@ -19,30 +19,30 @@
 		
 		<div>
 		
-		<table id="QnAlist">
+		<table id="TS_Board">
 			<tr id="boardTr">
-				<th id="comment">추천수</th>
-				<th id="sort">카테1</th>
-				<th id="sort">카테2</th>
-				<th>제목</th>
-				<th rowspan="2" id="name">작성자</th>
+				<th id="count">추천수</th>
+				<th id="sort">분류1</th>
+				<th id="sort">분류2</th>
+				<th id="title">제목</th>
+				<th rowspan="2" id="comment">작성자</th>
 				<th rowspan="2" id="date">날짜</th>
 			</tr>
 			<tr>
-				<th colspan="4">내용</th>				
+				<th colspan="4" >내용</th>				
 			</tr>
 			<c:forEach items="${ts_list }" var="ts">
 				<tr id="boardTr">
-					<td id="comment">${ts.b_like }</td>
+					<td id="count">${ts.b_like }</td>
 					<td id="sort">${ts.b_cate1 }</td>
 					<td id="sort">${ts.b_cate2 }</td>
 					<td id="title" style="width: 200px; text-align: left;"><a
 						href="detail.do?b_no=${ts.login_name }" id="title">${ts.b_title }</a></td>
-					<td rowspan="2" id="name">${ts.l_nick }</td>
+					<td rowspan="2" id="comment">${ts.l_nick }</td>
 					<td rowspan="2" id="date">${ts.b_date }</td>
 				</tr>
 				<tr>
-					<td colspan="4" id="sort">${ts.b_content }</td>
+					<td colspan="4">${ts.b_content }</td>
 				</tr>
 			</c:forEach>
 		</table>

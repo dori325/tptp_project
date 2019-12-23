@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Log</title>
+<title>관리자-로그관리</title>
 <script type="text/javascript">
 function select(){
 	var log_do = document.getElementById("log_do").value;
@@ -20,31 +20,32 @@ function select(){
 <link href="./css/board.css" rel="stylesheet"/>
 <body>
 <div id="listboard">
-<%@ include file="topmenu.jsp"%>
-<%@ include file="AllBar.jsp"%>
+<%@ include file="topmenu.jsp" %>
+<%@ include file="AllBar.jsp" %>
+
 <div id="listTop">
-	<h2>어드민 로그</h2>
+	<h2>로그관리</h2>
 	<div id="logbox">
 		<!-- //1성공 2실패 3로그아웃 4글쓰기 5글수정 6글삭제 7댓글 8댓글수정 9댓글삭제 -->
 		
-		<button onclick="location.href='log.do'">초기화</button>
+		<button onclick="location.href='log.do'">전체</button>
 		<table id="admCommList">
 			<tr>
-				<td id="comment">번호</td>
-				<td >
+				<th id="no">번호</th>
+				<th id="name">
 					<select name="id" id="id" onchange="select()">
 							<option value="0">ID를 선택하세요</option>
 						<c:forEach items="${idList }" var="id">
-							<c:if test="${name eq id.login_id}">
-								<option value="${id.login_id }" selected="selected">${id.login_id } - ${id.count }</option>
+							<c:if test="${name eq id.l_id}">
+								<option value="${id.l_id }" selected="selected">${id.l_id } - ${id.count }</option>
 							</c:if>
-							<c:if test="${name ne id.login_id}">
-								<option value="${id.login_id }">${id.login_id } - ${id.count }</option>
+							<c:if test="${name ne id.l_id}">
+								<option value="${id.l_id }">${id.l_id } - ${id.count }</option>
 							</c:if>
 						</c:forEach>
 					</select>
-				</td>
-				<td>
+				</th>
+				<th id="titleAl">
 					<select name="ip" id="ip" onchange="select()">
 							<option value="0">IP를 선택하세요</option>
 						<c:forEach items="${ipList }" var="ip1">
@@ -56,8 +57,8 @@ function select(){
 							</c:if>							
 						</c:forEach>
 					</select>
-				</td>
-				<td>
+				</th>
+				<th id="comment">
 					<select name="log_do" id="log_do" onchange="select()">
 						<option value="0">선택하세요</option>
 						<c:if test="${log_do eq 1 }"><option value="1" selected="selected">로그인성공</option></c:if>
@@ -79,17 +80,16 @@ function select(){
 						<c:if test="${log_do eq 9 }"><option value="9" selected="selected">댓글삭제</option></c:if>
 						<c:if test="${log_do ne 9 }"><option value="9">댓글삭제</option></c:if>
 					</select>
-				</td>
-				<td id="date">날짜</td>
-				<td id="name">비고</td>
+				</th>
+				<th id="date">날짜</th>
+				<th id="name">비고</th>
 			</tr>
 			<c:forEach items="${list }" var="i">
 			<tr>
-				<td id="comment">${i.log_no }</td>
-				<td><a href="log.do?name=${i.login_id }">${i.login_id }</a></td>
-				<td><a href="log.do?ip=${i.log_ip }">${i.log_ip }</a></td>
-				<td>
-				
+				<td id="no">${i.log_no }</td>
+				<td id="name"><a href="log.do?name=${i.l_id }">${i.l_id }</a></td>
+				<td id="titleAl"><a href="log.do?ip=${i.log_ip }">${i.log_ip }</a></td>
+				<td id="titleAl">				
 					<c:if test="${i.log_do eq 1}">로그인성공</c:if> 
 					<c:if test="${i.log_do eq 2}">로그인 실패</c:if> 
 					<c:if test="${i.log_do eq 3}">로그아웃</c:if> 
@@ -98,11 +98,10 @@ function select(){
 					<c:if test="${i.log_do eq 6}">글삭제</c:if> 
 					<c:if test="${i.log_do eq 7}">댓글쓰기</c:if> 
 					<c:if test="${i.log_do eq 8}">댓글수정</c:if> 
-					<c:if test="${i.log_do eq 9}">댓글삭제</c:if> 
-				
+					<c:if test="${i.log_do eq 9}">댓글삭제</c:if> 				
 				</td>
 				<td id="date">${i.log_date }</td>
-				<td style="text-align: left;">${i.log_etc }</td>
+				<td id="name" style="text-align: left;">${i.log_etc }</td>
 			</tr>			
 			</c:forEach>
 		</table>
@@ -111,10 +110,9 @@ function select(){
 		<!-- 페이징 추가해야함 -->
 		<div id="page">
 		</div>
-		
-	</div>
-</div>
-		
-</body>
 
+	</div>
+<%@ include file="bottonmenu.jsp" %>
+</div>		
+</body>
 </html>

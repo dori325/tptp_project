@@ -27,6 +27,12 @@ public class NewsDAO  extends AbstractDAO{
 	public List<Map<String, Object>> n_list(Map<String, Object> map) {
 		return selectList("news.n_list", map);
 	}
+	//새소식,검색
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> n_search(Map<String, Object> map) {
+		return selectList("news.n_search", map);
+	}
+	
 
 	//브랜드1	
 	@SuppressWarnings("unchecked")
@@ -52,18 +58,38 @@ public class NewsDAO  extends AbstractDAO{
 	public List<Map<String, Object>> ts_list(Map<String, Object> map) {
 		return selectList("news.ts_list", map);
 	}
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> ts_list_count(Map<String, Object> map) {
+		return selectList("news.ts_list_count", map);
+	}
 
 	//회원관리
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> u_list(Map<String, Object> map) {
 		return selectList("news.u_list", map);
 	}
-
+	//회원관리,검색
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> ul_search(Map<String, Object> map) {
+		return selectList("news.ul_search", map);
+	}
+	
 	//로그관리
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> log(Map<String, Object> map) {
 		return selectList("news.log", map);
 	}
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> id(Map<String, Object> map) {
+		return selectList("news.logID", map);
+	}
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> ip(Map<String, Object> map) {
+		return selectList("news.logIP", map);
+	}
+
+
+
 	
 
 }

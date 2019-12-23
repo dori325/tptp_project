@@ -176,6 +176,115 @@ tr:hover {
 }
 
 
+#newsboard table {
+	text-align: center;
+	margin: 0px auto;
+	padding: 0px;
+	width: 850px;
+	border-left: none;
+	border-bottom: rgba(169, 169, 169, 0.7) 0.7px solid;
+	border-collapse: collapse;
+	margin-bottom: 5px;
+}
+
+#newsboard #comment {
+	width: 50px;
+}
+
+#boardTr #sort {
+	width: 60px;
+	background-image: url("../img/sort.png");
+	background-size: 40px 23px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+
+#newsboard #title {
+	text-decoration: none;
+	text-align: left;
+	padding-left: 5px;
+	color: black;
+}
+
+#newsboard #name {
+	width: 80px;
+}
+
+
+#newsboard #date {
+	width: 150px;
+}
+
+#newsboard #count {
+	width: 65px;
+}
+
+#newsboard th {
+	height: 25px;
+	font-size: 15px;
+	background-color: rgba(247, 198, 84, 0.5);
+}
+
+#newsboard tr:nth-child(odd) {
+	background-color: rgba(247, 198, 84, 0.05);
+}
+
+
+#TS_Board table {
+	text-align: center;
+	margin: 0px auto;
+	padding: 0px;
+	width: 850px;
+	border-left: none;
+	border-bottom: rgba(169, 169, 169, 0.7) 0.7px solid;
+	border-collapse: collapse;
+	margin-bottom: 5px;
+}
+
+
+#TS_Board #sort {
+	width: 65px;
+	background-image: url("../img/sort.png");
+	background-size: 40px 23px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+
+#TS_Board #title {
+	text-decoration: none;
+	text-align: center;
+	padding-left: 5px;
+	color: black;
+	width: 280px;
+}
+
+#TS_Board #name {
+	width: 80px;
+}
+
+
+#TS_Board #date {
+	width: 120px;
+}
+
+#TS_Board #count {
+	width: 60px;
+}
+
+#TS_Board th {
+	height: 25px;
+	font-size: 15px;
+	background-color: rgba(156, 149, 220, 0.5);
+}
+
+#TS_Board tr:nth-child(odd) {
+	background-color: rgba(156, 149, 220, 0.05);
+}
+
+
+
 #totalSearch {
 	margin: 0px auto;
 	margin-top:15px;
@@ -255,6 +364,7 @@ tr:hover {
 	height: 280px;
 	text-align: center;
 	float: left;
+	background-color: rgba(234, 98, 116, 0.3);
 }
 
 #totalboard table {
@@ -267,7 +377,7 @@ tr:hover {
 #totalboard table th {
 	height: 25px;
 	font-size: 15px;
-	background-color: rgba(156, 149, 220, 0.5);
+	background-color: rgba(234, 98, 116, 0.5);
 }
 
 #totalboard table td {
@@ -280,7 +390,7 @@ tr:hover {
 }
 
 #totalboard table tr:nth-child(odd) {
-	background-color: rgba(156, 149, 220, 0.2);
+	/*background-color: rgba(156, 149, 220, 0.2); */
 }
 #totalboard a {
 	text-decoration: none;
@@ -296,6 +406,262 @@ tr:hover {
 }
 
 
+/*12-12 */
+#totalboard2 {
+	margin: 0px auto;
+	margin-left: 2px;
+	margin-right: 2px;
+	padding: 0px;
+    width: 279px;
+	height: 280px;
+	text-align: center;
+	float: left;
+	background-color: rgba(255, 120, 39, 0.3);	
+}
+
+#totalboard2 table {
+	width: 279px;
+	/*height: 275px;*/
+	border-left: none;
+	border-collapse: collapse;
+}
+
+#totalboard2 table th {
+	height: 25px;
+	font-size: 15px;
+	background-color: rgba(255, 120, 39, 0.5);
+}
+
+#totalboard2 table td {
+	padding-left:8px;
+	padding-top:2px;
+	padding-bottom:2px;
+	height: 25px;
+	font-size: 13px;
+	border-bottom: 1px #f5f5f5 solid;	
+}
+
+#totalboard2 table tr:nth-child(odd) {
+	/*background-color: rgba(156, 149, 220, 0.2);*/
+}
+#totalboard2 a {
+	text-decoration: none;
+	color: black;	
+}
+#totalboard2 a:link {
+	text-decoration: none;
+	color: black;
+}
+#totalboard2 a:visited {
+	text-decoration: none;
+	color: black;
+}
+
+/*12-12 */
+#totalboard3 {
+	margin: 0px auto;
+	margin-left: 2px;
+	margin-right: 2px;
+	padding: 0px;
+    width: 279px;
+	height: 280px;
+	text-align: center;
+	float: left;
+	background-color: rgba(247, 198, 84, 0.3);	
+}
+
+#totalboard3 table {
+	width: 279px;
+	/*height: 275px;*/
+	border-left: none;
+	border-collapse: collapse;
+}
+
+#totalboard3 table th {
+	height: 25px;
+	font-size: 15px;
+	background-color: rgba(247, 198, 84, 0.5);
+}
+
+#totalboard3 table td {
+	padding-left:8px;
+	padding-top:2px;
+	padding-bottom:2px;
+	height: 25px;
+	font-size: 13px;
+	border-bottom: 1px #f5f5f5 solid;	
+}
+
+#totalboard3 table tr:nth-child(odd) {
+	/*background-color: rgba(156, 149, 220, 0.2);*/
+}
+#totalboard3 a {
+	text-decoration: none;
+	color: black;	
+}
+#totalboard3 a:link {
+	text-decoration: none;
+	color: black;
+}
+#totalboard3 a:visited {
+	text-decoration: none;
+	color: black;
+}
+
+
+/*12-12 */
+#totalboard4 {
+	margin: 0px auto;
+	margin-left: 2px;
+	margin-right: 2px;
+	padding: 0px;
+    width: 279px;
+	height: 280px;
+	text-align: center;
+	float: left;
+	background-color: rgba(45, 158, 206, 0.3);	
+}
+
+#totalboard4 table {
+	width: 279px;
+	/*height: 275px;*/
+	border-left: none;
+	border-collapse: collapse;
+}
+
+#totalboard4 table th {
+	height: 25px;
+	font-size: 15px;
+	background-color: rgba(45, 158, 206, 0.5);
+}
+
+#totalboard4 table td {
+	padding-left:8px;
+	padding-top:2px;
+	padding-bottom:2px;
+	height: 25px;
+	font-size: 13px;
+	border-bottom: 1px #f5f5f5 solid;	
+}
+
+#totalboard4 table tr:nth-child(odd) {
+	/*background-color: rgba(156, 149, 220, 0.2);*/
+}
+#totalboard4 a {
+	text-decoration: none;
+	color: black;	
+}
+#totalboard4 a:link {
+	text-decoration: none;
+	color: black;
+}
+#totalboard4 a:visited {
+	text-decoration: none;
+	color: black;
+}
+
+/*12-12 */
+#totalboard5 {
+	margin: 0px auto;
+	margin-left: 2px;
+	margin-right: 2px;
+	padding: 0px;
+    width: 279px;
+	height: 280px;
+	text-align: center;
+	float: left;
+	background-color: rgba(27, 153, 139, 0.3);	
+}
+
+#totalboard5 table {
+	width: 279px;
+	/*height: 275px;*/
+	border-left: none;
+	border-collapse: collapse;
+}
+
+#totalboard5 table th {
+	height: 25px;
+	font-size: 15px;
+	background-color: rgba(27, 153, 139, 0.5);
+}
+
+#totalboard5 table td {
+	padding-left:8px;
+	padding-top:2px;
+	padding-bottom:2px;
+	height: 25px;
+	font-size: 13px;
+	border-bottom: 1px #f5f5f5 solid;	
+}
+
+#totalboard5 table tr:nth-child(odd) {
+	/*background-color: rgba(156, 149, 220, 0.2);*/
+}
+#totalboard5 a {
+	text-decoration: none;
+	color: black;	
+}
+#totalboard5 a:link {
+	text-decoration: none;
+	color: black;
+}
+#totalboard5 a:visited {
+	text-decoration: none;
+	color: black;
+}
+
+
+/*12-12 */
+#totalboard6 {
+	margin: 0px auto;
+	margin-left: 2px;
+	margin-right: 2px;
+	padding: 0px;
+    width: 279px;
+	height: 280px;
+	text-align: center;
+	float: left;
+	background-color: rgba(122, 124, 174, 0.3);	
+}
+
+#totalboard6 table {
+	width: 279px;
+	/*height: 275px;*/
+	border-left: none;
+	border-collapse: collapse;
+}
+
+#totalboard6 table th {
+	height: 25px;
+	font-size: 15px;
+	background-color: rgba(122, 24, 174, 0.5);
+}
+
+#totalboard6 table td {
+	padding-left:8px;
+	padding-top:2px;
+	padding-bottom:2px;
+	height: 25px;
+	font-size: 13px;
+	border-bottom: 1px #f5f5f5 solid;	
+}
+
+#totalboard6 table tr:nth-child(odd) {
+	/*background-color: rgba(156, 149, 220, 0.2);*/
+}
+#totalboard6 a {
+	text-decoration: none;
+	color: black;	
+}
+#totalboard6 a:link {
+	text-decoration: none;
+	color: black;
+}
+#totalboard6 a:visited {
+	text-decoration: none;
+	color: black;
+}
 
 #search {
 	margin: 0px auto;

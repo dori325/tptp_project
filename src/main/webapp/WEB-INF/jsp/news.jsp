@@ -7,65 +7,69 @@
 <head>
 <meta charset="UTF-8">
 <title>새소식게시판</title>
-
-<link href="./css/board.css" rel="stylesheet" />
+<script type="text/javascript">
+	function select() {
+		var b_title = document.getElementById("b_title").value;
+		var b_content = document.getElementById("b_content").value;
+		var page = '${page}';
+		location.href = "userList.do?b_title=" + b_title + "&page=" + page
+				+ "&b_content=" + b_content;
+	}
+</script>
 </head>
-
+<link href="./css/board.css" rel="stylesheet" />
 <body>
-<div id="listboard">
-<%@ include file="LsideB.jsp" %>
-<%@ include file="RsideB.jsp" %>
-		<h2>새소식게시판</h2>
-		
+
+	<div id="listboard">
+		<%@ include file="topmenu.jsp"%>
+		<%@ include file="AllBar.jsp"%>
+		<div id="listTop">
+			<h2>새소식게시판</h2>
+			<button onclick="location.href='news.do'">전체</button>
+		</div>
 		<table id="newsboard">
 			<tr>
-				<th id="comment">추천수</th>
-				<th>제목</th>
+				<th id="comment">추천</th>
+				<th id="sort">분류1</th>
+				<th id="sort">분류1</th>
+				<th id="title">제목</th>
 				<th id="name">작성자</th>
-				<th id="sort">카테1</th>
-				<th id="sort">카테2</th>
 				<th id="date">날짜</th>
 			</tr>
-			<c:forEach items="${list }" var="n">
+			<c:forEach items="${n_list }" var="n">
 				<tr id="boardTr">
 					<td id="comment">${n.b_like }</td>
-					<td id="title" style="width: 200px; text-align: left;"><a href="detail.do?b_no=${i.login_name }"
-					id="title">${n.b_title }</a></td>
-					<td id="name">${n.l_nick }</td>
 					<td id="sort">${n.b_cate1 }</td>
 					<td id="sort">${n.b_cate2 }</td>
+					<td id="title"><a href="detail.do?b_no=${i.login_name }"
+						id="title">${n.b_title }</a></td>
+					<td id="name">${n.l_nick }</td>
 					<td id="date">${n.b_date }</td>
 				</tr>
 			</c:forEach>
 		</table>
+
 		<!-- 페이징 -->
-		<br>
+		<form action="news.do" method="get">
+			<div id="listBottom">
+				<select name="searchID" id="id" onchange="select()">
+					<option>선택하세요</option>
+					<option value="b_title">제목</option>
+					<option value="b_content">내용</option>
+				</select>
+				<div id="search">
+					<input name="searchCont" placeholder="검색어 입력">
+					<button onchange="select()">
+						<!--<button onclick="location.href='news.do?searchCont=' ">-->
+						<!-- <button onclick='"location.href="+news.do?b_title="+searchCont+"&b_content="+searchCont; "'>-->
+						<img alt="검색" src="./img/search.png">
+					</button>
+				</div>
+			</div>
+		</form>
 
-		<div id="listBottom">
-			<table style="width: 850px; margin: 0px auto;">
-				<tr id="boardTr">
-					<td>
-						<form action="news.do">
-							<div id="search">
-								<select>
-									<option>제목</option>
-									<option>내용</option>
-									<option>작성자</option>
-								</select> <input id="input" placeholder="검색하세요">
-								<button>검색</button>
-								<a id="writelink" href="write.do">글쓰기</a>
-							</div>
-						</form>
-					</td>
-				</tr>
-			</table>
-		</div>
-		<hr>
-
+		<%@ include file="bottonmenu.jsp"%>
 	</div>
-	<br>
-	<br>
-
 
 </body>
 </html>

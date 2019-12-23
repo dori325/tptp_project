@@ -27,9 +27,15 @@ public class H_ServiceImpl implements H_Service {
 		return newsDAO.k_list(map);
 	}
 
+	//새소식
 	@Override
 	public List<Map<String, Object>> n_list(Map<String, Object> map) throws Exception {
 		return newsDAO.n_list(map);
+	}
+	//새소식,검색
+	@Override
+	public List<Map<String, Object>> n_search(Map<String, Object> map) throws Exception {
+		return newsDAO.n_search(map);
 	}
 
 	//브랜드1
@@ -55,6 +61,10 @@ public class H_ServiceImpl implements H_Service {
 	public List<Map<String, Object>> ts_list(Map<String, Object> map) throws Exception {
 		return newsDAO.ts_list(map);
 	}
+	@Override
+	public List<Map<String, Object>> ts_l_count(Map<String, Object> map) throws Exception {
+		return newsDAO.ts_list_count(map);
+	}
 
 	//회원관리
 	@Override
@@ -62,13 +72,30 @@ public class H_ServiceImpl implements H_Service {
 		return newsDAO.u_list(map);
 	}
 
+	//회원관리,검색
+	@Override
+	public List<Map<String, Object>> ul_search(Map<String, Object> map) throws Exception {
+		return newsDAO.ul_search(map);
+	}
+	
 	//로그관리
 	@Override
 	public List<Map<String, Object>> log(Map<String, Object> map) throws Exception {
 		return newsDAO.log(map);
 	}
+	@Override
+	public List<Map<String, Object>> id(Map<String, Object> map) throws Exception {
+		return newsDAO.id(map);
+	}
+	@Override
+	public List<Map<String, Object>> ip(Map<String, Object> map) throws Exception {
+		return newsDAO.ip(map);
+	}
 
-	
+
+
+
+
 	
 	
 	
