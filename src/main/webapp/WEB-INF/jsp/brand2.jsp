@@ -25,7 +25,7 @@
 
 			<div id="listTop">
 			<h2>
-					브랜드1 게시판
+					브랜드2 게시판
 			</h2>
 				<button id="pensort" onclick="location.href='brand2.do'">전체</button>
 				<button id="pensort" onclick="location.href='brand2.do?b_cate2=연필'">연필</button>
