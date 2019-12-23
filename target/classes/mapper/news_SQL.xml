@@ -100,7 +100,7 @@
 	<!-- 회원관리,검색 -->
 	<select id="ul_search" parameterType="hashmap" resultType="hashmap">
 		SELECT * FROM
-		login
+		login 
 		<if test='searchID == "l_id"'>where l_id LIKE CONCAT('%', #{searchCont}, '%')</if>
 		<if test='searchID == "l_nick"'>where l_nick LIKE CONCAT('%', #{searchCont}, '%')</if>
 		<if test='searchID == "l_auth"'>where l_auth LIKE CONCAT('%', #{searchCont}, '%')</if>
