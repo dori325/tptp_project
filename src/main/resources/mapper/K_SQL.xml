@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="k">
 
-	<select id="adlist" resultType="hashmap">
+	<select id="adlist" parameterType="Integer" resultType="hashmap">
 		SELECT * FROM boardview WHERE b_cate1 = 'ad'
 	</select>
 
@@ -11,7 +11,55 @@
 	</select>
 
 	<select id="adSearch" parameterType="hashmap" resultType="hashmap">
-		SELECT * FROM boardview WHERE b_cate1 = 'ad' and b_title = %#{searchCont}%
+		SELECT * FROM boardview WHERE b_cate1 = 'ad' and b_title
+		LIKE CONCAT('%',#{searchCont},'%') OR b_content LIKE
+		CONCAT('%',#{searchCont},'%')
 	</select>
-	
+
+	<insert id="joinReg" parameterType="hashmap">
+		INSERT INTO login (l_id, l_nick, l_pw, l_email) VALUES (#{id}, #{nick}, #{pw1}, #{email})
+	</insert>
+
+	<select id="checkID" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) FROM login WHERE l_id=#{id}
+	</select>
+
+	<select id="checkNick" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) FROM login WHERE l_nick=#{nick}
+	</select>
+
+	<select id="checkPW" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) FROM login WHERE l_pw=#{pw} AND l_id=#{id}
+	</select>
+
+	<select id="login" parameterType="hashmap" resultType="hashmap">
+		SELECT l_id, l_pw, l_nick, l_auth,
+		(SELECT COUNT(*) FROM boardview WHERE l_id=#{ID}) AS countB,
+		(SELECT COUNT(*) FROM comment WHERE l_id=#{ID}) AS countC
+		FROM login WHERE l_id=#{ID} AND l_pw=#{PW}
+	</select>
+
+	<select id="commShow" parameterType="Integer" resultType="hashmap">
+		SELECT * FROM comment WHERE b_no=#{b_no}
+	</select>
+
+	<insert id="commInsert" parameterType="hashmap">
+		INSERT INTO comment (l_nick, b_no, c_content) VALUES (#{nick}, '16', #{c_content})
+	</insert>
+
+	<select id="mylist" parameterType="String" resultType="hashmap">
+		SELECT l_id, l_pw, l_nick,
+		(SELECT COUNT(*) FROM boardview WHERE l_id=#{id}) AS countB,
+		(SELECT COUNT(*) FROM comment WHERE l_id=#{id}) AS countC
+		FROM login WHERE l_id=#{id};
+	</select>
+ 
+	<update id="nickUpdate" parameterType="hashmap">
+		UPDATE login SET l_nick=#{renick} WHERE l_id=#{id}
+	</update>
+
+	<update id="pwModi" parameterType="hashmap">
+		UPDATE login SET l_pw=#{pw2} WHERE l_id=#{id}
+	</update>
+
 </mapper>
