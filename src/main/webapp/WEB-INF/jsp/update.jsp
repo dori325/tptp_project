@@ -23,17 +23,17 @@
 	<c:import url="topmenu.jsp" />
 	<form action="updateInsert.do" enctype="multipart/form-data" method="post">
 		<div id="writetitle">
-			<input type="hidden" name="b_no" value="${b_no }">
+			<input type="hidden" name="b_no" value="${update.b_no }">
 			<select name="b_cate1">
-				<c:if test="${b_cate1 eq 'b1' }"><option value="b1">브랜드1</option></c:if>
-				<c:if test="${b_cate1 eq 'b2' }"><option value="b2">브랜드2</option></c:if>
-				<c:if test="${b_cate1 eq 'b3' }"><option value="b3">브랜드3</option></c:if>
-				<c:if test="${b_cate1 eq 'no' }"><option value="no">공지사항</option></c:if>
-				<c:if test="${b_cate1 eq 'nw' }"><option value="nw">새소식</option></c:if>
-				<c:if test="${b_cate1 eq 'ad' }"><option value="ad">운영자</option></c:if>
-				<c:if test="${b_cate1 eq 'q' }"><option value="q">질문게시판</option></c:if>
+				<c:if test="${update.b_cate1 eq 'b1' }"><option value="b1">브랜드1</option></c:if>
+				<c:if test="${update.b_cate1 eq 'b2' }"><option value="b2">브랜드2</option></c:if>
+				<c:if test="${update.b_cate1 eq 'b3' }"><option value="b3">브랜드3</option></c:if>
+				<c:if test="${update.b_cate1 eq 'no' }"><option value="no">공지사항</option></c:if>
+				<c:if test="${update.b_cate1 eq 'nw' }"><option value="nw">새소식</option></c:if>
+				<c:if test="${update.b_cate1 eq 'ad' }"><option value="ad">운영자</option></c:if>
+				<c:if test="${update.b_cate1 eq 'q' }"><option value="q">질문게시판</option></c:if>
 			</select>
-			<c:if test="${b_cate1 ne 'no' }">
+			<c:if test="${update.b_cate1 ne 'no' }">
 			<select name="b_cate2">
 				<option value="연필">연필</option>
 				<option value="샤프">샤프</option>
