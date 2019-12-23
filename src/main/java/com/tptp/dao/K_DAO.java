@@ -29,8 +29,16 @@ public class K_DAO extends AbstractDAO{
 		return (int) insert("k.joinReg", map);
 	}
 
-	public int checkID(String input) {
-		return (int) selectOne("k.checkID", input);
+	public int checkID(String id) {
+		return (int) selectOne("k.checkID", id);
+	}
+	
+	public int checkNick(String nick) {
+		return (int) selectOne("k.checkNick", nick);
+	}
+	
+	public int checkPW(Map<String, Object> map) {
+		return (int) selectOne("k.checkPW", map);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -48,8 +56,16 @@ public class K_DAO extends AbstractDAO{
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> mylist(String nick) {
-		return (List<Map<String, Object>>) selectOne("k.mylist", nick);
+	public Map<String, Object> mylist(String id) {
+		return (Map<String, Object>) selectOne("k.mylist", id);
+	}
+
+	public int nickUpdate(Map<String, Object> map) {
+		return (int) update("k.nickUpdate", map);
+	}
+
+	public int pwModi(String pw2) {
+		return (int) update("k.pwModi", pw2);
 	}
 
 

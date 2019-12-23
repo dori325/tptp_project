@@ -39,7 +39,6 @@ public class K_Controller {
 	public ModelAndView login(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = request.getSession();
-		System.out.println(request.getParameter("url"));
 
 		String url = request.getParameter("url").substring(17);
 		String url2 = url.replace(".jsp", ".do");
@@ -63,16 +62,13 @@ public class K_Controller {
 				 request.getParameter("ID") != null && request.getParameter("PW") != null) {
 
 			Map<String, Object> loginmap = k_Service.login(commandMap.getMap());
-			System.out.println("id "+loginmap.get("l_id"));
+			mv.addObject("loginmap", loginmap);
 			
 			if (loginmap != null) {
 				session.setAttribute("id", loginmap.get("l_id"));
 				session.setAttribute("pw", loginmap.get("l_pw"));
 				session.setAttribute("nick", loginmap.get("l_nick"));
 				session.setAttribute("auth", loginmap.get("l_auth"));
-				System.out.println("이건 아이디 세션" + session.getAttribute("id"));
-				
-
 			}
 		}
 		mv.setViewName("redirect:" + url2);
@@ -82,9 +78,8 @@ public class K_Controller {
 	@RequestMapping(value = "admCommSearch.do")
 	public ModelAndView admCommSearch(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
-
+		
 		if (!request.getParameter("searchCont").equals("")) {
-
 			List<Map<String, Object>> list = k_Service.adSearch(commandMap.getMap());
 			mv.addObject("resultSearch", list);
 			System.out.println(list.get(0));
@@ -97,7 +92,8 @@ public class K_Controller {
 	@RequestMapping(value = "admCommList.do")
 	public ModelAndView admCommList(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("admCommList");
-
+		HttpSession session = request.getSession();
+		
 		List<Map<String, Object>> list = k_Service.admOper();
 		mv.addObject("list", list);
 
@@ -107,7 +103,7 @@ public class K_Controller {
 	@RequestMapping(value = "join.do")
 	public ModelAndView welcome(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
-
+		
 		return mv;
 	}
 
@@ -125,21 +121,38 @@ public class K_Controller {
 			int result = k_Service.joinReg(commandMap.getMap());
 			if (result == 1) {
 				mv.setViewName("main");
-
 			}
 		}
 		return mv;
 	}
 
 	@RequestMapping(value = "checkID.do", method = RequestMethod.POST)
-	public @ResponseBody String checkID(HttpServletRequest request, String id, String nick) throws Exception {
+	public @ResponseBody String checkID(HttpServletRequest request, String id) throws Exception {
 
 		int check = 0;
-		if (id != null && nick == null) {
+		if (id != null) {
 			check = k_Service.checkID(id);
-
-		} else if (nick != null && id == null || id != null) {
-			check = k_Service.checkID(nick);
+		}
+		return String.valueOf(check);
+	}
+	@RequestMapping(value = "checkNick.do", method = RequestMethod.POST)
+	public @ResponseBody String checkNick(HttpServletRequest request, String nick) throws Exception {
+		
+		int check = 0;
+		if (nick != null) {
+			check = k_Service.checkNick(nick);
+		}
+		return String.valueOf(check);
+	}
+	@RequestMapping(value = "checkPW.do", method = RequestMethod.POST)
+	public @ResponseBody String checkPW(HttpServletRequest request, String pw, CommandMap commandmap) throws Exception {
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		commandmap.put("id", id);
+		commandmap.put("pw", pw);
+		int check = 0;
+		if (pw != null) {
+			check = k_Service.checkPW(commandmap.getMap());
 		}
 		return String.valueOf(check);
 	}
@@ -147,7 +160,7 @@ public class K_Controller {
 	@RequestMapping(value = "commInsert.do")
 	public ModelAndView commInsert(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
-
+		HttpSession session = request.getSession();
 		if (request.getParameter("c_content") != null) {
 			int result = k_Service.commInsert(commandMap.getMap());
 			System.out.println(result);
@@ -158,7 +171,7 @@ public class K_Controller {
 	@RequestMapping(value = "commShow.do")
 	public ModelAndView commShow(HttpServletRequest request, int b_no) throws Exception {
 		ModelAndView mv = new ModelAndView();
-
+		
 		List<Map<String, Object>> list = k_Service.commShow(b_no);
 		mv.addObject(list);
 		return mv;
@@ -167,14 +180,14 @@ public class K_Controller {
 	@RequestMapping(value = "LsideB.do")
 	public ModelAndView LsideB(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
-
+		HttpSession session = request.getSession();
 		return mv;
 	}
 
 	@RequestMapping(value = "RsideB.do")
 	public ModelAndView RsideB(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
-
+		HttpSession session = request.getSession();
 		return mv;
 	}
 
@@ -183,14 +196,62 @@ public class K_Controller {
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = request.getSession();
 
-		if (session.getAttribute("l_id") != null && session.getAttribute("l_auth") != null
-				&& session.getAttribute("l_nick") != null) {
+		if (session.getAttribute("id") != null && session.getAttribute("auth") != null
+				&& session.getAttribute("nick") != null) {
 
-			String nick = (String) session.getAttribute("l_nick");
+			String id = (String) session.getAttribute("id");
 
-			List<Map<String, Object>> mylist = k_Service.mylist(nick);
-			System.out.println(mylist);
+			Map<String, Object> mylist = k_Service.mylist(id);
 			mv.addObject("mylist", mylist);
+		}
+		return mv;
+	}
+	
+	@RequestMapping(value = "nickUpdate.do")
+	public ModelAndView nickUpdate(HttpServletRequest request, CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		HttpSession session = request.getSession();
+		commandMap.put("id", session.getAttribute("id"));
+		System.out.println(request.getParameter("renick"));
+		if (session.getAttribute("id") != null && session.getAttribute("nick") != null) {
+			
+			int result = k_Service.nickUpdate(commandMap.getMap());
+			
+			if (result == 0) {
+				mv.setViewName("mypage");
+			} else if (result == 1) {
+				session.setAttribute("nick", request.getParameter("renick"));
+				mv.setViewName("redirect:mypage.do");
+			}
+		}
+		return mv;
+	}
+	
+	@RequestMapping(value = "pwModi.do")
+	public ModelAndView pwModi(HttpServletRequest request, String pw2) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		HttpSession session = request.getSession();
+		
+		if (session.getAttribute("id") != null && session.getAttribute("pw") != null) {
+
+			int result = k_Service.pwModi(pw2);
+			System.out.println(result);
+			if (result == 1) {
+
+				if (session.getAttribute("id") != null) {
+					session.removeAttribute("id");
+				}
+				if (session.getAttribute("pw") != null) {
+					session.removeAttribute("pw");
+				}
+				if (session.getAttribute("nick") != null) {
+					session.removeAttribute("nick");
+				}
+				if (session.getAttribute("auth") != null) {
+					session.removeAttribute("auth");
+				}
+				mv.setViewName("main");
+			}
 		}
 		return mv;
 	}

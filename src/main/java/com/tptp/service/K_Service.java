@@ -14,7 +14,11 @@ public interface K_Service {
 
 	int joinReg(Map<String, Object> map) throws Exception;
 
-	int checkID(String input) throws Exception;
+	int checkID(String id) throws Exception;
+	
+	int checkNick(String nick) throws Exception;
+	
+	int checkPW(Map<String, Object> map) throws Exception;
 
  	Map<String, Object>login(Map<String, Object> map) throws Exception;
 
@@ -22,7 +26,11 @@ public interface K_Service {
 
 	int commInsert(Map<String, Object> map) throws Exception;
 
-	List<Map<String, Object>> mylist(String nick) throws Exception;
+	Map<String, Object> mylist(String id) throws Exception;
+
+	int nickUpdate(Map<String, Object> map) throws Exception;
+
+	int pwModi(String pw2) throws Exception;
 	
 
 	
