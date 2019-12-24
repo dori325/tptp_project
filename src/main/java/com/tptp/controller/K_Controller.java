@@ -246,7 +246,7 @@ public class K_Controller {
 		int result = k_Service.commDelete(b_no);
 		if (result == 1) {
 			mv.setViewName("redirect:" + url2 + b_no);
-		} else if(result == 0) { 
+		} else if(result == 0) {
 			mv.setViewName(url2 + b_no);
 		}
 		return mv;
