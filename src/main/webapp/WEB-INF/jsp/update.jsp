@@ -7,9 +7,13 @@
 <meta charset="UTF-8">
 <title>글쓰기</title>
 <!-- include libraries(jQuery, bootstrap) -->
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-<script	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<script	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+<link
+	href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
+	rel="stylesheet">
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script
+	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 
 <!-- include summernote css/js -->
 <link href="./dist/summernote.css" rel="stylesheet" />
@@ -18,6 +22,18 @@
 <script src="./dist/lang/summernote-ko-KR.js"></script>
 
 <link href="./css/write.css" rel="stylesheet" />
+<script>
+	$(document).ready(function() {
+		$('#summernote').summernote({
+			lang : 'ko-KR',
+			width : 850,
+			height : 600,
+			minHeight : null,
+			maxHeight : null,
+		});
+		$('.dropdown-toggle').dropdown()
+	});
+</script>
 </head>
 <body>
 	<c:import url="topmenu.jsp" />
@@ -43,20 +59,9 @@
 				<option value="기타">기타</option>
 			</select>
 			</c:if>
-			<input type="text" name="b_title" ><br>
-			<textarea id="summernote" name="b_content"></textarea>
-			<script>
-			$(document).ready(function() {
-				  $('#summernote').summernote({
-						lang : 'ko-KR',
-						width : 850,
-						height : 600,
-						minHeight : null,
-						maxHeight : null
-					});
-				  $('.dropdown-toggle').dropdown()
-				});
-			</script>
+			<input type="text" name="b_title" value="${update.b_title }"><br>
+			<textarea id="summernote" name="b_content">${update.b_content }</textarea>
+			
 			<button id="writebutton" type="submit">수정하기</button>
 		</div>
 	</form>

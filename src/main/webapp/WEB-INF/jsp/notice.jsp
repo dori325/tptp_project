@@ -24,9 +24,8 @@
 			<c:import url="RsideB.jsp" />
 			<c:import url="LsideB.jsp" />
 			<div id="listboard">
-				<h2>공지사항</h2>
-
 				<div id="listTop">
+					<h2>공지사항</h2>
 					<a id="writelink" href="write.do?b_cate1=${b_cate1 }">글쓰기</a>
 				</div>
 				<table>

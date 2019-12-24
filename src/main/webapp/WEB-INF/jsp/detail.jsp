@@ -10,24 +10,36 @@
 </head>
 <link href="./css/detail.css" rel="stylesheet" />
 <body>
-	<form action="detail.do">
-		<div id="detail">
-<h1>디테일</h1>
+		<div id="detail">	
+			<h1>디테일</h1>
 			<div id="detailTop">
 				<div id="detailTitle">
 					<table>
 						<tr>
 							<td>
-								<div id="cate-wrap">
-									<div id="cate-img"><img alt="" src="./img/category.png"></div>
-									<div id="cate-text">
-										<p>${detail.b_cate2 }</p>
+								<c:if test="${detail.b_cate1 ne 'no' }">
+									<div id="cate-wrap">
+										<div id="cate-img"><img alt="" src="./img/category.png"></div>
+										<div id="cate-text">
+											<p>${detail.b_cate2 }</p>
+										</div>
 									</div>
-								</div>
+								</c:if>
 							</td>
 							<td id="title">${detail.b_title }</td>
-							<td><a href="update.do?b_no=${detail.b_no }&b_cate1=${detail.b_cate1 }">수정</a>
-							 / <a href="delete.do?b_no=${detail.b_no }">삭제</a></td>
+							<td>
+								<form action="update.do" method="post">									
+									<input type="hidden" name="b_no" value="${detail.b_no }">
+									<input type="hidden" name="b_cate1" value="${detail.b_cate1 }">
+									<input type="hidden" name="b_title" value="${detail.b_title }">
+									<input type="hidden" name="b_content" value="${detail.b_content }">
+									<button type="submit">수정</button>
+								</form>
+								<form action="delete.do">
+									<input type="hidden" name="b_no" value="${detail.b_no }">
+									<button type="submit">삭제</button>
+								</form>
+							</td>
 						</tr>
 					</table>
 				</div>
@@ -63,8 +75,9 @@
 					</tr>
 				</table>
 			</div>
+			
 		</div>
-	</form>
+	<%@ include file="commInsert.jsp" %>
 	<c:import url="bottonmenu.jsp"/>
 </body>
 </html>
