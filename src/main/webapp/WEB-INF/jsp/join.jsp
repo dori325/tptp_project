@@ -22,7 +22,7 @@ function checkID() {
 		success : function(rData,textStatus, xhr){
 			var check = rData;
 			if(check == 0){
-				alert("사용가능한 아이디입니다. 진행하시겠습니까?"); 
+				alert("사용가능한 아이디입니다. 진행하시겠습니까?");
 				$('#checkID').prop('disabled', true);
 				$('#insertNick').focus();
 			} else {
