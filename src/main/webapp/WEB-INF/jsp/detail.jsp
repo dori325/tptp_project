@@ -28,6 +28,7 @@
 							</td>
 							<td id="title">${detail.b_title }</td>
 							<td>
+								<c:if test="${detail.l_id eq sessionScope.id }">
 								<form action="update.do" method="post">									
 									<input type="hidden" name="b_no" value="${detail.b_no }">
 									<input type="hidden" name="b_cate1" value="${detail.b_cate1 }">
@@ -39,6 +40,7 @@
 									<input type="hidden" name="b_no" value="${detail.b_no }">
 									<button type="submit">삭제</button>
 								</form>
+								</c:if>
 							</td>
 						</tr>
 					</table>

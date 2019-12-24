@@ -151,9 +151,9 @@ public class OController {
 		
 		HttpSession session = request.getSession();
 		
-		
 		Map<String, Object> detail = oService.detail(commandMap.getMap());
 
+		
 		// 조회수 + 1
 		int num = Integer.parseInt(request.getParameter("b_no"));
 		oService.countUp(num);
