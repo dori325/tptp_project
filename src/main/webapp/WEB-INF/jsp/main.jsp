@@ -151,5 +151,4 @@ function check() {
 		<%@ include file="bottonmenu.jsp"%>
 	</div>
 </body>
-
 </html>

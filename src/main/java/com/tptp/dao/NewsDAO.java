@@ -22,15 +22,21 @@ public class NewsDAO  extends AbstractDAO{
 		return selectList("news.k_list", map);
 	}
 
-	//새소식
+	//메인-새소식제목
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> n_list(Map<String, Object> map) {
 		return selectList("news.n_list", map);
 	}
+	
+	//새소식리스트
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> news_list(Map<String, Object> map) {
+		return selectList("news.news_list", map);
+	}	
 	//새소식,검색
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> n_search(Map<String, Object> map) {
-		return selectList("news.n_search", map);
+	public List<Map<String, Object>> news_search(Map<String, Object> map) {
+		return selectList("news.news_search", map);
 	}
 	
 
@@ -58,10 +64,6 @@ public class NewsDAO  extends AbstractDAO{
 	public List<Map<String, Object>> ts_list(Map<String, Object> map) {
 		return selectList("news.ts_list", map);
 	}
-	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> ts_list_count(Map<String, Object> map) {
-		return selectList("news.ts_list_count", map);
-	}
 
 	//회원관리
 	@SuppressWarnings("unchecked")
@@ -88,8 +90,5 @@ public class NewsDAO  extends AbstractDAO{
 		return selectList("news.logIP", map);
 	}
 
-
-
-	
 
 }

@@ -19,7 +19,6 @@
 </head>
 <link href="./css/board.css" rel="stylesheet" />
 <body>
-
 	<div id="listboard">
 		<%@ include file="topmenu.jsp"%>
 		<%@ include file="AllBar.jsp"%>

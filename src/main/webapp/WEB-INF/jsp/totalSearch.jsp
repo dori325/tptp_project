@@ -16,7 +16,6 @@
 		<div id="listTop">
 			<h2>통합검색결과..</h2>
 		</div>
-
 		<div>
 			<table id="TS_Board">
 				<tr id="boardTr">

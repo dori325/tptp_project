@@ -3,14 +3,14 @@
 <mapper namespace="news">
 	<!-- 공지 -->
 	<select id="list" parameterType="hashmap" resultType="hashmap">
-			SELECT b_no, b_cate1, b_cate2, b_title 
+			SELECT * 
 			FROM boardview
 			LIMIT 7;	
 	</select>
 
 	<!-- 추천리스트 -->
 	<select id="k_list" parameterType="hashmap" resultType="hashmap">
-			SELECT b_no, b_cate1, b_cate2, b_title
+			SELECT *
 			FROM boardview 
 			where b_like > 10 
 			ORDER BY b_date DESC 
@@ -19,7 +19,7 @@
 
 	<!-- 메인-새소식제목 -->
 	<select id="n_list" parameterType="hashmap" resultType="hashmap">
-		SELECT b_no, b_cate1, b_cate2, b_title
+		SELECT *
 		FROM boardview 
 		where b_cate1='nw'
 		ORDER BY b_modidate DESC
@@ -28,7 +28,7 @@
 	
 	<!-- 브랜드1 -->
 	<select id="b1_list" parameterType="hashmap" resultType="hashmap">
-			SELECT b_no, b_cate1, b_cate2, b_title
+			SELECT *
 			FROM boardview
 			WHERE b_cate1='b1'
 			LIMIT 7;	
@@ -36,7 +36,7 @@
 
 	<!-- 브랜드2 -->
 	<select id="b2_list" parameterType="hashmap" resultType="hashmap">
-			SELECT b_no, b_cate1, b_cate2, b_title
+			SELECT *
 			FROM boardview 
 			WHERE b_cate1='b2' 
 			LIMIT 7;	
@@ -44,7 +44,7 @@
 
 	<!-- 브랜드3 -->
 	<select id="b3_list" parameterType="hashmap"  resultType="hashmap">
-			SELECT b_no, b_cate1, b_cate2, b_title
+			SELECT * 
 			FROM boardview 
 			WHERE b_cate1='b3'
 			LIMIT 7;	
