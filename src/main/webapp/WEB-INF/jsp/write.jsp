@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>글쓰기</title>
 <!-- include libraries(jQuery, bootstrap) -->
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+
 <script	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 
@@ -18,10 +18,27 @@
 <script src="./dist/lang/summernote-ko-KR.js"></script>
 
 <link href="./css/write.css" rel="stylesheet" />
+<script>
+	$(document).ready(function() {
+		$('#summernote').summernote({
+			lang : 'ko-KR',
+			width : 850,
+			height : 600,
+			minHeight : null,
+			maxHeight : null
+		});
+		$('.dropdown-toggle').dropdown()
+	});
+</script>
+
 </head>
 <body>
 	<c:import url="topmenu.jsp" />
-	<form action="writeInsert.do" enctype="multipart/form-data" method="post">
+		<form action="writeInsert.do" enctype="multipart/form-data" method="post">
+	<div id="write">
+		<c:import url="LsideB.jsp"/>	
+		<%@ include file="RsideB.jsp" %>	
+		
 		<div id="writetitle">
 			<select name="b_cate1">
 				<c:if test="${b_cate1 eq 'b1' }"><option value="b1">브랜드1</option></c:if>
@@ -44,20 +61,9 @@
 			</c:if>
 			<input type="text" name="b_title" placeholder="제목을 입력하세요"><br>
 			<textarea id="summernote" name="b_content"></textarea>
-			<script>
-			$(document).ready(function() {
-				  $('#summernote').summernote({
-						lang : 'ko-KR',
-						width : 850,
-						height : 600,
-						minHeight : null,
-						maxHeight : null
-					});
-				  $('.dropdown-toggle').dropdown()
-				});
-			</script>
 			<button id="writebutton" type="submit">글쓰기</button>
 		</div>
+	</div>
 	</form>
 	<c:import url="bottonmenu.jsp" />
 </body>
