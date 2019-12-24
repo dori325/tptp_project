@@ -24,17 +24,16 @@
 			<c:import url="RsideB.jsp" />
 			<c:import url="LsideB.jsp" />
 			<div id="listboard">
-				<h2>공지사항</h2>
-
 				<div id="listTop">
+					<h2>공지사항</h2>
 					<a id="writelink" href="write.do?b_cate1=${b_cate1 }">글쓰기</a>
 				</div>
-				<table>
+				<table id="notice">
 					<tr>
 						<th>제목</th>
-						<th>닉네임</th>
-						<th>날짜</th>
-						<th>조회수</th>
+						<th id="name">닉네임</th>
+						<th id="date">날짜</th>
+						<th id="count">조회수</th>
 					</tr>
 
 					<c:forEach items="${notice }" var="l">

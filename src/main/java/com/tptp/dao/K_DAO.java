@@ -61,7 +61,7 @@ public class K_DAO extends AbstractDAO{
 	public int commInsert(Map<String, Object> map) {
 		return (int) insert("k.commInsert", map);
 	}
-
+ 
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> mylist(String id) {
 		return (Map<String, Object>) selectOne("k.mylist", id);

@@ -10,7 +10,7 @@ body{
 #bottonmenu{
 	position: static;
     bottom:0;
-    width:1300px;
+    width:1250px;
     height:50px;   
     background: rgba(0,0,0,0.7);
     margin: 0 auto;

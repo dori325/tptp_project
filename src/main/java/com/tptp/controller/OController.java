@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.common.common.CommandMap;
@@ -27,8 +28,7 @@ public class OController {
 	public ModelAndView notice(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		String old_url = request.getHeader("Referer");
-		System.out.println("공지주소 : " + old_url);
+		HttpSession session = request.getSession();
 		
 		// 임시로 page 만들어주기
 		int page = 1;
@@ -58,6 +58,8 @@ public class OController {
 	public ModelAndView brand1(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
+		HttpSession session = request.getSession();
+		
 		// 임시로 page 만들어주기
 		int page = 1;
 		if (commandMap.containsKey("page") && Integer.parseInt((String) commandMap.get("page")) > 0) {
@@ -70,6 +72,7 @@ public class OController {
 		mv.addObject("brand1", brand1);
 
 		mv.addObject("b_cate1", brand1.get(0).get("b_cate1"));
+		mv.addObject("b_cate2", brand1.get(0).get("b_cate2"));
 
 		mv.addObject("page", page);
 
@@ -85,6 +88,8 @@ public class OController {
 	@RequestMapping(value = "brand2.do")
 	public ModelAndView brand2(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		
+		HttpSession session = request.getSession();
 
 		// 임시로 page 만들어주기
 		int page = 1;
@@ -113,6 +118,8 @@ public class OController {
 	@RequestMapping(value = "brand3.do")
 	public ModelAndView brand3(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		
+		HttpSession session = request.getSession();
 
 		// 임시로 page 만들어주기
 		int page = 1;
@@ -141,7 +148,10 @@ public class OController {
 	@RequestMapping(value = "detail.do")
 	public ModelAndView detail(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		System.out.println("여기는 디테일"+request.getParameter("url"));
+		
+		HttpSession session = request.getSession();
+		
+		
 		Map<String, Object> detail = oService.detail(commandMap.getMap());
 
 		// 조회수 + 1
@@ -149,13 +159,16 @@ public class OController {
 		oService.countUp(num);
 
 		mv.addObject("detail", detail);
-
+		
 		return mv;
 	}
 
 	@RequestMapping(value = "write.do")
 	public ModelAndView write(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		
+		HttpSession session = request.getSession();
+		
 		System.out.println("b_cate1 :" + commandMap.get("b_cate1"));
 		mv.addObject("b_cate1", commandMap.get("b_cate1"));
 
@@ -163,9 +176,11 @@ public class OController {
 	}
 
 //	@RequestMapping (value = "writeInsert.do")
-	@PostMapping(value = "writeInsert.do")
+	@PostMapping(value = "writeInsert.do")	
 	public ModelAndView writeInsert(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		
+		HttpSession session = request.getSession();
 
 		if (request.getParameter("b_title") != null && request.getParameter("b_content") != null) {
 
@@ -202,6 +217,44 @@ public class OController {
 		}
 		mv.addObject("delete", delete);
 	
+		return mv;
+	}
+	
+	@RequestMapping(value = "update.do", method = RequestMethod.POST)
+	public ModelAndView update(HttpServletRequest request, CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		HttpSession session = request.getSession();
+		
+		Map<String, Object> update = oService.update(commandMap.getMap());
+		mv.addObject("update", update);
+		
+		
+		System.out.println(commandMap.getMap());
+		System.out.println(request.getParameter("b_title"));
+		System.out.println(request.getParameter("b_content"));
+		
+		
+		
+//		mv.addObject("b_cate1", commandMap.get("b_cate1"));
+//		
+//		mv.addObject("b_no", commandMap.get("b_no"));
+		
+		return mv;
+	}
+	
+	@RequestMapping(value = "updateInsert.do")
+	public ModelAndView updateInsert(HttpServletRequest request, CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		HttpSession session = request.getSession();
+		
+		int result = oService.updateInsert(commandMap.getMap());
+		System.out.println("result : " + result);
+		System.out.println("map : " + commandMap.getMap());
+		
+		mv.setViewName("redirect:brand1.do");
+		
 		return mv;
 	}
 }

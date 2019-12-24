@@ -33,7 +33,7 @@ public interface K_Service {
 
 	int pwModi(Map<String, Object> map) throws Exception;
 
-	int commDelete(int b_no) throws Exception;
+	int commDelete(int b_no) throws Exception; 
 	
 
 	

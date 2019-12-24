@@ -56,4 +56,14 @@
 		DELETE FROM board WHERE b_no=#{b_no };
 	</delete>
 	
+	<select id="update" resultType="hashmap" parameterType="hashmap">
+			SELECT *
+			FROM boardview
+			WHERE b_no = #{b_no }
+	</select>
+	
+	<update id="updateInsert" parameterType="hashmap">
+		UPDATE board SET b_title = #{b_title }, b_content = #{b_content }, b_cate2 = #{b_cate2}, b_modidate = NOW() WHERE b_no = #{b_no }
+	</update>
+	
 </mapper>
