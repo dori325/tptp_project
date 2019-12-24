@@ -39,20 +39,20 @@
 				<a id="writelink" href="write.do?b_cate1=${b_cate1 }">글쓰기</a>
 			</div>
 	<form action="brand1.do">
-			<table>
+			<table id="brand">
 				<tr>
-					<th>추천</th>
+					<th id="comment">추천</th>
 					<th>분류</th>
 					<th>제목</th>
-					<th>닉네임</th>
-					<th>날짜</th>
-					<th>조회수</th>
+					<th id="name">닉네임</th>
+					<th id="date">날짜</th>
+					<th id="count">조회수</th>
 				</tr>
 
 				<c:forEach items="${brand1 }" var="l">
 					<tr id="boardTr">
 						<td>${l.b_like }</td>
-						<td>${l.b_cate2 }</td>
+						<td id="sort">${l.b_cate2 }</td>
 						<td id="titleAl">
 						<a href="./detail.do?b_no=${l.b_no }">${l.b_title }</a>
 							<c:if test="${l.c_count > 0}">
