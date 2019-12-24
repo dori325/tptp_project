@@ -270,7 +270,6 @@ tr:hover {
 	width: 120px;
 }
 
-
 #TS_Board th {
 	height: 25px;
 	font-size: 15px;
@@ -697,3 +696,15 @@ tr:hover {
 	margin-top: 1px;
 	width: 17px;
 }
+
+#page {
+	width: 850px;
+	padding-top: 5px;
+	height: 28px;
+	text-align: center;
+	margin : 0px auto;
+}
+
+
+
+

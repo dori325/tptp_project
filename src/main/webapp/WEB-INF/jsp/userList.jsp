@@ -44,7 +44,7 @@
 					<td id="no">${u.l_count}</td>
 					<td id="name">${u.l_id }
 					<td id="name">${u.l_nick }</td>
-					<td id="comment"><a href="" id="title">${u.l_email }</a></td>
+					<td id="comment"><a href="userList.do" id="title">${u.l_email }</a></td>
 					<td id="no">${u.l_date}</td>
 					<td id="no">
 					<select name="l_auth" id="log_do" onchange="select()">
@@ -58,6 +58,37 @@
 		</table>
 
 		<!-- 페이징 -->
+		<div id="page">
+	<%@include file="page.jsp" %>
+		<!-- 페이지 찍기 -->
+		<c:if test="${page gt 10 }">
+			<button onclick="location.href='userList.do?page=${page - 10 }'">이전</button>
+		</c:if>
+		<c:if test="${page gt 1 }">
+			<button onclick="location.href='userList.do?page=${page - 1 }'"> ◀ </button>
+		</c:if>
+		<c:forEach begin="${startPage }" end="${endPage }" var="i">
+
+			<c:if test="${i eq page }">
+				<button onclick="location.href='userList.do?page=${i }'">
+					<b style="color: blue;">${i }</b>
+				</button>
+			</c:if>
+			<c:if test="${i ne page }">
+				<button onclick="location.href='userList.do?page=${i }'">
+					${i }
+				</button>
+			</c:if>
+			
+		</c:forEach>
+		<c:if test="${page lt totalPage }">
+			<button onclick="location.href='userList.do?page=${page + 1 }'"> ▶ </button>
+		</c:if>
+		<c:if test="${page lt totalPage - 9 }">
+			<button onclick="location.href='userList.do?page=${page + 10 }'">다음</button>
+		</c:if>
+	</div>			
+		
 		<form action="userList.do" method="post">
 			<div id="listBottom">
 				<select name="searchID" id="id" onchange="select()">
