@@ -26,7 +26,7 @@
 	<c:forEach items="${detail }" var="c">
 		<tr>
 			<th id="nick">${c.l_nick }</th>
-			<th id="ip">${c.l_ip }</th>
+			<th id="ip"><%-- ${c.l_ip } --%></th>
 			<th id="date">${c.c_date }</th>
 			<th id="commLike"><button type="submit"></button></th>
 			<th id="comm">${c.c_like }</th>
