@@ -3,7 +3,9 @@
 <mapper namespace="k">
 
 	<select id="adlist" parameterType="Integer" resultType="hashmap">
-		SELECT * FROM boardview WHERE b_cate1 = 'ad'
+		SELECT *,(SELECT COUNT(*) FROM boardview WHERE b_cate1 = 'ad') AS ADcount 
+		FROM boardview WHERE b_cate1 = 'ad'
+		LIMIT #{page }, 10
 	</select>
 
 	<select id="Qlist" parameterType="hashmap" resultType="hashmap">
@@ -16,8 +18,8 @@
 		(SELECT COUNT(*) FROM boardview WHERE b_cate1='q' AND b_cate2='형광펜') AS '형광펜', 
 		(SELECT COUNT(*) FROM boardview WHERE b_cate1='q' AND b_cate2='기타') AS '기타'
 		FROM boardview WHERE b_cate1 = 'q' 
-		
 		<if test="b_cate2 != null">AND b_cate2=#{b_cate2}</if>
+		LIMIT #{page }, 10
 	</select>
 
 	<select id="adSearch" parameterType="hashmap" resultType="hashmap">
