@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 <style type="text/css">
 
 #topmenu{
@@ -25,7 +24,7 @@
 </style>
 	<div id="topmenu">
 		<ul>
-			<li><a style="font-size: 30pt" href="./main.jsp">이펜저펜</a></li>
+			<li><a style="font-size: 30pt; font: " href="./main.jsp">이펜저펜</a></li>
 			<li style="float: right;"><input type="text" placeholder="전체 검색"> <button>검색</button></li> 
 		</ul>
 			
