@@ -21,13 +21,18 @@ public class K_ServiceImp implements K_Service {
 	}
 
 	@Override
-	public List<Map<String, Object>> QnAlist() throws Exception {
-		return k_DAO.QnAlist();
+	public List<Map<String, Object>> QnAlist(Map<String, Object> map) throws Exception {
+		return k_DAO.QnAlist(map);
 	}
 
 	@Override
 	public List<Map<String, Object>> adSearch(Map<String, Object> map) throws Exception {
 		return k_DAO.adSearch(map);
+	}
+	
+	@Override
+	public List<Map<String, Object>> qnaSearch(Map<String, Object> map) throws Exception {
+		return k_DAO.qnaSearch(map);
 	}
 
 	@Override
@@ -76,8 +81,13 @@ public class K_ServiceImp implements K_Service {
 	}
 
 	@Override
-	public int pwModi(String pw2) throws Exception {
-		return (int) k_DAO.pwModi(pw2);
+	public int pwModi(Map<String, Object> map) throws Exception {
+		return (int) k_DAO.pwModi(map);
+	}
+
+	@Override
+	public int commDelete(int b_no) throws Exception {
+		return (int) k_DAO.commDelete(b_no);
 	}
 	
 

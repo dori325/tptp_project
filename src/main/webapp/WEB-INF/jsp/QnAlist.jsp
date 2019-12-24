@@ -14,12 +14,14 @@
 <%@ include file="AllBar.jsp" %>
 		<div id="listTop">
 		<h2>질문게시판</h2>
-			<button onclick="location.href='QnAlist.do?page=${sh}'">샤프</button>
-			<button onclick="location.href='QnAlist.do?page=${ba}'">볼펜</button>
-			<button onclick="location.href='QnAlist.do?page=${fo}'">만년필</button>
-			<button onclick="location.href='QnAlist.do?page=${hi}'">형광펜</button>
-			<button onclick="location.href='QnAlist.do?page=${etc}'">기타</button>
-			<a id="writelink" href="write.do?b_cate1=${b_cate1 }">글쓰기</a>
+			<button id="sort" onclick="location.href='QnAlist.do'">전체</button>
+			<button id="sort" onclick="location.href='QnAlist.do?b_cate2=연필'">연필</button>
+			<button id="sort" onclick="location.href='QnAlist.do?b_cate2=샤프'">샤프</button>
+			<button id="sort" onclick="location.href='QnAlist.do?b_cate2=볼펜'">볼펜</button>
+			<button id="sort" onclick="location.href='QnAlist.do?b_cate2=만년필'">만년필</button>
+			<button id="sort" onclick="location.href='QnAlist.do?b_cate2=형광펜'">형광펜</button>
+			<button id="sort" onclick="location.href='QnAlist.do?b_cate2=기타'">기타</button>
+			<a id="writelink" href="write.do?b_cate1=q">글쓰기</a>
 		</div>
 		<table id="QnAlist">
 			<tr id="boardTr">
@@ -30,7 +32,7 @@
 				<th id="date">작성일</th>
 				<th id="count">조회수</th>
 			</tr>
-			<c:forEach items="${list }" var="i">
+			<c:forEach items="${Qlist }" var="i">
 			<tr id="boardTr">
 				<td id="comment">${i.c_count }</td>
 				<td id="sort">${i.b_cate2 }</td>
@@ -41,21 +43,36 @@
 				<td id="count">${i.b_count }</td>
 			</tr>
 			</c:forEach>
+			<c:if test="${Qlist eq null && resultSearch eq null}">
+			<tr id="boardTr">
+				<td colspan="6">결과값이 없습니다.</td>
+			</tr>
+			</c:if>
+			<c:forEach items="${resultSearch }" var="r">
+			<tr id="boardTr">
+				<td id="comment">${r.c_count }</td>
+				<td id="sort">${r.b_cate2 }</td>
+				<td id="titleAl"><a href="detail.do?b_no=${r.b_no }"
+					id="title">${r.b_title }</a></td>
+				<td id="name">${r.l_nick }</td>
+				<td id="date">${r.b_date }</td>
+				<td id="count">${r.b_count }</td>
+			</tr>
+			</c:forEach>
 		</table>
+		
 		<div id="listBottom">
-			<select>
-				<option>선택</option>
-				<option>전체</option>
-				<option>제목</option>
-				<option>작성자</option>
-			</select>
-			<div id="search">
-				<input placeholder="검색어 입력">
-				<button onclick="location.href='QnAlist.do?b_content='">
-					<img alt="검색" src="./img/search.png">
-				</button>
-			</div>
-			<a id="writelink" href="write.do?b_cate1=${b_cate1 }">글쓰기</a>
+			<form action="qnaSearch.do" method="GET">
+				<div id="search">
+					<input name="searchCont" placeholder="검색어 입력">
+					<input type="hidden" name="b_cate1" value="${b_cate1 }">
+					<input type="hidden" name="url" value="${pageContext.request.requestURI}">
+					<button type="submit">
+						<img alt="검색" src="./img/search.png">
+					</button>
+				</div>
+			</form>
+			<a id="writelink" href="write.do?b_cate1=q">글쓰기</a>
 		</div>
 <%@ include file="bottonmenu.jsp" %>
 	</div>

@@ -28,8 +28,8 @@
 					<button>로그아웃</button>
 					<br>
 					<a href="mypage.do">마이페이지</a>
-					<p>작성한 게시글 수 : <a>${loginmap.countB }</a></p>
-					<p>작성한 댓글 수 : <a>${loginmap.countC }</a></p>
+<%-- 					<p>작성한 게시글 수 : <a>${loginmap.countB }</a></p> --%>
+<%-- 					<p>작성한 댓글 수 : <a>${loginmap.countC }</a></p> --%>
 				</c:if>
 			</form>
 		</div>

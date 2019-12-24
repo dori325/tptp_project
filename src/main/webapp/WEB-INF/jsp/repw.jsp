@@ -9,10 +9,15 @@
 <link href="./css/welcome.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
-function reqw() {
-	var oldpw = $('#pw1').val();	
-	var newpw = $('#pw1').val();
-
+function chekcPW() {
+	var oldpw = $('#pw1').val();
+	
+	if ($('#pw1').val() == '') {
+		alert("기존 비밀번호를 입력해주세요");
+		$('#pw1').focus();
+		return false;
+	}
+	
 	$.ajax({
 		type : 'POST',
 		data : "pw="+oldpw,
@@ -21,7 +26,8 @@ function reqw() {
 		success : function(rData,textStatus, xhr){
 			var check = rData;
 			if(check == 1){
-				alert("비밀번호가 일치합니다. 변경하시겠습니까?");
+				alert("신규 비밀번호가 일치합니다. 변경하시겠습니까?");
+				$('#resultbutt').prop('disabled', false);
 			} else {
 				alert("잘못된 비밀번호입니다. \n다시 입력해주세요");
 				$('#pw1').focus();
@@ -32,33 +38,29 @@ function reqw() {
 			alert("에러가 발생했습니다.");
 		}
 	});
-	return false;
-	
-	if ($('#pw1').val() == '') {
-		alert("기존 비밀번호를 입력해주세요");
-		$('#pw1').focus();
-		return false;
-	}
-	
-	if ($('#pw2').val() == '') {
+	return false;	
+}
+function repw() {
+	if (document.form.pw2.value == '') {
 		alert("새로운 비밀번호를 입력해주세요");
-
 		$('#pw2').focus();
 		return false;
 	}
 	
-	if ($('#pw3').val() == '') {
+	if (document.form.pw3.value == '') {
 		alert("비밀번호 확인을 입력해주세요");
 		$('#pw3').focus();
 		return false;
 	}
 	
-	if ($('#pw2').val() != $('#pw3').val()) {
+	if (document.form.pw2.value != document.form.pw3.value) {
 		alert("신규 비밀번호가 일치하지 않습니다. \n 다시 입력해주세요");
 		$('#pw3').focus();
 		$('#notCorr3').css('color','red');
+		return false;
 	}
 }
+
 </script>
 </head>
 <body>
@@ -67,7 +69,7 @@ function reqw() {
 <%@ include file="AllBar.jsp" %>
 	<div id="list">
 	<h2>비밀번호 변경</h2>
-<form action="pwModi.do">
+<!-- <form action="pwModi.do" name="form"> -->
 		<table>
 			<tr>
 				<th>기존 비밀번호</th>
@@ -86,8 +88,9 @@ function reqw() {
 				</td>
 			</tr>
 		</table>
-		<button id="resultButt" onclick="reqw()">변경하기</button>
-</form>
+	<button id="resultButted" onclick="checkpw()">비밀번호 확인</button>
+	<button id="resultButt" type="submit" onclick="repw()" disabled="disabled">변경하기</button>
+<!-- </form> -->
 	</div>
 </div>
 </body>
