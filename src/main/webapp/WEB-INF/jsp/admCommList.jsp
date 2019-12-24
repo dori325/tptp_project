@@ -53,7 +53,7 @@
 					</button>
 				</div>
 			</form>
-			<a id="writelink" href="write.do?b_cate1=${b_cate1 }">글쓰기</a> 
+			<a id="writelink" href="write.do?b_cate1=${b_cate1 }">글쓰기</a>
 		</div>
 		<%@ include file="bottonmenu.jsp"%>
 	</div>
