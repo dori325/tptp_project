@@ -36,8 +36,7 @@
 	<c:import url="topmenu.jsp" />
 		<form action="writeInsert.do" enctype="multipart/form-data" method="post">
 	<div id="write">
-		<c:import url="LsideB.jsp"/>	
-		<%@ include file="RsideB.jsp" %>	
+		<c:import url="LsideB.jsp"/>		
 		
 		<div id="writetitle">
 			<select name="b_cate1">
