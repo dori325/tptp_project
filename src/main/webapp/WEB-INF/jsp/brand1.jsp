@@ -39,7 +39,7 @@
 				<a id="writelink" href="write.do?b_cate1=${b_cate1 }">글쓰기</a>
 			</div>
 	<form action="brand1.do">
-			<table>
+			<table id="brand">
 				<tr>
 					<th id="comment">추천</th>
 					<th>분류</th>
