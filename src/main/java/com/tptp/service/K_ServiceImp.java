@@ -88,7 +88,7 @@ public class K_ServiceImp implements K_Service {
 	@Override
 	public int commDelete(int b_no) throws Exception {
 		return (int) k_DAO.commDelete(b_no);
-	} 
+	}
 	
 
 
