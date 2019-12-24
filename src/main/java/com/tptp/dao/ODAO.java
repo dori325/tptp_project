@@ -12,32 +12,49 @@ public class ODAO extends AbstractDAO {
 
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> notice(Map<String, Object> map) {
-		return selectList("o.notice");
+		System.out.println(map.get("notice"));
+		return selectList("o.notice", map);
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> brand1(Map<String, Object> map) {
-		return selectList("o.brand1");
+		return selectList("o.brand1", map);
 	}
 	
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> brand2(Map<String, Object> map) {
-		return selectList("o.brand2");
+		return selectList("o.brand2", map);
 	}
 	
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> brand3(Map<String, Object> map) {
-		return selectList("o.brand3");
-	}
-	
-	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> brand4(Map<String, Object> map) {
-		return selectList("o.brand4");
+		return selectList("o.brand3", map);
 	}
 
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> detail(Map<String, Object> map) {
 		return (Map<String, Object>) selectOne("o.detail", map);
+	}
+
+	public int writeInsert(Map<String, Object> map) {
+		return (int) insert("o.writeInsert", map);
+	}
+
+	public void countUp(int num) {
+		update("o.countUp", num);
+	}
+
+	public int delete(Map<String, Object> map) {
+		return (int) delete("o.delete", map);
+	}
+
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> update(Map<String, Object> map) {
+		return (Map<String, Object>) selectOne("o.update", map);
+	}
+
+	public int updateInsert(Map<String, Object> map) {
+		return (int) update("o.updateInsert", map);
 	}
 
 }

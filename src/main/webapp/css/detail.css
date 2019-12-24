@@ -8,19 +8,20 @@ detailBot - 목록, 이전/다음, 추천등
 #detail{
 	margin: 0px auto;
 	padding: 0px;
-	width: 850px;
+	width: 1250px;
 	height: auto;
 	text-align: center;
 }
 #detailTop{
 	margin: 0 auto;
 	height: auto;
+	width: 850px;
 	border-bottom: 0.5pt gray dashed;
 	background-color: rgba(45, 158, 206, 0.5);
 }
 #detailTitle {
 	height: auto;
-	width: 100%;
+	width: 850px;
 	border-bottom: 0.5pt gray dashed;
 }
 #detailTitle table{

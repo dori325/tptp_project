@@ -2,13 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style type="text/css">
-body{
-}
+
 #topmenu{
 	margin: 0px auto;
 /* 	position: static; */
 	height: 70px;
-    width: 1300px;
+    width: 1250px;
 	padding-top: 5px;
 	background-color: #c0c0c0;
 }
@@ -25,7 +24,7 @@ body{
 </style>
 	<div id="topmenu">
 		<ul>
-			<li><a id="writelink"  style="font-size: 30pt" href="./index.jsp">이펜저펜</a></li>
+			<li><a style="font-size: 30pt; font: " href="./main.jsp">이펜저펜</a></li>
 			<li style="float: right;"><input type="text" placeholder="전체 검색"> <button>검색</button></li> 
 		</ul>
 			

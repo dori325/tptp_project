@@ -5,13 +5,15 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.tptp.dao.ODAO;
-import com.tptp.dto.BoardDTO;
 
 @Service("oService")
 public class OServiceImpl implements OService  {
+	Logger log = Logger.getLogger(this.getClass());
+	
 	@Resource(name = "oDAO")
 	private ODAO oDAO;
 	
@@ -32,12 +34,27 @@ public class OServiceImpl implements OService  {
 		return oDAO.brand3(map);
 	}
 	@Override
-	public List<Map<String, Object>> brand4(Map<String, Object> map) throws Exception {
-		return oDAO.brand4(map);
-	}
-	@Override
 	public Map<String, Object> detail(Map<String, Object> map) throws Exception {
 		return oDAO.detail(map);
 	}
-	
+	@Override
+	public int writeInsert(Map<String, Object> map) throws Exception {
+		return oDAO.writeInsert(map);
+	}
+	@Override
+	public void countUp(int num) throws Exception {
+		oDAO.countUp(num);
+	}
+	@Override
+	public int delete(Map<String, Object> map) throws Exception {
+		return oDAO.delete(map);
+	}
+	@Override
+	public Map<String, Object> update(Map<String, Object> map) throws Exception {
+		return oDAO.update(map);
+	}
+	@Override
+	public int updateInsert(Map<String, Object> map) throws Exception {
+		return oDAO.updateInsert(map);
+	}
 }
