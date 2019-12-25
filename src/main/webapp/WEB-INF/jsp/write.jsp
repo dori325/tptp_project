@@ -7,13 +7,13 @@
 <meta charset="UTF-8">
 <title>글쓰기</title>
 <!-- include libraries(jQuery, bootstrap) -->
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<!-- <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet"> -->
 <script	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 
 <!-- include summernote css/js -->
-<link href="./dist/summernote.css" rel="stylesheet" />
-<script src="./dist/summernote.js"></script>
+<link href="./dist/summernote-lite.css" rel="stylesheet" />
+<script src="./dist/summernote-lite.js"></script>
 
 <script src="./dist/lang/summernote-ko-KR.js"></script>
 
@@ -59,7 +59,7 @@
 			</select>
 			</c:if>
 			<input type="text" name="b_title" placeholder="제목을 입력하세요"><br>
-			<textarea id="summernote" name="b_content"></textarea>
+			<textarea id="summernote" name="b_content"></textarea><br>
 			<button id="writebutton" type="submit">글쓰기</button>
 		</div>
 	</div>
