@@ -7,16 +7,9 @@
 <meta charset="UTF-8">
 <title>이펜저펜</title>
 <link rel="stylesheet" href="./css/main.css">
-<style type="text/css">
-#page {
-	width: 100%;
-	padding-top: 5px;
-	height: 28px;
-	text-align: center;
-}
-</style>
 </head>
 <link href="./css/board.css" rel="stylesheet" />
+<link href="./css/page.css" rel="stylesheet" />
 <body>
 	<c:import url="topmenu.jsp" />
 		<div id="listboard">
@@ -47,21 +40,28 @@
 					<th id="count">조회수</th>
 				</tr>
 
-				<c:forEach items="${brand3 }" var="l">
-					<tr id="boardTr">
-						<td>${l.b_like }</td>
-						<td id="sort">${l.b_cate2 }</td>
-						<td id="titleAl">
-						<a href="./detail.do?b_no=${l.b_no }">${l.b_title }</a>
-							<c:if test="${l.c_count > 0}">
-								<small>${l.c_count }</small>
-							</c:if>
-						</td>
-						<td>${l.l_nick }</td>
-						<td>${l.b_date }</td>
-						<td>${l.b_count }</td>
-					</tr>
-				</c:forEach>
+				<c:choose>
+					<c:when test="${brand3 ne null}">
+						<c:forEach items="${brand3 }" var="l">
+							<tr id="boardTr">
+								<td>${l.b_like }</td>
+								<td id="sort">${l.b_cate2 }</td>
+								<td id="titleAl"><a href="./detail.do?b_no=${l.b_no }">${l.b_title }</a>
+									<c:if test="${l.c_count > 0}">
+										<small>${l.c_count }</small>
+									</c:if></td>
+								<td>${l.l_nick }</td>
+								<td>${l.b_date }</td>
+								<td>${l.b_count }</td>
+							</tr>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<tr id="boardTr">
+							<td colspan="6">출력할 게시물이 없습니다.</td>
+						</tr>
+					</c:otherwise>
+				</c:choose>
 			</table>
 	</form>
 	<div id="page">
