@@ -37,7 +37,7 @@
 		<form action="writeInsert.do" enctype="multipart/form-data" method="post">
 	<div id="write">
 		<c:import url="LsideB.jsp"/>		
-		
+		<c:import url="RsideB2.jsp"/>
 		<div id="writetitle">
 			<select name="b_cate1">
 				<c:if test="${b_cate1 eq 'b1' }"><option value="b1">브랜드1</option></c:if>
