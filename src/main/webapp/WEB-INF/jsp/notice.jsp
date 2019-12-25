@@ -49,46 +49,51 @@
 					</c:forEach>
 				</table>
 				<div id="page">
-					<%@include file="page.jsp"%>
-					<%-- 참고 하세요 : page : ${page } / count : ${count } / totalPage : ${totalPage } / 
-		startPage : ${startPage } / endPage : ${endPage } --%>
-					<!-- 페이지 찍기 -->
+			<c:if test="${notice ne null}">
+				<%@include file="page.jsp"%>
+				<!-- 페이지 찍기 -->
+				<div id="pagepre">
 					<c:if test="${page gt 10 }">
-						<button onclick="location.href='notice.do?page=${page - 10 }'">이전</button>
+						<div id="pre10" onclick="location.href='notice.do?page=${page - 10 }'">
+							◀
+						</div>
 					</c:if>
 					<c:if test="${page gt 1 }">
-						<button onclick="location.href='notice.do?page=${page - 1 }'">
-							◀</button>
-					</c:if>
-					<c:forEach begin="${startPage }" end="${endPage }" var="i">
-
-
-						<c:if test="${i eq page }">
-							<button onclick="location.href='notice.do?page=${i }'">
-								<b style="color: blue;">${i }</b>
-							</button>
-						</c:if>
-						<c:if test="${i ne page }">
-							<button onclick="location.href='notice.do?page=${i }'">
-								${i }</button>
-						</c:if>
-
-					</c:forEach>
-					<c:if test="${page lt totalPage }">
-						<button onclick="location.href='notice.do?page=${page + 1 }'">
-							▶</button>
-					</c:if>
-					<c:if test="${page lt totalPage - 9 }">
-						<button onclick="location.href='notice.do?page=${page + 10 }'">다음</button>
+						<div id="pre" onclick="location.href='notice.do?page=${page - 1 }'">
+							◁
+						</div>
 					</c:if>
 				</div>
+				<div id="pagenum">
+					<c:forEach begin="${startPage }" end="${endPage }" var="i">
+						<c:if test="${i eq page }">
+							<div id="curpage">
+								${i }
+							</div>
+						</c:if>
+						<c:if test="${i ne page }">
+							<div id="ncurpage" onclick="location.href='notice.do?page=${i }'">
+								${i }
+							</div>
+						</c:if>
+					</c:forEach>
+				</div>
+				<div id="pagenex">
+					<c:if test="${page lt totalPage }">
+						<div id="nex" onclick="location.href='notice.do?page=${page + 1 }'">
+							▷
+						</div>
+					</c:if>
+					<c:if test="${page lt totalPage - 9 }">
+						<div id="nex10" onclick="location.href='notice.do?page=${page + 10  }'">
+							▶
+						</div>
+					</c:if>
+				</div>
+			</c:if>
+		</div>
 				<div id="listBottom">
-					<select>
-						<option>선택</option>
-						<option>전체</option>
-						<option>제목</option>
-						<option>작성자</option>
-					</select> <input placeholder="검색하세요">
+					<input placeholder="검색하세요">
 					<button>검색</button>
 					<a id="writelink" href="write.do?b_cate1=${b_cate1 }">글쓰기</a>
 				</div>
