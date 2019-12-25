@@ -1,4 +1,3 @@
-  
 package com.tptp.service;
 
 import java.util.List;
@@ -8,9 +7,11 @@ public interface K_Service {
 
 	List<Map<String, Object>> admOper() throws Exception;
 
-	List<Map<String, Object>> QnAlist() throws Exception;
+	List<Map<String, Object>> QnAlist(Map<String, Object> map) throws Exception;
 
 	List<Map<String, Object>> adSearch(Map<String, Object> map) throws Exception;
+	
+	List<Map<String, Object>> qnaSearch(Map<String, Object> map) throws Exception;
 
 	int joinReg(Map<String, Object> map) throws Exception;
 
@@ -30,7 +31,9 @@ public interface K_Service {
 
 	int nickUpdate(Map<String, Object> map) throws Exception;
 
-	int pwModi(String pw2) throws Exception;
+	int pwModi(Map<String, Object> map) throws Exception;
+
+	int commDelete(int b_no) throws Exception; 
 	
 
 	

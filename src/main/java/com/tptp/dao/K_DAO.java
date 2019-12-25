@@ -16,12 +16,19 @@ public class K_DAO extends AbstractDAO{
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> QnAlist() {
-		return selectList("k.Qlist");
+	public List<Map<String, Object>> QnAlist(Map<String, Object> map) {
+		return selectList("k.Qlist", map);
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> adSearch(Map<String, Object> map) {
+		System.out.println(map.get("b_cate1"));
+		return selectList("k.adSearch", map);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> qnaSearch(Map<String, Object> map) {
+		System.out.println(map.get("b_cate1"));
 		return selectList("k.adSearch", map);
 	}
 
@@ -54,7 +61,7 @@ public class K_DAO extends AbstractDAO{
 	public int commInsert(Map<String, Object> map) {
 		return (int) insert("k.commInsert", map);
 	}
-
+ 
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> mylist(String id) {
 		return (Map<String, Object>) selectOne("k.mylist", id);
@@ -64,8 +71,12 @@ public class K_DAO extends AbstractDAO{
 		return (int) update("k.nickUpdate", map);
 	}
 
-	public int pwModi(String pw2) {
-		return (int) update("k.pwModi", pw2);
+	public int pwModi(Map<String, Object> map) {
+		return (int) update("k.pwModi", map);
+	}
+
+	public int commDelete(int b_no) {
+		return (int) delete("k.commDelete", b_no);
 	}
 
 

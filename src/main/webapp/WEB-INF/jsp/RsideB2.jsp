@@ -5,16 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script type="text/javascript">
-$(function(){
-	  $("#detail").hide();
-	  $("#categoryTop a").click(function(){
-	    $(this).next().slideToggle(300);
-	    $(this).next("#categoryTop").slideDown(300);
-	  });
-	});
-</script>
 </head>
 <link href="./css/sideR.css" rel="stylesheet"/>
 <body>
