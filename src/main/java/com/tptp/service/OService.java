@@ -12,6 +12,8 @@ public interface OService {
 	List<Map<String, Object>> brand2(Map<String, Object> map) throws Exception;
 	
 	List<Map<String, Object>> brand3(Map<String, Object> map) throws Exception;
+	
+	List<Map<String, Object>> commdetail(Map<String, Object> map) throws Exception;
 
 	Map<String, Object> detail(Map<String, Object> map) throws Exception;
 

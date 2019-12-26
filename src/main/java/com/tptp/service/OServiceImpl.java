@@ -34,6 +34,10 @@ public class OServiceImpl implements OService  {
 		return oDAO.brand3(map);
 	}
 	@Override
+	public List<Map<String, Object>> commdetail(Map<String, Object> map) throws Exception {
+		return oDAO.commdetail(map);
+	}
+	@Override
 	public Map<String, Object> detail(Map<String, Object> map) throws Exception {
 		return oDAO.detail(map);
 	}

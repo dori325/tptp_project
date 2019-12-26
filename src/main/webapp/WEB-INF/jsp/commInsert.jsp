@@ -7,14 +7,43 @@
 <meta charset="UTF-8">
 </head>
 <link href="./css/commInsert.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Gamja+Flower|Nanum+Gothic+Coding&display=swap&subset=korean" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+function likeUp() {
+	var like = $('#likeCount').val();
+	var c_no = $('#cno').val();
+	var allData = { "likeCount": like, "cno": c_no };
+	
+	$.ajax({
+		type : 'POST',
+		data : { "likeCount": like, "cno": c_no },
+		dataType : 'text',
+		url : 'likeUp.do',
+		success : function(rData,textStatus, xhr){
+			var check = rData;
+			if(check != 0){
+				$('#comm').html(check);
+				
+			} else if(check = 0){
+				alert("좋아요 안 올라감");
+			}
+		},
+		error : function(xhr,status,e){
+			alert("에러가 발생했습니다.");
+		}
+	});
+	return false;
+}
+</script>
 <body>
 <div id="insert">
-<form action="commInsert.do" method="POST">
+<form action="commUpdate.do" method="POST">
 	<table id="commP">
 		<tr>
 			<td><input name="ccontent" type="text" placeholder="댓글 입력"/></td>
 			<td><button type="submit">댓글 쓰기</button>
-			<input type="hidden" name="b_no" value="${detail.b_no }">
+			<input type="hidden" name="b_no" value="${param.b_no }">
 			<input type="hidden" name="url" value="${pageContext.request.requestURI}">
 			</td>
 		</tr>
@@ -23,33 +52,42 @@
 	<hr>
 <!-- <form action="commShow.do" method="post"> -->
 	<table id="commL">
-	<c:forEach items="${detail }" var="c">
+	<c:forEach items="${commdetail }" var="c">
 		<tr>
-			<th id="nick">${c.l_nick }</th>
-			<th id="ip"><%-- ${c.l_ip } --%></th>
-			<th id="date">${c.c_date }</th>
-			<th id="commLike"><button type="submit"></button></th>
-			<th id="comm">${c.c_like }</th>
+			<td id="nick">${c.l_nick }</td>
+			<td id="ip"> <%-- ${c.l_ip } --%></td>
+			<td id="date">${c.c_date }</td>
+			<td id="commLike"><button type="submit" id="but" onclick="likeUp()"><img style="width: 28px;" alt="추천" src="./img/comm_heart.png"></button></td>
+			<td id="comm" >${c.c_like }
+			<input style="width: 0px;" type="hidden" id="likeCount" value="${c.c_like }">
+			<input style="width: 0px;" type="hidden" id="cno" value="${c.c_no }">
+			</td>
 		</tr>
 		<tr>
-			<td colspan="3" id="commContent">${c.c_content }
+			<td id="commContent">${c.c_content }</td>
+			<c:if test="${sessionScope.nick == c.l_nick}">
+			<td id="buttontd">
+				<input style="width: 0px;" type="hidden" name="commModi">
+				<input style="width: 0px;" type="hidden" name="b_no" value="${c.b_no }">
+				<input style="width: 0px;" type="hidden" name="url" value="${pageContext.request.requestURI}">
+				<button id="up">수정</button>
+			</td>
 			<c:if test="${sessionScope.nick == c.l_nick || sessionScope.auth > 3}">
-				<button>수정</button>
-				<form action="commDelete.do">
-				<button>삭제</button>
-				<input type="hidden" name="b_no" value="${c.b_no }">
-				<input type="hidden" name="url" value="${pageContext.request.requestURI}">
+			<td id="buttontd">
+				<form action="commDelete.do" method="post">
+				<input style="width: 0px;" type="hidden" name="nick" value="${c.l_nick }">
+				<input style="width: 0px;" type="hidden" name="b_no" value="${param.b_no }">
+				<input style="width: 0px;" type="hidden" name="c_no" value="${c.c_no }">
+				<input style="width: 0px;" type="hidden" name="url" value="${pageContext.request.requestURI}">
+				<button id="up">삭제</button>
 				</form>
+			</td>
 			</c:if>
-			</td>
-			<td>
-			<input type="hidden" name="commModi">
-			<input type="hidden" name="b_no" value="${c.b_no }">
-			<input type="hidden" name="url" value="${pageContext.request.requestURI}">
-			</td>
+			</c:if>
 		</tr>
 	</c:forEach>
 	</table>
+			<hr>
 <!-- </form> -->
 </div>
 </body>
