@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.stereotype.Repository;
 
 import com.common.dao.AbstractDAO;
+
 @Repository("oDAO")
 public class ODAO extends AbstractDAO {
 
