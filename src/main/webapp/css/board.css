@@ -132,11 +132,11 @@ tr:hover {
 #notice tr:nth-child(odd) {
 	background-color: rgba(234, 98, 116, 0.05);
 }
-   
+
 #QnAlist th {
 	height: 25px;
 	font-size: 15px;
-	background-color: rgba(27, 153, 139, 0.5) 
+	background-color: rgba(27, 153, 139, 0.5);
 }
 
 #QnAlist tr:nth-child(odd) {
@@ -197,82 +197,69 @@ tr:hover {
 	outline: none;
 }
 
-#search {
+
+#boardTr #sort {
+	width: 60px;
+	background-image: url("../img/sort.png");
+	background-size: 40px 23px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+
+#logo {
 	margin: 0px auto;
 	padding: 0px;
-	padding-top: 1px;
-	width: 156px;
-	height: 23px;
-	border: 1px gray solid;
-	border-radius: 2px;
-	float: left;
+	height: 90px;
+	width: 1250px;
+	text-align: center;
+	padding-top: 45px;
 }
 
-#search input {
-	margin-left: 2px;
-	margin-right: 3px;
-	margin-top: 1px;
-	padding-left: 2px;
-	width: 116px;
-	height: 21px;
-	position: relative;
-	border-radius: 3px;
-	border: none;
-	float: left;
-}
 
-#search button {
-	border-radius: 3px;
-	margin: 0px auto;
-	padding: 0px;
-	width: 31px;
-	height: 23px;
-	background-color: white;
-	border: 1px white solid;
-	float: left;
-}
 
-#search img {
-	margin-top: 1px;
-	width: 17px;
-}
 #totalSearch img {
 	margin-top: 4px;
 	width: 32px;
 }
 
+
+
 #mainboard {
 	margin: 0px auto;
-	margin-top:15px;
+	margin-top:20px;
 	margin-bottom: 20px;
 	padding: 0px;
 	width: 850px;
 	height: 603px;
 }
 	
+	
 #totalboard {
 	margin: 0px auto;
-	margin-left: 2px;
-	margin-right: 2px;
+	margin-left: 6px;
+	margin-right: 6px;
 	padding: 0px;
-    width: 279px;
+    width: 271px;
 	height: 280px;
 	text-align: center;
 	float: left;
-	background-color: rgba(234, 98, 116, 0.3);
+	background-color: rgba(234, 98, 116, 0.4);
+	box-shadow: 7px 7px 7px rgba(234, 98, 116, 0.7);
 }
 
 #totalboard table {
 	width: 279px;
 	/*height: 275px;*/
 	border-left: none;
-	border-collapse: collapse;
+	border-collapse: collapse;	
 }
 
 #totalboard table th {
 	height: 25px;
 	font-size: 15px;
 	background-color: rgba(234, 98, 116, 0.5);
+	border-bottom: 1px rgba(234, 98, 116, 0.1) solid;
 }
 
 #totalboard table td {
@@ -281,23 +268,22 @@ tr:hover {
 	padding-bottom:2px;
 	height: 25px;
 	font-size: 13px;
-	border-bottom: 1px #f5f5f5 solid;
+	border-bottom: 1px rgba(234, 98, 116, 0.2) solid;
 }
 
 #totalboard table tr:nth-child(odd) {
 	/*background-color: rgba(156, 149, 220, 0.2); */
 }
 
+      
 #totalboard a {
 	text-decoration: none;
 	color: black;	
 }
-
 #totalboard a:link {
 	text-decoration: none;
 	color: black;
 }
-
 #totalboard a:visited {
 	text-decoration: none;
 	color: black;
@@ -307,14 +293,15 @@ tr:hover {
 /*12-12 */
 #totalboard2 {
 	margin: 0px auto;
-	margin-left: 2px;
-	margin-right: 2px;
+	margin-left: 6px;
+	margin-right: 6px;
 	padding: 0px;
-    width: 279px;
+    width: 271px;
 	height: 280px;
 	text-align: center;
 	float: left;
-	background-color: rgba(255, 120, 39, 0.3);	
+    box-shadow: 7px 7px 7px rgba(255, 120, 39, 0.7);
+	background-color: rgba(255, 120, 39, 0.4);
 }
 
 #totalboard2 table {
@@ -328,6 +315,7 @@ tr:hover {
 	height: 25px;
 	font-size: 15px;
 	background-color: rgba(255, 120, 39, 0.5);
+	border-bottom: 1px rgba(255, 120, 39, 0.1) solid;
 }
 
 #totalboard2 table td {
@@ -336,7 +324,7 @@ tr:hover {
 	padding-bottom:2px;
 	height: 25px;
 	font-size: 13px;
-	border-bottom: 1px #f5f5f5 solid;	
+	border-bottom: 1px rgba(255, 120, 39, 0.2) solid;
 }
 
 #totalboard2 table tr:nth-child(odd) {
@@ -358,14 +346,16 @@ tr:hover {
 /*12-12 */
 #totalboard3 {
 	margin: 0px auto;
-	margin-left: 2px;
-	margin-right: 2px;
+	margin-left: 6px;
+	margin-right: 6px;
 	padding: 0px;
-    width: 279px;
+    width: 271px;
 	height: 280px;
 	text-align: center;
 	float: left;
-	background-color: rgba(247, 198, 84, 0.3);	
+	box-shadow: 7px 7px 7px rgba(247, 198, 84, 0.7);
+	background-color: rgba(247, 198, 84, 0.4);
+	
 }
 
 #totalboard3 table {
@@ -379,6 +369,7 @@ tr:hover {
 	height: 25px;
 	font-size: 15px;
 	background-color: rgba(247, 198, 84, 0.5);
+	border-bottom: 1px rgba(247, 198, 84, 0.1) solid;	
 }
 
 #totalboard3 table td {
@@ -387,7 +378,7 @@ tr:hover {
 	padding-bottom:2px;
 	height: 25px;
 	font-size: 13px;
-	border-bottom: 1px #f5f5f5 solid;	
+	border-bottom: 1px rgba(247, 198, 84, 0.2) solid;
 }
 
 #totalboard3 table tr:nth-child(odd) {
@@ -410,14 +401,16 @@ tr:hover {
 /*12-12 */
 #totalboard4 {
 	margin: 0px auto;
-	margin-left: 2px;
-	margin-right: 2px;
+	margin-left: 6px;
+	margin-right: 6px;
+	margin-top: 17px;
 	padding: 0px;
-    width: 279px;
+    width: 271px;
 	height: 280px;
 	text-align: center;
 	float: left;
-	background-color: rgba(45, 158, 206, 0.3);	
+	box-shadow: 7px 7px 7px rgba(45, 158, 206, 0.7);
+	background-color: rgba(45, 158, 206, 0.4);	
 }
 
 #totalboard4 table {
@@ -431,6 +424,7 @@ tr:hover {
 	height: 25px;
 	font-size: 15px;
 	background-color: rgba(45, 158, 206, 0.5);
+	border-bottom: 1px rgba(45, 158, 206, 0.1) solid;
 }
 
 #totalboard4 table td {
@@ -439,7 +433,7 @@ tr:hover {
 	padding-bottom:2px;
 	height: 25px;
 	font-size: 13px;
-	border-bottom: 1px #f5f5f5 solid;	
+	border-bottom: 1px rgba(45, 158, 206, 0.2) solid;
 }
 
 #totalboard4 table tr:nth-child(odd) {
@@ -461,14 +455,16 @@ tr:hover {
 /*12-12 */
 #totalboard5 {
 	margin: 0px auto;
-	margin-left: 2px;
-	margin-right: 2px;
+	margin-left: 6px;
+	margin-right: 6px;
+	margin-top: 17px;
 	padding: 0px;
-    width: 279px;
+    width: 271px;
 	height: 280px;
 	text-align: center;
 	float: left;
-	background-color: rgba(27, 153, 139, 0.3);	
+	box-shadow: 7px 7px 7px rgba(27, 153, 139, 0.7);
+	background-color: rgba(27, 153, 139, 0.4);	
 }
 
 #totalboard5 table {
@@ -482,6 +478,7 @@ tr:hover {
 	height: 25px;
 	font-size: 15px;
 	background-color: rgba(27, 153, 139, 0.5);
+	border-bottom: 1px rgba(27, 153, 139, 0.1) solid;
 }
 
 #totalboard5 table td {
@@ -490,7 +487,7 @@ tr:hover {
 	padding-bottom:2px;
 	height: 25px;
 	font-size: 13px;
-	border-bottom: 1px #f5f5f5 solid;	
+	border-bottom: 1px rgba(27, 153, 139, 0.2) solid;
 }
 
 #totalboard5 table tr:nth-child(odd) {
@@ -513,14 +510,16 @@ tr:hover {
 /*12-12 */
 #totalboard6 {
 	margin: 0px auto;
-	margin-left: 2px;
-	margin-right: 2px;
+	margin-left: 6px;
+	margin-right: 6px;
+	margin-top: 17px;
 	padding: 0px;
-    width: 279px;
+    width: 271px;
 	height: 280px;
 	text-align: center;
 	float: left;
-	background-color: rgba(122, 124, 174, 0.3);	
+	box-shadow: 7px 7px 7px rgba(122, 124, 174, 0.7);
+	background-color: rgba(122, 124, 174, 0.4);	
 }
 
 #totalboard6 table {
@@ -534,6 +533,7 @@ tr:hover {
 	height: 25px;
 	font-size: 15px;
 	background-color: rgba(122, 24, 174, 0.5);
+	border-bottom: 1px rgba(122, 24, 174, 0.1) solid;
 }
 
 #totalboard6 table td {
@@ -542,7 +542,7 @@ tr:hover {
 	padding-bottom:2px;
 	height: 25px;
 	font-size: 13px;
-	border-bottom: 1px #f5f5f5 solid;	
+	border-bottom: 1px rgba(122, 24, 174, 0.2) solid;		
 }
 
 #totalboard6 table tr:nth-child(odd) {
@@ -565,7 +565,7 @@ tr:hover {
 	margin: 0px auto;
 	padding: 0px;
 	padding-top: 1px;
-	width: 136px;
+	width: 156px;
 	height: 23px;
 	border: 1px gray solid;
 	border-radius: 2px;
@@ -599,14 +599,6 @@ tr:hover {
 	width: 17px;
 }
 
-#page {
-	width: 850px;
-	padding-top: 5px;
-	height: 28px;
-	text-align: center;
-	margin : 0px auto;
-}
-
 #logo {
 	margin: 0px auto;
 	padding: 0px;
@@ -616,3 +608,49 @@ tr:hover {
 	font-size: 45pt;
 	padding-top: 50px;
 }
+
+#totalSearch {
+	margin: 0px auto;
+	margin-top:15px;
+	margin-bottom:15px;
+	padding: 0px;
+	padding-bottom: 3px;
+	width: 844px;
+	height: 60px;
+	border: 1px gray solid;
+	border-radius: 4px;	
+	box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+	border-bottom: 1px rgba(0, 0, 0, 0.1) solid;
+	
+}
+
+#totalSearch input {
+	margin-left: 5px;
+	margin-right: 3px;
+	margin-top: 2px;
+	width: 726px;
+	height: 53px;
+  	position: relative;
+	border-radius: 4px;
+	border: none;
+	font-size: 20px;
+	padding-left: 10px;
+	float: left;
+	text-align: center;
+	
+}
+
+#totalSearch button {
+	border-radius: 3px;
+	margin: 0px auto;
+	margin-top: 3px;
+	padding: 0px;
+	width: 96px;
+	height: 53px;
+/* 	background-color: rgba(169, 169, 169, 0.2); */ 
+	background-color: white;
+	border: 1px white solid;
+	float: left;
+}	
+	
+
