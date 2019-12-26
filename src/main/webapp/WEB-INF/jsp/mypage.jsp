@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>마이페이지</title>
 <link href="./css/welcome.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Gamja+Flower|Nanum+Gothic+Coding&display=swap&subset=korean" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
 function checkNick() {
@@ -54,7 +55,7 @@ function checkPW() {
 			var check = rData;
 			if(check == 1){
 				alert("비밀번호가 일치합니다. 진행하시겠습니까?");
-				$('#repw').prop('disabled', true);
+				$('#checked').prop('disabled', true);
 				$('#checkit').prop('disabled', false);
 			} else {
 				alert("잘못된 비밀번호입니다. \n다시 입력해주세요");
@@ -90,11 +91,11 @@ function checkPW() {
 			</tr>
 			<tr>
 				<th>게시글 수</th>
-				<td>${mylist.countB }</td>
+				<td>${sessionScope.countB }</td>
 			</tr>
 			<tr>
 				<th>댓글 수</th>
-				<td>${mylist.countC }</td>
+				<td>${sessionScope.countC }</td>
 			</tr>
 		</c:if>
 		</table>

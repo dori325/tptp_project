@@ -52,16 +52,16 @@ public class K_DAO extends AbstractDAO{
 	public Map<String, Object> login(Map<String, Object> map) {
 		return (Map<String, Object>) selectOne("k.login", map);
 	}
+//
+//	@SuppressWarnings("unchecked")
+//	public List<Map<String, Object>> commShow(int b_no) {
+//		return selectList("k.commShow", b_no);
+//	}
 
-	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> commShow(int b_no) {
-		return selectList("k.commShow", b_no);
-	}
-
-	public int commInsert(Map<String, Object> map) {
+	public int commUpdate(Map<String, Object> map) {
 		return (int) insert("k.commInsert", map);
 	}
-
+ 
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> mylist(String id) {
 		return (Map<String, Object>) selectOne("k.mylist", id);
@@ -75,8 +75,12 @@ public class K_DAO extends AbstractDAO{
 		return (int) update("k.pwModi", map);
 	}
 
-	public int commDelete(int b_no) {
-		return (int) delete("k.commDelete", b_no);
+	public int commDelete(int c_no) {
+		return (int) delete("k.commDelete", c_no);
+	}
+
+	public int likeUp(String c_no) {
+		return (int) update("k.likeUp", c_no);
 	}
 
 

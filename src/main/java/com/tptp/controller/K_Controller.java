@@ -55,7 +55,7 @@ public class K_Controller {
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = request.getSession();
 
-		String url = request.getParameter("url").substring(17);
+		String url = request.getParameter("url").substring(19);
 		String url2 = url.replace(".jsp", ".do");
 
 		if (session.getAttribute("id") != null && session.getAttribute("pw") != null) {
@@ -72,20 +72,28 @@ public class K_Controller {
 			if (session.getAttribute("auth") != null) {
 				session.removeAttribute("auth");
 			}
+			if (session.getAttribute("countB") != null) {
+				session.removeAttribute("countB");
+			}
+			if (session.getAttribute("countC") != null) {
+				session.removeAttribute("countC");
+			}
 
-		} else if (/* session.getAttribute("id") == null && session.getAttribute("pw") == null */
+		} else if (session.getAttribute("id") == null && session.getAttribute("pw") == null &&
 		request.getParameter("ID") != null && request.getParameter("PW") != null) {
 
 			Map<String, Object> loginmap = k_Service.login(commandMap.getMap());
 
 			if (loginmap != null) {
 				mv.addObject("loginmap", loginmap);
-				mv.addObject("countB", loginmap.get("countB"));
 				session.setAttribute("id", loginmap.get("l_id"));
 				session.setAttribute("pw", loginmap.get("l_pw"));
 				session.setAttribute("nick", loginmap.get("l_nick"));
 				session.setAttribute("auth", loginmap.get("l_auth"));
+				session.setAttribute("countB", loginmap.get("countB"));
+				session.setAttribute("countC", loginmap.get("countC"));
 				System.out.println(loginmap.get("countB"));
+				System.out.println(loginmap.get("countC"));
 			}
 		}
 		mv.setViewName("redirect:" + url2);
@@ -194,12 +202,12 @@ public class K_Controller {
 	}
 	
 	//현재: 커멘트 db에 등록
-	@RequestMapping(value = "commInsert.do", method = RequestMethod.POST)
-	public ModelAndView commInsert(HttpServletRequest request, CommandMap commandMap) throws Exception {
+	@RequestMapping(value = "commUpdate.do", method = RequestMethod.POST)
+	public ModelAndView commUpdate(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = request.getSession();
 		
-		String url = request.getParameter("url").substring(17);
+		String url = request.getParameter("url").substring(19);
 //		System.out.println(url);
 		String url2 = url.replace(".jsp", ".do?b_no=");
 //		System.out.println(url2);
@@ -208,9 +216,9 @@ public class K_Controller {
 		
 		System.out.println(request.getParameter("ccontent"));
 		
-		if (session.getAttribute("id") != null && request.getParameter("c_content") != "") {
+		if (session.getAttribute("id") != null && request.getParameter("c_content") != " ") {
 			commandMap.put("nick", session.getAttribute("nick"));
-			int result = k_Service.commInsert(commandMap.getMap());
+			int result = k_Service.commUpdate(commandMap.getMap());
 			if (result == 0) {
 				System.out.println("실패했습니다.");
 			} else if (result == 1) {
@@ -221,34 +229,64 @@ public class K_Controller {
 	}
 	
 	//댓글 창 불러오기
-	@RequestMapping(value = "commInsert.do")
-	public ModelAndView commInsert(HttpServletRequest request, int b_no) throws Exception {
+	@RequestMapping(value = "likeUp.do")
+	public @ResponseBody String likeUp(HttpServletRequest request, String cno, String likeCount) throws Exception {
+		HttpSession session = request.getSession();
+		
+		System.out.println(cno);
+		System.out.println(likeCount);
+		System.out.println("여기 저 있어요22");
+//		System.out.println(c_no);
+		int result = 0;
+		int likeUp = 0;
+		
+		if (session.getAttribute("id") != null) {
+			result = k_Service.likeUp(cno);
+			likeUp = Integer.parseInt(likeCount) + 1;
+			
+			System.out.println(result);
+			System.out.println(likeUp);
+		} else {
+			likeUp = 0;
+			System.out.println("여기 저 있어요");
+		}
+		
+		System.out.println("아뇨, 저 여기 있어요");
+		return String.valueOf(likeUp);			
+	}
+//	//댓글 창 불러오기
+//	@RequestMapping(value = "commInsert.do")
+//	public ModelAndView commInsert(HttpServletRequest request, int b_no) throws Exception {
+//		ModelAndView mv = new ModelAndView();
+//		HttpSession session = request.getSession();
+//		
+//		System.out.println(b_no);
+//			List<Map<String, Object>> mapcomm= k_Service.commShow(b_no);
+//			if (mapcomm.size() > 0 ) {
+//				mv.addObject("mapcomm", mapcomm);
+//			}
+//			System.out.println(mapcomm.get(0).get("b_no"));
+//		return mv;
+//	}
+	
+	//댓글 삭제
+	@RequestMapping(value = "commDelete.do", method = RequestMethod.POST)
+	public ModelAndView commDelete(HttpServletRequest request, int c_no, int b_no) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = request.getSession();
 		
-		System.out.println(b_no);
-			List<Map<String, Object>> mapcomm= k_Service.commShow(b_no);
-			if (mapcomm.size() > 0 ) {
-				mv.addObject("mapcomm", mapcomm);
-			}
-			System.out.println(mapcomm.get(0).get("b_no"));
-		return mv;
-	}
-	
-	//댓글 삭제
-	@RequestMapping(value = "commDelete.do")
-	public ModelAndView commDelete(HttpServletRequest request, int b_no) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		String url = request.getParameter("url").substring(17);
+		String url = request.getParameter("url").substring(19);
 		System.out.println(url);
 		String url2 = url.replace(".jsp", ".do?b_no=");
 		
-		int result = k_Service.commDelete(b_no);
-		if (result == 1) {
-			mv.setViewName("redirect:" + url2 + b_no);
-		} else if(result == 0) {
-			mv.setViewName(url2 + b_no);
-		}
+			int result = k_Service.commDelete(c_no);
+			if (result == 1) {
+				mv.setViewName("redirect:" + url2 + b_no);
+				System.out.println(url2);
+			} else if(result == 0) {
+				mv.setViewName(url2 + b_no);
+				System.out.println("url2");
+			}
 		return mv;
 	}
 

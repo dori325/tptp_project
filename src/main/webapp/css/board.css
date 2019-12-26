@@ -9,6 +9,7 @@ body::-webkit-scrollbar {
 	padding: 0px;
 	width: 1250px;
 	height: auto;
+	font-family: "Nanum Gothic Coding", monospace;
 }
 
 #listTop {

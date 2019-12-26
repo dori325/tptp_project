@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>질문게시판</title>
 <link href="./css/board.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Gamja+Flower|Nanum+Gothic+Coding&display=swap&subset=korean" rel="stylesheet">
 </head>
 <body>
 <div id="listboard">
@@ -36,8 +37,9 @@
 			<tr id="boardTr">
 				<td id="comment">${i.c_count }</td>
 				<td id="sort">${i.b_cate2 }</td>
-				<td id="titleAl"><a href="detail.do?b_no=${i.b_no }"
-					id="title">${i.b_title }</a></td>
+				<td id="titleAl"><a href="detail.do?b_no=${i.b_no }" id="title">${i.b_title }
+				<input type="hidden" name="b_cate1" value="q">
+				<input type="hidden" name="b_no" value="${i.b_no }"></a></td>
 				<td id="name">${i.l_nick }</td>
 				<td id="date">${i.b_date }</td>
 				<td id="count">${i.b_count }</td>
@@ -52,8 +54,8 @@
 			<tr id="boardTr">
 				<td id="comment">${r.c_count }</td>
 				<td id="sort">${r.b_cate2 }</td>
-				<td id="titleAl"><a href="detail.do?b_no=${r.b_no }"
-					id="title">${r.b_title }</a></td>
+				<td id="titleAl"><a href="detail.do?b_no=${r.b_no }" id="title">${r.b_title }
+				<input type="hidden" name="b_no" value="${r.b_no }"></a></td>
 				<td id="name">${r.l_nick }</td>
 				<td id="date">${r.b_date }</td>
 				<td id="count">${r.b_count }</td>

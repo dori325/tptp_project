@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+<link href="https://fonts.googleapis.com/css?family=Gamja+Flower|Nanum+Gothic+Coding&display=swap&subset=korean" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
 function checkID() {
@@ -22,7 +23,7 @@ function checkID() {
 		success : function(rData,textStatus, xhr){
 			var check = rData;
 			if(check == 0){
-				alert("사용가능한 아이디입니다. 진행하시겠습니까?");
+				alert("사용가능한 아이디입니다. 진행하시겠습니까?"); 
 				$('#checkID').prop('disabled', true);
 				$('#insertNick').focus();
 			} else {

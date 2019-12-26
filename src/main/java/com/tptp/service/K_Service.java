@@ -23,9 +23,9 @@ public interface K_Service {
 
  	Map<String, Object>login(Map<String, Object> map) throws Exception;
 
-	List<Map<String, Object>> commShow(int b_no) throws Exception;
+//	List<Map<String, Object>> commShow(int b_no) throws Exception;
 
-	int commInsert(Map<String, Object> map) throws Exception;
+	int commUpdate(Map<String, Object> map) throws Exception;
 
 	Map<String, Object> mylist(String id) throws Exception;
 
@@ -33,7 +33,9 @@ public interface K_Service {
 
 	int pwModi(Map<String, Object> map) throws Exception;
 
-	int commDelete(int b_no) throws Exception;
+	int commDelete(int c_no) throws Exception;
+
+	int likeUp(String c_no) throws Exception;
 	
 
 	

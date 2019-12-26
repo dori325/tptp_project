@@ -59,15 +59,15 @@ public class K_ServiceImp implements K_Service {
 	public Map<String, Object> login(Map<String, Object> map) throws Exception {
 		return (Map<String, Object>) k_DAO.login(map);
 	}
+//
+//	@Override
+//	public List<Map<String, Object>> commShow(int b_no) throws Exception {
+//		return k_DAO.commShow(b_no);
+//	}
 
 	@Override
-	public List<Map<String, Object>> commShow(int b_no) throws Exception {
-		return k_DAO.commShow(b_no);
-	}
-
-	@Override
-	public int commInsert(Map<String, Object> map) throws Exception {
-		return k_DAO.commInsert(map);
+	public int commUpdate(Map<String, Object> map) throws Exception {
+		return k_DAO.commUpdate(map);
 	}
 
 	@Override
@@ -86,9 +86,14 @@ public class K_ServiceImp implements K_Service {
 	}
 
 	@Override
-	public int commDelete(int b_no) throws Exception {
-		return (int) k_DAO.commDelete(b_no);
+	public int commDelete(int c_no) throws Exception {
+		return (int) k_DAO.commDelete(c_no);
 	}
+
+	@Override
+	public int likeUp(String c_no) throws Exception {
+		return k_DAO.likeUp(c_no);
+	} 
 	
 
 

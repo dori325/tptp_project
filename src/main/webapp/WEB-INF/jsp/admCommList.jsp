@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>관리자 운영 게시판</title>
 </head>
+<link href="https://fonts.googleapis.com/css?family=Gamja+Flower|Nanum+Gothic+Coding&display=swap&subset=korean" rel="stylesheet">
 <link href="./css/board.css" rel="stylesheet" />
 <body>
 	<div id="listboard">
@@ -26,8 +27,9 @@
 			<c:forEach items="${list }" var="i">
 				<tr>
 					<td id="comment">${i.c_count }</td>
-					<td id="titleAl"><a href="detail.do?b_no=${i.b_no }"
-						id="title">${i.b_title }</a></td>
+					<td id="titleAl"><a href="detail.do?b_no=${i.b_no }" id="title">${i.b_title }
+					<input type="hidden" name="b_no" value="${i.b_no }">
+					</a></td>
 					<td id="name">${i.l_nick }</td>
 					<td id="date">${i.b_date }</td>
 				</tr>
@@ -53,7 +55,7 @@
 					</button>
 				</div>
 			</form>
-			<a id="writelink" href="write.do?b_cate1=${b_cate1 }">글쓰기</a>
+			<a id="writelink" href="write.do?b_cate1=${b_cate1 }">글쓰기</a> 
 		</div>
 		<%@ include file="bottonmenu.jsp"%>
 	</div>
