@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.stereotype.Repository;
 
 import com.common.dao.AbstractDAO;
+
 @Repository("oDAO")
 public class ODAO extends AbstractDAO {
 
@@ -28,6 +29,11 @@ public class ODAO extends AbstractDAO {
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> brand3(Map<String, Object> map) {
 		return selectList("o.brand3", map);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> commdetail(Map<String, Object> map) {
+		return (List<Map<String, Object>>) selectList("o.commdetail", map);
 	}
 
 	@SuppressWarnings("unchecked")
