@@ -6,6 +6,7 @@
 	height: 70px;
     width: 1250px;
 	padding-top: 5px;
+	border-bottom: 1px dashed;
 }
 #topmenu ul, #topmenu li {
 	margin: 0px;

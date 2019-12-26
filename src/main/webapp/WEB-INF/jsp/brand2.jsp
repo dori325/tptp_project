@@ -27,7 +27,9 @@
 				<button id="pensort" onclick="location.href='brand2.do?b_cate2=만년필'">만년필</button>
 				<button id="pensort" onclick="location.href='brand2.do?b_cate2=형광펜'">형광펜</button>
 				<button id="pensort" onclick="location.href='brand2.do?b_cate2=기타'">기타</button>
+				<c:if test="${sessionScope.id ne null }">
 				<a id="writelink" href="write.do?b_cate1=${b_cate1 }">글쓰기</a>
+			</c:if>
 			</div>
 	<form action="brand2.do">
 			<table id="brand">
@@ -111,7 +113,9 @@
 				<input placeholder="검색하세요">
 				<button>검색</button>
 				
-					<a id="writelink" href="write.do?b_cate1=${b_cate1 }" >글쓰기</a>
+					<c:if test="${sessionScope.id ne null }">
+				<a id="writelink" href="write.do?b_cate1=${b_cate1 }">글쓰기</a>
+			</c:if>
 					
 			</div>
 		</div>

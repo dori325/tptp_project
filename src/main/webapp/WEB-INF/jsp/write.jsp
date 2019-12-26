@@ -60,6 +60,7 @@
 			</c:if>
 			<input type="text" name="b_title" placeholder="제목을 입력하세요"><br>
 			<textarea id="summernote" name="b_content"></textarea><br>
+			<input type="hidden" name="l_nick" value="${sessionScope.nick }"/>
 			<button id="writebutton" type="submit">글쓰기</button>
 		</div>
 	</div>
