@@ -1,0 +1,162 @@
+@charset "UTF-8";
+/* id 참고
+detail - 전체 영역
+detailTop - 작성자 정보
+detailMid - 내용
+detailBot - 목록, 이전/다음, 추천등
+ */
+#detailbody{
+	margin: 0px auto;
+	padding: 0px;
+	width: 1250px;
+	height: auto;
+	font-family: "Nanum Gothic Coding", monospace;
+}
+#detailTop{
+	margin: 0px auto;
+	padding: 0px;
+	padding-top: 10px;
+	width: 850px;
+	text-align: center;
+	border-bottom: 0.5pt gray dashed;
+	
+}
+#detailTitle {
+	height: auto;
+	width: 850px;
+	border-bottom: 0.5pt gray dashed;
+	background-color: rgba(45, 158, 206, 0.5);
+}
+#detailTitle table{
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
+#title{
+	text-align: left;
+	width: 660px;
+	font-size: 14pt;
+	font-weight: bold;
+}
+#detailTitle td{
+	padding-left: 5px;
+	padding-right: 5px;
+}
+#detailTitle form{
+	display: inline;
+}
+
+#detailStatus{
+	padding-bottom: 5px;
+	width: 850px;
+	background-color: rgba(45, 158, 206, 0.5);
+}
+#detailStatus td{
+	padding-left: 15px;
+	padding-right: 15px;
+}
+#id{
+	font-weight: bold;
+	width: 100px;
+}
+#ip{
+	font-size: small;
+	text-align: left;
+	width: 200px;
+}
+#modidate{
+	font-size: small;
+	text-align: right;
+	width: 190px;
+}
+#date{
+	font-size: small;
+	text-align: right;
+	width: 190px;
+}
+#count{
+	font-size: small;
+	width: 70px;
+	text-align: right;
+}
+#count img{
+	vertical-align: middle;
+	height: 14px;
+	padding-right: 5px;
+}
+#detailMid{
+	margin: 0 auto;
+	width: 830px;
+	padding: 10px;
+	text-align : left;
+	height: auto;
+	border-bottom: 0.5pt gray dashed;
+}
+#detailBot{
+	margin: 0 auto;
+	width: 850px;
+}
+#detailBot td{
+	width: 283px;
+}
+#list{
+	padding: 5px;
+	text-align: left;
+	vertical-align: top;
+}
+#like{
+	padding: 5px;
+	text-align: center;
+	vertical-align: middle;
+}
+#next{
+	padding: 5px;
+	vertical-align: top;
+	text-align: right;
+}
+
+#cate-wrap {
+	width: 100%;
+	margin: 10px auto;
+	padding-top: 5px;
+	position: relative;
+}
+#cate-img {
+	width: 100%;
+	vertical-align: middle;
+}
+#cate-text {
+	padding: 5px 5px;
+	width: 80%;
+	font-size: small;
+	text-align: center;
+	position: absolute;
+	top: 47%;
+	left: 50%;
+	transform: translate( -50%, -50% );
+}
+#like-wrap {
+	width: 100%;
+	margin: 10px auto;
+	position: relative;
+}
+
+#like-img {
+	width: 100%;
+	vertical-align: middle;
+}
+#like-img img{
+	width: 70px;
+	height: 70px;
+	border: 1px solid;
+}
+
+#like-text {
+	padding: 5px 10px;
+	font-size: small;
+	text-align: center;
+	position: absolute;
+	top: 56%;
+	left: 54%;
+	transform: translate( -50%, -50% );
+}
