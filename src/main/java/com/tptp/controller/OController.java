@@ -79,15 +79,9 @@ public class OController {
 			
 			mv.addObject("page", page);
 			
-			mv.addObject("B1total", brand1.get(0).get("B1total"));
-			mv.addObject("pencil", brand1.get(0).get("pencil"));
-			mv.addObject("sharp", brand1.get(0).get("sharp"));
-			mv.addObject("ballpen", brand1.get(0).get("ballpen"));
-			mv.addObject("fountain", brand1.get(0).get("fountain"));
-			mv.addObject("hilight", brand1.get(0).get("hilight"));
-			mv.addObject("etc", brand1.get(0).get("etc"));
+			mv.addObject("count", brand1.get(0).get("count"));
 			
-			System.out.println(brand1.get(0).get("B1total"));
+			System.out.println(brand1.get(0).get("count"));
 		}
 
 		return mv;
