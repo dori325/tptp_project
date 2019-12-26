@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>질문게시판</title>
 <link href="./css/board.css" rel="stylesheet" />
+<link href="./css/page.css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css?family=Gamja+Flower|Nanum+Gothic+Coding&display=swap&subset=korean" rel="stylesheet">
 </head>
 <body>
@@ -75,6 +76,50 @@
 				</div>
 			</form>
 			<a id="writelink" href="write.do?b_cate1=q">글쓰기</a>
+		</div>
+			<div id="page">
+			<c:if test="${B1total ne null}">
+				<%@include file="page.jsp"%>
+				<!-- 페이지 찍기 -->
+				<div id="pagepre">
+					<c:if test="${page gt 10 }">
+						<div id="pre10" onclick="location.href='QnAlist.do?page=${page - 10 }'">
+							◀
+						</div>
+					</c:if>
+					<c:if test="${page gt 1 }">
+						<div id="pre" onclick="location.href='QnAlist.do?page=${page - 1 }'">
+							◁
+						</div>
+					</c:if>
+				</div>
+				<div id="pagenum">
+					<c:forEach begin="${startPage }" end="${endPage }" var="i">
+						<c:if test="${i eq page }">
+							<div id="curpage">
+								${i }
+							</div>
+						</c:if>
+						<c:if test="${i ne page }">
+							<div id="ncurpage" onclick="location.href='QnAlist.do?page=${i }'">
+								${i }
+							</div>
+						</c:if>
+					</c:forEach>
+				</div>
+				<div id="pagenex">
+					<c:if test="${page lt totalPage }">
+						<div id="nex" onclick="location.href='QnAlist.do?page=${page + 1 }'">
+							▷
+						</div>
+					</c:if>
+					<c:if test="${page lt totalPage - 9 }">
+						<div id="nex10" onclick="location.href='QnAlist.do?page=${page + 10  }'">
+							▶
+						</div>
+					</c:if>
+				</div>
+			</c:if>
 		</div>
 <%@ include file="bottonmenu.jsp" %>
 	</div>
