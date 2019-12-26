@@ -7,17 +7,14 @@
 <meta charset="UTF-8">
 <title>글쓰기</title>
 <!-- include libraries(jQuery, bootstrap) -->
-<link
-	href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
-	rel="stylesheet">
 <script
 	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script
 	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 
 <!-- include summernote css/js -->
-<link href="./dist/summernote.css" rel="stylesheet" />
-<script src="./dist/summernote.js"></script>
+<link href="./dist/summernote-lite.css" rel="stylesheet" />
+<script src="./dist/summernote-lite.js"></script>
 
 <script src="./dist/lang/summernote-ko-KR.js"></script>
 
@@ -38,6 +35,9 @@
 <body>
 	<c:import url="topmenu.jsp" />
 	<form action="updateInsert.do" enctype="multipart/form-data" method="post">
+	<div id="write">
+		<c:import url="LsideB.jsp"/>		
+		<c:import url="RsideB2.jsp"/>
 		<div id="writetitle">
 			<input type="hidden" name="b_no" value="${update.b_no }">
 			<select name="b_cate1">
@@ -63,6 +63,7 @@
 			<textarea id="summernote" name="b_content">${update.b_content }</textarea>
 			
 			<button id="writebutton" type="submit">수정하기</button>
+		</div>
 		</div>
 	</form>
 	<c:import url="bottonmenu.jsp" />

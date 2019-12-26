@@ -7,6 +7,13 @@
 <meta charset="UTF-8">
 <title>디테일</title>
 <c:import url="topmenu.jsp"/>
+<script type="text/javascript">
+$(function(){
+  $('#like-img').likeclick(function(){
+    $('#like-img').
+  });
+});
+</script>
 </head>
 <link href="./css/detail.css" rel="stylesheet" />
 <body>
@@ -52,6 +59,11 @@
 						<tr>
 							<td id="id" colspan="1"> ${detail.l_nick }</td>
 							<td id="ip">192.168.0.1</td>
+							<td id="modidate">
+							<c:if test="${detail.b_date ne detail.b_modidate }">
+								마지막 수정 ${detail.b_modidate }
+							</c:if>
+							</td>
 							<td id="date">${detail.b_date }</td>
 							<td id="count"><img alt="" src="./img/eye2.png">${detail.b_count }</td>
 						</tr>
