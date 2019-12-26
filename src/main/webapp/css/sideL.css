@@ -11,6 +11,7 @@
 	border: 1px gray solid;
 	float: left;
 	text-align: center;
+	font-family: "Nanum Gothic Coding", monospace;
 }
 
 #login #ID {
@@ -54,20 +55,25 @@
 
 #login p {
 	margin: 0px auto;
-	padding: 5px;
-	width: 100px;
-	font-size: small;
+	padding: 0px;
+	width: 150px;
+	font-size: 12px;
+/* 	background-color: red; */
 }
 
 #login a {
 	color: black;
-	font-size: 10px;
+	font-size: 12px;
 	text-decoration: none;
 }
 
 #login a:visited {
 	color: black;
-	font-size: 10px;
+	font-size: 12px;
 	text-decoration: none;
 	text-align: left;
+}
+
+#mypage:hover {
+	color: rgb(94, 204, 152)
 }
