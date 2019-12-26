@@ -4,6 +4,8 @@
 	margin: 0px auto;
 	padding: 0px;
 	width: 850px;
+	font-weight: normal;
+	font-family: "Nanum Gothic Coding", monospace;
 }
 
 #commP {
@@ -30,75 +32,122 @@
 	color: rgba(0, 0, 0, 0.1);
 }
 
-#commL th {
+#commL tr {
+/* 	margin: 0px auto; */
+/* 	padding-top: 5px; */
+	width: 850px;
+/* 	background-color: purple; */
+}
+
+#commL td {
+/* 	margin: 0px auto; */
 	padding-top: 5px;
+/* 	width: 850px; */
 	height: 30px;
-	background-color: rgba(0, 0, 0, 0.12);
 }
 
 #commL #nick {
-	width: 120px;
+	padding-top: 8px;
+	width: 165px;
 	float: left;
+	text-align: left;
+	font-weight: normal;
+/* 	background-color: red; */
+	background-color: rgba(0, 0, 0, 0.12);
 }
 
 #commL #ip {
 	padding-top: 8px;
-	height: 27px;
-	width: 120px;
+/* 	height: 27px; */
+	width: 80px;
 	float: left;
 	text-align: left;
 	color: rgba(0, 0, 0, 0.5);
 	font-size: 14px;
+/* 	background-color: green; */
+	background-color: rgba(0, 0, 0, 0.12);
 }
 
 #commL #date {
 	padding-top: 8px;
-	height: 27px;
-	width: 470px;
+/* 	height: 27px; */
+	width: 450px;
 	float: left;
 	text-align: right;
 	color: rgba(0, 0, 0, 0.5);
 	font-size: 14px;
+/* 	background-color: blue; */
+	background-color: rgba(0, 0, 0, 0.12);
 }
 
 #commL #commLike {
 	width: 70px;
+	padding-top: 5px;
+	padding-bottom: 4px;
+/* 	padding-top: 8px; */
+/* 	height: 27px; */
 	float: left;
+/* 	background-color: green; */
+	background-color: rgba(0, 0, 0, 0.12);
 }
 
 #commL #comm {
 	padding-top: 8px;
-	height: 27px;
-	width: 60px;
+/* 	height: 27px; */
+	width: 70px;
 	float: left;
 	font-size: 13px;
+/* 	background-color: black; */
+	background-color: rgba(0, 0, 0, 0.12);
 }
 
-#commL #commLike button {
+#but {
 	margin: 0px auto;
 	padding: 0px;
+	margin-left:25px;
 	width: 30px;
-	height: 30px;
-	float: right;
+	height: 32px;
+/* 	float: right; */
 	background-color: rgba(255, 255, 255, 0);
-	background-image: url("../images/comm_heart.png");
-	background-repeat: no-repeat;
+/* 	background-image: url("../img/comm_heart.png"); */
+/* 	background-repeat: no-repeat; */
 	background-position: center 0px 0px;
-	background-size: 28px;
+	border: none;
+}
+
+#commL #commLike img{
+	margin: 0px auto;
+	padding: 0px;
 	border: none;
 }
 
 #commL #commContent {
-	width: 850px;
-	height: auto;
+	width: 745px;
+	min-height: 30px;
 	float: left;
+	text-align: left;
+	font-weight: normal;
 	font-size: 15px;
+/* 	background-color: gray;	 */
 	border-bottom: 1px rgba(0, 0, 0, 0.12) solid;
+	margin-bottom: 10px;
+}
+#buttontd {
+	width: 45px;
+	float: left;
+/* 	background-color: yellow;	 */
+/* 	border: 1px solid; */
 }
 
-#commL #commContent button {
-	margin: 0px;
+#up {
+	margin: 0px auto;
 	padding: 0px;
-	width: 30px;
+	width: 45px;
 	height: 30px;
 	float: right;
+	border: none;
+}	
+
+#up:hover {
+	border: 2px rgba(94, 204, 152, 0.7) solid;
+}	
