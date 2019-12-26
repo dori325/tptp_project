@@ -2,10 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="k">
 
-	<select id="adlist" parameterType="Integer" resultType="hashmap">
-		SELECT *,(SELECT COUNT(*) FROM boardview WHERE b_cate1 = 'ad') AS ADcount 
+	<select id="adlist" parameterType="hashmap" resultType="hashmap">
+		SELECT *,
+		(SELECT COUNT(*) FROM boardview WHERE b_cate1 = 'ad') AS ADtotal
 		FROM boardview WHERE b_cate1 = 'ad'
-<!-- 		LIMIT #{page }, 10 -->
+		LIMIT #{page }, 10
 	</select>
 
 	<select id="Qlist" parameterType="hashmap" resultType="hashmap">
@@ -19,7 +20,7 @@
 		(SELECT COUNT(*) FROM boardview WHERE b_cate1='q' AND b_cate2='기타') AS '기타'
 		FROM boardview WHERE b_cate1 = 'q' 
 		<if test="b_cate2 != null">AND b_cate2=#{b_cate2}</if>
-<!-- 		LIMIT #{page }, 10 -->
+		LIMIT #{page }, 10
 	</select>
 
 	<select id="adSearch" parameterType="hashmap" resultType="hashmap">
@@ -81,7 +82,7 @@
 		UPDATE login SET l_pw=#{pw2} WHERE l_id=#{id}
 	</update>
 	
-	<select id="likeUp" parameterType="String" resultType="Integer">
+	<update id="likeUp" parameterType="String">
 		UPDATE comment SET c_like=c_like+1 WHERE c_no=#{c_no}
-	</select>
+	</update>
 </mapper>

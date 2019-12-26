@@ -11,8 +11,8 @@ import com.common.dao.AbstractDAO;
 public class K_DAO extends AbstractDAO{
 
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> admOper() {
-		 return selectList("k.adlist");
+	public List<Map<String, Object>> admOper(Map<String, Object> map) {
+		 return selectList("k.adlist", map);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -81,6 +81,10 @@ public class K_DAO extends AbstractDAO{
 
 	public int likeUp(String c_no) {
 		return (int) update("k.likeUp", c_no);
+	}
+
+	public int commModi(Map<String, Object> map) {
+		return (int) update("k.commModi", map);
 	}
 
 

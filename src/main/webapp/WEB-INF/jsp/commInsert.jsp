@@ -10,30 +10,37 @@
 <link href="https://fonts.googleapis.com/css?family=Gamja+Flower|Nanum+Gothic+Coding&display=swap&subset=korean" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
-function likeUp() {
-	var like = $('#likeCount').val();
-	var c_no = $('#cno').val();
-	var allData = { "likeCount": like, "cno": c_no };
+function commModi() {
+	var comment = $('#commCon').val();
+	var c_no = $('#c_no').val();	
+	var b_no = $('#b_no').val();
+	alert("여기 들어옴");
 	
-	$.ajax({
-		type : 'POST',
-		data : { "likeCount": like, "cno": c_no },
-		dataType : 'text',
-		url : 'likeUp.do',
-		success : function(rData,textStatus, xhr){
-			var check = rData;
-			if(check != 0){
-				$('#comm').html(check);
-				
-			} else if(check = 0){
-				alert("좋아요 안 올라감");
-			}
-		},
-		error : function(xhr,status,e){
-			alert("에러가 발생했습니다.");
-		}
-	});
+	if ($('#l_nick').val() == $('#s_nick').val()) {
+		$('#Con').prop('readonly', false);
+		$('#Con').focus(); //성공함 but c_no가 같은 애를 가져와야함
+	alert("여기 들어옴22");
 	return false;
+	}
+	
+// 	$.ajax({
+// 		type : 'POST',
+// 		data : { "comment": commCon, "c_no": c_no, "b_no": b_no },
+// 		dataType : 'text',
+// 		url : 'commModi.do',
+// 		success : function(rData,textStatus, xhr){
+// 			var check = rData;
+// 			if(check != 0){
+				
+// 			} else if(check = 0){
+// 				alert("좋아요 안 올라감");
+// 			}
+// 		},
+// 		error : function(xhr,status,e){
+// 			alert("에러가 발생했습니다.");
+// 		}
+// 	});
+// 	return false;
 }
 </script>
 <body>
@@ -57,20 +64,27 @@ function likeUp() {
 			<td id="nick">${c.l_nick }</td>
 			<td id="ip"> <%-- ${c.l_ip } --%></td>
 			<td id="date">${c.c_date }</td>
-			<td id="commLike"><button type="submit" id="but" onclick="likeUp()"><img style="width: 28px;" alt="추천" src="./img/comm_heart.png"></button></td>
-			<td id="comm" >${c.c_like }
-			<input style="width: 0px;" type="hidden" id="likeCount" value="${c.c_like }">
-			<input style="width: 0px;" type="hidden" id="cno" value="${c.c_no }">
-			</td>
+			<td id="commLike"><form action="likeUp.do" method="post">
+				<button type="submit" id="but"><img style="width: 28px;" alt="추천" src="./img/comm_heart.png"></button>
+				<input style="width: 0px;" type="hidden" name="b_no" value="${param.b_no }">
+				<input style="width: 0px;" type="hidden" name="cno" value="${c.c_no }">
+				<input style="width: 0px;" type="hidden" name="likeCount" value="${c.c_like }">
+				<input style="width: 0px;" type="hidden" name="url" value="${pageContext.request.requestURI}">
+			</form></td>
+			<c:if test="${c.c_like != null || likeUp != null}">
+				<td id="comm" >${c.c_like }${likeUp }</td>
+			</c:if>
 		</tr>
 		<tr>
-			<td id="commContent">${c.c_content }</td>
+			<td id="commContent"><input readonly="readonly" type="text" name="commCon" id="Con" placeholder="${c.c_content }" onchange="return commModi();"></td>
 			<c:if test="${sessionScope.nick == c.l_nick}">
 			<td id="buttontd">
-				<input style="width: 0px;" type="hidden" name="commModi">
 				<input style="width: 0px;" type="hidden" name="b_no" value="${c.b_no }">
+				<input style="width: 0px;" type="hidden" name="c_no" value="${c.c_no }">
+				<input style="width: 0px;" type="hidden" name="l_nick" value="${c.l_nick }">
+				<input style="width: 0px;" type="hidden" name="s_nick" value="${sessionScope.nick }">
 				<input style="width: 0px;" type="hidden" name="url" value="${pageContext.request.requestURI}">
-				<button id="up">수정</button>
+				<button name="modi" id="up" onclick="return commModi()">수정</button>
 			</td>
 			<c:if test="${sessionScope.nick == c.l_nick || sessionScope.auth > 3}">
 			<td id="buttontd">
@@ -87,7 +101,6 @@ function likeUp() {
 		</tr>
 	</c:forEach>
 	</table>
-			<hr>
 <!-- </form> -->
 </div>
 </body>
