@@ -59,7 +59,7 @@
 			<a id="writelink" href="write.do?b_cate1=${b_cate1 }">글쓰기</a> 
 		</div>
 			<div id="page">
-			<c:if test="${B1total ne null}">
+			<c:if test="${count ne null}">
 				<%@include file="page.jsp"%>
 				<!-- 페이지 찍기 -->
 				<div id="pagepre">
