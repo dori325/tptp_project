@@ -166,10 +166,13 @@ public class OController {
 		int num = Integer.parseInt(request.getParameter("b_no"));
 		oService.countUp(num);
 		
-		System.out.println(commdetail.get(0).get("c_content"));
+		if (commdetail.size() > 0) {
+			mv.addObject("commdetail", commdetail);			
+			System.out.println(commdetail.get(0).get("c_content"));
+		}
+		
 
 		mv.addObject("detail", detail);
-		mv.addObject("commdetail", commdetail);
 		
 		return mv;
 	}

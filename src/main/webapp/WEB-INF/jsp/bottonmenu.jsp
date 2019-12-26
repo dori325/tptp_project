@@ -10,30 +10,29 @@ body{
 #bottonmenu{
 	position: static;
     bottom:0;
-    width:1250px;
+    width:1300px;
     height:50px;   
-    background-color: #DEDEDE;
+    background: rgba(0,0,0,0.7);
     margin: 0 auto;
 }
 #bottonmenu ul,  li {
 	margin: 0px;
 	padding: 0px;
 	text-align: center;
-	font-size: 10pt;
 }
 
 #bottonmenu li {
 	display: inline-block;
 	padding: 0px 10px;
-	color: black;
+	color: white;
 }
 #bottonmenu a:link {
 	text-decoration: none;
-	color: black;	
+	color: white;	
 }
 #bottonmenu a:visited {
 	text-decoration: none;
-	color: black;	
+	color: white;	
 }
 
 #space{
@@ -45,12 +44,9 @@ body{
 	</div>
 	<div id="bottonmenu">
 		<ul>
-			<li><a href="./ddd.jsp">개인정보처리방침</a></li>
-			<li><a href="./ddd.jsp">이용약관</a></li>
-			<li><a href="./ddd.jsp">책임의 한계와 법적고지</a></li>
-			<li><a href="./ddd.jsp">청소년 보호정책</a></li>
-		</ul>
-		<ul>
-			<li>TPTP.COM</li>
+			<li><a href="./ddd.jsp">법적고지1</a></li>
+			<li><a href="./ddd.jsp">법적고지2</a></li>
+			<li><a href="./ddd.jsp">법적고지3</a></li>
+			<li><a href="./ddd.jsp">법적고지4</a></li>
 		</ul>
 	</div>

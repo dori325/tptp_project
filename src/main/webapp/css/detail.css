@@ -10,6 +10,7 @@ detailBot - 목록, 이전/다음, 추천등
 	padding: 0px;
 	width: 1250px;
 	height: auto;
+	font-family: "Nanum Gothic Coding", monospace;
 }
 #detailTop{
 	margin: 0px auto;
@@ -61,12 +62,17 @@ detailBot - 목록, 이전/다음, 추천등
 #ip{
 	font-size: small;
 	text-align: left;
-	width: 300px;
+	width: 200px;
+}
+#modidate{
+	font-size: small;
+	text-align: right;
+	width: 190px;
 }
 #date{
 	font-size: small;
 	text-align: right;
-	width: 280px;
+	width: 190px;
 }
 #count{
 	font-size: small;
@@ -142,6 +148,7 @@ detailBot - 목록, 이전/다음, 추천등
 #like-img img{
 	width: 70px;
 	height: 70px;
+	border: 1px solid;
 }
 
 #like-text {

@@ -19,7 +19,9 @@
 
 			<div id="listTop">
 				<h2>공지사항</h2>
+				<c:if test="${sessionScope.id ne null }">
 				<a id="writelink" href="write.do?b_cate1=${b_cate1 }">글쓰기</a>
+			</c:if>
 			</div>
 			<table id="notice">
 				<tr>
@@ -90,7 +92,9 @@
 			<div id="listBottom">
 				<input placeholder="검색하세요">
 				<button>검색</button>
+				<c:if test="${sessionScope.id ne null }">
 				<a id="writelink" href="write.do?b_cate1=${b_cate1 }">글쓰기</a>
+			</c:if>
 			</div>
 		</div>
 

@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <title>질문게시판</title>
 <link href="./css/board.css" rel="stylesheet" />
+<link href="./css/page.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Gamja+Flower|Nanum+Gothic+Coding&display=swap&subset=korean" rel="stylesheet">
 </head>
 <body>
 <div id="listboard">
@@ -36,8 +38,9 @@
 			<tr id="boardTr">
 				<td id="comment">${i.c_count }</td>
 				<td id="sort">${i.b_cate2 }</td>
-				<td id="titleAl"><a href="detail.do?b_no=${i.b_no }"
-					id="title">${i.b_title }</a></td>
+				<td id="titleAl"><a href="detail.do?b_no=${i.b_no }" id="title">${i.b_title }
+				<input type="hidden" name="b_cate1" value="q">
+				<input type="hidden" name="b_no" value="${i.b_no }"></a></td>
 				<td id="name">${i.l_nick }</td>
 				<td id="date">${i.b_date }</td>
 				<td id="count">${i.b_count }</td>
@@ -52,8 +55,8 @@
 			<tr id="boardTr">
 				<td id="comment">${r.c_count }</td>
 				<td id="sort">${r.b_cate2 }</td>
-				<td id="titleAl"><a href="detail.do?b_no=${r.b_no }"
-					id="title">${r.b_title }</a></td>
+				<td id="titleAl"><a href="detail.do?b_no=${r.b_no }" id="title">${r.b_title }
+				<input type="hidden" name="b_no" value="${r.b_no }"></a></td>
 				<td id="name">${r.l_nick }</td>
 				<td id="date">${r.b_date }</td>
 				<td id="count">${r.b_count }</td>
@@ -73,6 +76,50 @@
 				</div>
 			</form>
 			<a id="writelink" href="write.do?b_cate1=q">글쓰기</a>
+		</div>
+			<div id="page">
+			<c:if test="${B1total ne null}">
+				<%@include file="page.jsp"%>
+				<!-- 페이지 찍기 -->
+				<div id="pagepre">
+					<c:if test="${page gt 10 }">
+						<div id="pre10" onclick="location.href='QnAlist.do?page=${page - 10 }'">
+							◀
+						</div>
+					</c:if>
+					<c:if test="${page gt 1 }">
+						<div id="pre" onclick="location.href='QnAlist.do?page=${page - 1 }'">
+							◁
+						</div>
+					</c:if>
+				</div>
+				<div id="pagenum">
+					<c:forEach begin="${startPage }" end="${endPage }" var="i">
+						<c:if test="${i eq page }">
+							<div id="curpage">
+								${i }
+							</div>
+						</c:if>
+						<c:if test="${i ne page }">
+							<div id="ncurpage" onclick="location.href='QnAlist.do?page=${i }'">
+								${i }
+							</div>
+						</c:if>
+					</c:forEach>
+				</div>
+				<div id="pagenex">
+					<c:if test="${page lt totalPage }">
+						<div id="nex" onclick="location.href='QnAlist.do?page=${page + 1 }'">
+							▷
+						</div>
+					</c:if>
+					<c:if test="${page lt totalPage - 9 }">
+						<div id="nex10" onclick="location.href='QnAlist.do?page=${page + 10  }'">
+							▶
+						</div>
+					</c:if>
+				</div>
+			</c:if>
 		</div>
 <%@ include file="bottonmenu.jsp" %>
 	</div>

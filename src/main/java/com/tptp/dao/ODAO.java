@@ -6,7 +6,7 @@ import java.util.Map;
 import org.springframework.stereotype.Repository;
 
 import com.common.dao.AbstractDAO;
-import com.tptp.dto.BoardDTO;
+
 @Repository("oDAO")
 public class ODAO extends AbstractDAO {
 
@@ -52,7 +52,7 @@ public class ODAO extends AbstractDAO {
 	public int delete(Map<String, Object> map) {
 		return (int) delete("o.delete", map);
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> update(Map<String, Object> map) {
 		return (Map<String, Object>) selectOne("o.update", map);
