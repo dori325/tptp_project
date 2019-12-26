@@ -68,18 +68,26 @@ public class OController {
 		commandMap.put("page", (page - 1) * 10);// '0'
 
 		List<Map<String, Object>> brand1 = oService.brand1(commandMap.getMap());
-
-		mv.addObject("brand1", brand1);
-
-		mv.addObject("b_cate1", brand1.get(0).get("b_cate1"));
-		mv.addObject("b_cate2", brand1.get(0).get("b_cate2"));
-
-		mv.addObject("page", page);
-
-		if (brand1.size() > 0) {
-			// 총페이지는?
-			// System.out.println("총 글의 수 : " + list.get(0).get("COUNT"));
-			mv.addObject("count", brand1.get(0).get("count"));
+		
+		if(brand1.size() > 0) {
+			
+			mv.addObject("brand1", brand1);
+	
+			mv.addObject("b_cate1", brand1.get(0).get("b_cate1"));
+			mv.addObject("b_cate2", brand1.get(0).get("b_cate2"));
+	
+			mv.addObject("page", page);
+			
+			mv.addObject("B1total", brand1.get(0).get("B1total"));
+			mv.addObject("pencil", brand1.get(0).get("pencil"));
+			mv.addObject("sharp", brand1.get(0).get("sharp"));
+			mv.addObject("ballpen", brand1.get(0).get("ballpen"));
+			mv.addObject("fountain", brand1.get(0).get("fountain"));
+			mv.addObject("hilight", brand1.get(0).get("hilight"));
+			mv.addObject("etc", brand1.get(0).get("etc"));
+			
+			System.out.println(commandMap.getMap());
+			System.out.println(brand1.get(0).get("B1total"));
 		}
 
 		return mv;
@@ -151,14 +159,17 @@ public class OController {
 		
 		HttpSession session = request.getSession();
 		
-		
+		List<Map<String, Object>> commdetail = oService.commdetail(commandMap.getMap());
 		Map<String, Object> detail = oService.detail(commandMap.getMap());
-
+		
 		// 조회수 + 1
 		int num = Integer.parseInt(request.getParameter("b_no"));
 		oService.countUp(num);
+		
+		System.out.println(commdetail.get(0).get("c_content"));
 
 		mv.addObject("detail", detail);
+		mv.addObject("commdetail", commdetail);
 		
 		return mv;
 	}

@@ -10,9 +10,10 @@
 </head>
 <link href="./css/detail.css" rel="stylesheet" />
 <body>
-		<div id="detail">	
-			<h1>디테일</h1>
+		<div id="detailbody">	
+			<%@ include file="AllBar.jsp" %>
 			<div id="detailTop">
+			<h2>디테일</h2>
 				<div id="detailTitle">
 					<table>
 						<tr>
@@ -28,6 +29,7 @@
 							</td>
 							<td id="title">${detail.b_title }</td>
 							<td>
+								<c:if test="${detail.l_id eq sessionScope.id }">
 								<form action="update.do" method="post">									
 									<input type="hidden" name="b_no" value="${detail.b_no }">
 									<input type="hidden" name="b_cate1" value="${detail.b_cate1 }">
@@ -35,10 +37,12 @@
 									<input type="hidden" name="b_content" value="${detail.b_content }">
 									<button type="submit">수정</button>
 								</form>
+								
 								<form action="delete.do">
 									<input type="hidden" name="b_no" value="${detail.b_no }">
 									<button type="submit">삭제</button>
 								</form>
+								</c:if>
 							</td>
 						</tr>
 					</table>
@@ -63,7 +67,7 @@
 						<td id="list">
 							<a href="brand1.do">목록으로</a>
 						</td>
-						<td>
+						<td id="like">
 							<div id="like-wrap">
 								<div id="like-img"><img alt="" src="./img/heart2.png"></div>
 								<div id="like-text">
