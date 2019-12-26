@@ -49,7 +49,6 @@ public class OController {
 		if (notice.size() > 0) {
 			// 총페이지는?
 			// System.out.println("총 글의 수 : " + list.get(0).get("COUNT"));
-			commandMap.put("l_id", session.getAttribute("id"));
 			mv.addObject("count", notice.get(0).get("count"));
 		}
 		return mv;
@@ -76,7 +75,7 @@ public class OController {
 	
 			mv.addObject("b_cate1", brand1.get(0).get("b_cate1"));
 			mv.addObject("b_cate2", brand1.get(0).get("b_cate2"));
-			
+	
 			mv.addObject("page", page);
 			
 			mv.addObject("B1total", brand1.get(0).get("B1total"));
@@ -87,6 +86,7 @@ public class OController {
 			mv.addObject("hilight", brand1.get(0).get("hilight"));
 			mv.addObject("etc", brand1.get(0).get("etc"));
 			
+			System.out.println(commandMap.getMap());
 			System.out.println(brand1.get(0).get("B1total"));
 		}
 
@@ -171,9 +171,8 @@ public class OController {
 			System.out.println(commdetail.get(0).get("c_content"));
 		}
 		
-		System.out.println(detail);
+
 		mv.addObject("detail", detail);
-		
 		
 		return mv;
 	}
@@ -184,11 +183,8 @@ public class OController {
 		
 		HttpSession session = request.getSession();
 		
-		if (session.getAttribute("id") != null) {
-			mv.addObject("b_cate1", commandMap.get("b_cate1"));			
-		} else {
-			mv.setViewName("redirect:brand1.do");
-		}
+		System.out.println("b_cate1 :" + commandMap.get("b_cate1"));
+		mv.addObject("b_cate1", commandMap.get("b_cate1"));
 
 		return mv;
 	}
@@ -202,10 +198,7 @@ public class OController {
 
 		if (request.getParameter("b_title") != null && request.getParameter("b_content") != null) {
 
-			System.out.println(session.getAttribute("nick"));
-			
-			commandMap.put("l_nick", session.getAttribute("nick"));
-			System.out.println(commandMap.getMap());
+			commandMap.put("l_nick", "bill");
 			int result = oService.writeInsert(commandMap.getMap());
 
 //			String old_url = request.getHeader("Referer");
@@ -278,19 +271,4 @@ public class OController {
 		
 		return mv;
 	}
-	
-	@RequestMapping(value = "boardlikeUp.do")
-	public ModelAndView boardlikeUp(HttpServletRequest request, CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		
-		HttpSession session = request.getSession();
-		
-		int result = oService.updateInsert(commandMap.getMap());
-		System.out.println("result : " + result);
-		System.out.println("map : " + commandMap.getMap());
-		
-		
-		return mv;
-	}
-	
 }

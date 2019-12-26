@@ -48,7 +48,7 @@ public class K_Controller {
 			mv.addObject("B1total", Qlist.get(0).get("만년필"));
 			mv.addObject("B1total", Qlist.get(0).get("형광펜"));
 			mv.addObject("B1total", Qlist.get(0).get("기타"));
-			mv.addObject("B1total", Qlist.get(0).get("Qtotal"));
+			mv.addObject("count", Qlist.get(0).get("Qtotal"));
 			System.out.println("1."+ Qlist.get(0).get("Qtotal"));
 			System.out.println("1."+ Qlist.get(0).get("기타"));
 			System.out.println(Qlist.get(0).get("b_cate1"));
@@ -151,7 +151,7 @@ public class K_Controller {
 		commandMap.put("page", (page - 1) * 10);// '0'
 		
 			List<Map<String, Object>> list = k_Service.admOper(commandMap.getMap());
-			mv.addObject("B1total", list.get(0).get("ADtotal"));
+			mv.addObject("count", list.get(0).get("ADtotal"));
 			mv.addObject("page", page);
 			mv.addObject("list", list);
 			mv.addObject("b_cate1", list.get(0).get("b_cate1"));
