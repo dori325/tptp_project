@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자-회원관리</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
 	function select() {
 		var l_id = document.getElementById("l_id").value;
@@ -18,6 +19,7 @@
 </script>
 </head>
 <link href="./css/board.css" rel="stylesheet" />
+<link href="./css/page.css" rel="stylesheet" />
 <body>
 	<div id="listboard">
 		<%@ include file="topmenu.jsp"%>
@@ -29,23 +31,24 @@
 		<table id="admCommList">
 			<tr>
 				<th id="no">번호</th>
-				<th id="no">count</th>
-				<th id="name">아이디</th>
-				<th id="name">닉네임</th>
-				<th id="comment">e-mail</th>
+				<th id="no" style="text-align: center;">count</th>
+				<th id="name" style="text-align: left;">아이디</th>
+				<th id="name" style="text-align: left;">닉네임</th>
+				<th id="comment" style="text-align: left;">e-mail</th>
 				<th id="no">가입날짜</th>
-				<th id="no">권한</th>
+				<th id="no" style="text-align: left;">권한</th>
 				<th id="no">수정</th>
 			</tr>
 			<c:forEach items="${u_list }" var="u">
 				<tr>
-					<td id="no">${u.l_count }</td>
-					<td id="no">${u.l_count}</td>
-					<td id="name">${u.l_id }
-					<td id="name">${u.l_nick }</td>
-					<td id="comment"><a href="userList.do" id="title">${u.l_email }</a></td>
+					<td id="no">${u.l_no }</td>
+					<td id="no" style="text-align: center;">${u.l_count}</td>
+					<td id="name" style="text-align: left;">${u.l_id }
+					<td id="name" style="text-align: left;">${u.l_nick}
+					</td>
+					<td id="comment" style="text-align: left;"><a href="userList.do" id="title">${u.l_email }</a></td>
 					<td id="no">${u.l_date}</td>
-					<td id="no">
+					<td id="no" style="text-align: left;">
 					<select name="l_auth" id="log_do" onchange="select()">
 						<c:if test="${u.l_auth eq 1}"><option value="1">탈퇴</option></c:if>
 						<c:if test="${u.l_auth eq 3}"><option value="3">일반</option></c:if>
@@ -88,7 +91,7 @@
 		</c:if>
 	</div>			
 		
-		<form action="userList.do" method="post">
+		<form action="userList.do" method="get">
 			<div id="listBottom">
 				<select name="searchID" id="id" onchange="select()">
 					<option value="l_id">아이디</option>
@@ -96,12 +99,10 @@
 					<option value="l_auth">권한</option>
 				</select>
 				<div id="search">
-					<input name="searchCont" placeholder="검색어 입력">
-					<button onchange="select()">
+					<input name="searchCont" placeholder="검색어">
+					<button onchange="select()"></button>
 						<!--<button onclick="location.href='userListSearch.do?searchCont=' ">-->
 						<!--<button onclick="location.href="userList.do?l_id="+l_id+"&page="+page+"&l_nick="+l_lick+"&l_auth="+l_auth >-->
-						<img alt="검색" src="./img/search.png">
-					</button>
 				</div>
 			</div>
 		</form>

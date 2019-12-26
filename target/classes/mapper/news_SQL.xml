@@ -3,23 +3,25 @@
 <mapper namespace="news">
 	<!-- 공지 -->
 	<select id="list" parameterType="hashmap" resultType="hashmap">
-			SELECT b_no, b_cate1, b_cate2, b_title 
+			SELECT * 
 			FROM boardview
+			where b_cate1='no'
+		    ORDER BY b_modidate DESC
 			LIMIT 7;	
 	</select>
 
 	<!-- 추천리스트 -->
 	<select id="k_list" parameterType="hashmap" resultType="hashmap">
-			SELECT b_no, b_cate1, b_cate2, b_title
+			SELECT *
 			FROM boardview 
-			where b_like > 10 
+			where b_like > 30 
 			ORDER BY b_date DESC 
 			LIMIT 7;	
 	</select>
 
 	<!-- 메인-새소식제목 -->
 	<select id="n_list" parameterType="hashmap" resultType="hashmap">
-		SELECT b_no, b_cate1, b_cate2, b_title
+		SELECT *
 		FROM boardview 
 		where b_cate1='nw'
 		ORDER BY b_modidate DESC
@@ -28,25 +30,28 @@
 	
 	<!-- 브랜드1 -->
 	<select id="b1_list" parameterType="hashmap" resultType="hashmap">
-			SELECT b_no, b_cate1, b_cate2, b_title
+			SELECT *
 			FROM boardview
 			WHERE b_cate1='b1'
+			ORDER BY b_date DESC 
 			LIMIT 7;	
 	</select>
 
 	<!-- 브랜드2 -->
 	<select id="b2_list" parameterType="hashmap" resultType="hashmap">
-			SELECT b_no, b_cate1, b_cate2, b_title
+			SELECT *
 			FROM boardview 
 			WHERE b_cate1='b2' 
+			ORDER BY b_date DESC 
 			LIMIT 7;	
 	</select>
 
 	<!-- 브랜드3 -->
 	<select id="b3_list" parameterType="hashmap"  resultType="hashmap">
-			SELECT b_no, b_cate1, b_cate2, b_title
+			SELECT * 
 			FROM boardview 
 			WHERE b_cate1='b3'
+			ORDER BY b_date DESC 
 			LIMIT 7;	
 	</select>
 	
@@ -57,19 +62,19 @@
 		    (SELECT COUNT(*) FROM boardview where b_cate1='nw') AS count  			
 		FROM boardview  
 		where b_cate1='nw'
-		ORDER BY b_modidate DESC
+		ORDER BY b_date DESC
 		LIMIT #{page }, 10 
 	</select>
 	
 	<!-- 새소식,검색 -->
-	<select id="news_search" parameterType="hashmap"
-		resultType="hashmap">
+	<select id="news_search" parameterType="hashmap" resultType="hashmap">
 		SELECT *,   
 		    (SELECT COUNT(*) FROM boardview where b_cate1='nw') AS count
 		FROM boardview 
-		where b_cate1='nw'
+		where b_cate1='nw' 
 		<if test='searchID == "b_title"'>and b_title LIKE CONCAT('%', #{searchCont}, '%')</if>
 		<if test='searchID == "b_content"'>and b_content LIKE CONCAT('%', #{searchCont}, '%')</if>
+		ORDER BY b_date DESC 
 		LIMIT #{page }, 10
 	</select>
 
@@ -78,15 +83,16 @@
 	<select id="ts_list" parameterType="hashmap"
 		resultType="hashmap">
 			SELECT b_no, b_like, b_cate1, b_cate2, b_title, b_content, b_date, b_count, l_nick, c_count, 
-			(SELECT COUNT(*) FROM boardview 
-			where (b_title LIKE CONCAT('%', #{b_content}, '%') )
-			or (b_content LIKE CONCAT('%', #{b_content}, '%') )			
+			(SELECT COUNT(*) 
+			FROM boardview 
+			<if test="b_content != null">where (b_title LIKE CONCAT('%', #{b_content}, '%') )
+			or (b_content LIKE CONCAT('%', #{b_content}, '%') )	</if>		
 			) AS count  			
 			FROM boardview 
-			where (b_title LIKE CONCAT('%', #{b_content}, '%') )
-			or (b_content LIKE CONCAT('%', #{b_content}, '%') )
+			<if test="b_content != null">where (b_title LIKE CONCAT('%', #{b_content}, '%') ) 
+			or (b_content LIKE CONCAT('%', #{b_content}, '%') ) </if>
 			order by b_no desc 
-			LIMIT #{page }, 5
+			LIMIT #{page }, 10
 	</select>
 
 	

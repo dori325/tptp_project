@@ -19,6 +19,7 @@
 </script>
 </head>
 <link href="./css/board.css" rel="stylesheet" />
+<link href="./css/page.css" rel="stylesheet" />
 <body>
 	<div id="listboard">
 		<%@ include file="topmenu.jsp"%>
@@ -115,8 +116,8 @@
 							<option value="9">댓글삭제</option>
 						</c:if>
 				</select></th>
-				<th id="date">날짜</th>
-				<th id="name">비고</th>
+				<th id="no">날짜</th>
+				<th id="no">비고</th>
 			</tr>
 			<c:forEach items="${list }" var="i">
 				<tr>
@@ -130,8 +131,8 @@
 							test="${i.log_do eq 6}">글삭제</c:if> <c:if test="${i.log_do eq 7}">댓글쓰기</c:if>
 						<c:if test="${i.log_do eq 8}">댓글수정</c:if> <c:if
 							test="${i.log_do eq 9}">댓글삭제</c:if></td>
-					<td id="date">${i.log_date }</td>
-					<td id="name" style="text-align: left;">${i.log_etc }</td>
+					<td id="no">${i.log_date }</td>
+					<td id="no" style="text-align: left;">${i.log_etc }</td>
 				</tr>
 			</c:forEach>
 		</table>

@@ -8,42 +8,47 @@
 <meta charset="UTF-8">
 <title>통합검색</title>
 <link href="./css/board.css" rel="stylesheet" />
+<link href="./css/page.css" rel="stylesheet" />
 </head>
 <body>
+
+<form action="totalSearch.do?page=${page}" method="get">
+
 	<div id="listboard">
 		<%@ include file="topmenu.jsp"%>
 		<%@ include file="AllBar.jsp"%>
 		<div id="listTop">
 			<h2>통합검색결과..</h2>
 		</div>
-		<div>
-			<table id="TS_Board">
-				<tr id="boardTr">
-					<th id="count">추천수</th>
+		<div id="TS_Board">
+			<table>
+				<tr>
+					<th id="count">추천</th>
 					<th id="sort">분류1</th>
 					<th id="sort">분류2</th>
 					<th id="title">제목</th>
-					<th rowspan="2" id="comment">작성자</th>
+					<th rowspan="2" id="name">작성자</th>
 					<th rowspan="2" id="date">날짜</th>
 				</tr>
 				<tr>
 					<th colspan="4">내용</th>
 				</tr>
 				<c:forEach items="${ts_list }" var="ts">
-					<tr id="boardTr">
+					<tr>
 						<td id="count">${ts.b_like }</td>
 						<td id="sort">${ts.b_cate1 }</td>
-						<td id="sort">${ts.b_cate2 }</td>
+						<td id="sott">${ts.b_cate2 }</td>
 						<td id="title" style="text-align: left;"><a
 							href="detail.do?b_no=${ts.b_no }" id="title">${ts.b_title }</a></td>
-						<td rowspan="2" id="comment">${ts.l_nick }</td>
+						<td rowspan="2" id="name">${ts.l_nick }</td>
 						<td rowspan="2" id="date">${ts.b_date }</td>
 					</tr>
 					<tr>
 						<td colspan="4" style="text-align: left;">
-						    <c:choose>
-								<c:when test="${fn:length(ts.b_content) gt 51}">
-									<c:out value="${fn:substring(ts.b_content, 0, 50)}">...</c:out>
+						<c:set var = "ts.b_content" value = "${fn:replace(ts.b_content, b_content, 'second')}" />					
+						    <c:choose>						    
+								<c:when test="${fn:length(ts.b_content) gt 81}">
+									<c:out value="${fn:substring(ts.b_content, 0, 80)}">...</c:out>
 								</c:when>
 								<c:otherwise>
 									<c:out value="${ts.b_content}"></c:out>
@@ -91,6 +96,7 @@
 		</div>
 		<%@ include file="bottonmenu.jsp"%>
 	</div>
+	</form>
 
 </body>
 </html>

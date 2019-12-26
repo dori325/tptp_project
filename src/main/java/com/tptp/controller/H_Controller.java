@@ -124,6 +124,8 @@ public class H_Controller {
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = request.getSession();
 		
+		System.out.println("b_content=" + commandMap.get("b_content"));
+		
 		// 임시로 page 만들어주기
 		int page = 1;
 		if (commandMap.containsKey("page") && Integer.parseInt((String) commandMap.get("page")) > 0) {
