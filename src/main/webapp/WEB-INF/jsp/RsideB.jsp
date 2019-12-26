@@ -34,7 +34,7 @@ $(function(){
 	<c:if test="${sessionScope.auth eq '5'}">
 		<li id="categoryTop"><a>관리자<img id="open" alt="▽" src="./img/openmenu.png"/><img id="index"  alt="이 공지" src="./img/색6.png"/></a>
 			<ul id="menuBot">
-				<li id="categoryBottom"><a href="userList">회원 관리</a></li>
+				<li id="categoryBottom"><a href="userList.do">회원 관리</a></li>
 				<li id="categoryBottom"><a href="log.do">로그 관리</a></li>
 				<li id="categoryBottom"><a href="admCommList.do">운영자 게시판</a></li>
 			</ul>
