@@ -1,157 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="news">
-	<!-- 공지 -->
+    <!-- 공지 -->
 	<select id="list" parameterType="hashmap" resultType="hashmap">
-			SELECT * 
-			FROM boardview
-			where b_cate1='no'
-		    ORDER BY b_modidate DESC
-			LIMIT 7;	
+		<![CDATA[		
+			SELECT *
+			FROM board	
+		]]>
 	</select>
 
-	<!-- 추천리스트 -->
+    <!-- 추천리스트 -->
 	<select id="k_list" parameterType="hashmap" resultType="hashmap">
-			SELECT *
-			FROM boardview 
-			where b_like > 30 
-			ORDER BY b_date DESC 
-			LIMIT 7;	
+		<![CDATA[		
+			SELECT * FROM board 
+			where b_like > 10
+			LIMIT 10;	
+		]]>
 	</select>
 
-	<!-- 메인-새소식제목 -->
+    <!-- 새소식 -->
 	<select id="n_list" parameterType="hashmap" resultType="hashmap">
-		SELECT *
-		FROM boardview 
-		where b_cate1='nw'
-		ORDER BY b_modidate DESC
-		limit 7;
+		<![CDATA[		
+			SELECT * FROM board
+			ORDER BY b_modidate DESC
+			limit 10;	
+		]]>
 	</select>
 	
-	<!-- 브랜드1 -->
-	<select id="b1_list" parameterType="hashmap" resultType="hashmap">
-			SELECT *
-			FROM boardview
-			WHERE b_cate1='b1'
-			ORDER BY b_date DESC 
-			LIMIT 7;	
-	</select>
 
-	<!-- 브랜드2 -->
-	<select id="b2_list" parameterType="hashmap" resultType="hashmap">
-			SELECT *
-			FROM boardview 
-			WHERE b_cate1='b2' 
-			ORDER BY b_date DESC 
-			LIMIT 7;	
-	</select>
-
-	<!-- 브랜드3 -->
-	<select id="b3_list" parameterType="hashmap"  resultType="hashmap">
-			SELECT * 
-			FROM boardview 
-			WHERE b_cate1='b3'
-			ORDER BY b_date DESC 
-			LIMIT 7;	
-	</select>
-	
-	
-	<!-- 새소식리스트 -->
-	<select id="news_list" parameterType="hashmap" resultType="hashmap">
-		SELECT *,   
-		    (SELECT COUNT(*) FROM boardview where b_cate1='nw') AS count  			
-		FROM boardview  
-		where b_cate1='nw'
-		ORDER BY b_date DESC
-		LIMIT #{page }, 10 
-	</select>
-	
-	<!-- 새소식,검색 -->
-	<select id="news_search" parameterType="hashmap" resultType="hashmap">
-		SELECT *,   
-		    (SELECT COUNT(*) FROM boardview where b_cate1='nw') AS count
-		FROM boardview 
-		where b_cate1='nw' 
-		<if test='searchID == "b_title"'>and b_title LIKE CONCAT('%', #{searchCont}, '%')</if>
-		<if test='searchID == "b_content"'>and b_content LIKE CONCAT('%', #{searchCont}, '%')</if>
-		ORDER BY b_date DESC 
-		LIMIT #{page }, 10
-	</select>
-
-
-	<!-- 통합검색 -->
-	<select id="ts_list" parameterType="hashmap"
-		resultType="hashmap">
-			SELECT b_no, b_like, b_cate1, b_cate2, b_title, b_content, b_date, b_count, l_nick, c_count, 
-			(SELECT COUNT(*) 
-			FROM boardview 
-			<if test="b_content != null">where (b_title LIKE CONCAT('%', #{b_content}, '%') )
-			or (b_content LIKE CONCAT('%', #{b_content}, '%') )	</if>		
-			) AS count  			
-			FROM boardview 
-			<if test="b_content != null">where (b_title LIKE CONCAT('%', #{b_content}, '%') ) 
-			or (b_content LIKE CONCAT('%', #{b_content}, '%') ) </if>
-			order by b_no desc 
-			LIMIT #{page }, 10
-	</select>
-
-	
-	<!-- 회원관리,리스트 -->
-	<select id="u_list" parameterType="hashmap" resultType="hashmap">
-		SELECT *,
-		(SELECT COUNT(*) FROM login) AS count FROM login
-		LIMIT #{page }, 10
-	</select>
-	<!-- 회원관리,검색 -->
-	<select id="ul_search" parameterType="hashmap"
-		resultType="hashmap">
-		SELECT *,
-		(
-		SELECT COUNT(*) FROM login 
-		<if test='searchID == "l_id"'>where l_id LIKE CONCAT('%', #{searchCont}, '%')</if>
-		<if test='searchID == "l_nick"'>where l_nick LIKE CONCAT('%', #{searchCont}, '%')</if>
-		<if test='searchID == "l_auth"'>where l_auth LIKE CONCAT('%', #{searchCont}, '%')</if>
-		) AS count FROM login
-		<if test='searchID == "l_id"'>where l_id LIKE CONCAT('%', #{searchCont}, '%')</if>
-		<if test='searchID == "l_nick"'>where l_nick LIKE CONCAT('%', #{searchCont}, '%')</if>
-		<if test='searchID == "l_auth"'>where l_auth LIKE CONCAT('%', #{searchCont}, '%')</if>
-		LIMIT #{page }, 10
-	</select>
-
-	<!-- 로그관리 -->
-	<select id="log" parameterType="hashmap" resultType="hashmap">
-		SELECT *,
-		(SELECT COUNT(*) FROM log WHERE log_no > 0
-		) as count
-		FROM log
-		WHERE log_no > 0
-		<if test="log_do != null">AND log_do = #{log_do }</if>
-		<if test="name != null">AND l_id = #{name }</if>
-		<if test="ip != null">AND log_ip = #{ip }</if>
-		ORDER BY log_date DESC
-		LIMIT #{page }, 10;
-	</select>
-	<select id="logID" resultType="hashmap">
-		SELECT l_id, COUNT(*) AS count, (SELECT COUNT(*) FROM log WHERE log_no
-		> 0
-		<if test="log_do != null">AND log_do = #{log_do }</if>
-		<if test="name != null">AND l_id = #{name }</if>
-		<if test="ip != null">AND log_ip = #{ip }</if>
-		) AS totalcount
-		FROM log
-		WHERE log_no > 0
-		GROUP BY l_id
-	</select>
-	<select id="logIP" resultType="hashmap">
-		SELECT log_ip, COUNT(*) AS count, (SELECT COUNT(*) FROM log WHERE
-		log_no > 0
-		) AS totalcount
-		FROM log
-		WHERE log_no > 0
-		<if test="log_do != null">AND log_do = #{log_do }</if>
-		<if test="name != null">AND l_id = #{name }</if>
-		<if test="ip != null">AND log_ip = #{ip }</if>
-		GROUP BY log_ip
-	</select>
 
 </mapper>

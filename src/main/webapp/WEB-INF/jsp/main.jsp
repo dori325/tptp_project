@@ -31,7 +31,6 @@ function check() {
 }
 </script>
 <link href="./css/board.css" rel="stylesheet" />
-<link href="./css/page.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -39,14 +38,13 @@ function check() {
 		<a>이펜저펜</a>
 	</div>
 	<div id="listboard">
-	
 		<%@ include file="AllBar.jsp"%>
 		
 		<form action="totalSearch.do" method="get" name="frm">
 			<div id="totalSearch">
 				<table>
 					<tr>
-						<td><input name="b_content" placeholder="전체검색">
+						<td><input name="b_content" placeholder="검색어를 입력하세요">
 							<button id="checkit" onchange="return checkID();">
 								<!-- <button
 								onclick='"location.href="+totalSearch.do?b_title="+b_content+"&b_content="+b_content; "'
@@ -153,4 +151,5 @@ function check() {
 		<%@ include file="bottonmenu.jsp"%>
 	</div>
 </body>
+
 </html>
