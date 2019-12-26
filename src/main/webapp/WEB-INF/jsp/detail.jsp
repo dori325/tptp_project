@@ -10,40 +10,23 @@
 </head>
 <link href="./css/detail.css" rel="stylesheet" />
 <body>
-		<div id="detailbody">	
-			<%@ include file="AllBar.jsp" %>
+	<form action="detail.do">
+		<div id="detail">
+<h1>디테일</h1>
 			<div id="detailTop">
-			<h2>디테일</h2>
 				<div id="detailTitle">
 					<table>
 						<tr>
 							<td>
-								<c:if test="${detail.b_cate1 ne 'no' }">
-									<div id="cate-wrap">
-										<div id="cate-img"><img alt="" src="./img/category.png"></div>
-										<div id="cate-text">
-											<p>${detail.b_cate2 }</p>
-										</div>
+								<div id="cate-wrap">
+									<div id="cate-img"><img alt="" src="./img/category.png"></div>
+									<div id="cate-text">
+										<p>${detail.b_cate2 }</p>
 									</div>
-								</c:if>
+								</div>
 							</td>
 							<td id="title">${detail.b_title }</td>
-							<td>
-								<c:if test="${detail.l_id eq sessionScope.id }">
-								<form action="update.do" method="post">									
-									<input type="hidden" name="b_no" value="${detail.b_no }">
-									<input type="hidden" name="b_cate1" value="${detail.b_cate1 }">
-									<input type="hidden" name="b_title" value="${detail.b_title }">
-									<input type="hidden" name="b_content" value="${detail.b_content }">
-									<button type="submit">수정</button>
-								</form>
-								
-								<form action="delete.do">
-									<input type="hidden" name="b_no" value="${detail.b_no }">
-									<button type="submit">삭제</button>
-								</form>
-								</c:if>
-							</td>
+							<td><a>수정</a> / <a href="delete.do?b_no=${detail.b_no }">삭제</a></td>
 						</tr>
 					</table>
 				</div>
@@ -67,7 +50,7 @@
 						<td id="list">
 							<a href="brand1.do">목록으로</a>
 						</td>
-						<td id="like">
+						<td>
 							<div id="like-wrap">
 								<div id="like-img"><img alt="" src="./img/heart2.png"></div>
 								<div id="like-text">
@@ -79,9 +62,8 @@
 					</tr>
 				</table>
 			</div>
-			
 		</div>
-	<%@ include file="commInsert.jsp" %>
+	</form>
 	<c:import url="bottonmenu.jsp"/>
 </body>
 </html>

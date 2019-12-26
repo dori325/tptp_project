@@ -10,7 +10,6 @@ body::-webkit-scrollbar {
 	margin-top: 100px;
 	width: 1250px;
 	height: auto;
-	font-family: "Nanum Gothic Coding", monospace;
 }
 
 #list {

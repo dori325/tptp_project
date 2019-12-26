@@ -45,7 +45,6 @@ public class K_Controller {
 			mv.addObject("hilight", Qlist.get(0).get("형광펜"));
 			mv.addObject("etc", Qlist.get(0).get("기타"));
 			System.out.println(Qlist.get(0).get("b_cate1"));
-			System.out.println(Qlist.get(0).get("b_no"));
 			System.out.println(Qlist.get(0));
 		}
 		return mv;

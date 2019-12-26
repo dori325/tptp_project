@@ -13,13 +13,7 @@
 	
 	<select id="brand1" parameterType="hashmap" resultType="hashmap">
 			SELECT b_no, b_like, b_cate1, b_cate2, b_title, b_date, b_count, l_nick, c_count,
-			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b1') AS B1total, 
-			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b1' AND b_cate2='연필') AS 'pencil', 
-			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b1' AND b_cate2='샤프') AS 'sharp', 
-			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b1' AND b_cate2='볼펜') AS 'ballpen', 
-			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b1' AND b_cate2='만년필') AS 'fountain', 
-			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b1' AND b_cate2='형광펜') AS 'hilight', 
-			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b1' AND b_cate2='기타') AS 'etc'
+			(SELECT COUNT(*) FROM boardview WHERE b_cate1 = 'b1') AS count
 			FROM boardview
 			WHERE b_no > 0
 			AND b_cate1 = 'b1'
@@ -43,11 +37,6 @@
 			LIMIT #{page }, 10
 	</select>
 	
-	<select id="commdetail" resultType="hashmap" parameterType="hashmap">
-			SELECT *
-			FROM comment
-			WHERE b_no = #{b_no }
-	</select>	
 	<select id="detail" resultType="hashmap" parameterType="hashmap">
 			SELECT b_no, b_content, b_like,b_cate1, b_cate2, b_title, b_date, b_count, l_nick, b_modidate
 			FROM boardview
@@ -66,15 +55,5 @@
 	<delete id="delete" parameterType="hashmap">
 		DELETE FROM board WHERE b_no=#{b_no };
 	</delete>
-	
-	<select id="update" resultType="hashmap" parameterType="hashmap">
-			SELECT *
-			FROM boardview
-			WHERE b_no = #{b_no }
-	</select>
-	
-	<update id="updateInsert" parameterType="hashmap">
-		UPDATE board SET b_title = #{b_title }, b_content = #{b_content }, b_cate2 = #{b_cate2}, b_modidate = NOW() WHERE b_no = #{b_no }
-	</update>
 	
 </mapper>
