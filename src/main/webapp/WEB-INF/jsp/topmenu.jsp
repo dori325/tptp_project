@@ -6,7 +6,7 @@
 <link href="./css/topmenu.css" rel="stylesheet" />
 	<div id="topmenu">
 		<ul>
-			<li id="sitename"><a href="./main.jsp"><span id="this">이펜</span><span id="that">저펜</span></a></li>
+			<li id="sitename"><a href="./main.do"><span id="this">이펜</span><span id="that">저펜</span></a></li>
 			<li style="float: right;"><input type="text" placeholder="전체 검색"> <button>검색</button></li> 
 		</ul>
 			
