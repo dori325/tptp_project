@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -28,7 +29,15 @@ public class H_Controller {
 	@RequestMapping(value = "main.do")
 	public ModelAndView main(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		HttpSession session = request.getSession();
 
+		// 임시로 page 만들어주기
+		int page = 1;
+		if (commandMap.containsKey("page") && Integer.parseInt((String) commandMap.get("page")) > 0) {
+			page = Integer.parseInt((String) commandMap.get("page"));
+		}
+		commandMap.put("page", (page - 1) * 10);// '0'
+		
 		// 공지사항
 		List<Map<String, Object>> list = h_Service.list(commandMap.getMap());
 		mv.addObject("list", list);
@@ -53,6 +62,13 @@ public class H_Controller {
 		List<Map<String, Object>> b3_list = h_Service.b3_list(commandMap.getMap());
 		mv.addObject("b3_list", b3_list);
 
+		//paging
+		mv.addObject("page", page);
+		List<Map<String, Object>> news_list = h_Service.news_list(commandMap.getMap());
+		if (news_list.size() > 0) {
+			//System.out.println("총 글의 수 : " + u_list.get(0).get("COUNT"));
+			mv.addObject("count", news_list.get(0).get("count"));
+		}
 		return mv;
 	}
 
@@ -60,6 +76,7 @@ public class H_Controller {
 	@RequestMapping(value = "news.do")
 	public ModelAndView news(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		HttpSession session = request.getSession();
 
 		// List<BoardDTO> list = tptpService.list();
 		System.out.println("searchID=" + commandMap.get("searchID"));
@@ -67,12 +84,29 @@ public class H_Controller {
 		System.out.println("b_title=" + commandMap.get("b_title"));
 		System.out.println("b_content=" + commandMap.get("b_content"));
 		
+		// 임시로 page 만들어주기
+		int page = 1;
+		if (commandMap.containsKey("page") && Integer.parseInt((String) commandMap.get("page")) > 0) {
+			page = Integer.parseInt((String) commandMap.get("page"));
+		}
+		commandMap.put("page", (page - 1) * 10);// '0'
+		
 		if (commandMap.get("searchCont") == null) { // 검색어 없을때
-			List<Map<String, Object>> n_list = h_Service.n_list(commandMap.getMap());
-			mv.addObject("n_list", n_list);
+			List<Map<String, Object>> news_list = h_Service.news_list(commandMap.getMap());
+			mv.addObject("news_list", news_list);
+			mv.addObject("page", page);
+			if (news_list.size() > 0) {
+				//System.out.println("총 글의 수 : " + u_list.get(0).get("COUNT"));
+				mv.addObject("count", news_list.get(0).get("count"));
+			}
 		} else { // 검색어 있을떄
-			List<Map<String, Object>> n_search = h_Service.n_search(commandMap.getMap());
-			mv.addObject("n_list", n_search);
+			List<Map<String, Object>> news_search = h_Service.news_search(commandMap.getMap());
+			mv.addObject("news_list", news_search);
+			mv.addObject("page", page);
+			if (news_search.size() > 0) {
+				//System.out.println("총 글의 수 : " + u_list.get(0).get("COUNT"));
+				mv.addObject("count", news_search.get(0).get("count"));
+			}
 			if (commandMap.containsKey("b_title")) {
 				mv.addObject("b_title", commandMap.get("b_title"));
 			}
@@ -88,11 +122,24 @@ public class H_Controller {
 	@RequestMapping(value = "totalSearch.do")
 	public ModelAndView totalSearch(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		HttpSession session = request.getSession();
+		
+		System.out.println("b_content=" + commandMap.get("b_content"));
+		
+		// 임시로 page 만들어주기
+		int page = 1;
+		if (commandMap.containsKey("page") && Integer.parseInt((String) commandMap.get("page")) > 0) {
+			page = Integer.parseInt((String) commandMap.get("page"));
+		}
+		commandMap.put("page", (page - 1) * 10);// '0'		
+		
 		List<Map<String, Object>> ts_list = h_Service.ts_list(commandMap.getMap());
 		mv.addObject("ts_list", ts_list);
-		
-		List<Map<String, Object>> ts_list_count = h_Service.ts_l_count(commandMap.getMap());
-		mv.addObject("ts_list_count", ts_list_count);
+		mv.addObject("page", page);
+		if (ts_list.size() > 0) {
+			//System.out.println("총 글의 수 : " + u_list.get(0).get("COUNT"));
+			mv.addObject("count", ts_list.get(0).get("count"));
+		}
 		
 		return mv;
 	}
@@ -101,20 +148,38 @@ public class H_Controller {
 	@RequestMapping(value = "userList.do")
 	public ModelAndView userList(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		HttpSession session = request.getSession();
 
 		System.out.println("searchID=" + commandMap.get("searchID"));
 		System.out.println("searchCont=" + commandMap.get("searchCont"));
 		System.out.println("l_id=" + commandMap.get("l_id"));
 		System.out.println("l_nick=" + commandMap.get("l_nick"));
 		System.out.println("l_auth=" + commandMap.get("l_auth"));
+		
+		// 임시로 page 만들어주기
+		int page = 1;
+		if (commandMap.containsKey("page") && Integer.parseInt((String) commandMap.get("page")) > 0) {
+			page = Integer.parseInt((String) commandMap.get("page"));
+		}
+		commandMap.put("page", (page - 1) * 10);// '0'
 
 		// if (!request.getParameter("searchCont").equals("") ) {
 		if (commandMap.get("searchCont") == null) { // 검색어 없을때
 			List<Map<String, Object>> u_list = h_Service.u_list(commandMap.getMap());
 			mv.addObject("u_list", u_list);
+			mv.addObject("page", page);
+			if (u_list.size() > 0) {
+				//System.out.println("총 글의 수 : " + u_list.get(0).get("COUNT"));
+				mv.addObject("count", u_list.get(0).get("count"));
+			}
 		} else { // 검색어 있을때
 			List<Map<String, Object>> ul_search = h_Service.ul_search(commandMap.getMap());
 			mv.addObject("u_list", ul_search);
+			mv.addObject("page", page);
+			if (ul_search.size() > 0) {
+				//System.out.println("총 글의 수 : " + ul_search.get(0).get("COUNT"));
+				mv.addObject("count", ul_search.get(0).get("count"));
+			}
 			if (commandMap.containsKey("l_id")) {
 				mv.addObject("l_id", commandMap.get("l_id"));
 			}
@@ -135,11 +200,15 @@ public class H_Controller {
 	@RequestMapping(value = "log.do")
 	public ModelAndView log(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		HttpSession session = request.getSession();
+		commandMap.put("id", session.getAttribute("id"));
+		commandMap.put("pw", session.getAttribute("pw"));
 
 		int page = 1;
 		if (commandMap.containsKey("page") && Integer.parseInt((String) commandMap.get("page")) > 0) {
 			page = Integer.parseInt((String) commandMap.get("page"));
 		}
+		commandMap.put("page", (page - 1) * 10);// '0'
 
 		List<Map<String, Object>> list = h_Service.log(commandMap.getMap());
 		// 사용자 id만 가져오기

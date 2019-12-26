@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+<link href="https://fonts.googleapis.com/css?family=Gamja+Flower|Nanum+Gothic+Coding&display=swap&subset=korean" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
 function checkID() {

@@ -7,6 +7,7 @@
 <title>아이디/비밀번호 찾기</title>
 </head>
 <link href="./css/welcome.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css?family=Gamja+Flower|Nanum+Gothic+Coding&display=swap&subset=korean" rel="stylesheet">
 <body>
 <form action="findLogin.do">
 <div id="welcomeList">

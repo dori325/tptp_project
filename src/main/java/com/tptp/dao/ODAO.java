@@ -52,7 +52,7 @@ public class ODAO extends AbstractDAO {
 	public int delete(Map<String, Object> map) {
 		return (int) delete("o.delete", map);
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> update(Map<String, Object> map) {
 		return (Map<String, Object>) selectOne("o.update", map);

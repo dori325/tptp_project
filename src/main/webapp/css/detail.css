@@ -148,6 +148,7 @@ detailBot - 목록, 이전/다음, 추천등
 #like-img img{
 	width: 70px;
 	height: 70px;
+	border: 1px solid;
 }
 
 #like-text {

@@ -5,7 +5,7 @@ import java.util.Map;
 
 public interface K_Service {
 
-	List<Map<String, Object>> admOper() throws Exception;
+	List<Map<String, Object>> admOper(Map<String, Object> map) throws Exception;
 
 	List<Map<String, Object>> QnAlist(Map<String, Object> map) throws Exception;
 
@@ -23,9 +23,9 @@ public interface K_Service {
 
  	Map<String, Object>login(Map<String, Object> map) throws Exception;
 
-	List<Map<String, Object>> commShow(int b_no) throws Exception;
+ 	int commModi(Map<String, Object> map);
 
-	int commInsert(Map<String, Object> map) throws Exception;
+	int commUpdate(Map<String, Object> map) throws Exception;
 
 	Map<String, Object> mylist(String id) throws Exception;
 
@@ -33,7 +33,12 @@ public interface K_Service {
 
 	int pwModi(Map<String, Object> map) throws Exception;
 
-	int commDelete(int b_no) throws Exception; 
+	int commDelete(int c_no) throws Exception;
+
+	int likeUp(String cno) throws Exception;
+
+//	String reComm(String c_no) throws Exception;
+
 	
 
 	
