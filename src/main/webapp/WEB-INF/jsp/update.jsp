@@ -49,7 +49,7 @@
 				<c:if test="${update.b_cate1 eq 'ad' }"><option value="ad">운영자</option></c:if>
 				<c:if test="${update.b_cate1 eq 'q' }"><option value="q">질문게시판</option></c:if>
 			</select>
-			<c:if test="${update.b_cate1 ne 'no' }">
+			<c:if test="${update.b_cate1 ne 'no' && b_cate1 ne 'ad' }">
 			<select name="b_cate2">
 				<option value="연필">연필</option>
 				<option value="샤프">샤프</option>
@@ -61,7 +61,8 @@
 			</c:if>
 			<input type="text" name="b_title" value="${update.b_title }"><br>
 			<textarea id="summernote" name="b_content">${update.b_content }</textarea>
-			
+			<input type="hidden" name="l_nick" value="${sessionScope.nick }"/>
+			<input type="hidden" name="old_url2" value="${old_url2 }"/>
 			<button id="writebutton" type="submit">수정하기</button>
 		</div>
 		</div>

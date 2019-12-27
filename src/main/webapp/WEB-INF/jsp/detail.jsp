@@ -70,6 +70,7 @@
 
 								<form action="delete.do">
 									<input type="hidden" name="b_no" value="${detail.b_no }">
+									<input type="hidden" name="old_url2" value="${old_url2 }"/>
 									<button type="submit">삭제</button>
 								</form>
 								</c:if>
@@ -100,7 +101,7 @@
 				<table>
 					<tr>
 						<td id="list">
-							<a href="brand1.do">목록으로</a>
+							<a href="${old_url2 }">목록으로</a>
 						</td>
 						<td id="like">
 							<div id="like-wrap">
@@ -110,7 +111,7 @@
 								</div>
 							</div>
 						</td>
-						<td id="next"><a href="./detail.do?b_no=${detail.b_no - 1}">이전글</a> / <a href="./detail.do?b_no=${detail.b_no + 1}">다음글</a></td>
+						<td></td>
 					</tr>
 				</table>
 			</div>
