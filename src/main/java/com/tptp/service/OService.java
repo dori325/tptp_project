@@ -9,6 +9,8 @@ public interface OService {
 
 	List<Map<String, Object>> brand1(Map<String, Object> map) throws Exception;
 	
+	List<Map<String, Object>> ohSearch(Map<String, Object> map) throws Exception;
+	
 	List<Map<String, Object>> brand2(Map<String, Object> map) throws Exception;
 	
 	List<Map<String, Object>> brand3(Map<String, Object> map) throws Exception;

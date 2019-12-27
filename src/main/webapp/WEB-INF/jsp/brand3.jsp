@@ -57,11 +57,25 @@
 						</c:forEach>
 					</c:when>
 					<c:otherwise>
-						<tr id="boardTr">
-							<td colspan="6">출력할 게시물이 없습니다.</td>
-						</tr>
+						<c:if test="${resultSearch eq null }">
+							<tr id="boardTr">
+								<td colspan="6">출력할 게시물이 없습니다.</td>
+							</tr>
+						</c:if>
 					</c:otherwise>
 				</c:choose>
+				<c:forEach items="${resultSearch }" var="r">
+					<tr id="boardTr">
+						<td id="comment">${r.c_count }</td>
+						<td id="sort">${r.b_cate2 }</td>
+						<td id="titleAl"><a href="detail.do?b_no=${r.b_no }"
+							id="title">${r.b_title } <input type="hidden" name="b_no"
+								value="${r.b_no }"></a></td>
+						<td id="name">${r.l_nick }</td>
+						<td id="date">${r.b_date }</td>
+						<td id="count">${r.b_count }</td>
+					</tr>
+				</c:forEach>
 			</table>
 		</form>
 		<div id="page">
@@ -70,47 +84,48 @@
 				<!-- 페이지 찍기 -->
 				<div id="pagepre">
 					<c:if test="${page gt 10 }">
-						<div id="pre10" onclick="location.href='brand3.do?page=${page - 10 }'">
-							◀
-						</div>
+						<div id="pre10"
+							onclick="location.href='brand3.do?page=${page - 10 }'">◀</div>
 					</c:if>
 					<c:if test="${page gt 1 }">
-						<div id="pre" onclick="location.href='brand3.do?page=${page - 1 }'">
-							◁
-						</div>
+						<div id="pre"
+							onclick="location.href='brand3.do?page=${page - 1 }'">◁</div>
 					</c:if>
 				</div>
 				<div id="pagenum">
 					<c:forEach begin="${startPage }" end="${endPage }" var="i">
 						<c:if test="${i eq page }">
-							<div id="curpage">
-								${i }
-							</div>
+							<div id="curpage">${i }</div>
 						</c:if>
 						<c:if test="${i ne page }">
 							<div id="ncurpage" onclick="location.href='brand3.do?page=${i }'">
-								${i }
-							</div>
+								${i }</div>
 						</c:if>
 					</c:forEach>
 				</div>
 				<div id="pagenex">
 					<c:if test="${page lt totalPage }">
-						<div id="nex" onclick="location.href='brand3.do?page=${page + 1 }'">
-							▷
-						</div>
+						<div id="nex"
+							onclick="location.href='brand3.do?page=${page + 1 }'">▷</div>
 					</c:if>
 					<c:if test="${page lt totalPage - 9 }">
-						<div id="nex10" onclick="location.href='brand3.do?page=${page + 10  }'">
-							▶
-						</div>
+						<div id="nex10"
+							onclick="location.href='brand3.do?page=${page + 10  }'">▶</div>
 					</c:if>
 				</div>
 			</c:if>
 		</div>
 		<div id="listBottom">
-			<input placeholder="검색하세요">
-			<button>검색</button>
+			<form action="ohSearch.do" method="GET">
+				<div id="search">
+					<input name="searchCont" placeholder="검색어 입력"> <input
+						type="hidden" name="b_cate1" value="${b_cate1 }"> <input
+						type="hidden" name="url" value="${pageContext.request.requestURI}">
+					<button type="submit">
+						<img alt="검색" src="./img/search.png">
+					</button>
+				</div>
+			</form>
 			<c:if test="${sessionScope.id ne null }">
 				<a id="writelink" href="write.do?b_cate1=${b_cate1 }">글쓰기</a>
 			</c:if>
