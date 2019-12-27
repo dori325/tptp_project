@@ -37,7 +37,11 @@ public interface K_Service {
 
 	int likeUp(String cno) throws Exception;
 
-//	String reComm(String c_no) throws Exception;
+	Map<String, Object> Modicomm(Map<String, Object> map) throws Exception;
+
+	int recomm(Map<String, Object> map) throws Exception;
+
+	Map<String, Object> findID(Map<String, Object> map) throws Exception;
 
 	
 

@@ -9,16 +9,17 @@
 <link href="./css/welcome.css" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css?family=Gamja+Flower|Nanum+Gothic+Coding&display=swap&subset=korean" rel="stylesheet">
 <body>
-<form action="findLogin.do">
+<%@ include file="topmenu.jsp" %>
 <div id="welcomeList">
 <%@ include file="LsideB.jsp" %>
 <%@ include file="RsideB.jsp" %>
 <div id="list">
 <h2>아이디/비밀번호 찾기</h2>
+<form action="findID.do" method="post">
 	<table id="findID">
 		<tr>
 			<th>e-mail</th>
-			<td><input type="text" placeholder="이메일을 입력하세요">@<input type="text" id="e-ad">
+			<td><input id="e-fr" type="text" placeholder="이메일을 입력하세요">@<input type="text" id="e-ad">
 				<select>
 					<option>선택하세요</option>
 					<option>naver.com</option>
@@ -28,8 +29,10 @@
 			</td>
 		</tr>
 	</table>
-	<button id="resultButt">아이디 찾기</button>
-	
+	<button type="submit" id="resultButt">아이디 찾기</button>
+	<input type="hidden" name="url" value="${pageContext.request.requestURI}">
+</form>
+
 	<table id="findPW">
 		<tr>
 			<th>아이디</th>
@@ -47,12 +50,13 @@
 			</td>
 		</tr>
 	</table>
+</form>
 	<button id="resultButt">임시 비밀번호 발송</button>
 	<div id="afterId">
 			<p id="p">***님의 아이디는 '***fjfi' 입니다.</p>
 	</div>
 </div>
 </div>
-</form>
+<%@ include file="bottonmenu.jsp" %>
 </body>
 </html>

@@ -10,37 +10,41 @@
 <link href="https://fonts.googleapis.com/css?family=Gamja+Flower|Nanum+Gothic+Coding&display=swap&subset=korean" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
-function commModi() {
-	var comment = $('#commCon').val();
-	var c_no = $('#c_no').val();	
-	var b_no = $('#b_no').val();
-	alert("여기 들어옴");
+function commModi(c__no) {
+	alert("짠" + c__no)
 	
-	if ($('#l_nick').val() == $('#s_nick').val()) {
-		$('#Con').prop('readonly', false);
-		$('#Con').focus(); //성공함 but c_no가 같은 애를 가져와야함
-	alert("여기 들어옴22");
+	var b_no = $('#b__no').val();
+	var url = $('#u__rl').val();
+	
+	alert("여기 들어옴"+b_no);
+	
+
+ 	$.ajax({
+ 		type : 'POST',
+ 		data : { "c_no": c__no, "b_no": b_no },
+ 		dataType : 'text',
+ 		url : 'commModi.do',
+ 		success : function(rData,textStatus, xhr){
+ 			var check = rData;
+ 			if(check != null){
+//  				$('#dd').prop('readonly', false);
+//  				document.getElmentBylId('Con').focus();
+// //  				c__no.attr.readonly = 'false';
+// //  				c__no.focus();
+//  				//확인 취소 버튼 만들고
+//  				//수정 삭제 버튼 가리고
+//  				//확인 이나 취소 누르면 다시 처음으로 돌아갈 수 있도록
+				alert("완전 성공" + check);
+ 			} else if(check != 0){
+//  				alert("댓글 수정 못함");
+ 			}
+ 		},
+ 		error : function(xhr,status,e){
+ 			alert("에러가 발생했습니다.");
+ 		}
+ 	});
+	alert("여기까지 성공");
 	return false;
-	}
-	
-// 	$.ajax({
-// 		type : 'POST',
-// 		data : { "comment": commCon, "c_no": c_no, "b_no": b_no },
-// 		dataType : 'text',
-// 		url : 'commModi.do',
-// 		success : function(rData,textStatus, xhr){
-// 			var check = rData;
-// 			if(check != 0){
-				
-// 			} else if(check = 0){
-// 				alert("좋아요 안 올라감");
-// 			}
-// 		},
-// 		error : function(xhr,status,e){
-// 			alert("에러가 발생했습니다.");
-// 		}
-// 	});
-// 	return false;
 }
 </script>
 <body>
@@ -71,33 +75,31 @@ function commModi() {
 				<input style="width: 0px;" type="hidden" name="likeCount" value="${c.c_like }">
 				<input style="width: 0px;" type="hidden" name="url" value="${pageContext.request.requestURI}">
 			</form></td>
-			<c:if test="${c.c_like != null || likeUp != null}">
+			<c:if test="${c.c_like ne null || likeUp ne null}">
 				<td id="comm" >${c.c_like }${likeUp }</td>
 			</c:if>
 		</tr>
 		<tr>
-			<td id="commContent"><input readonly="readonly" type="text" name="commCon" id="Con" placeholder="${c.c_content }" onchange="return commModi();"></td>
-			<c:if test="${sessionScope.nick == c.l_nick}">
-			<td id="buttontd">
-				<input style="width: 0px;" type="hidden" name="b_no" value="${c.b_no }">
-				<input style="width: 0px;" type="hidden" name="c_no" value="${c.c_no }">
-				<input style="width: 0px;" type="hidden" name="l_nick" value="${c.l_nick }">
-				<input style="width: 0px;" type="hidden" name="s_nick" value="${sessionScope.nick }">
-				<input style="width: 0px;" type="hidden" name="url" value="${pageContext.request.requestURI}">
-				<button name="modi" id="up" onclick="return commModi()">수정</button>
-			</td>
-			<c:if test="${sessionScope.nick == c.l_nick || sessionScope.auth > 3}">
-			<td id="buttontd">
+			<td id="commContent">
+			<input readonly="readonly" type="text" id="Con" placeholder="${c.c_content }">
+			<c:if test="${sessionScope.nick eq c.l_nick || sessionScope.auth eq 5}">
 				<form action="commDelete.do" method="post">
 				<input style="width: 0px;" type="hidden" name="nick" value="${c.l_nick }">
 				<input style="width: 0px;" type="hidden" name="b_no" value="${param.b_no }">
 				<input style="width: 0px;" type="hidden" name="c_no" value="${c.c_no }">
-				<input style="width: 0px;" type="hidden" name="url" value="${pageContext.request.requestURI}">
+				<input style="width: 0px;" type="hidden" name="u__rl" value="${pageContext.request.requestURI}">
 				<button id="up">삭제</button>
 				</form>
+			</c:if>
+			<c:if test="${sessionScope.nick eq c.l_nick}">
+				<form action="modiComm.do" method="post">
+				<input style="width: 0px;" type="hidden" name="b_no" value="${param.b_no }">
+				<input style="width: 0px;" type="hidden" name="c_no" value="${c.c_no }">
+				<input style="width: 0px;" type="hidden" name="url" value="${pageContext.request.requestURI}">
+				<button id="up">수정</button>
+				</form>
+			</c:if>
 			</td>
-			</c:if>
-			</c:if>
 		</tr>
 	</c:forEach>
 	</table>
