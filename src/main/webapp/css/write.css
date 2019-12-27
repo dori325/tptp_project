@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
+#write {	
+	margin: 0px auto;	
+	padding: 0px;	
+	width: 1250px;	
+	height: auto;	
+}
 #writetitle{
 	margin: 0 auto;
 	width: 850px;
@@ -16,6 +22,7 @@
 	margin-top: 10px;
 	margin-bottom: 10px;
 	width: 850px;
+	height: 30px;
 	font-size: 12pt;
 }
 #writebutton{

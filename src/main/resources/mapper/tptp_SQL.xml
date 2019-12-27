@@ -13,13 +13,7 @@
 	
 	<select id="brand1" parameterType="hashmap" resultType="hashmap">
 			SELECT b_no, b_like, b_cate1, b_cate2, b_title, b_date, b_count, l_nick, c_count,
-			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b1') AS count, 
-			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b1' AND b_cate2='연필') AS 'pencil', 
-			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b1' AND b_cate2='샤프') AS 'sharp', 
-			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b1' AND b_cate2='볼펜') AS 'ballpen', 
-			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b1' AND b_cate2='만년필') AS 'fountain', 
-			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b1' AND b_cate2='형광펜') AS 'hilight', 
-			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b1' AND b_cate2='기타') AS 'etc'
+			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b1') AS count
 			FROM boardview
 			WHERE b_no > 0
 			AND b_cate1 = 'b1'
@@ -56,7 +50,7 @@
 	
 	<insert id="writeInsert" parameterType="hashmap"> 
 			INSERT INTO board (b_cate1, b_cate2, b_title, b_content, l_nick, b_file)
-			VALUES(#{b_cate1 }, #{b_cate2 }, #{b_title }, #{b_content }, #{b_nick }, #{b_file })
+			VALUES(#{b_cate1 }, #{b_cate2 }, #{b_title }, #{b_content }, #{l_nick }, #{b_file })
 	</insert>
 	
 	<update id="countUp" parameterType="Integer">
