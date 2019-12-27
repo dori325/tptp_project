@@ -61,27 +61,46 @@ public class OController {
 		HttpSession session = request.getSession();
 		
 		// 임시로 page 만들어주기
-		int page = 1;
-		if (commandMap.containsKey("page") && Integer.parseInt((String) commandMap.get("page")) > 0) {
-			page = Integer.parseInt((String) commandMap.get("page"));
-		}
-		
-		commandMap.put("page", (page - 1) * 10);// '0'
-		List<Map<String, Object>> notice = oService.notice(commandMap.getMap());
-		
-		mv.addObject("notice", notice);
-		mv.addObject("page", page);
+				int page = 1;
+				if (commandMap.containsKey("page") && Integer.parseInt((String) commandMap.get("page")) > 0) {
+					page = Integer.parseInt((String) commandMap.get("page"));
+				}
+				commandMap.put("page", (page - 1) * 10);// '0'
 
-		mv.addObject("b_cate1", notice.get(0).get("b_cate1"));
-		System.out.println(commandMap.getMap());
-
-
-		if (notice.size() > 0) {
-			// 총페이지는?
-			// System.out.println("총 글의 수 : " + list.get(0).get("COUNT"));
-			commandMap.put("l_id", session.getAttribute("id"));
-			mv.addObject("count", notice.get(0).get("count"));
-		}
+				List<Map<String, Object>> notice = oService.brand1(commandMap.getMap());
+				
+				if(notice.size() > 0) {
+					
+					mv.addObject("notice", notice);
+			
+					mv.addObject("b_cate1", notice.get(0).get("b_cate1"));
+					mv.addObject("b_cate2", commandMap.get("b_cate2"));
+					
+					mv.addObject("page", page);
+					if (commandMap.get("b_cate2") != null) {
+						if (commandMap.get("b_cate2").equals("연필")) {
+							mv.addObject("count", notice.get(0).get("pen_count"));
+							
+						}else if (commandMap.get("b_cate2").equals("볼펜")) {
+							mv.addObject("count", notice.get(0).get("ball_count"));
+					
+						}else if (commandMap.get("b_cate2").equals("샤프")) {
+							mv.addObject("count", notice.get(0).get("sha_count"));
+							
+						}else if (commandMap.get("b_cate2").equals("형광펜")) {
+							mv.addObject("count", notice.get(0).get("hi_count"));
+							
+						}else if (commandMap.get("b_cate2").equals("만년필")) {
+							mv.addObject("count", notice.get(0).get("foun_count"));
+							
+						}else if (commandMap.get("b_cate2").equals("기타")) {
+							mv.addObject("count", notice.get(0).get("etc_count"));
+						}
+					}else if(commandMap.get("b_cate2") == null) {
+						mv.addObject("count", notice.get(0).get("count"));
+					}
+					
+				}
 		return mv;
 	}
 
@@ -105,13 +124,33 @@ public class OController {
 			mv.addObject("brand1", brand1);
 	
 			mv.addObject("b_cate1", brand1.get(0).get("b_cate1"));
-			mv.addObject("b_cate2", brand1.get(0).get("b_cate2"));
+			mv.addObject("b_cate2", commandMap.get("b_cate2"));
 			
 			mv.addObject("page", page);
+			if (commandMap.get("b_cate2") != null) {
+				if (commandMap.get("b_cate2").equals("연필")) {
+					mv.addObject("count", brand1.get(0).get("pen_count"));
+					
+				}else if (commandMap.get("b_cate2").equals("볼펜")) {
+					mv.addObject("count", brand1.get(0).get("ball_count"));
 			
-			mv.addObject("count", brand1.get(0).get("count"));
+				}else if (commandMap.get("b_cate2").equals("샤프")) {
+					mv.addObject("count", brand1.get(0).get("sha_count"));
+					
+				}else if (commandMap.get("b_cate2").equals("형광펜")) {
+					mv.addObject("count", brand1.get(0).get("hi_count"));
+					
+				}else if (commandMap.get("b_cate2").equals("만년필")) {
+					mv.addObject("count", brand1.get(0).get("foun_count"));
+					
+				}else if (commandMap.get("b_cate2").equals("기타")) {
+					mv.addObject("count", brand1.get(0).get("etc_count"));
+				}
+			}else if(commandMap.get("b_cate2") == null) {
+				mv.addObject("count", brand1.get(0).get("count"));
+				System.out.println(brand1.get(0).get("count"));
+			}
 			
-			System.out.println(brand1.get(0).get("count"));
 		}
 
 		return mv;
@@ -140,10 +179,29 @@ public class OController {
 			mv.addObject("b_cate2", brand2.get(0).get("b_cate2"));
 			
 			mv.addObject("page", page);
+			if (commandMap.get("b_cate2") != null) {
+				if (commandMap.get("b_cate2").equals("연필")) {
+					mv.addObject("count", brand2.get(0).get("pen_count"));
+					
+				}else if (commandMap.get("b_cate2").equals("볼펜")) {
+					mv.addObject("count", brand2.get(0).get("ball_count"));
 			
-			mv.addObject("count", brand2.get(0).get("count"));
+				}else if (commandMap.get("b_cate2").equals("샤프")) {
+					mv.addObject("count", brand2.get(0).get("sha_count"));
+					
+				}else if (commandMap.get("b_cate2").equals("형광펜")) {
+					mv.addObject("count", brand2.get(0).get("hi_count"));
+					
+				}else if (commandMap.get("b_cate2").equals("만년필")) {
+					mv.addObject("count", brand2.get(0).get("foun_count"));
+					
+				}else if (commandMap.get("b_cate2").equals("기타")) {
+					mv.addObject("count", brand2.get(0).get("etc_count"));
+				}
+			}else if(commandMap.get("b_cate2") == null) {
+				mv.addObject("count", brand2.get(0).get("count"));	
+			}
 			
-			System.out.println(brand2.get(0).get("count"));
 		}
 
 		return mv;
@@ -172,10 +230,29 @@ public class OController {
 			mv.addObject("b_cate2", brand3.get(0).get("b_cate2"));
 			
 			mv.addObject("page", page);
+			if (commandMap.get("b_cate2") != null) {
+				if (commandMap.get("b_cate2").equals("연필")) {
+					mv.addObject("count", brand3.get(0).get("pen_count"));
+					
+				}else if (commandMap.get("b_cate2").equals("볼펜")) {
+					mv.addObject("count", brand3.get(0).get("ball_count"));
 			
-			mv.addObject("count", brand3.get(0).get("count"));
-			
-			System.out.println(brand3.get(0).get("count"));
+				}else if (commandMap.get("b_cate2").equals("샤프")) {
+					mv.addObject("count", brand3.get(0).get("sha_count"));
+					
+				}else if (commandMap.get("b_cate2").equals("형광펜")) {
+					mv.addObject("count", brand3.get(0).get("hi_count"));
+					
+				}else if (commandMap.get("b_cate2").equals("만년필")) {
+					mv.addObject("count", brand3.get(0).get("foun_count"));
+					
+				}else if (commandMap.get("b_cate2").equals("기타")) {
+					mv.addObject("count", brand3.get(0).get("etc_count"));
+				}
+			}else if(commandMap.get("b_cate2") == null) {
+				mv.addObject("count", brand3.get(0).get("count"));	
+			}
+
 		}
 
 		return mv;

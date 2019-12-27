@@ -13,7 +13,13 @@
 	
 	<select id="brand1" parameterType="hashmap" resultType="hashmap">
 			SELECT b_no, b_like, b_cate1, b_cate2, b_title, b_date, b_count, l_nick, c_count,
-			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b1') AS count
+			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b1') AS count,
+			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b1' AND b_cate2='연필') AS pen_count,
+			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b1' AND b_cate2='볼펜') AS ball_count,
+			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b1' AND b_cate2='샤프') AS sha_count,
+			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b1' AND b_cate2='형광펜') AS hi_count,
+			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b1' AND b_cate2='만년필') AS foun_count,
+			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b1' AND b_cate2='기타') AS etc_count
 			FROM boardview
 			WHERE b_no > 0
 			AND b_cate1 = 'b1'
@@ -22,7 +28,13 @@
 	</select>
 	<select id="brand2" parameterType="hashmap" resultType="hashmap">
 			SELECT b_no, b_like, b_cate1, b_cate2, b_title, b_date, b_count, l_nick, c_count,
-			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b1') AS count
+			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b2') AS count,
+			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b2' AND b_cate2='연필') AS pen_count,
+			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b2' AND b_cate2='볼펜') AS ball_count,
+			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b2' AND b_cate2='샤프') AS sha_count,
+			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b2' AND b_cate2='형광펜') AS hi_count,
+			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b2' AND b_cate2='만년필') AS foun_count,
+			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b2' AND b_cate2='기타') AS etc_count
 			FROM boardview
 			WHERE b_no > 0
 			AND b_cate1 = 'b2'
@@ -31,7 +43,13 @@
 	</select>
 	<select id="brand3" parameterType="hashmap" resultType="hashmap">
 			SELECT b_no, b_like, b_cate1, b_cate2, b_title, b_date, b_count, l_nick, c_count,
-			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b1') AS count
+			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b3') AS count,
+			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b3' AND b_cate2='연필') AS pen_count,
+			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b3' AND b_cate2='볼펜') AS ball_count,
+			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b3' AND b_cate2='샤프') AS sha_count,
+			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b3' AND b_cate2='형광펜') AS hi_count,
+			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b3' AND b_cate2='만년필') AS foun_count,
+			(SELECT COUNT(*) FROM boardview WHERE b_cate1='b3' AND b_cate2='기타') AS etc_count
 			FROM boardview
 			WHERE b_no > 0
 			AND b_cate1 = 'b3'

@@ -84,12 +84,24 @@
 				<!-- 페이지 찍기 -->
 				<div id="pagepre">
 					<c:if test="${page gt 10 }">
-						<div id="pre10"
-							onclick="location.href='brand1.do?page=${page - 10 }'">◀</div>
+						<c:choose>
+							<c:when test="${b_cate2 eq null }">
+								<div id="pre10" onclick="location.href='brand1.do?page=${page - 10 }'">◀</div>
+							</c:when>
+							<c:otherwise>
+								<div id="pre10" onclick="location.href='brand1.do?page=${page - 10 }&b_cate2=${b_cate2 }'">◀</div>
+							</c:otherwise>
+						</c:choose>
 					</c:if>
 					<c:if test="${page gt 1 }">
-						<div id="pre"
-							onclick="location.href='brand1.do?page=${page - 1 }'">◁</div>
+						<c:choose>
+							<c:when test="${b_cate2 eq null }">
+								<div id="pre" onclick="location.href='brand1.do?page=${page - 1 }'">◁</div>
+							</c:when>
+							<c:otherwise>
+								<div id="pre" onclick="location.href='brand1.do?page=${page - 1 }&b_cate2=${b_cate2 }'">◁</div>
+							</c:otherwise>
+						</c:choose>
 					</c:if>
 				</div>
 				<div id="pagenum">
@@ -98,19 +110,38 @@
 							<div id="curpage">${i }</div>
 						</c:if>
 						<c:if test="${i ne page }">
-							<div id="ncurpage" onclick="location.href='brand1.do?page=${i }'">
-								${i }</div>
+							<c:choose>
+								<c:when test="${b_cate2 eq null }">
+									<div id="ncurpage" onclick="location.href='brand1.do?page=${i }'">${i }</div>
+								</c:when>
+								<c:otherwise>
+									<div id="ncurpage" onclick="location.href='brand1.do?page=${i }&b_cate2=${b_cate2 }'">${i }</div>
+								</c:otherwise>
+							</c:choose>
 						</c:if>
 					</c:forEach>
 				</div>
 				<div id="pagenex">
 					<c:if test="${page lt totalPage }">
-						<div id="nex"
-							onclick="location.href='brand1.do?page=${page + 1 }'">▷</div>
+						<c:choose>
+								<c:when test="${b_cate2 eq null }">
+									<div id="nex" onclick="location.href='brand1.do?page=${page + 1 }'">▷</div>
+								</c:when>
+								<c:otherwise>
+									<div id="nex" onclick="location.href='brand1.do?page=${page + 1 }&b_cate2=${b_cate2 }'">▷</div>
+								</c:otherwise>
+							</c:choose>
 					</c:if>
 					<c:if test="${page lt totalPage - 9 }">
-						<div id="nex10"
-							onclick="location.href='brand1.do?page=${page + 10  }'">▶</div>
+						<c:choose>
+								<c:when test="${b_cate2 eq null }">
+									<div id="nex10"	onclick="location.href='brand1.do?page=${page + 10  }'">▶</div>
+								</c:when>
+								<c:otherwise>
+									<div id="nex10"	onclick="location.href='brand1.do?page=${page + 10  }&b_cate2=${b_cate2 }'">▶</div>
+								</c:otherwise>
+							</c:choose>
+						
 					</c:if>
 				</div>
 			</c:if>
