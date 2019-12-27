@@ -77,29 +77,8 @@ public class OController {
 					mv.addObject("b_cate2", commandMap.get("b_cate2"));
 					
 					mv.addObject("page", page);
-					if (commandMap.get("b_cate2") != null) {
-						if (commandMap.get("b_cate2").equals("연필")) {
-							mv.addObject("count", notice.get(0).get("pen_count"));
-							
-						}else if (commandMap.get("b_cate2").equals("볼펜")) {
-							mv.addObject("count", notice.get(0).get("ball_count"));
-					
-						}else if (commandMap.get("b_cate2").equals("샤프")) {
-							mv.addObject("count", notice.get(0).get("sha_count"));
-							
-						}else if (commandMap.get("b_cate2").equals("형광펜")) {
-							mv.addObject("count", notice.get(0).get("hi_count"));
-							
-						}else if (commandMap.get("b_cate2").equals("만년필")) {
-							mv.addObject("count", notice.get(0).get("foun_count"));
-							
-						}else if (commandMap.get("b_cate2").equals("기타")) {
-							mv.addObject("count", notice.get(0).get("etc_count"));
-						}
-					}else if(commandMap.get("b_cate2") == null) {
-						mv.addObject("count", notice.get(0).get("count"));
-					}
-					
+					mv.addObject("count", notice.get(0).get("count"));
+
 				}
 		return mv;
 	}
