@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tptp.service.K_Service;
@@ -278,22 +279,62 @@ public class K_Controller {
 		return mv;
 	}
 //	//댓글 수정하기
-//	@RequestMapping(value = "commModi.do")
-//	public @ResponseBody String commModi(HttpServletRequest request, CommandMap commandMap) throws Exception {
-//		ModelAndView mv = new ModelAndView();
-//		HttpSession session = request.getSession();
-//		
-//		commandMap.put("comment", request.getParameter("comment"));
-//		commandMap.put("c_no", request.getParameter("c_no"));
-//		String mapcomm = null;
-//		String c_no = request.getParameter("c_no");
-//				
-//			int result= k_Service.commModi(commandMap.getMap());
-//			if (result == 0) {
-//				mapcomm = k_Service.reComm(c_no);
-//			}
-//			return mapcomm;	
-//	}
+	@RequestMapping(value = "commModi.do")
+	public /*ModelAndView*/ String commModi(HttpServletRequest request, CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		HttpSession session = request.getSession();
+		
+		commandMap.put("b_no", request.getParameter("b_no"));
+		commandMap.put("c_no", request.getParameter("c_no"));
+		System.out.println( request.getParameter("b_no"));
+		System.out.println( request.getParameter("c_no"));
+		
+		int result = k_Service.commModi(commandMap.getMap());
+		
+		mv.addObject("result", result);
+		mv.setViewName("redirect:detail.do?b_no="+request.getParameter("b_no"));
+		
+		System.out.println(result);
+		System.out.println("redirect:detail.do?b_no="+request.getParameter("b_no"));
+		
+//		return String.valueOf(result);	
+		return String.valueOf(result);	
+	}
+	@RequestMapping(value = "modiComm.do")
+	public ModelAndView Modicomm(HttpServletRequest request, CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("Modicomm");
+		HttpSession session = request.getSession();
+		
+		String url = request.getParameter("url").substring(17);
+		System.out.println(url);
+		String url2 = url.replace(".jsp", ".do?b_no=");
+		Map<String, Object> map = k_Service.Modicomm(commandMap.getMap());
+			
+		if (map.size() > 0) {
+			mv.addObject("map", map);
+			mv.addObject("url", url2+request.getParameter("b_no"));
+			mv.setViewName("modiComm");
+		} else {			
+			mv.setViewName("redirect:" + url2 + request.getParameter("b_no"));
+		}
+		return mv;
+	}
+	//수정 버튼 후 확인 버튼 눌러 들어온 수정
+	@RequestMapping(value = "recomm.do", method = RequestMethod.POST)
+	public ModelAndView recomm(HttpServletRequest request, CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		HttpSession session = request.getSession();
+		
+		int result = k_Service.recomm(commandMap.getMap());
+		
+		if (result == 0) {
+			mv.setViewName("main");
+			
+		} else if(result == 1) {
+			mv.setViewName("redirect:detail.do?b_no="+request.getParameter("b_no"));
+		}
+		return mv;
+	}
 	
 	//댓글 삭제
 	@RequestMapping(value = "commDelete.do", method = RequestMethod.POST)
@@ -407,24 +448,27 @@ public class K_Controller {
 		return mv;
 	}
 
-	@RequestMapping(value = "index.do")
-	public ModelAndView index(HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView();
-
-		return mv;
-	}
-//
-//	@RequestMapping(value = "repw.do")
-//	public ModelAndView repw(HttpServletRequest request) throws Exception {
-//		ModelAndView mv = new ModelAndView();
-//		
-//		return mv;
-//	}
-
 	@RequestMapping(value = "lostLogin.do")
 	public ModelAndView lostLogin(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
-
+		
 		return mv;
 	}
+
+	@RequestMapping(value = "findID.do")
+	public ModelAndView findID(HttpServletRequest request, CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("lostLogin");
+		
+		String email = request.getParameter("e-fr") +"@"+ request.getParameter("e-ad");
+		commandMap.put("email", email);
+		
+		Map<String, Object> map = k_Service.findID(commandMap.getMap());
+		if (map.size() > 0) {
+			mv.addObject("map", map);
+		} else {
+			mv.setViewName("redirect:lostLogin.do");
+		}
+			return mv;
+	}
+
 }

@@ -119,7 +119,7 @@ function check(){
 				<th>*아이디</th>
 				<td>
 					<input type="text" name="id" id="insertID" placeholder="아이디을 입력하세요" onchange="return checkID();">
-					<button onclick="return checkID()">중복확인</button>
+					<button type="submit" onclick="return checkID()">중복확인</button>
 					<small>변경 불가</small>
 				</td>
 			</tr>
@@ -127,7 +127,7 @@ function check(){
 				<th>*닉네임</th>
 				<td>
 					<input type="text" name="nick" id="insertNick" placeholder="닉네임을 입력하세요" onchange="return checkNick();">
-					<button onclick="return checkNick()">중복확인</button>
+					<button type="submit" onclick="return checkNick()">중복확인</button>
 					<small>변경 가능</small>
 				</td>
 			</tr>

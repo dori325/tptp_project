@@ -64,20 +64,7 @@
 			</c:forEach>
 		</table>
 		
-		<div id="listBottom">
-			<form action="qnaSearch.do" method="GET">
-				<div id="search">
-					<input name="searchCont" placeholder="검색어 입력">
-					<input type="hidden" name="b_cate1" value="${b_cate1 }">
-					<input type="hidden" name="url" value="${pageContext.request.requestURI}">
-					<button type="submit">
-						<img alt="검색" src="./img/search.png">
-					</button>
-				</div>
-			</form>
-			<a id="writelink" href="write.do?b_cate1=q">글쓰기</a>
-		</div>
-			<div id="page">
+		<div id="page">
 			<c:if test="${count ne null}">
 				<%@include file="page.jsp"%>
 				<!-- 페이지 찍기 -->
@@ -121,6 +108,22 @@
 				</div>
 			</c:if>
 		</div>
+		
+		<div id="listBottom">
+			<form action="qnaSearch.do" method="GET">
+				<div id="search">
+					<input name="searchCont" placeholder="검색어 입력">
+					<input type="hidden" name="b_cate1" value="${b_cate1 }">
+					<input type="hidden" name="url" value="${pageContext.request.requestURI}">
+					<button type="submit">
+						<img alt="검색" src="./img/search.png">
+					</button>
+				</div>
+			</form>
+			<a id="writelink" href="write.do?b_cate1=q">글쓰기</a>
+		</div>
+		
+			
 <%@ include file="bottonmenu.jsp" %>
 	</div>
 </body>

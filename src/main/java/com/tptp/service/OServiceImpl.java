@@ -26,6 +26,10 @@ public class OServiceImpl implements OService  {
 		return oDAO.brand1(map);
 	}
 	@Override
+	public List<Map<String, Object>> ohSearch(Map<String, Object> map) throws Exception {
+		return oDAO.ohSearch(map);
+	}
+	@Override
 	public List<Map<String, Object>> brand2(Map<String, Object> map) throws Exception {
 		return oDAO.brand2(map);
 	}

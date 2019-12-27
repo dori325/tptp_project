@@ -22,6 +22,11 @@ public class ODAO extends AbstractDAO {
 	}
 	
 	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> ohSearch(Map<String, Object> map) {
+		return selectList("o.ohSearch", map);
+	}
+	
+	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> brand2(Map<String, Object> map) {
 		return selectList("o.brand2", map);
 	}

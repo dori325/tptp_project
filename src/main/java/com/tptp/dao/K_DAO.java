@@ -84,7 +84,21 @@ public class K_DAO extends AbstractDAO{
 	}
 
 	public int commModi(Map<String, Object> map) {
-		return (int) update("k.commModi", map);
+		return (int) selectOne("k.commModi", map);
+	}
+
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> Modicomm(Map<String, Object> map) {
+		return (Map<String, Object>) selectOne("k.Modicomm", map);
+	}
+
+	public int recomm(Map<String, Object> map) {
+		return (int) update("k.recomm", map);
+	}
+
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> findID(Map<String, Object> map) {
+		return (Map<String, Object>) selectOne("k.findID", map);
 	}
 
 
