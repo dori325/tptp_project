@@ -94,6 +94,31 @@ public class K_ServiceImp implements K_Service {
 	public int likeUp(String c_no) throws Exception {
 		return k_DAO.likeUp(c_no);
 	}
+
+	@Override
+	public Map<String, Object> Modicomm(Map<String, Object> map) throws Exception {
+		return k_DAO.Modicomm(map);
+	}
+
+	@Override
+	public int recomm(Map<String, Object> map) throws Exception {
+		return k_DAO.recomm(map);
+	}
+
+	@Override
+	public Map<String, Object> findID(Map<String, Object> map) throws Exception {
+		return k_DAO.findID(map);
+	}
+
+	@Override
+	public int checkEmail(Map<String, Object> map) throws Exception {
+		return  k_DAO.checkEmail(map);
+	}
+
+	@Override
+	public int commSave(Map<String, Object> map) throws Exception {
+		return  k_DAO.commSave(map);
+	}
 	
 
 

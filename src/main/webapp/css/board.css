@@ -8,8 +8,9 @@ body::-webkit-scrollbar {
    margin: 0px auto;
    padding: 0px;
    width: 1250px;
-   height: auto;
+   min-height: 802px;
    font-family: "Nanum Gothic Coding", monospace;
+/*    background-color: black; */
 }
 
 #listTop {
@@ -123,14 +124,14 @@ tr:hover {
    background-color:  rgba(45, 158, 206, 0.05);
 }
 
-#listTop th {
+#newsboard th {
    height: 25px;
    font-size: 15px;
-   background-color: rgba(45, 158, 206, 0.5);
+   background-color: rgba(247, 198, 84, 0.5);
 }
 
-#listTop tr:nth-child(odd) {
-   background-color:  rgba(45, 158, 206, 0.05);
+#newsboard tr:nth-child(odd) {
+   background-color:  rgba(247, 198, 84, 0.05);
 }
 
 #brand th {

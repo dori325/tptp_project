@@ -94,19 +94,70 @@ public class H_Controller {
 		if (commandMap.get("searchCont") == null) { // 검색어 없을때
 			List<Map<String, Object>> news_list = h_Service.news_list(commandMap.getMap());
 			mv.addObject("news_list", news_list);
-			mv.addObject("page", page);
+			mv.addObject("b_cate1", news_list.get(0).get("b_cate1"));
+			mv.addObject("b_cate2", commandMap.get("b_cate2"));		
+			System.out.println(commandMap.get("b_cate2"));
+			mv.addObject("page", page);			
 			if (news_list.size() > 0) {
-				//System.out.println("총 글의 수 : " + u_list.get(0).get("COUNT"));
-				mv.addObject("count", news_list.get(0).get("count"));
+				if (commandMap.get("b_cate2") != null) {
+					if (commandMap.get("b_cate2").equals("연필")) {
+						mv.addObject("count", news_list.get(0).get("pen_count"));
+						
+					}else if (commandMap.get("b_cate2").equals("볼펜")) {
+						mv.addObject("count", news_list.get(0).get("ball_count"));
+				
+					}else if (commandMap.get("b_cate2").equals("샤프")) {
+						mv.addObject("count", news_list.get(0).get("sha_count"));
+						
+					}else if (commandMap.get("b_cate2").equals("형광펜")) {
+						mv.addObject("count", news_list.get(0).get("hi_count"));
+						
+					}else if (commandMap.get("b_cate2").equals("만년필")) {
+						mv.addObject("count", news_list.get(0).get("foun_count"));
+						
+					}else if (commandMap.get("b_cate2").equals("기타")) {
+						mv.addObject("count", news_list.get(0).get("etc_count"));
+					}
+				}else if(commandMap.get("b_cate2") == null) {
+					//System.out.println("총 글의 수 : " + u_list.get(0).get("COUNT"));
+					mv.addObject("count", news_list.get(0).get("count"));
+					System.out.println(news_list.get(0).get("count"));
+				}
 			}
+			
 		} else { // 검색어 있을떄
 			List<Map<String, Object>> news_search = h_Service.news_search(commandMap.getMap());
-			mv.addObject("news_list", news_search);
+			//mv.addObject("news_list", news_search);
+			mv.addObject("news_search", news_search);
+			mv.addObject("b_cate1", news_search.get(0).get("b_cate1"));
+			mv.addObject("b_cate2", commandMap.get("b_cate2"));				
 			mv.addObject("page", page);
 			if (news_search.size() > 0) {
+				if (commandMap.get("b_cate2") != null) {
+					if (commandMap.get("b_cate2").equals("연필")) {
+						mv.addObject("count", news_search.get(0).get("pen_count"));
+						
+					}else if (commandMap.get("b_cate2").equals("볼펜")) {
+						mv.addObject("count", news_search.get(0).get("ball_count"));
+				
+					}else if (commandMap.get("b_cate2").equals("샤프")) {
+						mv.addObject("count", news_search.get(0).get("sha_count"));
+						
+					}else if (commandMap.get("b_cate2").equals("형광펜")) {
+						mv.addObject("count", news_search.get(0).get("hi_count"));
+						
+					}else if (commandMap.get("b_cate2").equals("만년필")) {
+						mv.addObject("count", news_search.get(0).get("foun_count"));
+						
+					}else if (commandMap.get("b_cate2").equals("기타")) {
+						mv.addObject("count", news_search.get(0).get("etc_count"));
+					}
+				}else if(commandMap.get("b_cate2") == null) {
+					mv.addObject("count", news_search.get(0).get("count"));
+					System.out.println(news_search.get(0).get("count"));
 				//System.out.println("총 글의 수 : " + u_list.get(0).get("COUNT"));
-				mv.addObject("count", news_search.get(0).get("count"));
-			}
+				}
+			}			
 			if (commandMap.containsKey("b_title")) {
 				mv.addObject("b_title", commandMap.get("b_title"));
 			}
@@ -172,9 +223,10 @@ public class H_Controller {
 				//System.out.println("총 글의 수 : " + u_list.get(0).get("COUNT"));
 				mv.addObject("count", u_list.get(0).get("count"));
 			}
+			//mv.setViewName("userList");
 		} else { // 검색어 있을때
 			List<Map<String, Object>> ul_search = h_Service.ul_search(commandMap.getMap());
-			mv.addObject("u_list", ul_search);
+			mv.addObject("ul_search", ul_search);
 			mv.addObject("page", page);
 			if (ul_search.size() > 0) {
 				//System.out.println("총 글의 수 : " + ul_search.get(0).get("COUNT"));
@@ -195,6 +247,32 @@ public class H_Controller {
 		return mv;
 	}
 
+	//4.사용자리스트-권한변경
+	@RequestMapping(value = "levelUpdate.do")
+	public ModelAndView levelUpdate(HttpServletRequest request, CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		HttpSession session = request.getSession();
+		commandMap.put("l_no", session.getAttribute("l_no"));
+		commandMap.put("re_level", session.getAttribute("re_level"));
+		
+		System.out.println(request.getParameter("l_no"));
+		System.out.println(request.getParameter("re_level"));
+		
+		if (session.getAttribute("l_no") != null && session.getAttribute("l_auth") != null) {
+
+			int result = h_Service.levelUpdate(commandMap.getMap());
+
+			if (result == 0) {
+				mv.setViewName("userList");
+			} else if (result == 1) {
+				
+				session.setAttribute("l_auth", request.getParameter("re_level"));
+				mv.setViewName("redirect:userList.do");
+			}
+		}
+		return mv;
+	}
+	
 
 	// 5.log기록
 	@RequestMapping(value = "log.do")
