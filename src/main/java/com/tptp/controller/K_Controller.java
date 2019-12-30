@@ -2,17 +2,20 @@ package com.tptp.controller;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.scripting.xmltags.TrimSqlNode;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tptp.service.K_Service;
@@ -280,7 +283,7 @@ public class K_Controller {
 	}
 //	//댓글 수정하기
 	@RequestMapping(value = "commModi.do")
-	public /*ModelAndView*/ String commModi(HttpServletRequest request, CommandMap commandMap) throws Exception {
+	public @ResponseBody String commModi(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = request.getSession();
 		
@@ -291,14 +294,13 @@ public class K_Controller {
 		
 		int result = k_Service.commModi(commandMap.getMap());
 		
-		mv.addObject("result", result);
-		mv.setViewName("redirect:detail.do?b_no="+request.getParameter("b_no"));
+//		mv.addObject("result", result);
+//		mv.setViewName("redirect:detail.do?b_no="+request.getParameter("b_no"));
 		
 		System.out.println(result);
-		System.out.println("redirect:detail.do?b_no="+request.getParameter("b_no"));
+//		System.out.println("redirect:detail.do?b_no="+request.getParameter("b_no"));
 		
-//		return String.valueOf(result);	
-		return String.valueOf(result);	
+		return String.valueOf(result);
 	}
 	@RequestMapping(value = "modiComm.do")
 	public ModelAndView Modicomm(HttpServletRequest request, CommandMap commandMap) throws Exception {
@@ -454,6 +456,30 @@ public class K_Controller {
 		
 		return mv;
 	}
+	
+	@RequestMapping(value = "checkEmail.do")
+	public @ResponseBody String checkEmail(HttpServletRequest request, CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		int result = k_Service.checkEmail(commandMap.getMap());
+		String pw1 = String.valueOf((int)(Math.random()*10));
+		String pw2 = String.valueOf((int)(Math.random()*10));
+		char pw3 = (char)((int)(Math.random()*26)+65);
+		String pw4 = String.valueOf((int)(Math.random()*10));
+		char pw5 = (char)((int)(Math.random()*26)+65);
+		char pw6 = (char)((int)(Math.random()*26)+65);
+		String pw7 = String.valueOf((int)(Math.random()*10));
+		String pw = null;
+		
+		if (result == 1) {
+			pw = pw1 + pw2 + pw3 + pw4 + pw5 + pw6 + pw7 ; 
+			System.out.println(pw);
+		} else {
+			pw = "0";
+		}
+		
+		return pw;
+	}
 
 	@RequestMapping(value = "findID.do")
 	public ModelAndView findID(HttpServletRequest request, CommandMap commandMap) throws Exception {
@@ -465,10 +491,58 @@ public class K_Controller {
 		Map<String, Object> map = k_Service.findID(commandMap.getMap());
 		if (map.size() > 0) {
 			mv.addObject("map", map);
-		} else {
-			mv.setViewName("redirect:lostLogin.do");
 		}
-			return mv;
+		return mv;
+	}
+	
+	//controller만 지남
+	@RequestMapping(value = "modi.do", method = RequestMethod.POST)
+	public ModelAndView modi(HttpServletRequest request, CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		HttpSession session = request.getSession();
+		System.out.println(request.getParameter("l_nick"));
+		System.out.println(request.getParameter("c__no"));
+		System.out.println(request.getParameter("b__no"));
+		System.out.println(session.getAttribute("nick"));
+		
+		if (request.getParameter("l_nick").equals(session.getAttribute("nick"))) {
+			String num = request.getParameter("c__no");
+			System.out.println(num);
+			mv.addObject("num", num);
+			mv.setViewName("redirect:detail.do?b_no="+request.getParameter("b__no"));
+		} else {
+			mv.setViewName("main");			
+		}
+
+		return mv;
+	}
+	
+	@RequestMapping(value = "commSave.do", method = RequestMethod.POST)
+	public ModelAndView commSave(HttpServletRequest request, CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		HttpSession session = request.getSession();
+		System.out.println(request.getParameter("commCon"));
+		System.out.println(request.getParameter("c_no"));
+		System.out.println(request.getParameter("l_nick"));
+		System.out.println(session.getAttribute("nick"));
+		
+		String commCon = request.getParameter("commCon");
+		commCon = commCon.trim();
+		
+		if (request.getParameter("l_nick").equals(session.getAttribute("nick")) && commCon != null) {
+			int result = k_Service.commSave(commandMap.getMap());
+			if (result == 1) {
+				System.out.println("성공했습니다.");
+				mv.setViewName("redirect:detail.do?b_no="+request.getParameter("b_no"));
+			} else {
+				System.out.println("실패했습니다.");
+				mv.setViewName("redirect:detail.do?b_no="+request.getParameter("b_no"));
+			}
+		} else {
+			mv.setViewName("redirect:detail.do?b_no="+request.getParameter("b_no")+"&num="+request.getParameter("c_no"));			
+		}
+		
+		return mv;
 	}
 
 }
