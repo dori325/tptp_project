@@ -4,11 +4,20 @@ body::-webkit-scrollbar {
    display: none;
 }
 
+#Tlistboard {
+   margin: 0px auto;
+   padding: 0px;
+   width: 1250px;
+   min-height: 690px;
+   font-family: "Nanum Gothic Coding", monospace;
+/*    background-color: black; */
+}
+
 #listboard {
    margin: 0px auto;
    padding: 0px;
    width: 1250px;
-   min-height: 802px;
+   min-height: 890px;
    font-family: "Nanum Gothic Coding", monospace;
 /*    background-color: black; */
 }
@@ -21,6 +30,17 @@ body::-webkit-scrollbar {
    padding-top: 10px;
    width: 850px;
    height: 130;
+}
+
+#Tlistboard table {
+   text-align: center;
+   margin: 0px auto;
+   padding: 0px;
+   width: 850px;
+   border-left: none;
+/*    border-bottom: rgba(169, 169, 169, 0.7) 0.7px solid; */
+   border-collapse: collapse;
+   margin-bottom: 5px;
 }
 
 #listboard table {
@@ -99,6 +119,7 @@ body::-webkit-scrollbar {
 
 #listboard table tr {
    border-bottom: 1px #f5f5f5 solid;
+/*    border-bottom: 1px red solid; */
 }
 
 /* #listboard table th { */
@@ -123,7 +144,34 @@ tr:hover {
 #TS_Board tr:nth-child(odd) {
    background-color:  rgba(45, 158, 206, 0.05);
 }
-
+#TS_Board a {
+   text-decoration: none;
+   color: black;   
+}
+#TS_Board a:link {
+   text-decoration: none;
+   color: black;
+}
+#TS_Board a:visited {
+   text-decoration: none;
+   color: black;
+}
+#TS_Board #count {
+   width: 40px;
+}
+#TS_Board #sort {
+   width: 50px;
+   background-image: url("../img/sort.png");
+   background-size: 40px 23px;
+   background-repeat: no-repeat;
+   background-position: center;
+}
+#TS_Board #name {
+   width: 65px;
+}
+#TS_Board #date {
+   width: 65px;
+}
 #newsboard th {
    height: 25px;
    font-size: 15px;
@@ -133,7 +181,18 @@ tr:hover {
 #newsboard tr:nth-child(odd) {
    background-color:  rgba(247, 198, 84, 0.05);
 }
-
+#newsboard a {
+   text-decoration: none;
+   color: black;   
+}
+#newsboard a:link {
+   text-decoration: none;
+   color: black;
+}
+#newsboard a:visited {
+   text-decoration: none;
+   color: black;
+}
 #brand th {
    height: 25px;
    font-size: 15px;
@@ -641,7 +700,7 @@ tr:hover {
    border: 1px gray solid;
    border-radius: 4px;   
    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
-   border-bottom: 1px rgba(0, 0, 0, 0.1) solid;
+/*    border-bottom: 1px rgba(0, 0, 0, 0.1) solid; */
    
 }
 
