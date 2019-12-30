@@ -29,4 +29,6 @@ public interface OService {
 
 	int updateInsert(Map<String, Object> map) throws Exception;
 
+	void boardLikeUp(int num) throws Exception;
+
 }
