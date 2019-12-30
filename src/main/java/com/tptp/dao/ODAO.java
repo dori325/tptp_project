@@ -67,4 +67,8 @@ public class ODAO extends AbstractDAO {
 		return (int) update("o.updateInsert", map);
 	}
 
+	public void boardLikeUp(int num) {
+		update("o.boardLikeUp", num);
+	}
+
 }

@@ -231,9 +231,7 @@ public class OController {
 			}else if(commandMap.get("b_cate2") == null) {
 				mv.addObject("count", brand3.get(0).get("count"));	
 			}
-
 		}
-
 		return mv;
 	}
 
@@ -323,7 +321,7 @@ public class OController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "update.do", method = RequestMethod.POST)
+	@RequestMapping(value = "update.do")
 	public ModelAndView update(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
@@ -337,8 +335,6 @@ public class OController {
 		mv.addObject("old_url2", old_url2);
 		
 		System.out.println(commandMap.getMap());
-		System.out.println(request.getParameter("b_title"));
-		System.out.println(request.getParameter("b_content"));
 		
 		if (session.getAttribute("id") != null) {
 			mv.addObject("update", update);
@@ -374,12 +370,16 @@ public class OController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "boardlikeUp.do")
-	public ModelAndView boardlikeUp(HttpServletRequest request, CommandMap commandMap) throws Exception {
+	@RequestMapping(value = "boardLikeUp.do", method = RequestMethod.POST)
+	public ModelAndView boardLikeUp(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
 		HttpSession session = request.getSession();
 		
+		if (session.getAttribute("id") != null) {
+			int num = Integer.parseInt(request.getParameter("b_no"));
+			oService.boardLikeUp(num);			
+		}
 		
 		return mv;
 	}
