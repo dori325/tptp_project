@@ -34,7 +34,6 @@ public class K_Controller {
 	public ModelAndView QnA(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = request.getSession();
-				
 		
 		int page = 1;
 		if (commandMap.containsKey("page") && Integer.parseInt((String) commandMap.get("page")) > 0) {
@@ -42,23 +41,29 @@ public class K_Controller {
 		}
 		commandMap.put("page", (page - 1) * 10);// '0'
 		List<Map<String, Object>> Qlist = k_Service.QnAlist(commandMap.getMap());
+		mv.addObject("page", page);			
+		mv.addObject("Qlist", Qlist);
+		mv.addObject("b_cate2", commandMap.get("b_cate2"));
 		//System.out.println(Qlist.get(0));
 		if(Qlist.size() > 0) {			
-			mv.addObject("Qlist", Qlist);
-			mv.addObject("b_cate1", Qlist.get(0).get("b_cate1"));
-			mv.addObject("B1total", Qlist.get(0).get("pencile"));
-			mv.addObject("B1total", Qlist.get(0).get("샤프"));
-			mv.addObject("B1total", Qlist.get(0).get("볼펜"));
-			mv.addObject("B1total", Qlist.get(0).get("만년필"));
-			mv.addObject("B1total", Qlist.get(0).get("형광펜"));
-			mv.addObject("B1total", Qlist.get(0).get("기타"));
-			mv.addObject("count", Qlist.get(0).get("Qtotal"));
-			System.out.println("1."+ Qlist.get(0).get("Qtotal"));
-			System.out.println("1."+ Qlist.get(0).get("기타"));
-			System.out.println(Qlist.get(0).get("b_cate1"));
-			System.out.println(Qlist.get(0));
-		
-			mv.addObject("page", page);
+			if (commandMap.get("b_cate2") != null) {
+				if (commandMap.get("b_cate2").equals("연필")) {
+					mv.addObject("count", Qlist.get(0).get("pen_count"));
+				}else if (commandMap.get("b_cate2").equals("볼펜")) {
+					mv.addObject("count", Qlist.get(0).get("ball_count"));
+				}else if (commandMap.get("b_cate2").equals("샤프")) {
+					mv.addObject("count", Qlist.get(0).get("sha_count"));
+				}else if (commandMap.get("b_cate2").equals("형광펜")) {
+					mv.addObject("count", Qlist.get(0).get("hi_count"));
+				}else if (commandMap.get("b_cate2").equals("만년필")) {
+					mv.addObject("count", Qlist.get(0).get("foun_count"));					
+				}else if (commandMap.get("b_cate2").equals("기타")) {
+					mv.addObject("count", Qlist.get(0).get("etc_count"));
+				}
+			}else if(commandMap.get("b_cate2") == null) {
+				mv.addObject("count", Qlist.get(0).get("count"));
+				System.out.println(Qlist.get(0).get("count"));
+			}
 		}
 		return mv;
 	}
@@ -148,18 +153,18 @@ public class K_Controller {
 		ModelAndView mv = new ModelAndView("admCommList");
 		HttpSession session = request.getSession();
 		
+		System.out.println("list");	
 		int page = 1;
 		if (commandMap.containsKey("page") && Integer.parseInt((String) commandMap.get("page")) > 0) {
 			page = Integer.parseInt((String) commandMap.get("page"));
-		}
-		commandMap.put("page", (page - 1) * 10);// '0'
-		
+		} 
+			commandMap.put("page", (page - 1) * 10);// '0'
 			List<Map<String, Object>> list = k_Service.admOper(commandMap.getMap());
-			mv.addObject("count", list.get(0).get("ADtotal"));
+				
 			mv.addObject("page", page);
 			mv.addObject("list", list);
 			mv.addObject("b_cate1", list.get(0).get("b_cate1"));
-			System.out.println(list.get(0));
+			System.out.println(list.get(0));	
 		return mv;
 	}
 
@@ -174,17 +179,25 @@ public class K_Controller {
 	public ModelAndView joinReg(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:join.do");
 
+		System.out.println(request.getParameter("id"));
+		System.out.println(request.getParameter("nick"));
+		System.out.println(request.getParameter("pw1"));
+		System.out.println(request.getParameter("eFront"));
+		System.out.println(request.getParameter("eBack"));
 		if (request.getParameter("id") != null && request.getParameter("nick") != null
 				&& request.getParameter("pw1") != null && request.getParameter("eFront") != null
 				&& request.getParameter("eBack") != null) {
 
 			String email = request.getParameter("eFront") + "@" + request.getParameter("eBack");
+			System.out.println("1"+request.getParameter("eBack"));
 			commandMap.put("email", email);
 
 			int result = k_Service.joinReg(commandMap.getMap());
 			if (result == 1) {
+				System.out.println("2"+request.getParameter("eBack"));
 				mv.setViewName("main");
 			}
+			System.out.println("3"+request.getParameter("eBack"));
 		}
 		return mv;
 	}
@@ -459,7 +472,7 @@ public class K_Controller {
 	
 	@RequestMapping(value = "checkEmail.do")
 	public @ResponseBody String checkEmail(HttpServletRequest request, CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView();
+//		ModelAndView mv = new ModelAndView();
 		
 		int result = k_Service.checkEmail(commandMap.getMap());
 		String pw1 = String.valueOf((int)(Math.random()*10));
@@ -477,22 +490,28 @@ public class K_Controller {
 		} else {
 			pw = "0";
 		}
+		commandMap.put("id", request.getParameter("id"));
+		commandMap.put("pw2", pw);
+		int findPW = k_Service.pwModi(commandMap.getMap());
 		
 		return pw;
 	}
 
 	@RequestMapping(value = "findID.do")
-	public ModelAndView findID(HttpServletRequest request, CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("lostLogin");
+	public @ResponseBody String findID(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		
-		String email = request.getParameter("e-fr") +"@"+ request.getParameter("e-ad");
-		commandMap.put("email", email);
-		
-		Map<String, Object> map = k_Service.findID(commandMap.getMap());
-		if (map.size() > 0) {
-			mv.addObject("map", map);
-		}
-		return mv;
+		System.out.println("l_id");
+		String id = null;
+		commandMap.put("email", request.getParameter("email"));
+		System.out.println(request.getParameter("email"));
+			
+			Map<String, Object> map = k_Service.findID(commandMap.getMap());
+//			if (map.size() > 0) {
+				id = (String) map.get("l_id");
+				System.out.println(map.get("l_id"));
+//			}
+//		}
+		return id;
 	}
 	
 	//controller만 지남

@@ -5,12 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>아이디/비밀번호 찾기</title>
-</head>
-<link href="./css/welcome.css" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css?family=Gamja+Flower|Nanum+Gothic+Coding&display=swap&subset=korean" rel="stylesheet">
 <script type="text/javascript">
 function password() {
-	alert("성공 1");
 	
 	if (document.Form.ID.value == "") {
 		alert("아이디를 입력해주세요");
@@ -28,9 +25,8 @@ function password() {
 		return false;
 	}
 	
-	alert("성공 2");
 	var id = $('#id').val();
-	var email = $('#efr').val() +'@'+ $('#ead').val();
+	var email = $('#fre').val() +'@'+ $('#ade').val();
 		
 	$.ajax({
 		type : 'POST',
@@ -40,7 +36,7 @@ function password() {
 		success : function(rData,textStatus, xhr){
 			var check = rData;
 			if(check != 0){
-				alert("임시비밀번호: "+check); 
+				alert("임시비밀번호: "+check+"\n비밀번호를 반드시 변경해주세요"); 
 			} else {
 				alert("아이디과 이메일이 일치하지 않습니다.\n다시 확인해주세요");
 				$('#id').focus();
@@ -52,31 +48,97 @@ function password() {
 	});
 	return false;
 }
+
+function findId() {	
+	if ($('#e-fr').val() == '') {
+		alert("이메일를 입력해주세요");
+		$('#e-fr').focus();
+		return false;
+	}
+	
+	if ($('#e--ad').val() == '') {
+		alert("이메일를 입력해주세요");
+		$('#e--ad').focus();
+		return false;
+		
+	}
+	var email = $('#e-fr').val() + "@" + $('#e--ad').val()
+	
+	$.ajax({
+		type : 'POST',
+		data : {"email" : email},
+		dataType : 'text',
+		url : 'findID.do',
+		success : function(rData,textStatus, xhr){
+			var check = rData;
+			if(check != ''){
+				$('#afterId').css('display', 'block');
+				$('#p').text(check);
+				$('#e-fr').val()='';
+				$('#e--ad').val()='';
+			} else {
+				alert("이메일이 올바르지 않습니다.\n다시 확인해주세요");
+				$('#e-fr').focus();
+			}
+		},
+		error : function(xhr,status,e){
+			alert("에러가 발생했습니다.");
+		}
+	});
+	return false;
+}
+
+$(function(){	
+	$(document).ready(function(){
+		$('#Select').change(function() {
+			if($(this).val()=="1"){
+				$('#e--ad').val("");
+			} else {
+				$('#e--ad').val($(this).val());
+				$('#e--ad').attr('readonly', true);
+			}
+		});
+	});
+});
+
+$(function(){	
+	$(document).ready(function(){
+		$('#eSelect').change(function() {
+			if($(this).val()=="1"){
+				$('#ade').val("");
+			} else {
+				$('#ade').val($(this).val());
+				$('#ade').attr('readonly', true);
+			}
+		});
+	});
+});
 </script>
+<link href="./css/welcome.css" rel="stylesheet"/>
+</head>
 <body>
 <%@ include file="topmenu.jsp" %>
-<div id="welcomeList">
-<%@ include file="LsideB.jsp" %>
-<%@ include file="RsideB.jsp" %>
+<div id="lostList">
+<%@ include file="AllBar.jsp" %>
 <div id="list">
 <h2>아이디/비밀번호 찾기</h2>
-<form action="findID.do" method="post" name="form">
+<form action="findID.do" method="post" name="IDform">
 	<table id="findID">
 		<tr>
 			<th>e-mail</th>
-			<td><input name="e-fr" type="text" placeholder="이메일을 입력하세요">@<input type="text" name="e-ad" id="e-ad">
-				<select>
-					<option>선택하세요</option>
-					<option>naver.com</option>
-					<option>daum.net</option>
-					<option>gmail.com</option>
+			<td><input name="e-fr" id="e-fr" type="text" placeholder="이메일을 입력하세요">@ <input type="text" name="e-ad" id="e--ad">
+				<select id="Select">
+					<option value="1" selected="selected">직접입력</option>
+					<option value="naver.com">naver.com</option>
+					<option value="hanmail.net">hanmail.net</option>
+					<option value="gmail.com">gmail.com</option>
 				</select>
 			</td>
 		</tr>
 	</table>
-	<button type="submit" id="resultButt">아이디 찾기</button>
-	<input type="hidden" name="url" value="${pageContext.request.requestURI}">
+	<button id="resultButt" type="submit" onclick="return findId();">아이디 찾기</button>
 </form>
+
 <form name="Form">
 	<table id="findPW">
 		<tr>
@@ -85,23 +147,23 @@ function password() {
 		</tr>
 		<tr>
 			<th>e-mail</th>
-			<td><input name="EFR" id="efr" type="text" placeholder="이메일을 입력하세요">@<input name="EAD" type="text" id="ead">
-				<select>
-					<option>선택하세요</option>
-					<option>naver.com</option>
-					<option>daum.net</option>
-					<option>gmail.com</option>
+			<td><input name="EFR" id="fre" type="text" placeholder="이메일을 입력하세요">@ <input name="EAD" type="text" id="ade">
+				<select id="eSelect">
+					<option value="1" selected="selected">직접입력</option>
+					<option value="naver.com">naver.com</option>
+					<option value="hanmail.net">hanmail.net</option>
+					<option value="gmail.com">gmail.com</option>
 				</select>
 			</td>
 		</tr>
 	</table>
 </form>
 	<button id="resultButt" onclick="return password()">임시 비밀번호 발송</button>
-	<c:if test="${map.l_nick != null }">
-	<div id="afterId">
-			<p id="p">${map.l_nick }님의 아이디는 ' ${map.l_id } ' 입니다.</p>
+
+	<div style="display: none;" id="afterId">
+			<p>아이디는 '<a id="p"></a>' 입니다.</p>
 	</div>
-	</c:if>
+
 </div>
 </div>
 <%@ include file="bottonmenu.jsp" %>

@@ -14,6 +14,16 @@
 
 <!-- 댓글 입력창 -->
 	<table id="commP">
+<!-- 	로그인 X -->
+	<c:if test="${sessionScope.id eq null }">
+		<tr>
+			<td><input disabled="disabled" placeholder="로그인을 해주세요"/></td>
+			<td><button disabled="disabled">댓글 쓰기</button>
+			</td>
+		</tr>
+	</c:if>
+<!-- 	로그인 O -->
+	<c:if test="${sessionScope.id ne null }">
 		<tr>
 			<td><input name="ccontent" type="text" placeholder="댓글 입력"/></td>
 			<td><button type="submit">댓글 쓰기</button>
@@ -21,6 +31,7 @@
 			<input type="hidden" name="url" value="${pageContext.request.requestURI}">
 			</td>
 		</tr>
+	</c:if>
 	</table>
 </form>
 	<hr>

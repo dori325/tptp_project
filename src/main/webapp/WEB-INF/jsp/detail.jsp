@@ -117,7 +117,7 @@
 			</div>
 
 		</div>
-	<%@ include file="commInsert.jsp" %>
+	<%@ include file="commInsert3.jsp" %>
 	<c:import url="bottonmenu.jsp"/>
 </body>
 </html> 

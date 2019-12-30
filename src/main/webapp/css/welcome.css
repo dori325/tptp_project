@@ -9,7 +9,16 @@ body::-webkit-scrollbar {
 	padding: 0px;
 	margin-top: 100px;
 	width: 1250px;
-	height: auto;
+	min-height: 397px;
+	font-family: "Nanum Gothic Coding", monospace;
+}
+
+#lostList {
+	margin: 0px auto;
+	padding: 0px;
+	margin-top: 100px;
+	width: 1250px;
+	min-height: 702px;
 	font-family: "Nanum Gothic Coding", monospace;
 }
 
