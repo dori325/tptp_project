@@ -4,20 +4,20 @@
 
 	<select id="adlist" parameterType="hashmap" resultType="hashmap">
 		SELECT *,
-		(SELECT COUNT(*) FROM boardview WHERE b_cate1 = 'ad') AS ADtotal
+		(SELECT COUNT(*) FROM boardview WHERE b_cate1='ad') AS count 
 		FROM boardview WHERE b_cate1 = 'ad'
 		LIMIT #{page }, 10
 	</select>
 
 	<select id="Qlist" parameterType="hashmap" resultType="hashmap">
 		SELECT *,
-		(SELECT COUNT(*) FROM boardview WHERE b_cate1='q') AS Qtotal, 
-		(SELECT COUNT(*) FROM boardview WHERE b_cate1='q' AND b_cate2='연필') AS 'pencile', 
-		(SELECT COUNT(*) FROM boardview WHERE b_cate1='q' AND b_cate2='샤프') AS '샤프', 
-		(SELECT COUNT(*) FROM boardview WHERE b_cate1='q' AND b_cate2='볼펜') AS '볼펜', 
-		(SELECT COUNT(*) FROM boardview WHERE b_cate1='q' AND b_cate2='만년필') AS '만년필', 
-		(SELECT COUNT(*) FROM boardview WHERE b_cate1='q' AND b_cate2='형광펜') AS '형광펜', 
-		(SELECT COUNT(*) FROM boardview WHERE b_cate1='q' AND b_cate2='기타') AS '기타'
+		(SELECT COUNT(*) FROM boardview WHERE b_cate1='q') AS count, 
+		(SELECT COUNT(*) FROM boardview WHERE b_cate1='q' AND b_cate2='연필') AS pen_count, 
+		(SELECT COUNT(*) FROM boardview WHERE b_cate1='q' AND b_cate2='샤프') AS sha_count, 
+		(SELECT COUNT(*) FROM boardview WHERE b_cate1='q' AND b_cate2='볼펜') AS ball_count, 
+		(SELECT COUNT(*) FROM boardview WHERE b_cate1='q' AND b_cate2='만년필') AS foun_count, 
+		(SELECT COUNT(*) FROM boardview WHERE b_cate1='q' AND b_cate2='형광펜') AS hi_count, 
+		(SELECT COUNT(*) FROM boardview WHERE b_cate1='q' AND b_cate2='기타') AS etc_count
 		FROM boardview WHERE b_cate1 = 'q' 
 		<if test="b_cate2 != null">AND b_cate2=#{b_cate2}</if>
 		LIMIT #{page }, 10
@@ -46,12 +46,12 @@
 	</select>
 
 	<select id="login" parameterType="hashmap" resultType="hashmap">
-	SELECT l_id, l_pw, l_nick, l_auth,
-	(SELECT COUNT(l_nick) FROM boardview AS B
-	WHERE B.l_nick=(SELECT l_nick FROM login AS L WHERE L.l_id=#{ID})) AS countB,
-	(SELECT COUNT(l_nick) FROM comment AS B
-	WHERE B.l_nick=(SELECT l_nick FROM login AS L WHERE L.l_id=#{ID})) AS countC
-	FROM login WHERE l_id=#{ID} AND l_pw=#{PW}
+		SELECT l_id, l_pw, l_nick, l_auth,
+		(SELECT COUNT(l_nick) FROM boardview AS B
+		WHERE B.l_nick=(SELECT l_nick FROM login AS L WHERE L.l_id=#{ID})) AS countB,
+		(SELECT COUNT(l_nick) FROM comment AS B
+		WHERE B.l_nick=(SELECT l_nick FROM login AS L WHERE L.l_id=#{ID})) AS countC
+		FROM login WHERE l_id=#{ID} AND l_pw=#{PW}
 	</select>
 
 	

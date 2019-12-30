@@ -11,8 +11,8 @@
 <link href="https://fonts.googleapis.com/css?family=Gamja+Flower|Nanum+Gothic+Coding&display=swap&subset=korean" rel="stylesheet">
 </head>
 <body>
-<div id="listboard">
 <%@ include file="topmenu.jsp" %>
+<div id="listboard">
 <%@ include file="AllBar.jsp" %>
 		<div id="listTop">
 		<h2>질문게시판</h2>
@@ -70,40 +70,63 @@
 				<!-- 페이지 찍기 -->
 				<div id="pagepre">
 					<c:if test="${page gt 10 }">
-						<div id="pre10" onclick="location.href='QnAlist.do?page=${page - 10 }'">
-							◀
-						</div>
+						<c:choose>
+							<c:when test="${b_cate2 eq null }">
+								<div id="pre10" onclick="location.href='QnAlist.do?page=${page - 10 }'">◀</div>
+							</c:when>
+							<c:otherwise>
+								<div id="ncurpage" onclick="location.href='QnAlist.do?page=${page - 10 }&b_cate2=${b_cate2 }'">${i }</div>							
+							</c:otherwise>
+						</c:choose>
 					</c:if>
 					<c:if test="${page gt 1 }">
-						<div id="pre" onclick="location.href='QnAlist.do?page=${page - 1 }'">
-							◁
-						</div>
+						<c:choose>
+							<c:when test="${b_cate2 eq null }">
+								<div id="pre" onclick="location.href='QnAlist.do?page=${page - 1 }'">◁</div>
+							</c:when>
+							<c:otherwise>
+								<div id="ncurpage" onclick="location.href='QnAlist.do?page=${page - 1 }&b_cate2=${b_cate2 }'">${i }</div>							
+							</c:otherwise>
+						</c:choose>
 					</c:if>
 				</div>
 				<div id="pagenum">
 					<c:forEach begin="${startPage }" end="${endPage }" var="i">
 						<c:if test="${i eq page }">
-							<div id="curpage">
-								${i }
-							</div>
+							<div id="curpage">${i }</div>
 						</c:if>
 						<c:if test="${i ne page }">
-							<div id="ncurpage" onclick="location.href='QnAlist.do?page=${i }'">
-								${i }
-							</div>
+						<c:choose>
+							<c:when test="${b_cate2 eq null }">
+								<div id="ncurpage" onclick="location.href='QnAlist.do?page=${i }'">${i }</div>
+							</c:when>
+							<c:otherwise>
+								<div id="ncurpage" onclick="location.href='QnAlist.do?page=${i }&b_cate2=${b_cate2 }'">${i }</div>							
+							</c:otherwise>
+						</c:choose>
 						</c:if>
 					</c:forEach>
 				</div>
 				<div id="pagenex">
 					<c:if test="${page lt totalPage }">
-						<div id="nex" onclick="location.href='QnAlist.do?page=${page + 1 }'">
-							▷
-						</div>
+						<c:choose>
+							<c:when test="${b_cate2 eq null }">
+								<div id="nex" onclick="location.href='QnAlist.do?page=${page + 1 }'">▷</div>
+							</c:when>
+							<c:otherwise>
+								<div id="nex" onclick="location.href='QnAlist.do?page=${page + 1 }&b_cate2=${b_cate2 }'">▷</div>
+							</c:otherwise>
+						</c:choose>
 					</c:if>
 					<c:if test="${page lt totalPage - 9 }">
-						<div id="nex10" onclick="location.href='QnAlist.do?page=${page + 10  }'">
-							▶
-						</div>
+						<c:choose>
+							<c:when test="${b_cate2 eq null }">
+								<div id="nex10" onclick="location.href='QnAlist.do?page=${page + 10  }'">▶</div>
+							</c:when>
+							<c:otherwise>
+								<div id="nex10" onclick="location.href='QnAlist.do?page=${page + 10  }&b_cate2=${b_cate2 }'">▶</div>
+							</c:otherwise>
+						</c:choose>
 					</c:if>
 				</div>
 			</c:if>
@@ -122,9 +145,7 @@
 			</form>
 			<a id="writelink" href="write.do?b_cate1=q">글쓰기</a>
 		</div>
-		
-			
-<%@ include file="bottonmenu.jsp" %>
 	</div>
+<%@ include file="bottonmenu.jsp" %>
 </body>
 </html>

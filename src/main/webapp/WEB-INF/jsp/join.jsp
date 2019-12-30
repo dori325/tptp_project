@@ -15,6 +15,7 @@ function checkID() {
 		$('#insertID').focus();
 		return false;
 	}
+	
 	$.ajax({
 		type : 'POST',
 		data : "id="+id,
@@ -23,16 +24,15 @@ function checkID() {
 		success : function(rData,textStatus, xhr){
 			var check = rData;
 			if(check == 0){
-				$('#insertID').attr("disabled", "disabled");
+				alert("사용 가능한 아이디입니다. 진행하시겠습니까?");
+				$('#insertID').attr("readonly", "disabled");
 				$('#checkid').attr("disabled", "disabled");
 				$('#resetID').prop("disabled", false);
 				$('#insertNick').focus();
-				alert("사용 가능한 아이디입니다. 진행하시겠습니까?");
 			} else {
 				alert("이미 등록된 아이디입니다.\n다른 ID를 입력하세요.");
 				$('#insertID').focus();
 			}
-			alert("여기 들림")
 		},
 		error : function(xhr,status,e){
 			alert("에러가 발생했습니다.");
@@ -57,7 +57,7 @@ function checkNick() {
 			var check = rData;
 			if(check == 0){
 				alert("사용가능한 닉네임입니다. 진행하시겠습니까?");
-				$('#insertNick').prop('disabled', true);
+				$('#insertNick').prop('readonly', true);
 				$('#checknick').prop('disabled', true);
 				$('#checkIt').prop('disabled', false);
 				$('#insertPW1').focus();
@@ -73,6 +73,7 @@ function checkNick() {
 	});
 	return false;
 }
+
 function check(){
 	if (document.form.id.value == "") {
 		alert("아이디를 입력해주세요");
@@ -113,18 +114,37 @@ function check(){
 }
 
 function resetID(){
+	if ($('#insertID').val() != '') {
 		alert("아이디를 다시 설정하시겠습니까?");
-		$('#insertID').prop('disabled', false);
-		$('#checkid').prop("disabled", false);
-		return false;
+		$('#insertID').prop('readonly', false);
+		$('#insertID').focus();
+		$('#checkid').prop("disabled", false);		
+	}
+	return false;
 }
 
 function resetNick(){
+	if ($('#insertNick').val() != '') {
 		alert("닉네임을 다시 설정하시겠습니까?");
-		$('#insertNick').prop('disabled', false);
-		$('#checknick').prop("disabled", false);
-		return false;
+		$('#insertNick').prop('readonly', false);
+		$('#insertNick').focus();		
+		$('#checknick').prop('disabled', false);
+	}
+	return false;
 }
+
+$(function(){	
+	$(document).ready(function(){
+		$('#emailSelect').change(function() {
+			if($(this).val()=="1"){
+				$('#e-ad').val("");
+			} else {
+				$('#e-ad').val($(this).val());
+				$('#e-ad').attr('readonly', true);
+			}
+		});
+	});
+});
 </script>
 </head>
 <link href="./css/welcome.css" rel="stylesheet"/>
@@ -139,18 +159,18 @@ function resetNick(){
 			<tr>
 				<th>*아이디</th>
 				<td>
-					<input type="text" name="id" id="insertID" placeholder="아이디을 입력하세요" onchange="return checkID();" onchange="return resetID();">
+					<input type="text" name="id" id="insertID" placeholder="아이디을 입력하세요" onchange="return checkID();">
 					<button id="checkid" onclick="return checkID();">중복확인</button>
-					<button disabled="disabled" id="resetID" onclick="return resetID();">재설정</button>
+					<button id="resetID" onclick="return resetID();">재설정</button>
 					<small>변경 불가</small>
 				</td>
 			</tr>
 			<tr>
 				<th>*닉네임</th>
 				<td>
-					<input type="text" name="nick" id="insertNick" placeholder="닉네임을 입력하세요" onchange="return checkNick();"  onchange="return resetNick();">
+					<input type="text" name="nick" id="insertNick" placeholder="닉네임을 입력하세요" onchange="return checkNick();">
 					<button id="checknick" onclick="return checkNick();">중복확인</button>
-					<button disabled="disabled" id="resetNick" onclick="return resetNick();">재설정</button>
+					<button id="resetNick" onclick="return resetNick();">재설정</button>
 					<small>변경 가능</small>
 				</td>
 			</tr>
@@ -170,12 +190,12 @@ function resetNick(){
 			<tr>
 				<th>*e-mail</th>
 				<td>
-					<input type="text" name="eFront" id="e-fr" placeholder="이메일을 입력하세요">@<input type="text" name="eBack" id="e-ad">
-					<select>
-						<option>선택하세요</option>
-						<option>naver.com</option>
-						<option>daum.net</option>
-						<option>gmail.com</option>
+					<input type="text" name="eFront" id="e-fr" placeholder="이메일을 입력하세요">@ <input type="text" name="eBack" id="e-ad">
+					<select id="emailSelect" >
+						<option value="1" selected="selected">직접입력</option>
+						<option value="naver.com">naver.com</option>
+						<option value="hanmail.net">hanmail.net</option>
+						<option value="gmail.com">gmail.com</option>
 					</select><br>
 					<small style="color: gray;">아이디와 비밀번호 찾기 시 필요합니다.</small>
 				</td>
