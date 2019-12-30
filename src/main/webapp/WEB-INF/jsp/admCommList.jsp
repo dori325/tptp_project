@@ -11,8 +11,8 @@
 <link href="./css/board.css" rel="stylesheet" />
 <link href="./css/page.css" rel="stylesheet" />
 <body>
+	<%@ include file="topmenu.jsp"%>
 	<div id="listboard">
-		<%@ include file="topmenu.jsp"%>
 		<%@ include file="AllBar.jsp"%>
 		<div id="listTop">
 			<h2>운영게시판</h2>
@@ -64,14 +64,10 @@
 				<!-- 페이지 찍기 -->
 				<div id="pagepre">
 					<c:if test="${page gt 10 }">
-						<div id="pre10" onclick="location.href='brand1.do?page=${page - 10 }'">
-							◀
-						</div>
+						<div id="pre10" onclick="location.href='admCommList.do?page=${page - 10 }'">◀</div>
 					</c:if>
 					<c:if test="${page gt 1 }">
-						<div id="pre" onclick="location.href='brand1.do?page=${page - 1 }'">
-							◁
-						</div>
+						<div id="pre" onclick="location.href='admCommList.do?page=${page - 1 }'">◁</div>
 					</c:if>
 				</div>
 				<div id="pagenum">
@@ -82,7 +78,7 @@
 							</div>
 						</c:if>
 						<c:if test="${i ne page }">
-							<div id="ncurpage" onclick="location.href='brand1.do?page=${i }'">
+							<div id="ncurpage" onclick="location.href='admCommList.do?page=${i }'">
 								${i }
 							</div>
 						</c:if>
@@ -90,19 +86,16 @@
 				</div>
 				<div id="pagenex">
 					<c:if test="${page lt totalPage }">
-						<div id="nex" onclick="location.href='brand1.do?page=${page + 1 }'">
-							▷
-						</div>
+						<div id="nex" onclick="location.href='admCommList.do?page=${page + 1 }'">▷</div>
+						
 					</c:if>
 					<c:if test="${page lt totalPage - 9 }">
-						<div id="nex10" onclick="location.href='brand1.do?page=${page + 10  }'">
-							▶
-						</div>
+						<div id="nex10" onclick="location.href='admCommList.do?page=${page + 10  }'">▶</div>
 					</c:if>
 				</div>
 			</c:if>
 		</div>
-		<%@ include file="bottonmenu.jsp"%>
 	</div>
+		<%@ include file="bottonmenu.jsp"%>
 </body>
 </html>
