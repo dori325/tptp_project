@@ -43,6 +43,10 @@ public interface K_Service {
 
 	Map<String, Object> findID(Map<String, Object> map) throws Exception;
 
+	int checkEmail(Map<String, Object> map) throws Exception;
+
+	int commSave(Map<String, Object> map) throws Exception;
+
 	
 
 	

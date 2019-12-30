@@ -101,6 +101,14 @@ public class K_DAO extends AbstractDAO{
 		return (Map<String, Object>) selectOne("k.findID", map);
 	}
 
+	public int checkEmail(Map<String, Object> map) {
+		return (int) selectOne("k.checkEmail", map);
+	}
+
+	public int commSave(Map<String, Object> map) {
+		return (int) update("k.commSave", map);
+	}
+
 
 
 }

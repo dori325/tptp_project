@@ -86,10 +86,12 @@
 		UPDATE comment SET c_like=c_like+1 WHERE c_no=#{c_no}
 	</update>
 	
+<!-- 	commInsert.jsp -->
 	<select id="commModi" parameterType="hashmap" resultType="Integer">
 		SELECT c_no FROM comment WHERE b_no=#{b_no} AND c_no=#{c_no}
-	</select>
+	</select> 
 	
+<!-- 	commInsert2.jsp -->
 	<select id="Modicomm" parameterType="hashmap" resultType="hashmap">
 		SELECT * FROM comment WHERE c_no=#{c_no}
 	</select>
@@ -101,5 +103,14 @@
 	<select id="findID" parameterType="hashmap" resultType="hashmap">
 		SELECT * FROM login WHERE l_email=#{email}
 	</select>
+	
+	<select id="checkEmail" parameterType="hashmap" resultType="Integer">
+		SELECT COUNT(*) FROM login WHERE l_email=#{email} AND l_id=#{id}
+	</select>
+		
+<!-- 	commInsert3.jsp -->
+	<update id="commSave" parameterType="hashmap">
+		UPDATE comment SET c_content=#{commCon} WHERE c_no=#{c_no}
+	</update>
 	
 </mapper>

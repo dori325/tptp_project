@@ -109,6 +109,16 @@ public class K_ServiceImp implements K_Service {
 	public Map<String, Object> findID(Map<String, Object> map) throws Exception {
 		return k_DAO.findID(map);
 	}
+
+	@Override
+	public int checkEmail(Map<String, Object> map) throws Exception {
+		return  k_DAO.checkEmail(map);
+	}
+
+	@Override
+	public int commSave(Map<String, Object> map) throws Exception {
+		return  k_DAO.commSave(map);
+	}
 	
 
 

@@ -76,7 +76,7 @@ body::-webkit-scrollbar {
 }
 
 #list button {
-	width: 70px;
+	width: 80px;
 	height: 26px;
 	border: 0.7px rgba(169, 169, 169, 0.7) solid;
 	border-radius: 2px;
