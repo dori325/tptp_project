@@ -5,6 +5,9 @@ detailTop - 작성자 정보
 detailMid - 내용
 detailBot - 목록, 이전/다음, 추천등
  */
+body::-webkit-scrollbar { 
+    display: none; 
+}
 #detailbody{
 	margin: 0px auto;
 	padding: 0px;
@@ -139,6 +142,7 @@ detailBot - 목록, 이전/다음, 추천등
 	width: 100%;
 	margin: 10px auto;
 	position: relative;
+	border: 1px solid;
 }
 
 #like-img {

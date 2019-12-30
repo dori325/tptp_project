@@ -65,4 +65,8 @@ public class OServiceImpl implements OService  {
 	public int updateInsert(Map<String, Object> map) throws Exception {
 		return oDAO.updateInsert(map);
 	}
+	@Override
+	public void boardLikeUp(int num) throws Exception {
+		oDAO.boardLikeUp(num);
+	}
 }

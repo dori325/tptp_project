@@ -9,39 +9,96 @@
 <title>통합검색</title>
 <link href="./css/board.css" rel="stylesheet" />
 <link href="./css/page.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Gamja+Flower|Nanum+Gothic+Coding&display=swap&subset=korean" rel="stylesheet">
 <style>
-#sch1{
-.text-red {
-	color: red;
+#TS_Board a {
+   text-decoration: none;
+   color: black;   
 }
+#TS_Board a:link {
+   text-decoration: none;
+   color: black;
+}
+#TS_Board a:visited {
+   text-decoration: none;
+   color: black;
+}
+#TS_Board #count {
+   width: 40px;
+}
+#TS_Board #sort {
+   width: 50px;
+   background-image: url("../img/sort.png");
+   background-size: 40px 23px;
+   background-repeat: no-repeat;
+   background-position: center;
+}
+#TS_Board #name {
+   width: 65px;
+}
+#TS_Board #date {
+   width: 65px;
+}
+
+div {
+	background: #FFF;
+	padding: 5px;
+	margin: 5px;
+	text-decoration: none;
+}
+
 .highlight {
 	background-color: yellow;
-	color: red;
+	color: red;	
 }
+
+#b_content{
+    background :rgba(247, 198, 84, 0.3);    
+}
+
+#b_content p{
+    color : red;
+}
+
 </style>
-<script type="text/javascript" src="./js/jquery-1.8.0.min.js"  charset="utf-8"></script>
-<script type="text/javascript" src="./js/jquery.highlight-4.js"></script>
-<script>
-$(document).ready(function(){
-	var content = ${'b_content'};	
-	var strKey = $('content').val();; // 하이라이트를 적용할 스트링
-		 if(strKey != ''){
-			$('.line').highlight(strKey); //line class에 해당하는 요소들에서 strKey 값들을 하이라이트 처리
-		 }
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		//ID가 Content인 요소를 찾아 배경을 "red"로 변경한다. 
+		$("#b_content").css("color", "red");  
+
+		// 해당 검색어
+		var sKey1 = $("#b_content");
+		if (sKey1 != '') {
+			// 하이라이트(여러개의 검색어라면 단순하게 여러번 사용
+			//$('.sch1').highlight(sKey1);
+			$('.sch1').css("color","red");
+		}
+		//스페이스로 구분되어 and 연산자 검색을 한 검색어의 경우
+		var sKey = $("#b_content");
+		var splitKey = sKey.split(" ");
+		if (splitKey.length > 1) {
+			for (var i = 0; i < splitKey.length; i++) {
+				//$('.sch1').highlight(splitKey[i]);// 검색어 하이라이트 
+				//$('.sch1').css("background","rgba(45, 158, 206, 0.3)", "color:red" );// 검색어 하이라이트 
+				$('.sch1').css("color","red" );// 검색어 하이라이트 
+			}
+		} else {
+			//$('.sch1').highlight(sKey);
+			$('.sch1').css("color","red");
+		}
 	});
 </script>
 </head>
 <body>
 
 	<div id="listboard">
-
 		<%@ include file="topmenu.jsp"%>
 		<%@ include file="AllBar.jsp"%>
 		<div id="listTop">
 			<h2>통합검색결과..</h2>
 		</div>
 		<div id="TS_Board">
-		<input type="hidden" name="b_content" value="${b_content }">
 			<table>
 				<tr>
 					<th id="count">추천</th>
@@ -54,84 +111,86 @@ $(document).ready(function(){
 				<tr>
 					<th colspan="4">내용</th>
 				</tr>
+
 				<c:forEach items="${ts_list }" var="ts">
-					<c:if test="${ts_list eq null}">
-						<tr id="boardTr">
-							<td colspan="6">검색결과값이 없습니다.</td>
-						</tr>
-					</c:if>
 					<tr>
 						<td id="count">${ts.b_like }</td>
-						<td id="sort">${ts.b_cate1 }</td>
+						<td id="sort">
+						<c:if test="${ts.b_cate1 eq 'no'}">공지</c:if>
+						<c:if test="${ts.b_cate1 eq 'nw'}">뉴스</c:if>
+						<c:if test="${ts.b_cate1 eq 'b1'}">모나미</c:if>
+						<c:if test="${ts.b_cate1 eq 'b2'}">동아</c:if>
+						<c:if test="${ts.b_cate1 eq 'b3'}">모닝글로리</c:if>						
+						<c:if test="${ts.b_cate1 eq 'q'}">질문</c:if>						
+						</td>
 						<td id="sott">${ts.b_cate2 }</td>
-						<td id="title" class="sch1" style="text-align: left;"><a
-							href="detail.do?b_no=${ts.b_no }" id="title">${ts.b_title }</a></td>
+						<td style="text-align: left;">
+							<div id="b_content" class="sch1">
+								<a href="detail.do?b_no=${ts.b_no }">${ts.b_title}</a>
+							</div>
+						</td>
 						<td rowspan="2" id="name">${ts.l_nick }</td>
 						<td rowspan="2" id="date">${ts.b_date }</td>
 					</tr>
 					<tr>
-						<td class="line" colspan="4" style="text-align: left;">
-							<!--<c:set var="content" value="${fn:replace(b_content, content, '차차차')}" />-->
-							<c:choose>
-								<c:when test="${fn:length(ts.b_content) gt 61}">
-									 ${fn:substring(ts.b_content, 0, 60)}...
-								</c:when>
-								<c:otherwise>
-									${ts.b_content}
-								</c:otherwise>
-							</c:choose>
+						<td colspan="4" style="text-align: left;">
+							<div id="b_content" class="sch1">
+								<c:set var="b_content" value="${ts.b_content}" />
+								<c:if test="${fn:contains(b_content,'b_content')}">
+								${b_content }
+								</c:if>							
+								<c:choose>
+									<c:when test="${fn:length(ts.b_content) gt 71}">								
+										<a href="detail.do?b_no=${ts.b_no }">
+											${fn:substring(ts.b_content, 0, 70)}">...</a>
+									</c:when>
+									<c:otherwise>
+											<a href="detail.do?b_no=${ts.b_no }">${ts.b_content}</a>
+									</c:otherwise>
+								</c:choose>								
+							</div>
 						</td>
 					</tr>
-					<c:if test="${ts_list eq null}">
+					<c:if test="${ts_list eq null }">
 						<tr id="boardTr">
-							<td colspan="6">검색결과값이 없습니다.</td>
+							<td colspan="6">검색하신 게시물이 없습니다.</td>
 						</tr>
 					</c:if>
 				</c:forEach>
+
 			</table>
+
 
 			<!-- 페이징 -->
 			<div id="page">
-				<c:if test="${count ne null}">
-					<%@include file="page.jsp"%>
-					<!-- 페이지 찍기 -->
-					<div id="pagepre">
-						<c:if test="${page gt 10 }">
-							<button
-								onclick="location.href='totalSearch.do?page=${page - 10 }'">이전</button>
-						</c:if>
-						<c:if test="${page gt 1 }">
-							<button
-								onclick="location.href='totalSearch.do?page=${page - 1 }'">
-								◀</button>
-						</c:if>
-					</div>
-					<div id="pagenum">
-						<c:forEach begin="${startPage }" end="${endPage }" var="i">
+				<%@include file="page.jsp"%>
+				<!-- 페이지 찍기 -->
+				<c:if test="${page gt 10 }">
+					<button onclick="location.href='totalSearch.do?page=${page - 10 }'">이전</button>
+				</c:if>
+				<c:if test="${page gt 1 }">
+					<button onclick="location.href='totalSearch.do?page=${page - 1 }'">
+						◀</button>
+				</c:if>
+				<c:forEach begin="${startPage }" end="${endPage }" var="i">
 
-							<c:if test="${i eq page }">
-								<button onclick="location.href='totalSearch.do?page=${i }'">
-									<b style="color: blue;">${i }</b>
-								</button>
-							</c:if>
-							<c:if test="${i ne page }">
-								<button onclick="location.href='totalSearch.do?page=${i }'">
-									${i }</button>
-							</c:if>
-						</c:forEach>
-					</div>
-					<div id="pagenex">
-						<c:if test="${page lt totalPage }">
-							<button
-								onclick="location.href='totalSearch.do?page=${page + 1 }'">
-								▶</button>
-						</c:if>
-						<c:if test="${page lt totalPage - 9 }">
-							<button
-								onclick="location.href='totalSearch.do?page=${page + 10 }'">다음</button>
-						</c:if>
-					</div>
+					<c:if test="${i eq page }">
+						<button onclick="location.href='totalSearch.do?page=${i }'">
+							<b style="color: blue;">${i }</b>
+						</button>
+					</c:if>
+					<c:if test="${i ne page }">
+						<button onclick="location.href='totalSearch.do?page=${i }'">
+							${i }</button>
+					</c:if>
 
+				</c:forEach>
+				<c:if test="${page lt totalPage }">
+					<button onclick="location.href='totalSearch.do?page=${page + 1 }'">
+						▶</button>
+				</c:if>
+				<c:if test="${page lt totalPage - 9 }">
+					<button onclick="location.href='totalSearch.do?page=${page + 10 }'">다음</button>
 				</c:if>
 			</div>
 
