@@ -135,8 +135,7 @@
    <!-- 회원권한변경 -->
 	<update id="levelUpdate" parameterType="hashmap">
 		UPDATE login SET l_auth=#{re_level} WHERE l_no=#{l_no}
-	</update>
-	
+	</update>	
 	
 	<!-- 로그관리 -->
 	<select id="log" parameterType="hashmap" resultType="hashmap">

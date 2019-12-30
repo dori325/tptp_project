@@ -100,8 +100,7 @@ public class H_ServiceImpl implements H_Service {
 	@Override
 	public int levelUpdate(Map<String, Object> map) throws Exception {
 		return newsDAO.levelUpdate(map);
-	}
-	
+	}	
 	
 }
 //컨트롤러 - 서비스 - 서비스impl - dao ->sql.xml

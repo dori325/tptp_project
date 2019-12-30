@@ -23,11 +23,9 @@
    text-decoration: none;
    color: black;
 }
-
 #TS_Board #count {
    width: 40px;
 }
-
 #TS_Board #sort {
    width: 50px;
    background-image: url("../img/sort.png");
@@ -35,11 +33,9 @@
    background-repeat: no-repeat;
    background-position: center;
 }
-
 #TS_Board #name {
    width: 65px;
 }
-
 #TS_Board #date {
    width: 65px;
 }

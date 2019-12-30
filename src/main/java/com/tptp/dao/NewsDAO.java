@@ -95,5 +95,4 @@ public class NewsDAO  extends AbstractDAO{
 		return (int) update("news.levelUpdate", map);
 	}
 
-
 }

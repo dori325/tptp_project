@@ -40,8 +40,6 @@ public interface H_Service {
 	List<Map<String, Object>> log(Map<String, Object> map) throws Exception;
 	List<Map<String, Object>> id(Map<String, Object> map) throws Exception;
 	List<Map<String, Object>> ip(Map<String, Object> map) throws Exception;
-	
-		
 		
 
 }

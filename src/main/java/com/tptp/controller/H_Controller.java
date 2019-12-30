@@ -258,8 +258,7 @@ public class H_Controller {
 		System.out.println(request.getParameter("l_no"));
 		System.out.println(request.getParameter("re_level"));
 		
-		//if (session.getAttribute("id") != null && session.getAttribute("l_auth") != null) {
-		//if (session.getAttribute("l_no") != null && session.getAttribute("l_auth") != null) {
+		if (session.getAttribute("l_no") != null && session.getAttribute("l_auth") != null) {
 
 			int result = h_Service.levelUpdate(commandMap.getMap());
 
@@ -270,7 +269,7 @@ public class H_Controller {
 				session.setAttribute("l_auth", request.getParameter("re_level"));
 				mv.setViewName("redirect:userList.do");
 			}
-		//}
+		}
 		return mv;
 	}
 	

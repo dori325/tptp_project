@@ -69,8 +69,7 @@
 				<th id="name">작성자</th>
 				<th id="date">날짜</th>
 				<th id="count">조회수</th>
-			</tr>
-
+			</tr>			
 			<c:choose>
 				<c:when test="${news_list ne null }">
 					<c:forEach items="${news_list }" var="n">
@@ -98,7 +97,6 @@
 
 					</c:forEach>
 				</c:when>
-
 				<c:when test="${(news_list eq null) or (news_search eq null) }">
 					<tr id="boardTr">
 						<td colspan="7">출력할 게시물이 없습니다.</td>

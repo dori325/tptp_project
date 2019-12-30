@@ -137,8 +137,7 @@
 								<button type="submit" id="checkIt" disabled="disabled">변경</button></td>
 						</tr>
 					</c:forEach>
-
-
+					
 				</c:if>
 			</table>
 		</form>
