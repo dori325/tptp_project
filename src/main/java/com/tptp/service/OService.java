@@ -3,6 +3,8 @@ package com.tptp.service;
 import java.util.List;
 import java.util.Map;
 
+import com.common.common.CommandMap;
+
 public interface OService {
 	
 	List<Map<String, Object>> notice(Map<String, Object> map) throws Exception;
@@ -30,5 +32,12 @@ public interface OService {
 	int updateInsert(Map<String, Object> map) throws Exception;
 
 	void boardLikeUp(int num) throws Exception;
+
+	int lookUp(Map<String, Object> map) throws Exception;
+
+	int lookUpcheck(CommandMap commandMap) throws Exception;
+
+	
+
 
 }

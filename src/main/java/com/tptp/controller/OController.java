@@ -247,18 +247,26 @@ public class OController {
 		String old_url = request.getHeader("Referer");
 		String old_url2 = old_url.substring(26);
 		mv.addObject("old_url2", old_url2);
-		System.out.println(old_url2);
 		
 		// 조회수 + 1
-		int num = Integer.parseInt(request.getParameter("b_no"));
-		oService.countUp(num);
+		if (request.getParameter("b_no") != null) {
+			int num = Integer.parseInt(request.getParameter("b_no"));
+			oService.countUp(num);			
+		}
+		
+		// 로그인한사람이 조회할 경우 db insert
+		if (session.getAttribute("id") != null) {
+			commandMap.put("l_id", session.getAttribute("id"));
+//			System.out.println(oService.lookUpcheck(commandMap));
+//			if (oService.lookUpcheck(commandMap) == 0);{
+//				int result = oService.lookUp(commandMap.getMap());				
+//			}
+		}
 		
 		if (commdetail.size() > 0) {
 			mv.addObject("commdetail", commdetail);			
-			System.out.println(commdetail.get(0).get("c_content"));
 		}
 		
-		System.out.println(detail);
 		mv.addObject("detail", detail);
 		
 		
@@ -333,6 +341,9 @@ public class OController {
 		String old_url = request.getHeader("Referer");
 		String old_url2 = old_url.substring(26);
 		mv.addObject("old_url2", old_url2);
+		System.out.println(old_url);
+		System.out.println(old_url2);
+		
 		
 		System.out.println(commandMap.getMap());
 		

@@ -14,7 +14,7 @@
 </head>
 <link href="./css/detail.css" rel="stylesheet" />
 <body>
-		<div id="detailbody">	
+		<div id="detailbody">
 			<%@ include file="AllBar.jsp" %>
 			<div id="detailTop">
 			<h2>디테일</h2>
