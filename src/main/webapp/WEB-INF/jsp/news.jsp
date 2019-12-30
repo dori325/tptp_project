@@ -7,6 +7,20 @@
 <head>
 <meta charset="UTF-8">
 <title>새소식게시판</title>
+<style>
+#newsboard a {
+   text-decoration: none;
+   color: black;   
+}
+#newsboard a:link {
+   text-decoration: none;
+   color: black;
+}
+#newsboard a:visited {
+   text-decoration: none;
+   color: black;
+}
+</style>
 <script type="text/javascript">
 	function select() {
 		var b_title = document.getElementById("b_title").value;
@@ -15,10 +29,10 @@
 		location.href = "userList.do?b_title=" + b_title + "&page=" + page
 				+ "&b_content=" + b_content;
 	}
-	
-	function check(){
-		alert("눌렸습니다.");
-		if(document.frm.searchCont.value==""){
+
+	function check() {
+		//alert("눌렸습니다.");
+		if (document.frm.searchCont.value == "") {
 			alert("검색어를 넣어주세요.");
 			document.frm.name.focus();
 			return false;
@@ -28,89 +42,161 @@
 </head>
 <link href="./css/board.css" rel="stylesheet" />
 <link href="./css/page.css" rel="stylesheet" />
+<link
+	href="https://fonts.googleapis.com/css?family=Gamja+Flower|Nanum+Gothic+Coding&display=swap&subset=korean"
+	rel="stylesheet">
 <body>
 	<div id="listboard">
 		<%@ include file="topmenu.jsp"%>
 		<%@ include file="AllBar.jsp"%>
 		<div id="listTop">
-			<h2>새소식게시판</h2>
-			<button onclick="location.href='news.do'">전체</button>
+			<h2>펜 새소식</h2>
+			<button id="pensort" onclick="location.href='news.do'">전체</button>
+			<button id="pensort" onclick="location.href='news.do?b_cate2=연필'">연필</button>
+			<button id="pensort" onclick="location.href='news.do?b_cate2=샤프'">샤프</button>
+			<button id="pensort" onclick="location.href='news.do?b_cate2=볼펜'">볼펜</button>
+			<button id="pensort" onclick="location.href='news.do?b_cate2=만년필'">만년필</button>
+			<button id="pensort" onclick="location.href='news.do?b_cate2=형광펜'">형광펜</button>
+			<c:if test="${sessionScope.id ne null }">
+				<a id="writelink" href="write.do?b_cate1=nw">글쓰기</a>
+			</c:if>
 		</div>
 		<table id="newsboard">
-			<tr>
+			<tr id="boardTr">
 				<th id="comment">추천</th>
-				<th id="sort">분류1</th>
-				<th id="sort">분류2</th>
-				<th id="title">제목</th>
+				<th>분류</th>
+				<th>제목</th>
 				<th id="name">작성자</th>
 				<th id="date">날짜</th>
+				<th id="count">조회수</th>
 			</tr>
+
 			<c:choose>
-				<c:when test="${news_list ne null}">
+				<c:when test="${news_list ne null }">
 					<c:forEach items="${news_list }" var="n">
 						<tr id="boardTr">
 							<td id="comment">${n.b_like }</td>
-							<td id="sort"><c:if test="${n.b_cate1 eq 'nw'}">new</c:if></td>
 							<td id="sort">${n.b_cate2}</td>
-							<td id="title" style="text-align: left;"><a href="./detail.do?b_no=${n.b_no }" >${n.b_title }</a></td>
+							<td id="titleAl"><a href="./detail.do?b_no=${n.b_no }&b_cate1=${n.b_cate1}">${n.b_title }</a></td>
 							<td id="name">${n.l_nick }</td>
 							<td id="date">${n.b_date }</td>
+							<td id="count">${n.b_count }</td>
 						</tr>
 					</c:forEach>
 				</c:when>
-				<c:otherwise>
+
+				<c:when test="${news_search ne null }">
+					<c:forEach items="${news_search }" var="ns">
+						<tr id="boardTr">
+							<td id="comment">${ns.b_like }</td>
+							<td id="sort">${ns.b_cate2}</td>
+							<td id="titleAl"><a href="./detail.do?b_no=${ns.b_no }&b_cate1=${n.b_cate2}">${ns.b_title }</a></td>
+							<td id="name">${ns.l_nick }</td>
+							<td id="date">${ns.b_date }</td>
+							<td id="count">${ns.b_count }</td>
+						</tr>
+
+					</c:forEach>
+				</c:when>
+
+				<c:when test="${(news_list eq null) or (news_search eq null) }">
 					<tr id="boardTr">
-						<td colspan="6">출력할 게시물이 없습니다.</td>
+						<td colspan="7">출력할 게시물이 없습니다.</td>
 					</tr>
-				</c:otherwise>
+				</c:when>
 			</c:choose>
+
 		</table>
 
 		<!-- 페이징 -->
 		<div id="page">
-	    <%@include file="page.jsp" %>
-		<!-- 페이지 찍기 -->
-		<c:if test="${page gt 10 }">
-			<button onclick="location.href='news.do?page=${page - 10 }'">이전</button>
-		</c:if>
-		<c:if test="${page gt 1 }">
-			<button onclick="location.href='news.do?page=${page - 1 }'"> ◀ </button>
-		</c:if>
-		<c:forEach begin="${startPage }" end="${endPage }" var="i">
-			<c:if test="${i eq page }">
-				<button onclick="location.href='news.do?page=${i }'">
-					<b style="color: blue;">${i }</b>
-				</button>
+			<c:if test="${news_list ne null}">
+				<%@include file="page.jsp"%>
+				<!-- 페이지 찍기 -->
+				<div id="pagepre">
+					<c:if test="${page gt 10 }">
+						<c:choose>
+							<c:when test="${b_cate2 eq null }">
+								<div id="pre10" onclick="location.href='news.do?page=${page - 10 }'">◀</div>
+							</c:when>
+							<c:otherwise>
+								<div id="pre10" onclick="location.href='news.do?page=${page - 10 }&b_cate2=${b_cate2 }'">◀</div>
+							</c:otherwise>
+						</c:choose>
+					</c:if>
+					<c:if test="${page gt 1 }">
+						<c:choose>
+							<c:when test="${b_cate2 eq null }">
+								<div id="pre" onclick="location.href='news.do?page=${page - 1 }'">◁</div>
+							</c:when>
+							<c:otherwise>
+								<div id="pre" onclick="location.href='news.do?page=${page - 1 }&b_cate2=${b_cate2 }'">◁</div>
+							</c:otherwise>
+						</c:choose>
+					</c:if>
+				</div>
+				<div id="pagenum">
+					<c:forEach begin="${startPage }" end="${endPage }" var="i">
+						<c:if test="${i eq page }">
+							<div id="curpage">${i }</div>
+						</c:if>
+						<c:if test="${i ne page }">
+							<c:choose>
+								<c:when test="${b_cate2 eq null }">
+									<div id="ncurpage" onclick="location.href='news.do?page=${i }'">${i }</div>
+								</c:when>
+								<c:otherwise>
+									<div id="ncurpage" onclick="location.href='news.do?page=${i }&b_cate2=${b_cate2 }'">${i }</div>
+								</c:otherwise>
+							</c:choose>
+						</c:if>
+					</c:forEach>
+				</div>
+				<div id="pagenex">
+					<c:if test="${page lt totalPage }">
+						<c:choose>
+							<c:when test="${b_cate2 eq null }">
+								<div id="nex"
+									onclick="location.href='news.do?page=${page + 1 }'">▷</div>
+							</c:when>
+							<c:otherwise>
+								<div id="nex"
+									onclick="location.href='news.do?page=${page + 1 }&b_cate2=${b_cate2 }'">▷</div>
+							</c:otherwise>
+						</c:choose>
+					</c:if>
+					<c:if test="${page lt totalPage - 9 }">
+						<c:choose>
+							<c:when test="${b_cate2 eq null }">
+								<div id="nex10"
+									onclick="location.href='news.do?page=${page + 10  }'">▶</div>
+							</c:when>
+							<c:otherwise>
+								<div id="nex10"
+									onclick="location.href='news.do?page=${page + 10  }&b_cate2=${b_cate2 }'">▶</div>
+							</c:otherwise>
+						</c:choose>
+					</c:if>
+				</div>
 			</c:if>
-			<c:if test="${i ne page }">
-				<button onclick="location.href='news.do?page=${i }'">
-					${i }
-				</button>
-			</c:if>			
-		</c:forEach>
-		<c:if test="${page lt totalPage }">
-			<button onclick="location.href='news.do?page=${page + 1 }'"> ▶ </button>
-		</c:if>
-		<c:if test="${page lt totalPage - 9 }">
-			<button onclick="location.href='news.do?page=${page + 10 }'">다음</button>
-		</c:if>
-	</div>
-	
+		</div>
+
 		<form action="news.do" method="post">
 			<div id="listBottom">
-				<select name="searchID" id="id" onchange="select()" >
+				<select name="searchID" id="id" onchange="select()">
 					<option value="b_title">제목</option>
 					<option value="b_content">내용</option>
 				</select>
 				<div id="search">
-					<input name="searchCont" placeholder="검색어 입력" onchange="return check();">
+					<input name="searchCont" placeholder="검색어 입력"
+						onchange="return check();">
 					<button onchange="select()">
-						<!--<button onclick="location.href='news.do?searchCont=' ">-->
-						<!-- <button onclick='"location.href="+news.do?b_title="+searchCont+"&b_content="+searchCont; "'>-->
 						<img alt="검색" src="./img/search.png">
 					</button>
 				</div>
-				<a id="writelink" href="write.do?b_cate1=nw" >글쓰기</a>
+				<c:if test="${sessionScope.id ne null }">
+					<a id="writelink" href="write.do?b_cate1='nw">글쓰기</a>
+				</c:if>
 			</div>
 		</form>
 
