@@ -23,13 +23,16 @@ function checkID() {
 		success : function(rData,textStatus, xhr){
 			var check = rData;
 			if(check == 0){
-				alert("사용가능한 아이디입니다. 진행하시겠습니까?"); 
-				$('#checkID').prop('disabled', true);
+				$('#insertID').attr("disabled", "disabled");
+				$('#checkid').attr("disabled", "disabled");
+				$('#resetID').prop("disabled", false);
 				$('#insertNick').focus();
+				alert("사용 가능한 아이디입니다. 진행하시겠습니까?");
 			} else {
 				alert("이미 등록된 아이디입니다.\n다른 ID를 입력하세요.");
 				$('#insertID').focus();
 			}
+			alert("여기 들림")
 		},
 		error : function(xhr,status,e){
 			alert("에러가 발생했습니다.");
@@ -37,6 +40,7 @@ function checkID() {
 	});
 	return false;
 }
+
 function checkNick() {
 	var nick = $('#insertNick').val();	
 	if ($('#insertNick').val() == '') {
@@ -53,9 +57,11 @@ function checkNick() {
 			var check = rData;
 			if(check == 0){
 				alert("사용가능한 닉네임입니다. 진행하시겠습니까?");
-				$('#checkNick').prop('disabled', true);
+				$('#insertNick').prop('disabled', true);
+				$('#checknick').prop('disabled', true);
 				$('#checkIt').prop('disabled', false);
 				$('#insertPW1').focus();
+				$('#resetNick').prop("disabled", false);
 			} else {
 				alert("이미 등록된 닉네임입니다.\n다른 닉네임을 입력하세요.");
 				$('#insertNick').focus();
@@ -105,29 +111,46 @@ function check(){
 		return false;
 	}
 }
+
+function resetID(){
+		alert("아이디를 다시 설정하시겠습니까?");
+		$('#insertID').prop('disabled', false);
+		$('#checkid').prop("disabled", false);
+		return false;
+}
+
+function resetNick(){
+		alert("닉네임을 다시 설정하시겠습니까?");
+		$('#insertNick').prop('disabled', false);
+		$('#checknick').prop("disabled", false);
+		return false;
+}
 </script>
 </head>
 <link href="./css/welcome.css" rel="stylesheet"/>
 <body>
+<%@ include file="topmenu.jsp" %>
 <div id="welcomeList">
 <%@ include file="AllBar.jsp" %>
-<div id="list">
+<div id="list" style="margin-bottom: 305px;">
 	<h2>회원 가입</h2>
 <form action="joinReg.do" method="POST" name="form">
 		<table>
 			<tr>
 				<th>*아이디</th>
 				<td>
-					<input type="text" name="id" id="insertID" placeholder="아이디을 입력하세요" onchange="return checkID();">
-					<button type="submit" onclick="return checkID()">중복확인</button>
+					<input type="text" name="id" id="insertID" placeholder="아이디을 입력하세요" onchange="return checkID();" onchange="return resetID();">
+					<button id="checkid" onclick="return checkID();">중복확인</button>
+					<button disabled="disabled" id="resetID" onclick="return resetID();">재설정</button>
 					<small>변경 불가</small>
 				</td>
 			</tr>
 			<tr>
 				<th>*닉네임</th>
 				<td>
-					<input type="text" name="nick" id="insertNick" placeholder="닉네임을 입력하세요" onchange="return checkNick();">
-					<button type="submit" onclick="return checkNick()">중복확인</button>
+					<input type="text" name="nick" id="insertNick" placeholder="닉네임을 입력하세요" onchange="return checkNick();"  onchange="return resetNick();">
+					<button id="checknick" onclick="return checkNick();">중복확인</button>
+					<button disabled="disabled" id="resetNick" onclick="return resetNick();">재설정</button>
 					<small>변경 가능</small>
 				</td>
 			</tr>
@@ -140,14 +163,14 @@ function check(){
 			<tr>
 				<th>*비밀번호 확인</th>
 				<td>
-					<input type="password" name="pw2" id="insertPW2" placeholder="동일한 비밀번호를 입력하세요">
+					<input type="password" name="pw2" id="insertPW2" placeholder="다시 한 번 입력하세요">
 					<a id="notCorr" style="color: gray;">비밀번호가 일치하지 않습니다.</a>
 				</td>
 			</tr>
 			<tr>
 				<th>*e-mail</th>
 				<td>
-					<input type="text" name="eFront" id="e-fr">@<input type="text" name="eBack" id="e-ad">
+					<input type="text" name="eFront" id="e-fr" placeholder="이메일을 입력하세요">@<input type="text" name="eBack" id="e-ad">
 					<select>
 						<option>선택하세요</option>
 						<option>naver.com</option>
@@ -162,5 +185,6 @@ function check(){
 </form>
 	</div>	
 </div>
+<%@ include file="bottonmenu.jsp" %>
 </body>
 </html>
