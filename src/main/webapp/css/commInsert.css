@@ -132,7 +132,9 @@
 	border-bottom: 1px rgba(0, 0, 0, 0.12) solid;
 	margin-bottom: 10px;
 }
-
+#Con {
+	border: none;
+}
 #commContent input{
 	width: 740px; 
 	min-height: 23px; 

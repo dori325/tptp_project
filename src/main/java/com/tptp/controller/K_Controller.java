@@ -1,21 +1,17 @@
 package com.tptp.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.scripting.xmltags.TrimSqlNode;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tptp.service.K_Service;
@@ -75,6 +71,12 @@ public class K_Controller {
 
 		String url = request.getParameter("url").substring(17);
 		String url2 = url.replace(".jsp", ".do");
+ 
+		
+		String old_url = request.getHeader("referer");
+		String old_url2 = old_url.substring(26);
+		System.out.println("어흥 : "+old_url2);
+		
 
 		if (session.getAttribute("id") != null && session.getAttribute("pw") != null) {
 
@@ -96,7 +98,11 @@ public class K_Controller {
 			if (session.getAttribute("countC") != null) {
 				session.removeAttribute("countC");
 			}
-
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("l_id", session.getAttribute("l_id"));
+			map.put("l_nick", session.getAttribute("l_nick"));
+			
 		} else if (session.getAttribute("id") == null && session.getAttribute("pw") == null &&
 		request.getParameter("ID") != null && request.getParameter("PW") != null) {
 
@@ -113,8 +119,14 @@ public class K_Controller {
 				System.out.println(loginmap.get("countB"));
 				System.out.println(loginmap.get("countC"));
 			}
+			
 		}
-		mv.setViewName("redirect:" + url2);
+		
+		if (url2.equals("detail.do")) {			
+			mv.setViewName("redirect:" + old_url2);
+		} else {
+			mv.setViewName("redirect:" + url2);
+		}
 		return mv;
 	}
 
