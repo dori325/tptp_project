@@ -64,7 +64,7 @@
 <!-- 	</select> -->
 
 	<insert id="commInsert" parameterType="hashmap">
-		INSERT INTO comment (l_nick, b_no, c_content) VALUES (#{nick}, #{b_no}, #{ccontent})
+		INSERT INTO comment (l_nick, b_no, c_content, l_ip) VALUES (#{nick}, #{b_no}, #{ccontent}, #{l_ip})
 	</insert>
 
 	<select id="mylist" parameterType="String" resultType="hashmap">
@@ -113,4 +113,7 @@
 		UPDATE comment SET c_content=#{commCon} WHERE c_no=#{c_no}
 	</update>
 	
+	<insert id="logSet" parameterType="hashmap">
+		INSERT INTO log (l_id, l_nick, log_ip, log_do, log_etc, c_no, b_no)VALUES(#{l_id}, #{l_nick}, #{log_ip}, #{log_do}, #{log_etc}, #{c_no}, #{b_no})
+	</insert>
 </mapper>

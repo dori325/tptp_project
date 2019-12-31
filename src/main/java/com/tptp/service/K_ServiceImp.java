@@ -119,8 +119,11 @@ public class K_ServiceImp implements K_Service {
 	public int commSave(Map<String, Object> map) throws Exception {
 		return  k_DAO.commSave(map);
 	}
-	
 
+	@Override
+	public void logSet(Map<String, Object> map) throws Exception {
+		k_DAO.logSet(map); 
+	}
 
 	
 }
