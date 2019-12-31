@@ -36,8 +36,10 @@ public class K_Controller {
 		}
 		commandMap.put("page", (page - 1) * 10);// '0'
 		List<Map<String, Object>> Qlist = k_Service.QnAlist(commandMap.getMap());
+		System.out.println(Qlist.get(0).get("b_cate2"));
 		mv.addObject("page", page);			
 		mv.addObject("Qlist", Qlist);
+		mv.addObject("b_cate1", Qlist.get(0).get("b_cate1"));
 		mv.addObject("b_cate2", commandMap.get("b_cate2"));
 		//System.out.println(Qlist.get(0));
 		if(Qlist.size() > 0) {			
@@ -170,9 +172,12 @@ public class K_Controller {
 	public ModelAndView qnaSearch(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
+		System.out.println(request.getParameter("searchCont"));
 		System.out.println(request.getParameter("b_cate1"));
+		
 		if (!request.getParameter("searchCont").equals("")) {
 			List<Map<String, Object>> list = k_Service.qnaSearch(commandMap.getMap());
+			System.out.println(list.get(0));
 			if(list.size() > 0) {			
 				mv.addObject("resultSearch", list);
 			}

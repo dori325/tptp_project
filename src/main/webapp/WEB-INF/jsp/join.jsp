@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css?family=Gamja+Flower|Nanum+Gothic+Coding&display=swap&subset=korean" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
-function checkID() {
+function CheID() {
 	var id = $('#insertID').val();
 	if ($('#insertID').val() =='') {
 		alert("아이디를 입력해주세요");
@@ -161,7 +161,7 @@ $(function(){
 				<th>*아이디</th>
 				<td>
 					<input type="text" name="id" id="insertID" placeholder="아이디을 입력하세요" onchange="return checkID();">
-					<button id="checkid" onclick="return checkID();">중복확인</button>
+					<button id="checkid" onclick="return CheID();">중복확인</button>
 					<button id="resetID" onclick="return reID();">재설정</button>
 					<small>변경 불가</small>
 				</td>
