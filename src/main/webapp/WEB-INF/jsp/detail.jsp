@@ -8,38 +8,6 @@
 <title>이펜저펜</title>
 <script	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <c:import url="topmenu.jsp"/>
-<script type="text/javascript">
-function like_func(){
-	var frm_read = $('#frm_read');
-	var b_no = $('#b_no', frm_read).val();
-	
-	$.ajax({
-		url: "../liketo/like.do",
-		type: "GET",
-		cache: false,
-		dataType: "json",
-		data: 'b_no=' +b_no,
-		success: function(data) {
-			var msg = '';
-			var like_img = '';
-			msg += data.msg;
-			alert(msg);
-	      
-			if(data.like_check == 0){
-				like_img = "./img/heart2.png";
-			} else {
-				like_img = "./img/heart3.png";
-			}      
-			$('#like_img', frm_read).attr('src', like_img);
-			$('#like_cnt').html(data.like_cnt);
-			$('#like_check').html(data.like_check);
-		},
-		error: function(request, status, error){
-			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-		}
-	});
-}
-</script>
 </head>
 <link href="./css/detail.css" rel="stylesheet" />
 <body>
@@ -106,14 +74,6 @@ function like_func(){
 						<td id="like">
 							<div id="like-wrap">
 								<div id="like-img">
-									<c:choose>
-										<c:when test="${l_no ne null}">
-											<a href='javascript: like_func();'><img src='./img/heart2.png' id="like_img"></a>
-										</c:when>
-										<c:otherwise>
-										<a href='javascript: login_need();'><img src='./img/heart3.png'></a>
-										</c:otherwise>
-									</c:choose>
 									<img alt="" src="./img/heart2.png">
 								</div>
 								<div id="like-text" onclick="location.href='brand2.do'">
