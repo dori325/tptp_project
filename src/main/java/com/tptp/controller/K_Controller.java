@@ -15,8 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tptp.service.K_Service;
-
-
+import com.common.util.IpCheck;
 import com.common.common.CommandMap;
 
 @Controller
@@ -37,8 +36,10 @@ public class K_Controller {
 		}
 		commandMap.put("page", (page - 1) * 10);// '0'
 		List<Map<String, Object>> Qlist = k_Service.QnAlist(commandMap.getMap());
+		System.out.println(Qlist.get(0).get("b_cate2"));
 		mv.addObject("page", page);			
 		mv.addObject("Qlist", Qlist);
+		mv.addObject("b_cate1", Qlist.get(0).get("b_cate1"));
 		mv.addObject("b_cate2", commandMap.get("b_cate2"));
 		//System.out.println(Qlist.get(0));
 		if(Qlist.size() > 0) {			
@@ -79,6 +80,14 @@ public class K_Controller {
 		
 
 		if (session.getAttribute("id") != null && session.getAttribute("pw") != null) {
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("l_id", session.getAttribute("id"));
+			map.put("l_nick", session.getAttribute("nick"));
+			map.put("log_ip", IpCheck.getUserIP(request));
+			map.put("log_etc", session.getAttribute("id")+"로 로그아웃" );
+			map.put("log_do", 3);
+			k_Service.logSet(map);
 
 			if (session.getAttribute("id") != null) {
 				session.removeAttribute("id");
@@ -99,13 +108,10 @@ public class K_Controller {
 				session.removeAttribute("countC");
 			}
 			
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("l_id", session.getAttribute("l_id"));
-			map.put("l_nick", session.getAttribute("l_nick"));
-			
 		} else if (session.getAttribute("id") == null && session.getAttribute("pw") == null &&
 		request.getParameter("ID") != null && request.getParameter("PW") != null) {
 
+			System.out.println(request.getParameter("ID"));
 			Map<String, Object> loginmap = k_Service.login(commandMap.getMap());
 
 			if (loginmap != null) {
@@ -118,6 +124,23 @@ public class K_Controller {
 				session.setAttribute("countC", loginmap.get("countC"));
 				System.out.println(loginmap.get("countB"));
 				System.out.println(loginmap.get("countC"));
+				
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("l_id", session.getAttribute("id"));
+				map.put("l_nick", session.getAttribute("nick"));
+				map.put("log_ip", IpCheck.getUserIP(request));
+				map.put("log_etc", session.getAttribute("id")+"로 로그인 성공" );
+				map.put("log_do", 1);
+				k_Service.logSet(map);
+				
+			} else {
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("l_id", request.getParameter("ID"));
+				map.put("log_ip", IpCheck.getUserIP(request));
+				map.put("log_etc", request.getParameter("ID")+"로 로그인 실패" );
+				map.put("log_do", 2);
+				k_Service.logSet(map);
+				
 			}
 			
 		}
@@ -149,9 +172,12 @@ public class K_Controller {
 	public ModelAndView qnaSearch(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
+		System.out.println(request.getParameter("searchCont"));
 		System.out.println(request.getParameter("b_cate1"));
+		
 		if (!request.getParameter("searchCont").equals("")) {
 			List<Map<String, Object>> list = k_Service.qnaSearch(commandMap.getMap());
+			System.out.println(list.get(0));
 			if(list.size() > 0) {			
 				mv.addObject("resultSearch", list);
 			}
@@ -191,25 +217,26 @@ public class K_Controller {
 	public ModelAndView joinReg(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:join.do");
 
-		System.out.println(request.getParameter("id"));
-		System.out.println(request.getParameter("nick"));
-		System.out.println(request.getParameter("pw1"));
-		System.out.println(request.getParameter("eFront"));
-		System.out.println(request.getParameter("eBack"));
 		if (request.getParameter("id") != null && request.getParameter("nick") != null
 				&& request.getParameter("pw1") != null && request.getParameter("eFront") != null
 				&& request.getParameter("eBack") != null) {
 
 			String email = request.getParameter("eFront") + "@" + request.getParameter("eBack");
-			System.out.println("1"+request.getParameter("eBack"));
 			commandMap.put("email", email);
 
 			int result = k_Service.joinReg(commandMap.getMap());
 			if (result == 1) {
-				System.out.println("2"+request.getParameter("eBack"));
-				mv.setViewName("main");
+
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("l_id", request.getParameter("id"));
+				map.put("l_nick", request.getParameter("nick"));
+				map.put("log_ip", IpCheck.getUserIP(request));
+				map.put("log_etc", "회원가입 성공");
+				map.put("log_do", 11);
+				k_Service.logSet(map);
+				
+				mv.setViewName("redirect:main.do");
 			}
-			System.out.println("3"+request.getParameter("eBack"));
 		}
 		return mv;
 	}
@@ -254,21 +281,27 @@ public class K_Controller {
 		HttpSession session = request.getSession();
 		
 		String url = request.getParameter("url").substring(17);
-//		System.out.println(url);
 		String url2 = url.replace(".jsp", ".do?b_no=");
-//		System.out.println(url2);
-		System.out.println(commandMap.get("b_no"));
 		String b_no = (String) commandMap.get("b_no");
 		
-		System.out.println(request.getParameter("ccontent"));
-		
-		if (session.getAttribute("id") != null && request.getParameter("c_content") != " ") {
+		if (session.getAttribute("id") != null && request.getParameter("ccontent") != " ") {
+			String l_ip = IpCheck.getUserIP(request);
+			commandMap.put("l_ip", l_ip);
 			commandMap.put("nick", session.getAttribute("nick"));
 			int result = k_Service.commUpdate(commandMap.getMap());
-			if (result == 0) {
-				System.out.println("실패했습니다.");
-			} else if (result == 1) {
-				mv.setViewName("redirect:"+url2+b_no );						
+			if (result == 1) {
+				mv.setViewName("redirect:"+url2+b_no );	
+				
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("l_id", session.getAttribute("id"));
+				map.put("l_nick", session.getAttribute("nick"));
+				map.put("b_no", request.getParameter("b_no"));
+				map.put("log_ip", IpCheck.getUserIP(request));
+				map.put("log_etc", request.getParameter("b_no")+"번 글에 댓글 작성" );
+				map.put("log_do", 7);
+				k_Service.logSet(map);
+			} else {
+				mv.setViewName(url2+""+b_no);
 			}
 		}
 		return mv;
@@ -283,10 +316,6 @@ public class K_Controller {
 		String url = request.getParameter("url").substring(17);
 		String url2 = url.replace(".jsp", ".do?b_no=");
 		
-		System.out.println(cno);
-		System.out.println(likeCount);
-		System.out.println("여기 저 있어요22");
-//		System.out.println(c_no);
 		int result = 0;
 		int likeUp = 0;
 		
@@ -300,10 +329,8 @@ public class K_Controller {
 			System.out.println(likeUp);
 		} else {
 			likeUp = 0;
-			System.out.println("여기 저 있어요");
 		}
 		
-		System.out.println("아뇨, 저 여기 있어요");
 		return mv;
 	}
 //	//댓글 수정하기
@@ -377,6 +404,17 @@ public class K_Controller {
 			if (result == 1) {
 				mv.setViewName("redirect:" + url2 + b_no);
 				System.out.println(url2);
+				
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("l_id", session.getAttribute("id"));
+				map.put("l_nick", session.getAttribute("nick"));
+				map.put("b_no", request.getParameter("b_no"));
+				map.put("c_no", request.getParameter("c_no"));
+				map.put("log_ip", IpCheck.getUserIP(request));
+				map.put("log_etc", request.getParameter("b_no")+"번 글에 "+request.getParameter("c_no")+"번 댓글 삭제" );
+				map.put("log_do", 9);
+				k_Service.logSet(map);
+				
 			} else if(result == 0) {
 				mv.setViewName(url2 + b_no);
 				System.out.println("url2");
@@ -428,14 +466,23 @@ public class K_Controller {
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = request.getSession();
 		commandMap.put("id", session.getAttribute("id"));
-		System.out.println(request.getParameter("renick"));
+		
 		if (session.getAttribute("id") != null && session.getAttribute("nick") != null) {
 
 			int result = k_Service.nickUpdate(commandMap.getMap());
 
 			if (result == 0) {
 				mv.setViewName("mypage");
+	
 			} else if (result == 1) {
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("l_id", session.getAttribute("id"));
+				map.put("l_nick", session.getAttribute("nick"));
+				map.put("log_ip", IpCheck.getUserIP(request));
+				map.put("log_etc", session.getAttribute("nick")+"에서 "+request.getParameter("renick")+"으로 닉네임 수정" );
+				map.put("log_do", 12);
+				k_Service.logSet(map);
+				
 				session.setAttribute("nick", request.getParameter("renick"));
 				mv.setViewName("redirect:mypage.do");
 			}
@@ -499,12 +546,13 @@ public class K_Controller {
 		if (result == 1) {
 			pw = pw1 + pw2 + pw3 + pw4 + pw5 + pw6 + pw7 ; 
 			System.out.println(pw);
+			commandMap.put("id", request.getParameter("id"));
+			commandMap.put("pw2", pw);
+			int findPW = k_Service.pwModi(commandMap.getMap());
 		} else {
 			pw = "0";
 		}
-		commandMap.put("id", request.getParameter("id"));
-		commandMap.put("pw2", pw);
-		int findPW = k_Service.pwModi(commandMap.getMap());
+		
 		
 		return pw;
 	}
@@ -552,19 +600,24 @@ public class K_Controller {
 	public ModelAndView commSave(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = request.getSession();
-		System.out.println(request.getParameter("commCon"));
-		System.out.println(request.getParameter("c_no"));
-		System.out.println(request.getParameter("l_nick"));
-		System.out.println(session.getAttribute("nick"));
-		
 		String commCon = request.getParameter("commCon");
 		commCon = commCon.trim();
 		
 		if (request.getParameter("l_nick").equals(session.getAttribute("nick")) && commCon != null) {
 			int result = k_Service.commSave(commandMap.getMap());
 			if (result == 1) {
-				System.out.println("성공했습니다.");
 				mv.setViewName("redirect:detail.do?b_no="+request.getParameter("b_no"));
+				
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("l_id", session.getAttribute("id"));
+				map.put("l_nick", session.getAttribute("nick"));
+				map.put("b_no", request.getParameter("b_no"));
+				map.put("c_no", request.getParameter("c_no"));
+				map.put("log_ip", IpCheck.getUserIP(request));
+				map.put("log_etc", request.getParameter("b_no")+"번 글에 "+request.getParameter("c_no")+"번 댓글 수정" );
+				map.put("log_do", 8);
+				k_Service.logSet(map);
+				
 			} else {
 				System.out.println("실패했습니다.");
 				mv.setViewName("redirect:detail.do?b_no="+request.getParameter("b_no"));

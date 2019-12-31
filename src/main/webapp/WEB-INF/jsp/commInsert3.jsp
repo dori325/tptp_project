@@ -42,7 +42,7 @@
 <!-- 	댓글 상단 -->
 		<tr>
 			<td id="nick">${c.l_nick }</td>
-			<td id="ip"> <%-- ${c.l_ip } --%></td>
+			<td id="ip">(${c.l_ip })</td>
 			<td id="date">${c.c_date }</td>
 			<td id="commLike"><form action="likeUp.do" method="post">
 				<button type="submit" id="but"><img style="width: 28px;" alt="추천" src="./img/comm_heart.png"></button>
@@ -87,7 +87,7 @@
 					<input style="width: 0px;" type="hidden" name="nick" value="${c.l_nick }">
 					<input style="width: 0px;" type="hidden" name="b_no" value="${param.b_no }">
 					<input style="width: 0px;" type="hidden" name="c_no" value="${c.c_no }">
-					<input style="width: 0px;" type="hidden" name="u__rl" value="${pageContext.request.requestURI}">
+					<input style="width: 0px;" type="hidden" name="url" value="${pageContext.request.requestURI}">
 					<button id="up">삭제</button>
 				</form>
 			</c:if>
