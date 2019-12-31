@@ -101,4 +101,27 @@
 		UPDATE board SET b_like = b_like + 1 WHERE b_no = #{num } 
 	</update>
 	
+	<select id="lookUpcheck" resultType="hashmap" parameterType="hashmap">
+		SELECT COUNT(like_no) as cnt
+		FROM likes
+		WHERE b_no=#{b_no} AND l_id=#{l_id}
+	</select>
+	
+	<insert id="lookUp" parameterType="hashmap">
+		INSERT INTO b_likes (b_no, l_id, like_check)
+		VALUES(#{b_no }, #{l_id }, '0')
+	</insert>
+	
+	<update id="like_check" parameterType="HashMap">
+		UPDATE b_likes
+		SET like_check = like_check + 1 
+		WHERE l_id=#{l_id} AND b_no=#{b_no}
+	</update>
+	  
+	<update id="like_check_cancel" parameterType="HashMap">
+		UPDATE b_likes
+		SET like_check = 0
+		WHERE l_id=#{l_id} AND b_no=#{b_no}
+	</update>
+
 </mapper>
