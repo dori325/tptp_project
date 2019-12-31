@@ -7,20 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>새소식게시판</title>
-<style>
-#newsboard a {
-   text-decoration: none;
-   color: black;   
-}
-#newsboard a:link {
-   text-decoration: none;
-   color: black;
-}
-#newsboard a:visited {
-   text-decoration: none;
-   color: black;
-}
-</style>
 <script type="text/javascript">
 	function select() {
 		var b_title = document.getElementById("b_title").value;
@@ -198,8 +184,7 @@
 			</div>
 		</form>
 
-		<%@ include file="bottonmenu.jsp"%>
 	</div>
-
+<%@ include file="bottonmenu.jsp"%>
 </body>
 </html>

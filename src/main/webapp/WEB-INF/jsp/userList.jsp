@@ -10,59 +10,61 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
+    //검색
 	function select() {
 		var l_id = document.getElementById("l_id").value;
-		var l_nick = document.getElementById("l_nick").value;
-		var l_auth = document.getElementById("l_auth").value;
+		var l_nick = document.getElementById("l_nick").value;		
+		var l_auth = document.getElementById("l_auth").value;		
 		var page = '${page}';
 		location.href = "userList.do?l_id=" + l_id + "&page=" + page
 				+ "&l_nick=" + l_nick + "&l_auth=" + l_auth;
 	}
+    
+	 //권한변경
+	function levelUpdate(l_no) {
+		alert("l_no => : " + l_no)		
+		var l_no = $('#l_no').val();
+		var l_auth = $('#l_auth').val();
+		var url = $('#u__rl').val();		
+		//alert("여기 들어옴 : "+l_no);
 
-	function checkNick() {
-		var l_auth = $('#re_level').val();
-		if ($('#re_level').val() == '') {
-			alert("권한을 입력하세요");
-			$('#re_level').focus();
-			return false;
-		}
-		$.ajax({
-			type : 'POST',
-			data : "l_auth=" + l_auth,
-			dataType : 'text',
-			url : 'checkNick.do',
-			success : function(rData, textStatus, xhr) {
-				var check = rData;
-				if (check == 0) {
-					alert("요청하신 회원의 권한 변경가능합니다. 진행하시겠습니까?");
-					$('#re_level').prop('disabled', true);
+	 	$.ajax({
+	 		type : 'GET',
+	 		data : { "l_auth": l_auth, "l_no": l_no },
+	 		dataType : 'text',
+	 		url : 'levelUpdate.do',
+	 		success : function(rData,textStatus, xhr){
+	 			var check = rData;
+	 			if(check == 0){
+					alert("요청하신 회원의 권한 변경가능합니다. 진행하시겠습니까?" + check);
+					$('#l_auth').prop('disabled', true);
 					$('#checkIt').prop('disabled', false);
-				} else {
-					alert("권한변경이 안됩니다.\n");
-					$('#re_level').focus();
-				}
-			},
-			error : function(xhr, status, e) {
-				alert("에러가 발생했습니다.");
-			}
-		});
+	 			} else if(check != 0){
+	 			}
+	 		},
+	 		error : function(xhr,status,e){
+	 			alert("에러가 발생했습니다.");
+	 		}
+	 	});
+		//alert("마지막 성공!");
 		return false;
-	}
+	}    
+
 </script>
 </head>
 <link href="./css/board.css" rel="stylesheet" />
 <link href="./css/page.css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css?family=Gamja+Flower|Nanum+Gothic+Coding&display=swap&subset=korean" rel="stylesheet">
 <body>
-	<div id="listboard">
+	<div id="Tlistboard">
 		<%@ include file="topmenu.jsp"%>
 		<%@ include file="AllBar.jsp"%>
 		<div id="listTop">
 			<h2>회원관리</h2>
 			<button onclick="location.href='userList.do'">전체</button>
 		</div>
-
-		<form action="userList.do" method="POST">
+ 	    
+		
 			<table id="admCommList">
 				<c:if test="${sessionScope.id ne null }">
 					<tr>
@@ -86,22 +88,22 @@
 									<td id="name" style="text-align: left;">${u.l_nick}</td>
 									<td id="comment" style="text-align: left;">${u.l_email }</td>
 									<td id="no">${u.l_date}</td>
-									<td id="no" style="text-align: left;"><c:if
-											test="${u.l_auth eq 1}">
-											<option value="1">탈퇴</option>
-										</c:if> <c:if test="${u.l_auth eq 3}">
-											<option value="3">일반</option>
-										</c:if> <c:if test="${u.l_auth eq 5}">
-											<option value="5">관리자</option>
-										</c:if></td>
-									<td id="no"><select name="re_level" id="log_do"
-										onchange="return checkNick()">
+									<td id="no" style="text-align: left;">
+										<c:if test="${u.l_auth eq 3}">일반</c:if>
+										<c:if test="${u.l_auth eq 5}">관리자</c:if>
+										<c:if test="${u.l_auth eq 1}">탈퇴</c:if>
+										</td>
+								<td id="no"><form action="levelUpdate.do" method="post">								
+										<input type="hidden" name="l_no" value="${u.l_no }"> 
+											<select name="l_auth" id="log_do" onchange="return levelUpdate()">
 											<option value="3">일반</option>
 											<option value="5">관리자</option>
 											<option value="1">탈퇴</option>
-									</select>
-										<button type="submit" id="checkIt" disabled="disabled">변경</button></td>
-								</tr>
+										</select>
+									<button type="submit" id="checkIt" disabled="disabled">변경</button>
+									</form>
+									</td>
+							</tr>
 							</c:forEach>
 						</c:when>
 						<c:otherwise>
@@ -120,27 +122,28 @@
 							<td id="name" style="text-align: left;">${ul.l_id }</td>
 							<td id="name" style="text-align: left;">${ul.l_nick}</td>
 							<td id="comment" style="text-align: left;">${ul.l_email }</td>
-							<td id="no" style="text-align: left;"><c:if
-									test="${ul.l_auth eq 1}">
-									<option value="1">탈퇴</option>
-								</c:if> <c:if test="${ul.l_auth eq 3}">
-									<option value="3">일반</option>
-								</c:if> <c:if test="${ul.l_auth eq 5}">
-									<option value="5">관리자</option>
-								</c:if></td>
-							<td id="no"><select name="re_level" id="log_do"
-								onchange="return checkNick()">
-									<option value="5">관리자</option>
-									<option value="3">일반</option>
-									<option value="1">탈퇴</option>
-							</select>
-								<button type="submit" id="checkIt" disabled="disabled">변경</button></td>
+							<td id="no">${u.l_date}</td>
+							<td id="no" style="text-align: left;">
+										<c:if test="${u.l_auth eq 3}">일반</c:if>
+										<c:if test="${u.l_auth eq 5}">관리자</c:if>
+										<c:if test="${u.l_auth eq 1}">탈퇴</c:if>
+										</td>
+								<td id="no"><form action="levelUpdate.do" method="post">								
+										<input style="width: 0px;" type="hidden" name="l_no"
+											value="${u.l_no }"> 
+											<select name="l_auth" id="log_do" onchange="return levelUpdate()">
+											<option value="3" selected>일반</option>
+											<option value="5" selected>관리자</option>
+											<option value="1" selected>탈퇴</option>
+										</select>
+									<button type="submit" id="checkIt">변경</button>
+									</form>
+									</td>
 						</tr>
 					</c:forEach>
 					
 				</c:if>
 			</table>
-		</form>
 
 		<!-- 페이징 -->
 		<div id="page">
@@ -198,7 +201,7 @@
 			</div>
 		</form>
 
-		<%@ include file="bottonmenu.jsp"%>
 	</div>
+<%@ include file="bottonmenu.jsp"%>
 </body>
 </html>

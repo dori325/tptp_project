@@ -67,7 +67,6 @@ public class H_ServiceImpl implements H_Service {
 	public List<Map<String, Object>> ts_list(Map<String, Object> map) throws Exception {
 		return newsDAO.ts_list(map);
 	}
-
 	
 
 	//회원관리
@@ -100,6 +99,12 @@ public class H_ServiceImpl implements H_Service {
 	@Override
 	public int levelUpdate(Map<String, Object> map) throws Exception {
 		return newsDAO.levelUpdate(map);
+	}
+
+	//회원관리-권한변경-로그insert
+	@Override
+	public void logInput(Map<String, Object> map) throws Exception {
+		newsDAO.logInput(map);		
 	}	
 	
 }

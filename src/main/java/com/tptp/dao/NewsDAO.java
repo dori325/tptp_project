@@ -95,4 +95,10 @@ public class NewsDAO  extends AbstractDAO{
 		return (int) update("news.levelUpdate", map);
 	}
 
+	//회원관리-권한변경-로그insert
+	public void logInput(Map<String, Object> map) {
+		insert("news.logInput", map);		
+	}
+	
+
 }
