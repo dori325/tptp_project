@@ -61,20 +61,11 @@
 				<th id="comment"><select name="log_do" id="log_do"
 					onchange="select()">
 						<option value="0">선택하세요</option>
-						<c:if test="${log_do eq 1 }">
-							<option value="1" selected="selected">로그인성공</option>
-						</c:if>
-						<c:if test="${log_do ne 1 }">
-							<option value="1">로그인성공</option>
-						</c:if>
-						<c:if test="${log_do eq 2 }">
-							<option value="2" selected="selected">로그인실패</option>
-						</c:if>
-						<c:if test="${log_do ne 2 }">
-							<option value="2">로그인실패</option>
-						</c:if>
-						<c:if test="${log_do eq 3 }">
-							<option value="3" selected="selected">로그아웃</option>
+						<c:if test="${log_do eq 1 }"><option value="1" selected="selected">로그인성공</option></c:if>
+						<c:if test="${log_do ne 1 }"><option value="1">로그인성공</option></c:if>
+						<c:if test="${log_do eq 2 }"><option value="2" selected="selected">로그인실패</option></c:if>
+						<c:if test="${log_do ne 2 }"><option value="2">로그인실패</option></c:if>
+						<c:if test="${log_do eq 3 }"><option value="3" selected="selected">로그아웃</option>
 						</c:if>
 						<c:if test="${log_do ne 3 }">
 							<option value="3">로그아웃</option>
@@ -97,36 +88,19 @@
 						<c:if test="${log_do ne 6 }">
 							<option value="6">글삭제</option>
 						</c:if>
-						<c:if test="${log_do eq 7 }">
-							<option value="7" selected="selected">댓글작성</option>
-						</c:if>
-						<c:if test="${log_do ne 7 }">
-							<option value="7">댓글작성</option>
-						</c:if>
-						<c:if test="${log_do eq 8 }">
-							<option value="8" selected="selected">댓글수정</option>
-						</c:if>
-						<c:if test="${log_do ne 8 }">
-							<option value="8">댓글수정</option>
-						</c:if>
-						<c:if test="${log_do eq 9 }">
-							<option value="9" selected="selected">댓글삭제</option>
-						</c:if>
-						<c:if test="${log_do ne 9 }">
-							<option value="9">댓글삭제</option>
-						</c:if>
-						<c:if test="${log_do eq 10 }">
-							<option value="9" selected="selected">권한변경</option>
-						</c:if>
-						<c:if test="${log_do ne 10 }">
-							<option value="9">권한변경</option>
-						</c:if>	
-						<c:if test="${log_do eq 11 }">
-							<option value="9" selected="selected">회원가입</option>
-						</c:if>
-						<c:if test="${log_do ne 11 }">
-							<option value="9">회원가입</option>
-						</c:if>											
+						<c:if test="${log_do eq 7 }"><option value="7" selected="selected">댓글작성</option></c:if>
+						<c:if test="${log_do ne 7 }"><option value="7">댓글작성</option></c:if>
+						<c:if test="${log_do eq 8 }"><option value="8" selected="selected">댓글수정</option></c:if>
+						<c:if test="${log_do ne 8 }"><option value="8">댓글수정</option></c:if>
+						<c:if test="${log_do eq 9 }"><option value="9" selected="selected">댓글삭제</option></c:if>
+						<c:if test="${log_do ne 9 }"><option value="9">댓글삭제</option></c:if>
+						<c:if test="${log_do eq 10 }"><option value="10" selected="selected">권한변경</option></c:if>
+						<c:if test="${log_do ne 10 }"><option value="10">권한변경</option></c:if>	
+						<c:if test="${log_do eq 11 }"><option value="11" selected="selected">회원가입</option></c:if>
+						<c:if test="${log_do ne 11 }"><option value="11">회원가입</option></c:if>
+						<c:if test="${log_do eq 12 }"><option value="12" selected="selected">닉네임수정</option></c:if>
+						<c:if test="${log_do ne 12 }"><option value="12">닉네임수정</option></c:if>						
+																	
 				</select></th>
 				<th id="no">날짜</th>
 				<th id="no">비고</th>
@@ -136,15 +110,18 @@
 					<td id="no">${i.log_no }</td>
 					<td id="name"><a href="log.do?name=${i.l_id }">${i.l_id }</a></td>
 					<td id="titleAl"><a href="log.do?ip=${i.log_ip }">${i.log_ip }</a></td>
-					<td id="comment"><c:if test="${i.log_do eq 1}">로그인성공</c:if> <c:if
-							test="${i.log_do eq 2}">로그인 실패</c:if> <c:if
-							test="${i.log_do eq 3}">로그아웃</c:if> <c:if test="${i.log_do eq 4}">글쓰기</c:if>
-						<c:if test="${i.log_do eq 5}">글수정</c:if> <c:if
-							test="${i.log_do eq 6}">글삭제</c:if> <c:if test="${i.log_do eq 7}">댓글쓰기</c:if>
+					<td id="comment"><c:if test="${i.log_do eq 1}">로그인성공</c:if> 
+					    <c:if test="${i.log_do eq 2}">로그인 실패</c:if> 
+					    <c:if test="${i.log_do eq 3}">로그아웃</c:if> 
+						<c:if test="${i.log_do eq 4}">글쓰기</c:if>
+						<c:if test="${i.log_do eq 5}">글수정</c:if> 
+						<c:if test="${i.log_do eq 6}">글삭제</c:if> 
+						<c:if test="${i.log_do eq 7}">댓글쓰기</c:if>
 						<c:if test="${i.log_do eq 8}">댓글수정</c:if> 
 						<c:if test="${i.log_do eq 9}">댓글삭제</c:if>
 						<c:if test="${i.log_do eq 10}">권한변경</c:if>
-						<c:if test="${i.log_do eq 11}">회원가입</c:if>						
+						<c:if test="${i.log_do eq 11}">회원가입</c:if>
+						<c:if test="${i.log_do eq 12}">닉네임수정</c:if>						
 						</td>
 					<td id="no">${i.log_date }</td>
 					<td id="no" style="text-align: left;">${i.log_etc }</td>
