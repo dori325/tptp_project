@@ -48,7 +48,7 @@
 
 #commL #nick {
 	padding-top: 8px;
-	width: 165px;
+	width: 100px;
 	float: left;
 	text-align: left;
 	font-weight: normal;
@@ -59,7 +59,7 @@
 #commL #ip {
 	padding-top: 8px;
 /* 	height: 27px; */
-	width: 80px;
+	width: 145px;
 	float: left;
 	text-align: left;
 	color: rgba(0, 0, 0, 0.5);

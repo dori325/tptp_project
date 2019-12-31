@@ -71,6 +71,11 @@ body::-webkit-scrollbar {
 	border-radius: 3px;
 }
 
+#list #e-ad2 {
+	margin-left: 5px;
+	margin-right: 0px;
+}
+
 #list #e-ad {
 	margin-left: 5px;
 	margin-right: 0px;
@@ -116,8 +121,6 @@ body::-webkit-scrollbar {
 	margin-top: 15px; 
 	padding-top: 50px;
 	border-top: 1px gray solid;
-}
-#afterId {
 	text-align: left;
 }
 

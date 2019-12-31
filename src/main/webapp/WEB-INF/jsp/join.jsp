@@ -48,6 +48,7 @@ function checkNick() {
 		$('#insertNick').focus();
 		return false;
 	}
+	
 	$.ajax({
 		type : 'POST',
 		data : "nick="+nick,
@@ -74,7 +75,7 @@ function checkNick() {
 	return false;
 }
 
-function check(){
+function checkBlank(){
 	if (document.form.id.value == "") {
 		alert("아이디를 입력해주세요");
 		document.form.id.focus();
@@ -113,7 +114,7 @@ function check(){
 	}
 }
 
-function resetID(){
+function reID(){
 	if ($('#insertID').val() != '') {
 		alert("아이디를 다시 설정하시겠습니까?");
 		$('#insertID').prop('readonly', false);
@@ -123,7 +124,7 @@ function resetID(){
 	return false;
 }
 
-function resetNick(){
+function reNick(){
 	if ($('#insertNick').val() != '') {
 		alert("닉네임을 다시 설정하시겠습니까?");
 		$('#insertNick').prop('readonly', false);
@@ -133,7 +134,7 @@ function resetNick(){
 	return false;
 }
 
-$(function(){	
+$(function(){
 	$(document).ready(function(){
 		$('#emailSelect').change(function() {
 			if($(this).val()=="1"){
@@ -161,7 +162,7 @@ $(function(){
 				<td>
 					<input type="text" name="id" id="insertID" placeholder="아이디을 입력하세요" onchange="return checkID();">
 					<button id="checkid" onclick="return checkID();">중복확인</button>
-					<button id="resetID" onclick="return resetID();">재설정</button>
+					<button id="resetID" onclick="return reID();">재설정</button>
 					<small>변경 불가</small>
 				</td>
 			</tr>
@@ -170,7 +171,7 @@ $(function(){
 				<td>
 					<input type="text" name="nick" id="insertNick" placeholder="닉네임을 입력하세요" onchange="return checkNick();">
 					<button id="checknick" onclick="return checkNick();">중복확인</button>
-					<button id="resetNick" onclick="return resetNick();">재설정</button>
+					<button id="resetNick" onclick="return reNick();">재설정</button>
 					<small>변경 가능</small>
 				</td>
 			</tr>
@@ -201,7 +202,7 @@ $(function(){
 				</td>
 			</tr>
 		</table>
-	<button type="submit" disabled="disabled" id="checkIt" onclick="return check();">가입하기</button>
+	<button type="submit" disabled="disabled" id="checkIt" onclick="return checkBlank();">가입하기</button>
 </form>
 	</div>	
 </div>

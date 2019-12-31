@@ -8,7 +8,6 @@
 <link href="https://fonts.googleapis.com/css?family=Gamja+Flower|Nanum+Gothic+Coding&display=swap&subset=korean" rel="stylesheet">
 <script type="text/javascript">
 function password() {
-	
 	if (document.Form.ID.value == "") {
 		alert("아이디를 입력해주세요");
 		document.Form.ID.focus();
@@ -88,31 +87,23 @@ function findId() {
 	return false;
 }
 
-$(function(){	
-	$(document).ready(function(){
-		$('#Select').change(function() {
-			if($(this).val()=="1"){
-				$('#e--ad').val("");
-			} else {
-				$('#e--ad').val($(this).val());
-				$('#e--ad').attr('readonly', true);
-			}
-		});
-	});
-});
+function Select() {
+	if($('#SelectEmail').val()=="0"){
+		$('#e-ad').val("");
+	} else {
+		$('#e-ad').val($('#SelectEmail').val());
+		$('#e-ad').attr('readonly', true);
+	}
+}
 
-$(function(){	
-	$(document).ready(function(){
-		$('#eSelect').change(function() {
-			if($(this).val()=="1"){
-				$('#ade').val("");
-			} else {
-				$('#ade').val($(this).val());
-				$('#ade').attr('readonly', true);
-			}
-		});
-	});
-});
+function Email() {
+	if($('#eSelect').val()=="1"){
+		$('#e-ad2').val("");
+	} else {
+		$('#e-ad2').val($('#eSelect').val());
+		$('#e-ad2').attr('readonly', true);
+	}
+}
 </script>
 <link href="./css/welcome.css" rel="stylesheet"/>
 </head>
@@ -126,9 +117,9 @@ $(function(){
 	<table id="findID">
 		<tr>
 			<th>e-mail</th>
-			<td><input name="e-fr" id="e-fr" type="text" placeholder="이메일을 입력하세요">@ <input type="text" name="e-ad" id="e--ad">
-				<select id="Select">
-					<option value="1" selected="selected">직접입력</option>
+			<td><input name="e-fr" id="e-fr" type="text" placeholder="이메일을 입력하세요">@<input type="text" name="e-ad" id="e-ad">
+				<select id="SelectEmail" onchange="Select()">
+					<option value="0" selected="selected">직접입력</option>
 					<option value="naver.com">naver.com</option>
 					<option value="hanmail.net">hanmail.net</option>
 					<option value="gmail.com">gmail.com</option>
@@ -147,8 +138,8 @@ $(function(){
 		</tr>
 		<tr>
 			<th>e-mail</th>
-			<td><input name="EFR" id="fre" type="text" placeholder="이메일을 입력하세요">@ <input name="EAD" type="text" id="ade">
-				<select id="eSelect">
+			<td><input name="EFR" id="e-fr2" type="text" placeholder="이메일을 입력하세요">@<input name="EAD" type="text" id="e-ad2">
+				<select id="eSelect" onchange="Email()">
 					<option value="1" selected="selected">직접입력</option>
 					<option value="naver.com">naver.com</option>
 					<option value="hanmail.net">hanmail.net</option>

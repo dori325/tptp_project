@@ -47,6 +47,8 @@ public interface K_Service {
 
 	int commSave(Map<String, Object> map) throws Exception;
 
+	void logSet(Map<String, Object> map) throws Exception;
+
 	
 
 	
