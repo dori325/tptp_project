@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
+import com.common.common.CommandMap;
 import com.common.dao.AbstractDAO;
 
 @Repository("oDAO")
@@ -70,5 +71,15 @@ public class ODAO extends AbstractDAO {
 	public void boardLikeUp(int num) {
 		update("o.boardLikeUp", num);
 	}
+
+	public int lookUp(Map<String, Object> map) {
+		return (int) insert("o.lookUp", map);
+	}
+
+	public int lookUpcheck(CommandMap commandMap) {
+		return (int) selectOne("o.lookUpcheck", commandMap);
+	}
+	
+	
 
 }

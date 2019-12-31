@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
+import com.common.common.CommandMap;
 import com.tptp.dao.ODAO;
 
 @Service("oService")
@@ -68,5 +69,13 @@ public class OServiceImpl implements OService  {
 	@Override
 	public void boardLikeUp(int num) throws Exception {
 		oDAO.boardLikeUp(num);
+	}
+	@Override
+	public int lookUp(Map<String, Object> map) throws Exception {
+		return oDAO.lookUp(map);
+	}
+	@Override
+	public int lookUpcheck(CommandMap commandMap) throws Exception {
+		return oDAO.lookUpcheck(commandMap);
 	}
 }
