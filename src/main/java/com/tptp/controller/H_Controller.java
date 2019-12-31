@@ -1,5 +1,6 @@
 package com.tptp.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.common.common.CommandMap;
+import com.common.util.IpCheck;
 import com.tptp.service.H_Service;
 
 @Controller
@@ -253,28 +255,40 @@ public class H_Controller {
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = request.getSession();
 		commandMap.put("l_no", session.getAttribute("l_no"));
-		commandMap.put("re_level", session.getAttribute("re_level"));
-		
-		System.out.println(request.getParameter("l_no"));
-		System.out.println(request.getParameter("re_level"));
-		
-		if (session.getAttribute("l_no") != null && session.getAttribute("l_auth") != null) {
+		commandMap.put("l_auth", session.getAttribute("l_auth"));
 
+		System.out.println("[controller.. l_no]===>: " +request.getParameter("l_no"));
+		System.out.println("[controller.. l_auth]=>: " +request.getParameter("l_auth"));
+		
+		if (session.getAttribute("id") != null && session.getAttribute("auth") != null) {
 			int result = h_Service.levelUpdate(commandMap.getMap());
+			System.out.println("[controller.. l_auth]=>: " + result);
 
 			if (result == 0) {
 				mv.setViewName("userList");
-			} else if (result == 1) {
-				
-				session.setAttribute("l_auth", request.getParameter("re_level"));
+			} else if (result == 1) {				
+				session.setAttribute("l_no", request.getParameter("l_no"));
+				session.setAttribute("l_auth", request.getParameter("l_auth"));				
+				mv.addObject("l_auth", commandMap.get("l_auth"));
+				mv.addObject("l_no", commandMap.get("l_no"));				
+				mv.addObject("levelUpdate");				
 				mv.setViewName("redirect:userList.do");
-			}
+			}			
+			
+			//권한변경-log insert
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("l_id", session.getAttribute("id"));
+			map.put("l_nick", session.getAttribute("l_nick"));
+			map.put("log_etc", session.getAttribute("id")+"님이 권한 변경함" );
+			map.put("log_ip", IpCheck.getUserIP(request));
+			map.put("log_do", 10); //10권한변경
+			h_Service.logInput(map);
 		}
 		return mv;
 	}
 	
 
-	// 5.log기록
+	// 5.log관리
 	@RequestMapping(value = "log.do")
 	public ModelAndView log(HttpServletRequest request, CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();

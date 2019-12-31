@@ -8,13 +8,10 @@
 <title>이펜저펜</title>
 <script	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <c:import url="topmenu.jsp"/>
-<script type="text/javascript">
-	
-</script>
 </head>
 <link href="./css/detail.css" rel="stylesheet" />
 <body>
-		<div id="detailbody">	
+		<div id="detailbody">
 			<%@ include file="AllBar.jsp" %>
 			<div id="detailTop">
 			<h2>디테일</h2>
@@ -76,8 +73,10 @@
 						</td>
 						<td id="like">
 							<div id="like-wrap">
-								<div id="like-img"><img alt="" src="./img/heart2.png"></div>
-								<div id="like-text">
+								<div id="like-img">
+									<img alt="" src="./img/heart2.png">
+								</div>
+								<div id="like-text" onclick="location.href='brand2.do'">
 									<p>${detail.b_like }</p>
 								</div>
 							</div>

@@ -115,6 +115,18 @@
 						<c:if test="${log_do ne 9 }">
 							<option value="9">댓글삭제</option>
 						</c:if>
+						<c:if test="${log_do eq 10 }">
+							<option value="9" selected="selected">권한변경</option>
+						</c:if>
+						<c:if test="${log_do ne 10 }">
+							<option value="9">권한변경</option>
+						</c:if>	
+						<c:if test="${log_do eq 11 }">
+							<option value="9" selected="selected">회원가입</option>
+						</c:if>
+						<c:if test="${log_do ne 11 }">
+							<option value="9">회원가입</option>
+						</c:if>											
 				</select></th>
 				<th id="no">날짜</th>
 				<th id="no">비고</th>
@@ -129,10 +141,13 @@
 							test="${i.log_do eq 3}">로그아웃</c:if> <c:if test="${i.log_do eq 4}">글쓰기</c:if>
 						<c:if test="${i.log_do eq 5}">글수정</c:if> <c:if
 							test="${i.log_do eq 6}">글삭제</c:if> <c:if test="${i.log_do eq 7}">댓글쓰기</c:if>
-						<c:if test="${i.log_do eq 8}">댓글수정</c:if> <c:if
-							test="${i.log_do eq 9}">댓글삭제</c:if></td>
+						<c:if test="${i.log_do eq 8}">댓글수정</c:if> 
+						<c:if test="${i.log_do eq 9}">댓글삭제</c:if>
+						<c:if test="${i.log_do eq 10}">권한변경</c:if>
+						<c:if test="${i.log_do eq 11}">회원가입</c:if>						
+						</td>
 					<td id="no">${i.log_date }</td>
-					<td id="no">${i.log_etc }</td>
+					<td id="no" style="text-align: left;">${i.log_etc }</td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -177,7 +192,7 @@
 			</c:if>
 		</div>
 		
-    	<%@ include file="bottonmenu.jsp"%>
 	</div>
+<%@ include file="bottonmenu.jsp"%>
 </body>
 </html>

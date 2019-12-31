@@ -40,7 +40,7 @@ function check() {
 	<div id="logo">
 		<a>이펜저펜</a>
 	</div>
-	<div id="listboard">
+	<div id="Tlistboard">
 	
 		<%@ include file="AllBar.jsp"%>
 		
@@ -188,7 +188,7 @@ function check() {
 			</div>
 		</div>
 
-		<%@ include file="bottonmenu.jsp"%>
 	</div>
+	<%@ include file="bottonmenu.jsp"%>
 </body>
 </html>

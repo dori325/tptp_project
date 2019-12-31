@@ -11,35 +11,6 @@
 <link href="./css/page.css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css?family=Gamja+Flower|Nanum+Gothic+Coding&display=swap&subset=korean" rel="stylesheet">
 <style>
-#TS_Board a {
-   text-decoration: none;
-   color: black;   
-}
-#TS_Board a:link {
-   text-decoration: none;
-   color: black;
-}
-#TS_Board a:visited {
-   text-decoration: none;
-   color: black;
-}
-#TS_Board #count {
-   width: 40px;
-}
-#TS_Board #sort {
-   width: 50px;
-   background-image: url("../img/sort.png");
-   background-size: 40px 23px;
-   background-repeat: no-repeat;
-   background-position: center;
-}
-#TS_Board #name {
-   width: 65px;
-}
-#TS_Board #date {
-   width: 65px;
-}
-
 div {
 	background: #FFF;
 	padding: 5px;
@@ -195,8 +166,7 @@ div {
 			</div>
 
 		</div>
-		<%@ include file="bottonmenu.jsp"%>
 	</div>
-
+<%@ include file="bottonmenu.jsp"%>
 </body>
 </html>

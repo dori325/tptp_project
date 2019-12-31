@@ -35,6 +35,8 @@ public interface H_Service {
 	List<Map<String, Object>> ul_search(Map<String, Object> map) throws Exception;
 	//회원관리-권한변경
 	int levelUpdate(Map<String, Object> map) throws Exception;
+	//회원관리-권한변경-로그insert
+	void logInput(Map<String, Object> map)  throws Exception;
 	
 	//로그관리
 	List<Map<String, Object>> log(Map<String, Object> map) throws Exception;
