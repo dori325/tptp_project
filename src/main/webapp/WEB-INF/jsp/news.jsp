@@ -44,7 +44,7 @@
 			<button id="pensort" onclick="location.href='news.do?b_cate2=만년필'">만년필</button>
 			<button id="pensort" onclick="location.href='news.do?b_cate2=형광펜'">형광펜</button>
 			<c:if test="${sessionScope.id ne null }">
-				<a id="writelink" href="write.do?b_cate1=nw">글쓰기</a>
+				<a id="writelink" href="write.do?b_cate1=${b_cate1 }">글쓰기</a>
 			</c:if>
 		</div>
 		<table id="newsboard">
@@ -75,7 +75,7 @@
 						<tr id="boardTr">
 							<td id="comment">${ns.b_like }</td>
 							<td id="sort">${ns.b_cate2}</td>
-							<td id="titleAl"><a href="./detail.do?b_no=${ns.b_no }&b_cate1=${n.b_cate2}">${ns.b_title }</a></td>
+							<td id="titleAl"><a href="./detail.do?b_no=${ns.b_no }&b_cate1=${ns.b_cate1}">${ns.b_title }</a></td>
 							<td id="name">${ns.l_nick }</td>
 							<td id="date">${ns.b_date }</td>
 							<td id="count">${ns.b_count }</td>
@@ -179,7 +179,7 @@
 					</button>
 				</div>
 				<c:if test="${sessionScope.id ne null }">
-					<a id="writelink" href="write.do?b_cate1='nw">글쓰기</a>
+					<a id="writelink" href="write.do?b_cate1=${b_cate1 }">글쓰기</a>
 				</c:if>
 			</div>
 		</form>
